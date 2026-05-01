@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}ពន្ធលើប្រាក់បៀវតន៏ - Salary Tax{% endblock %}
+
+{% block nav_calculator %}salary{% endblock %}
+
+{% block content %}
+	<section class="hero" id="calculator">
+		<div class="hero-text">
+			<h2>💼 គណនាពន្ធលើប្រាក់បៀវតន៏</h2>
+			<p>
+				បញ្ចូលព័ត៌មានចំណូលប្រចាំខែរបស់អ្នក ដើម្បីទទួលបានការគណនាពន្ធ និងការបែងចែក
+				ប្រាក់សុទ្ធ។
+			</p>
+			<div class="hero-actions">
+				<button type="submit" form="tax-form" class="btn btn-primary">🚀 ចាប់ផ្តើមគណនា</button>
+				<button class="btn btn-secondary">📄 ទាញយករបាយការណ៍</button>
+			</div>
+		</div>
+
+		<div class="panel">
+			<form id="tax-form" method="post">
+				{% csrf_token %}
+				<h3 class="form-title">📝 ព័ត៌មានចំណូលប្រចាំខែ</h3>
+				<div class="grid">
+					<div>
+						{{ form.currency.label_tag }}
+						{{ form.currency }}
+					</div>
+					<div>
+						{{ form.income.label_tag }}
+						<span style="color: var(--muted); font-size: 14px;">({{ currency_symbol }})</span>
+						{{ form.income }}
+					</div>
+					<div>
+						{{ form.status.label_tag }}
+						{{ form.status }}
+					</div>
+					<div>
+						{{ form.dependents.label_tag }}
+						{{ form.dependents }}
+					</div>
+					<div>
+						{{ form.grants_benefits.label_tag }}
+						<span style="color: var(--muted); font-size: 14px;">({{ currency_symbol }})</span>
+						{{ form.grants_benefits }}
+					</div>
+				</div>
+				<div class="result">
+					<span>💰 ពន្ធប៉ាន់ស្មាន</span>
+					<strong>{{ currency_symbol }} {% if tax_amount is not None %}{{ tax_amount|floatformat:2 }}{% else %}0.00{% endif %}</strong>
+				</div>
+				<div class="tax-breakdown">
+					<h4 style="margin-top: 20px; margin-bottom: 10px; color: var(--primary);">📊 ព័ត៌មានលម្អិតនៃការគណនាពន្ធ</h4>
+					<div class="breakdown-item">
+						<span>💵 ចំណូលសរុប:</span>
+						<strong>{{ currency_symbol }} {% if form.income.value is not None %}{{ form.income.value|floatformat:2 }}{% else %}0.00{% endif %}</strong>
+					</div>
+					<div class="breakdown-item">
+						<span>🎁 អត្ថប្រយោជន៍/អំណោយ:</span>
+						<strong>{{ currency_symbol }} {% if grants_benefits_amount is not None %}{{ grants_benefits_amount|floatformat:2 }}{% else %}0.00{% endif %}</strong>
+					</div>
+					<div class="breakdown-item">
+						<span>👶 គ្មានពន្ធលើកូន:</span>
+						<strong>{{ currency_symbol }} {% if deduction_children is not None %}{{ deduction_children|floatformat:2 }}{% else %}0.00{% endif %}</strong>
+					</div>
+					<div class="breakdown-item">
+						<span>💑 គ្មានពន្ធលើប្រពន្ធ:</span>
+						<strong>{{ currency_symbol }} {% if deduction_wife is not None %}{{ deduction_wife|floatformat:2 }}{% else %}0.00{% endif %}</strong>
+					</div>
+					<div class="breakdown-item">
+						<span>💰 ពន្ធលើប្រាក់ខែ:</span>
+						<strong>{{ currency_symbol }} {% if salary_tax is not None %}{{ salary_tax|floatformat:2 }}{% else %}0.00{% endif %}</strong>
+					</div>
+					<div class="breakdown-item">
+						<span>🎁 ពន្ធលើអត្ថប្រយោជន៍ (20%):</span>
+						<strong>{{ currency_symbol }} {% if grant_tax is not None %}{{ grant_tax|floatformat:2 }}{% else %}0.00{% endif %}</strong>
+					</div>
+					<div class="breakdown-item">
+						<span>🎁 អត្ថប្រយោជន៍សង្គម:</span>
+						<strong>{{ currency_symbol }} {% if grants_benefits_amount is not None %}{{ grants_benefits_amount|floatformat:2 }}{% else %}0.00{% endif %}</strong>
+					</div>
+					<div class="breakdown-item total">
+						<span>💰 ពន្ធសរុប:</span>
+						<strong>{{ currency_symbol }} {% if tax_amount is not None %}{{ tax_amount|floatformat:2 }}{% else %}0.00{% endif %}</strong>
+					</div>
+				</div>
+				{% if net_income is not None %}
+				<div class="result">
+					<span>💸 ប្រាក់សុទ្ធ</span>
+					<strong>{{ currency_symbol }} {{ net_income|floatformat:2 }}</strong>
+				</div>
+				{% endif %}
+			</form>
+		</div>
+	</section>
+
+	<section class="hero" id="guide">
+		<div class="panel">
+			<h3 class="form-title">📋 វិធីប្រើប្រាស់</h3>
+			<div class="grid">
+				<div>
+					<label>1️⃣ បញ្ចូលចំណូល និងអ្នកអាស្រ័យ</label>
+					<input type="text" value="បញ្ចូលទិន្នន័យចាំបាច់" disabled />
+				</div>
+				<div>
+					<label>2️⃣ ចុច "ចាប់ផ្តើមគណនា"</label>
+					<input type="text" value="ប្រព័ន្ធគណនាពន្ធដោយស្វ័យប្រវត្តិ" disabled />
+				</div>
+				<div>
+					<label>3️⃣ ទាញយករបាយការណ៍</label>
+					<input type="text" value="រក្សាទុកជាកំណត់ត្រា" disabled />
+				</div>
+			</div>
+		</div>
+
+		<div class="hero-text">
+			<h2>✅ ទទួលបានភាពទុកចិត្តក្នុងការគ្រប់គ្រងពន្ធ</h2>
+			<p>
+				ប្រព័ន្ធរបស់យើងប្រើប្រាស់ច្បាប់ពន្ធបច្ចុប្បន្នរបស់កម្ពុជា
+				ដើម្បីធានាបាននូវភាពត្រឹមត្រូវនៃការគណនា។
+			</p>
+		</div>
+	</section>
+{% endblock %}

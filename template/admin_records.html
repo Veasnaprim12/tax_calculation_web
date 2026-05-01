@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block title %}កំណត់ត្រាពន្ធទាំងអស់ - Admin Records{% endblock %}
+
+{% block content %}
+	<section class="hero">
+		<div class="hero-text">
+			<h2>កំណត់ត្រាពន្ធទាំងអស់</h2>
+			<p>ទំព័រគ្រប់គ្រងសម្រាប់អ្នកគ្រប់គ្រងតែប៉ុណ្ណោះ</p>
+		</div>
+	</section>
+
+	<section class="panel" style="margin: 24px auto; max-width: 1200px;">
+		<h3 class="form-title">ស្ថិតិសរុប</h3>
+		<div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+			<div class="result">
+				<span>កំណត់ត្រាសរុប</span>
+				<strong>{{ total_records }}</strong>
+			</div>
+			<div class="result">
+				<span>ពន្ធប្រាក់បៀវតន៏</span>
+				<strong>{{ salary_records }}</strong>
+			</div>
+			<div class="result">
+				<span>ពន្ធអាក</span>
+				<strong>{{ property_records }}</strong>
+			</div>
+			<div class="result">
+				<span>ពន្ធប្រមូលបានសរុប</span>
+				<strong>៛ {{ total_tax_collected_khr|floatformat:0 }}</strong>
+			</div>
+		</div>
+	</section>
+
+	<section class="panel" style="margin: 24px auto; max-width: 1200px;">
+		<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+			<h3 class="form-title">តារាងកំណត់ត្រា</h3>
+			<div>
+				<a href="?tax_type=" class="btn btn-secondary" style="margin-right: 8px;">ទាំងអស់</a>
+				<a href="?tax_type=salary" class="btn btn-primary" style="margin-right: 8px;">ពន្ធប្រាក់បៀវតន៏</a>
+				<a href="?tax_type=property" class="btn btn-secondary">ពន្ធអាក</a>
+			</div>
+		</div>
+
+		{% if records %}
+		<div style="overflow-x: auto;">
+			<table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
+				<thead>
+					<tr style="background-color: var(--primary); color: white;">
+						<th style="padding: 12px; text-align: left; border: 1px solid var(--border);">ប្រភេទពន្ធ</th>
+						<th style="padding: 12px; text-align: left; border: 1px solid var(--border);">រូបិយប័ណ្ណ</th>
+						<th style="padding: 12px; text-align: left; border: 1px solid var(--border);">ព័ត៌មាន</th>
+						<th style="padding: 12px; text-align: left; border: 1px solid var(--border);">ស្ថានភាព</th>
+						<th style="padding: 12px; text-align: right; border: 1px solid var(--border);">ពន្ធ</th>
+						<th style="padding: 12px; text-align: center; border: 1px solid var(--border);">កាលបរិច្ឆេទ</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for record in records %}
+					<tr style="border-bottom: 1px solid var(--border);">
+						<td style="padding: 12px; border: 1px solid var(--border);">
+							{% if record.tax_type == 'salary' %}
+								<span style="background-color: var(--primary); color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px;">ពន្ធប្រាក់បៀវតន៏</span>
+							{% else %}
+								<span style="background-color: var(--secondary); color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px;">ពន្ធអាក</span>
+							{% endif %}
+						</td>
+						<td style="padding: 12px; border: 1px solid var(--border);">
+							{% if record.currency == 'USD' %}
+								<span style="font-weight: bold; color: var(--success);">$ USD</span>
+							{% else %}
+								<span style="font-weight: bold; color: var(--primary);">៛ KHR</span>
+							{% endif %}
+						</td>
+						<td style="padding: 12px; border: 1px solid var(--border);">
+							{% if record.tax_type == 'salary' %}
+								<div><strong>ចំណូល:</strong> {% if record.currency == 'USD' %}${% else %}៛{% endif %} {{ record.income|floatformat:2 }}</div>
+								<div><strong>ស្ថានភាព:</strong> {{ record.get_status_display }}</div>
+								<div><strong>អ្នកអាស្រ័យ:</strong> {{ record.dependents }} នាក់</div>
+								{% if record.net_income %}
+								<div><strong>ប្រាក់សុទ្ធ:</strong> {% if record.currency == 'USD' %}${% else %}៛{% endif %} {{ record.net_income|floatformat:2 }}</div>
+								{% endif %}
+							{% else %}
+								<div><strong>តម្លៃអចលនទ្រព្យ:</strong> {% if record.currency == 'USD' %}${% else %}៛{% endif %} {{ record.property_value|floatformat:2 }}</div>
+								<div><strong>ប្រភេទ:</strong> {{ record.property_type }}</div>
+							{% endif %}
+						</td>
+						<td style="padding: 12px; border: 1px solid var(--border);">
+							<span style="color: var(--success); font-weight: bold;">បានបញ្ចប់</span>
+						</td>
+						<td style="padding: 12px; border: 1px solid var(--border); text-align: right; font-weight: bold; color: var(--primary);">
+							{% if record.currency == 'USD' %}${% else %}៛{% endif %} {{ record.tax_amount|floatformat:2 }}
+						</td>
+						<td style="padding: 12px; border: 1px solid var(--border); text-align: center; color: var(--muted);">
+							{{ record.created_at|date:"d/m/Y" }}<br>
+							<small>{{ record.created_at|time:"H:i" }}</small>
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+		{% if records|length > 20 %}
+		<div style="text-align: center; margin-top: 24px;">
+			<p style="color: var(--muted);">បង្ហាញ {{ records|length }} កំណត់ត្រាចុងក្រោយ</p>
+		</div>
+		{% endif %}
+
+		{% else %}
+		<div style="text-align: center; padding: 48px; color: var(--muted);">
+			<p>មិនមានកំណត់ត្រាទេ</p>
+		</div>
+		{% endif %}
+	</section>
+{% endblock %}

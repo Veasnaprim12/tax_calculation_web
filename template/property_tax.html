@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}ពន្ធអាក - Property Tax{% endblock %}
+
+{% block nav_calculator %}property{% endblock %}
+
+{% block content %}
+	<section class="hero" id="calculator">
+		<div class="hero-text">
+			<h2>🏠 គណនាពន្ធអាក</h2>
+			<p>
+				បញ្ចូលព័ត៌មានអចលនទ្រព្យរបស់អ្នក ដើម្បីទទួលបានការគណនាពន្ធអាក
+				ដោយផ្អែកលើច្បាប់ពន្ធបច្ចុប្បន្ន។
+			</p>
+		</div>
+
+		<div class="panel">
+			<form id="tax-form" method="post">
+				{% csrf_token %}
+				<h3 class="form-title">📝 ព័ត៌មានអចលនទ្រព្យ</h3>
+				<div class="grid">
+					<div>
+						{{ form.currency.label_tag }}
+						{{ form.currency }}
+					</div>
+					<div>
+						{{ form.property_value.label_tag }}
+						<span style="color: var(--muted); font-size: 14px;">({{ currency_symbol }})</span>
+						{{ form.property_value }}
+					</div>
+					<div>
+						{{ form.property_type.label_tag }}
+						{{ form.property_type }}
+					</div>
+				</div>
+				<div class="result">
+					<span>💰 ពន្ធប៉ាន់ស្មាន</span>
+					<strong>{{ currency_symbol }} {{ tax_amount|default:"0"|floatformat:2 }}</strong>
+				</div>
+				<div style="text-align: center; margin-top: 20px;">
+					<button type="submit" class="btn btn-primary">🚀 ចាប់ផ្តើមគណនា</button>
+				</div>
+			</form>
+		</div>
+	</section>
+
+	<section class="hero" id="guide">
+		<div class="panel">
+			<h3 class="form-title">📋 វិធីប្រើប្រាស់</h3>
+			<div class="grid">
+				<div>
+					<label>1️⃣ បញ្ចូលតម្លៃ និងប្រភេទអចលនទ្រព្យ</label>
+					<input type="text" value="បញ្ចូលទិន្នន័យចាំបាច់" disabled />
+				</div>
+				<div>
+					<label>2️⃣ ចុច "ចាប់ផ្តើមគណនា"</label>
+					<input type="text" value="ប្រព័ន្ធគណនាពន្ធដោយស្វ័យប្រវត្តិ" disabled />
+				</div>
+				<div>
+					<label>3️⃣ ទាញយករបាយការណ៍</label>
+					<input type="text" value="រក្សាទុកជាកំណត់ត្រា" disabled />
+				</div>
+			</div>
+		</div>
+
+		<div class="hero-text">
+			<h2>✅ ទទួលបានភាពទុកចិត្តក្នុងការគ្រប់គ្រងពន្ធ</h2>
+			<p>
+				ប្រព័ន្ធរបស់យើងប្រើប្រាស់ច្បាប់ពន្ធបច្ចុប្បន្នរបស់កម្ពុជា
+				ដើម្បីធានាបាននូវភាពត្រឹមត្រូវនៃការគណនា។
+			</p>
+		</div>
+	</section>
+{% endblock %}

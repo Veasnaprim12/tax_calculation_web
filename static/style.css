@@ -1,0 +1,314 @@
+:root {
+	--ink: #1a1a1a;
+	--paper: #ffffff;
+	--accent: #0066cc;
+	--accent-2: #28a745;
+	--accent-3: #ffc107;
+	--muted: #6c757d;
+	--card: rgba(255, 255, 255, 0.95);
+	--shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: "Battambang", serif;
+	color: var(--ink);
+	background: radial-gradient(
+			circle at 10% 20%,
+			rgba(31, 111, 120, 0.18),
+			transparent 40%
+		),
+		radial-gradient(
+			circle at 90% 10%,
+			rgba(224, 79, 57, 0.2),
+			transparent 45%
+		),
+		linear-gradient(120deg, #f8efe7, #f5f9f7 55%, #f6eee5);
+	min-height: 100vh;
+}
+
+header {
+	padding: 32px 8vw 12px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 24px;
+}
+
+.brand {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+
+.logo {
+	width: 52px;
+	height: 52px;
+	border-radius: 18px;
+	background: linear-gradient(140deg, var(--accent), var(--accent-2));
+	display: grid;
+	place-items: center;
+	color: #fff;
+	font-family: "Khmer Moul", cursive;
+	font-size: 18px;
+	box-shadow: var(--shadow);
+}
+
+.brand h1 {
+	margin: 0;
+	font-family: "Khmer Moul", cursive;
+	font-size: clamp(20px, 3vw, 28px);
+	letter-spacing: 0.5px;
+}
+
+.brand p {
+	margin: 4px 0 0;
+	color: var(--muted);
+	font-size: 14px;
+}
+
+nav {
+	display: flex;
+	gap: 18px;
+	font-size: 14px;
+}
+
+nav a {
+	text-decoration: none;
+	color: var(--ink);
+	font-weight: 600;
+	padding-bottom: 4px;
+	border-bottom: 2px solid transparent;
+}
+
+nav a:hover {
+	border-bottom-color: var(--accent);
+}
+
+.hero {
+	padding: 28px 8vw 64px;
+	display: grid;
+	gap: 32px;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	align-items: center;
+}
+
+.hero-text {
+	animation: rise 700ms ease-out;
+}
+
+.hero-text h2 {
+	font-family: "Khmer Moul", cursive;
+	font-size: clamp(26px, 4vw, 40px);
+	margin: 0 0 12px;
+	line-height: 1.3;
+}
+
+.hero-text p {
+	margin: 0 0 18px;
+	color: var(--muted);
+	font-size: 16px;
+}
+
+.hero-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+}
+
+.btn {
+	padding: 12px 20px;
+	border-radius: 999px;
+	border: none;
+	cursor: pointer;
+	font-weight: 700;
+	font-size: 14px;
+	transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.btn-primary {
+	background: var(--accent);
+	color: #fff;
+	box-shadow: 0 14px 30px rgba(224, 79, 57, 0.35);
+}
+
+.btn-secondary {
+	background: #fff;
+	color: var(--accent-2);
+	border: 2px solid var(--accent-2);
+}
+
+.btn:hover {
+	transform: translateY(-2px);
+}
+
+.panel {
+	background: var(--card);
+	backdrop-filter: blur(12px);
+	border-radius: 24px;
+	padding: 28px;
+	box-shadow: var(--shadow);
+	position: relative;
+	overflow: hidden;
+}
+
+.panel::after {
+	content: "";
+	position: absolute;
+	right: -60px;
+	top: -60px;
+	width: 140px;
+	height: 140px;
+	background: radial-gradient(circle, rgba(242, 183, 5, 0.45), transparent 70%);
+}
+
+.form-title {
+	margin: 0 0 12px;
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.grid {
+	display: grid;
+	gap: 14px;
+}
+
+.grid label {
+	font-size: 13px;
+	color: var(--muted);
+}
+
+.grid input,
+.grid select {
+	width: 100%;
+	padding: 10px 12px;
+	border-radius: 12px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	font-family: "Battambang", serif;
+}
+
+.result {
+	margin-top: 18px;
+	padding: 14px;
+	border-radius: 16px;
+	background: rgba(31, 111, 120, 0.08);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-weight: 700;
+}
+
+.tax-breakdown {
+	margin-top: 20px;
+	padding: 16px;
+	border-radius: 12px;
+	background: rgba(255, 255, 255, 0.9);
+	border: 1px solid rgba(0, 102, 204, 0.2);
+}
+
+.tax-breakdown h4 {
+	margin: 0 0 12px 0;
+	font-size: 16px;
+	font-family: "Khmer Moul", cursive;
+	color: var(--accent);
+}
+
+.breakdown-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 8px 0;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+	font-size: 14px;
+}
+
+.breakdown-item:last-child {
+	border-bottom: none;
+}
+
+.breakdown-item.total {
+	font-weight: 700;
+	font-size: 16px;
+	color: var(--accent);
+	border-top: 2px solid var(--accent);
+	margin-top: 8px;
+	padding-top: 12px;
+}
+
+.breakdown-item span {
+	color: var(--muted);
+}
+
+.breakdown-item strong {
+	color: var(--ink);
+}
+
+.cards h2 {
+		font-size: 24px;
+		margin: 0 0 24px;
+		text-align: center;
+		font-family: "Khmer Moul", cursive;
+}
+
+.card {
+	background: #fff;
+	padding: 20px;
+	border-radius: 18px;
+	box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+	animation: fadeIn 700ms ease forwards;
+}
+
+.card h3 {
+	margin: 0 0 8px;
+	font-size: 16px;
+}
+
+.card p {
+	margin: 0;
+	color: var(--muted);
+	font-size: 14px;
+}
+
+footer {
+	padding: 24px 8vw 36px;
+	color: var(--muted);
+	font-size: 13px;
+	text-align: center;
+}
+
+@keyframes rise {
+	from {
+		opacity: 0;
+		transform: translateY(18px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(12px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@media (max-width: 720px) {
+	header {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	nav {
+		flex-wrap: wrap;
+	}
+}

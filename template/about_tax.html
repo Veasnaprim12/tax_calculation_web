@@ -1,0 +1,749 @@
+{% extends "base.html" %}
+
+{% block title %}អំពីពន្ធ - About Tax{% endblock %}
+
+{% block content %}
+<style>
+.about-hero {
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: white;
+	padding: 60px 8vw 80px;
+	text-align: center;
+	position: relative;
+	overflow: hidden;
+}
+
+.about-hero::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.05"/><circle cx="10" cy="50" r="0.5" fill="white" opacity="0.05"/><circle cx="90" cy="30" r="0.5" fill="white" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+	opacity: 0.3;
+}
+
+.about-hero .hero-text h2 {
+	font-size: 3.5rem;
+	font-weight: 700;
+	margin-bottom: 1rem;
+	text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.about-hero .hero-text p {
+	font-size: 1.3rem;
+	line-height: 1.6;
+	max-width: 600px;
+	margin: 0 auto;
+	opacity: 0.9;
+}
+
+.info-section {
+	padding: 80px 8vw;
+	background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.info-panel {
+	background: rgba(255, 255, 255, 0.95);
+	backdrop-filter: blur(20px);
+	border-radius: 25px;
+	padding: 50px;
+	box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+	border: 1px solid rgba(255,255,255,0.2);
+	margin-bottom: 40px;
+}
+
+.info-panel h2 {
+	font-size: 2.5rem;
+	color: #2c3e50;
+	margin-bottom: 2rem;
+	text-align: center;
+	font-weight: 700;
+}
+
+.info-panel .emoji-large {
+	font-size: 4rem;
+	display: block;
+	text-align: center;
+	margin-bottom: 1rem;
+	text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.info-panel p {
+	font-size: 1.2rem;
+	line-height: 1.8;
+	color: #34495e;
+	margin-bottom: 2rem;
+}
+
+.info-list {
+	list-style: none;
+	padding: 0;
+	margin: 2rem 0;
+}
+
+.info-list li {
+	padding: 1rem;
+	background: rgba(255,255,255,0.8);
+	margin-bottom: 1rem;
+	border-radius: 15px;
+	border-left: 5px solid #3498db;
+	box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+	transition: transform 0.3s ease;
+}
+
+.info-list li:hover {
+	transform: translateX(10px);
+}
+
+.info-list li strong {
+	color: #2c3e50;
+	font-size: 1.1rem;
+}
+
+.cards-section {
+	padding: 80px 8vw;
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	position: relative;
+}
+
+.cards-section::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain2" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.05"/><circle cx="10" cy="50" r="0.5" fill="white" opacity="0.05"/><circle cx="90" cy="30" r="0.5" fill="white" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain2)"/></svg>');
+	opacity: 0.2;
+}
+
+.cards-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+	gap: 2rem;
+	position: relative;
+	z-index: 1;
+}
+
+.enhanced-card {
+	background: rgba(255, 255, 255, 0.95);
+	backdrop-filter: blur(20px);
+	border-radius: 25px;
+	padding: 40px;
+	box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+	border: 1px solid rgba(255,255,255,0.3);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	position: relative;
+	overflow: hidden;
+}
+
+.enhanced-card::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 5px;
+	background: linear-gradient(90deg, #3498db, #2ecc71, #e74c3c);
+}
+
+.enhanced-card:hover {
+	transform: translateY(-10px);
+	box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+}
+
+.enhanced-card h3 {
+	font-size: 1.8rem;
+	color: #2c3e50;
+	margin-bottom: 1.5rem;
+	font-weight: 700;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.enhanced-card .emoji-icon {
+	font-size: 2.5rem;
+	text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.enhanced-card p {
+	font-size: 1.1rem;
+	line-height: 1.7;
+	color: #34495e;
+	margin: 0;
+}
+
+.why-section {
+	padding: 80px 8vw;
+	background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+	color: white;
+	position: relative;
+}
+
+.why-section::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain3" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.05"/><circle cx="10" cy="50" r="0.5" fill="white" opacity="0.05"/><circle cx="90" cy="30" r="0.5" fill="white" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain3)"/></svg>');
+	opacity: 0.3;
+}
+
+.why-panel {
+	background: rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(20px);
+	border-radius: 25px;
+	padding: 50px;
+	border: 1px solid rgba(255,255,255,0.2);
+	position: relative;
+	z-index: 1;
+}
+
+.why-panel h2 {
+	font-size: 2.5rem;
+	color: white;
+	margin-bottom: 3rem;
+	text-align: center;
+	font-weight: 700;
+	text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.why-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 2rem;
+}
+
+.why-card {
+	background: rgba(255, 255, 255, 0.15);
+	backdrop-filter: blur(10px);
+	border-radius: 20px;
+	padding: 30px;
+	border: 1px solid rgba(255,255,255,0.2);
+	transition: transform 0.3s ease;
+}
+
+.why-card:hover {
+	transform: translateY(-5px);
+}
+
+.why-card h3 {
+	font-size: 1.5rem;
+	color: white;
+	margin-bottom: 1rem;
+	font-weight: 600;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.why-card .emoji-icon {
+	font-size: 2rem;
+}
+
+.why-card p {
+	font-size: 1.1rem;
+	line-height: 1.6;
+	color: rgba(255,255,255,0.9);
+	margin: 0;
+}
+
+.tax-types-section {
+	padding: 80px 8vw;
+	background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+	position: relative;
+}
+
+.tax-types-section::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain4" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.05"/><circle cx="10" cy="50" r="0.5" fill="white" opacity="0.05"/><circle cx="90" cy="30" r="0.5" fill="white" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain4)"/></svg>');
+	opacity: 0.3;
+}
+
+.tax-types-panel {
+	background: rgba(255, 255, 255, 0.95);
+	backdrop-filter: blur(20px);
+	border-radius: 25px;
+	padding: 50px;
+	border: 1px solid rgba(255,255,255,0.3);
+	position: relative;
+	z-index: 1;
+}
+
+.tax-types-panel h2 {
+	font-size: 2.5rem;
+	color: #2c3e50;
+	margin-bottom: 3rem;
+	text-align: center;
+	font-weight: 700;
+}
+
+.tax-types-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	gap: 2rem;
+}
+
+.tax-type-card {
+	background: rgba(255, 255, 255, 0.9);
+	backdrop-filter: blur(10px);
+	border-radius: 20px;
+	padding: 30px;
+	border: 1px solid rgba(255,255,255,0.3);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.tax-type-card:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.tax-type-card h3 {
+	font-size: 1.4rem;
+	color: #2c3e50;
+	margin-bottom: 1rem;
+	font-weight: 600;
+	text-align: center;
+}
+
+.tax-type-card p {
+	font-size: 1rem;
+	line-height: 1.6;
+	color: #34495e;
+	margin: 0;
+	text-align: center;
+}
+
+.rates-section {
+	padding: 80px 8vw;
+	background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+	position: relative;
+}
+
+.rates-section::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain5" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.05"/><circle cx="10" cy="50" r="0.5" fill="white" opacity="0.05"/><circle cx="90" cy="30" r="0.5" fill="white" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain5)"/></svg>');
+	opacity: 0.3;
+}
+
+.rates-panel {
+	background: rgba(255, 255, 255, 0.95);
+	backdrop-filter: blur(20px);
+	border-radius: 25px;
+	padding: 50px;
+	border: 1px solid rgba(255,255,255,0.3);
+	position: relative;
+	z-index: 1;
+}
+
+.rates-panel h2 {
+	font-size: 2.5rem;
+	color: #2c3e50;
+	margin-bottom: 2rem;
+	text-align: center;
+	font-weight: 700;
+}
+
+.rates-panel h3 {
+	font-size: 1.8rem;
+	color: #27ae60;
+	margin-bottom: 1.5rem;
+	font-weight: 600;
+	text-align: center;
+}
+
+.rates-panel p {
+	font-size: 1.2rem;
+	line-height: 1.7;
+	color: #34495e;
+	margin-bottom: 2rem;
+	text-align: center;
+}
+
+.tax-table-container {
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	border-radius: 20px;
+	padding: 30px;
+	margin: 2rem 0;
+	box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+.tax-table-container h4 {
+	color: white;
+	font-size: 1.5rem;
+	margin-bottom: 1.5rem;
+	text-align: center;
+	font-weight: 600;
+	text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.tax-table {
+	width: 100%;
+	color: white;
+	border-collapse: collapse;
+	font-size: 1rem;
+}
+
+.tax-table th {
+	text-align: left;
+	padding: 15px;
+	font-weight: 600;
+	border-bottom: 2px solid rgba(255,255,255,0.3);
+	text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.tax-table td {
+	padding: 15px;
+	border-bottom: 1px solid rgba(255,255,255,0.2);
+	transition: background-color 0.3s ease;
+}
+
+.tax-table tr:hover td {
+	background: rgba(255,255,255,0.1);
+}
+
+.tax-table .rate-highlight {
+	font-weight: 700;
+	font-size: 1.1rem;
+	color: #f1c40f;
+	text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.example-box {
+	background: rgba(255, 255, 255, 0.9);
+	border-radius: 15px;
+	padding: 25px;
+	margin: 2rem 0;
+	border-left: 5px solid #3498db;
+	box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.example-box strong {
+	color: #2c3e50;
+	font-size: 1.1rem;
+}
+
+.stats-section {
+	padding: 80px 8vw;
+	background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+	position: relative;
+}
+
+.stats-section::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain6" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.05"/><circle cx="10" cy="50" r="0.5" fill="white" opacity="0.05"/><circle cx="90" cy="30" r="0.5" fill="white" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain6)"/></svg>');
+	opacity: 0.3;
+}
+
+.faq-section {
+	padding: 80px 8vw;
+	background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+	position: relative;
+}
+
+.faq-section::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain7" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.05"/><circle cx="10" cy="50" r="0.5" fill="white" opacity="0.05"/><circle cx="90" cy="30" r="0.5" fill="white" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain7)"/></svg>');
+	opacity: 0.3;
+}
+
+.faq-panel {
+	background: rgba(255, 255, 255, 0.95);
+	backdrop-filter: blur(20px);
+	border-radius: 25px;
+	padding: 50px;
+	border: 1px solid rgba(255,255,255,0.3);
+	position: relative;
+	z-index: 1;
+}
+
+.faq-panel h2 {
+	font-size: 2.5rem;
+	color: #2c3e50;
+	margin-bottom: 3rem;
+	text-align: center;
+	font-weight: 700;
+}
+
+.faq-item {
+	margin-bottom: 2rem;
+	padding: 25px;
+	background: rgba(255,255,255,0.8);
+	border-radius: 15px;
+	border-left: 5px solid #3498db;
+	box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+	transition: transform 0.3s ease;
+}
+
+.faq-item:hover {
+	transform: translateX(10px);
+}
+
+.faq-item h4 {
+	font-size: 1.3rem;
+	color: #2c3e50;
+	margin-bottom: 1rem;
+	font-weight: 600;
+}
+
+.faq-item p {
+	font-size: 1.1rem;
+	line-height: 1.6;
+	color: #34495e;
+	margin: 0;
+}
+
+@media (max-width: 768px) {
+	.about-hero .hero-text h2 {
+		font-size: 2.5rem;
+	}
+	
+	.info-panel, .why-panel, .tax-types-panel, .rates-panel, .faq-panel {
+		padding: 30px 20px;
+	}
+	
+	.cards-grid {
+		grid-template-columns: 1fr;
+	}
+	
+	.why-grid, .tax-types-grid {
+		grid-template-columns: 1fr;
+	}
+	
+	.enhanced-card, .why-card, .tax-type-card {
+		padding: 25px;
+	}
+}
+</style>
+
+	<section class="about-hero">
+		<div class="hero-text">
+			<h2>អំពីពន្ធ</h2>
+			<p>
+				ស្វែងយល់អំពីពន្ធជាមួយនឹងព័ត៌មានលម្អិត ច្បាប់ និងអត្ថប្រយោជន៍
+			</p>
+		</div>
+	</section>
+
+	<section class="info-section">
+		<div class="info-panel">
+			<h2>តើពន្ធជាអ្វី?</h2>
+			<span class="emoji-large">💰</span>
+			<p>
+				ពន្ធគឺជាប្រាក់ដែលប្រជាពលរដ្ឋត្រូវបង់ទៅរដ្ឋាភិបាលដើម្បីគាំទ្រការដំណើរការរបស់រដ្ឋ
+				និងការអភិវឌ្ឍប្រទេស។ ពន្ធគឺជាប្រភពចំណូលសំខាន់បំផុតរបស់រដ្ឋាភិបាលក្នុងការផ្តល់សេវាសាធារណៈ។
+			</p>
+			<ul class="info-list">
+				<li><strong>🏛️ គាំទ្ររដ្ឋាភិបាលក្នុងការដំណើរការប្រទេស</strong></li>
+				<li><strong>🚀 ជួយអភិវឌ្ឍសេដ្ឋកិច្ច និងសង្គម</strong></li>
+				<li><strong>⚖️ ធានាភាពយុត្តិធម៌ក្នុងសង្គម</strong></li>
+				<li><strong>🛡️ ផ្តល់សន្តិសុខ និងសេវាសាធារណៈ</strong></li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="cards-section">
+		<div class="cards-grid">
+			<article class="enhanced-card">
+				<h3><span class="emoji-icon">📜</span> ប្រវត្តិនៃពន្ធ</h3>
+				<p>ពន្ធមានប្រវត្តិយូរលង់ចាប់តាំងពីសម័យបុរាណ។ នៅក្នុងប្រទេសកម្ពុជា ប្រព័ន្ធពន្ធបានចាប់ផ្តើមអភិវឌ្ឍយ៉ាងពិតប្រាកដក្នុងរយៈពេលប៉ុន្មានទសវត្សរ៍ចុងក្រោយនេះ ដោយផ្តោតលើការអភិវឌ្ឍសេដ្ឋកិច្ច និងការធានាសន្តិសុខសង្គម។</p>
+			</article>
+			<article class="enhanced-card">
+				<h3><span class="emoji-icon">⚖️</span> ភាពយុត្តិធម៌នៃពន្ធ</h3>
+				<p>ប្រព័ន្ធពន្ធល្អគឺជាប្រព័ន្ធដែលមានតម្លាភាព មានភាពយុត្តិធម៌ និងធានាបាននូវការចែកចាយធនធានដោយស្មើភាព។ ប្រព័ន្ធពន្ធដំណាក់កាល (progressive tax) ជួយធានាបាននូវភាពយុត្តិធម៌នេះ។</p>
+			</article>
+			<article class="enhanced-card">
+				<h3><span class="emoji-icon">🌍</span> ពន្ធនៅក្នុងពិភពលោក</h3>
+				<p>ប្រទេសនានានៅក្នុងពិភពលោកមានប្រព័ន្ធពន្ធផ្សេងៗគ្នា។ ប្រទេសកម្ពុជាប្រើប្រព័ន្ធពន្ធដំណាក់កាលដើម្បីធានាបាននូវភាពយុត្តិធម៌ និងគាំទ្រការអភិវឌ្ឍជាតិ។</p>
+			</article>
+		</div>
+	</section>
+
+	<section class="why-section">
+		<div class="why-panel">
+			<h2><span class="emoji-icon">💡</span> ហេតុអ្វីយើងត្រូវបង់ពន្ធ?</h2>
+			<div class="why-grid">
+				<div class="why-card">
+					<h3><span class="emoji-icon">🤝</span> ការចែកចាយទទួលខុសត្រូវ</h3>
+					<p>ពន្ធជួយធានាបាននូវការចែកចាយទទួលខុសត្រូវរវាងប្រជាពលរដ្ឋទាំងអស់។ អ្នកមានចំណូលខ្ពស់ជួយអ្នកមានចំណូលទាប ដើម្បីធានាបាននូវសង្គមដែលមានសមភាព។</p>
+				</div>
+				<div class="why-card">
+					<h3><span class="emoji-icon">🚀</span> ការអភិវឌ្ឍសេដ្ឋកិច្ច</h3>
+					<p>ប្រាក់ពន្ធត្រូវបានប្រើប្រាស់ដើម្បីលើកកម្ពស់សេដ្ឋកិច្ច បង្កើតការងារ អភិវឌ្ឍឧស្សាហកម្ម និងគាំទ្រវិស័យឯកជន។</p>
+				</div>
+				<div class="why-card">
+					<h3><span class="emoji-icon">🛡️</span> សន្តិសុខសង្គម</h3>
+					<p>ពន្ធធានាបាននូវប្រព័ន្ធសុខភាព អប់រំ ការពារសង្គម និងសេវាសាធារណៈផ្សេងទៀតសម្រាប់ប្រជាពលរដ្ឋទាំងអស់។</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="tax-types-section">
+		<div class="tax-types-panel">
+			<h2><span class="emoji-icon">📊</span> ប្រភេទពន្ធ</h2>
+			<div class="tax-types-grid">
+				<div class="tax-type-card">
+					<h3>💼 ពន្ធលើប្រាក់បៀវតន៏</h3>
+					<p>ពន្ធដែលត្រូវបង់លើចំណូលពីការងារ អាជីវកម្ម និងប្រភពចំណូលផ្សេងៗ។</p>
+				</div>
+				<div class="tax-type-card">
+					<h3>🏠 ពន្ធអាករ</h3>
+					<p>ពន្ធដែលត្រូវបង់លើអចលនទ្រព្យដូចជាផ្ទះ ដី និងអចលនទ្រព្យផ្សេងៗ។</p>
+				</div>
+				<div class="tax-type-card">
+					<h3>🛒 ពន្ធលើទំនិញនិងសេវាកម្ម</h3>
+					<p>ពន្ធដែលត្រូវបង់លើការទិញទំនិញ និងប្រើប្រាស់សេវាកម្ម។</p>
+				</div>
+				<div class="tax-type-card">
+					<h3>� ពន្ធលើអត្ថប្រយោជន៍សង្គម</h3>
+					<p>ពន្ធដែលត្រូវបង់លើអត្ថប្រយោជន៍សង្គម ឬអំណោទិ៍ដែលទទួលបាន ដោយយក 20% នៃចំនួនសរុបនៃអត្ថប្រយោជន៍។</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="rates-section">
+		<div class="rates-panel">
+			<h2><span class="emoji-icon">📈</span> អត្រាពន្ធលើប្រាក់បៀវតន៏</h2>
+			<h3>ប្រព័ន្ធពន្ធដំណាក់កាល (Progressive Tax System)</h3>
+			<p>ក្នុងប្រទេសកម្ពុជា ពន្ធលើប្រាក់បៀវតន៏ត្រូវបានគណនាដោយផ្អែកលើចំណូលប្រចាំឆ្នាំ។ ប្រព័ន្ធនេះមានលក្ខណៈយុត្តិធម៌ ដោយអ្នកមានចំណូលទាបត្រូវបង់ពន្ធតិច និងអ្នកមានចំណូលខ្ពស់ត្រូវបង់ពន្ធច្រើន។</p>
+			
+			<div class="tax-table-container">
+				<h4>អត្រាពន្ធតាមដំណាក់កាល (រៀលក្នុងមួយឆ្នាំ)</h4>
+				<table class="tax-table">
+					<thead>
+						<tr>
+							<th>ចំណូលប្រចាំឆ្នាំ</th>
+							<th>អត្រាពន្ធ</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>0 - 1,320,000 រៀល</td>
+							<td class="rate-highlight">0%</td>
+						</tr>
+						<tr>
+							<td>1,320,001 - 2,000,000 រៀល</td>
+							<td class="rate-highlight">5%</td>
+						</tr>
+						<tr>
+							<td>2,000,001 - 8,500,000 រៀល</td>
+							<td class="rate-highlight">10%</td>
+						</tr>
+						<tr>
+							<td>8,500,001 - 12,500,000 រៀល</td>
+							<td class="rate-highlight">15%</td>
+						</tr>
+						<tr>
+							<td>លើសពី 12,500,000 រៀល</td>
+							<td class="rate-highlight">20%</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="example-box">
+				<p><strong>🧮 ឧទាហរណ៍:</strong> ប្រសិនបើអ្នកមានចំណូលប្រចាំឆ្នាំ 10,000,000 រៀល អ្នកនឹងត្រូវបង់ពន្ធ 5% លើចំណូល 1,320,001-2,000,000 រៀល (34,000 រៀល) និង 10% លើចំណូល 2,000,001-8,500,000 រៀល (650,000 រៀល) និង 15% លើចំណូល 8,500,001-10,000,000 រៀល (225,000 រៀល) សរុប 909,000 រៀល។</p>
+				<p><strong>🎁 ពន្ធលើអត្ថប្រយោជន៍សង្គម:</strong> អត្ថប្រយោជន៍សង្គម ឬអំណោទិ៍ត្រូវបានគិតពន្ធនៅអត្រា 20% នៃចំនួនសរុប។</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="stats-section">
+		<div class="cards-grid">
+			<article class="enhanced-card">
+				<h3><span class="emoji-icon">📊</span> ស្ថិតិពន្ធកម្ពុជា</h3>
+				<p>ពន្ធរួមបូកក្នុងប្រទេសកម្ពុជាបានកើនឡើងជាបន្តបន្ទាប់ ដោយផ្តល់ធនធានសម្រាប់ការអភិវឌ្ឍជាតិ។ ក្នុងឆ្នាំ 2023 ចំណូលពន្ធរបស់រដ្ឋាភិបាលកម្ពុជាបានឈានដល់ជិត 6 ពាន់លានដុល្លារអាមេរិក។</p>
+			</article>
+			<article class="enhanced-card">
+				<h3><span class="emoji-icon">🎯</span> គោលដៅអភិវឌ្ឍន៍</h3>
+				<p>រដ្ឋាភិបាលកម្ពុជាបានកំណត់គោលដៅបង្កើនចំណូលពន្ធ ដើម្បីគាំទ្រគោលនយោបាយអភិវឌ្ឍក្រសួង រួមទាំងការកសាងហេដ្ឋារចនាសម្ព័ន្ធ ការអភិវឌ្ឍវិស័យអប់រំ និងសុខភាព។</p>
+			</article>
+			<article class="enhanced-card">
+				<h3><span class="emoji-icon">🔍</span> ការត្រួតពិនិត្យពន្ធ</h3>
+				<p>ការបង់ពន្ធត្រូវបានត្រួតពិនិត្យដោយក្រសួងសេដ្ឋកិច្ច និងហិរញ្ញវត្ថុ។ ការបោះបង់ចោលពន្ធ ឬការប្រើប្រាស់ពន្ធដោយមិនត្រឹមត្រូវ គឺជាបទល្មើសព្រហ្មទណ្ឌ។</p>
+			</article>
+		</div>
+	</section>
+
+	<section class="faq-section">
+		<div class="faq-panel">
+			<h2><span class="emoji-icon">❓</span> សំណួរគេសួរញឹកញាប់</h2>
+			<div class="faq-item">
+				<h4>តើខ្ញុំត្រូវបង់ពន្ធនៅពេលណា?</h4>
+				<p>ពន្ធលើប្រាក់បៀវតន៏ត្រូវបង់ប្រចាំឆ្នាំ ក្នុងរយៈពេល 3 ខែដំបូងនៃឆ្នាំបន្ទាប់។</p>
+			</div>
+			<div class="faq-item">
+				<h4>តើមានការលើកលែងពន្ធទេ?</h4>
+				<p>មានការលើកលែងពន្ធសម្រាប់ប្រជាពលរដ្ឋមានចំណូលទាប និងករណីពិសេសផ្សេងៗ។</p>
+			</div>
+			<div class="faq-item">
+				<h4>តើពន្ធប្រើប្រាស់ដើម្បីអ្វីខ្លះ?</h4>
+				<p>ពន្ធត្រូវបានប្រើប្រាស់ដើម្បីគាំទ្រការអភិវឌ្ឍជាតិ សេវាសាធារណៈ និងការធានាសន្តិសុខសង្គម។</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="stats-section">
+		<div class="cards-grid">
+			<article class="enhanced-card">
+				<h3><span class="emoji-icon">📊</span> ស្ថិតិពន្ធកម្ពុជា</h3>
+				<p>ពន្ធរួមបូកក្នុងប្រទេសកម្ពុជាបានកើនឡើងជាបន្តបន្ទាប់ ដោយផ្តល់ធនធានសម្រាប់ការអភិវឌ្ឍជាតិ។ ក្នុងឆ្នាំ 2023 ចំណូលពន្ធរបស់រដ្ឋាភិបាលកម្ពុជាបានឈានដល់ជិត 6 ពាន់លានដុល្លារអាមេរិក។</p>
+			</article>
+			<article class="enhanced-card">
+				<h3><span class="emoji-icon">🎯</span> គោលដៅអភិវឌ្ឍន៍</h3>
+				<p>រដ្ឋាភិបាលកម្ពុជាបានកំណត់គោលដៅបង្កើនចំណូលពន្ធ ដើម្បីគាំទ្រគោលនយោបាយអភិវឌ្ឍក្រសួង រួមទាំងការកសាងហេដ្ឋារចនាសម្ព័ន្ធ ការអភិវឌ្ឍវិស័យអប់រំ និងសុខភាព។</p>
+			</article>
+			<article class="enhanced-card">
+				<h3><span class="emoji-icon">🔍</span> ការត្រួតពិនិត្យពន្ធ</h3>
+				<p>ការបង់ពន្ធត្រូវបានត្រួតពិនិត្យដោយក្រសួងសេដ្ឋកិច្ច និងហិរញ្ញវត្ថុ។ ការបោះបង់ចោលពន្ធ ឬការប្រើប្រាស់ពន្ធដោយមិនត្រឹមត្រូវ គឺជាបទល្មើសព្រហ្មទណ្ឌ។</p>
+			</article>
+		</div>
+	</section>
+
+	<section class="faq-section">
+		<div class="faq-panel">
+			<h2><span class="emoji-icon">❓</span> សំណួរគេសួរញឹកញាប់</h2>
+			<div class="faq-item">
+				<h4>តើខ្ញុំត្រូវបង់ពន្ធនៅពេលណា?</h4>
+				<p>ពន្ធលើប្រាក់បៀវតន៏ត្រូវបង់ប្រចាំឆ្នាំ ក្នុងរយៈពេល 3 ខែដំបូងនៃឆ្នាំបន្ទាប់។</p>
+			</div>
+			<div class="faq-item">
+				<h4>តើមានការលើកលែងពន្ធទេ?</h4>
+				<p>មានការលើកលែងពន្ធសម្រាប់ប្រជាពលរដ្ឋមានចំណូលទាប និងករណីពិសេសផ្សេងៗ។</p>
+			</div>
+			<div class="faq-item">
+				<h4>តើពន្ធប្រើប្រាស់ដើម្បីអ្វីខ្លះ?</h4>
+				<p>ពន្ធត្រូវបានប្រើប្រាស់ដើម្បីគាំទ្រការអភិវឌ្ឍជាតិ សេវាសាធារណៈ និងការធានាសន្តិសុខសង្គម។</p>
+			</div>
+		</div>
+	</section>
+{% endblock %}

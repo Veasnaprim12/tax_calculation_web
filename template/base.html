@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="km">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{% block title %}គណនាពន្ធ - Tax Calculation{% endblock %}</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Battambang:wght@300;400;700&family=Khmer+Moul:wght@400&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="{% static 'style.css' %}" />
+	</head>
+	<body>
+		<header>
+			<div class="brand">
+				<div class="logo">ពន្ធ</div>
+				<div>
+					<h1>ប្រព័ន្ធគណនាពន្ធ</h1>
+					<p>ជួយគណនាពន្ធប្រាក់ចំណូលបានរហ័ស និងច្បាស់លាស់</p>
+				</div>
+			</div>
+			<nav>
+				<a href="{% url 'home' %}">ទំព័រដើម</a>
+				<a href="{% url 'about_tax' %}">អំពីពន្ធ</a>
+				<a href="{% url 'salary_tax' %}">ពន្ធប្រាក់បៀវតន៏</a>
+				<a href="{% url 'property_tax' %}">ពន្ធអាក</a>
+				{% if user.is_staff %}
+				<a href="{% url 'admin_records' %}" style="background-color: var(--primary); color: white; padding: 8px 16px; border-radius: 4px;">គ្រប់គ្រង</a>
+				{% endif %}
+			</nav>
+		</header>
+
+		<main>{% block content %}{% endblock %}</main>
+
+		<footer>© 2026 Tax Calculation · បង្កើតសម្រាប់គម្រោងសិក្សា</footer>
+	</body>
+</html>
