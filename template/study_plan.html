@@ -1,0 +1,437 @@
+{% extends 'base.html' %}
+
+{% block title %}Study Plan - Tax Calculation Project{% endblock %}
+
+{% block body_class %}study-plan-page{% endblock %}
+
+{% block content %}
+<div class="study-plan-container">
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <i class="fas fa-graduation-cap"></i>
+                គម្រោងសិក្សា - ប្រព័ន្ធគណនាពន្ធ
+            </h1>
+            <p class="hero-subtitle">Tax Calculation System Study Plan</p>
+            <div class="hero-decoration">
+                <div class="decoration-line"></div>
+                <div class="decoration-dot"></div>
+                <div class="decoration-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid main-content">
+        <!-- Project Overview -->
+        <section class="overview-section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <h2>ទិដ្ឋភាពទូទៅនៃគម្រោង</h2>
+            </div>
+            <div class="overview-card">
+                <div class="card-content">
+                    <h3>គោលបំណងសិក្សា</h3>
+                    <p>ការអភិវឌ្ឍប្រព័ន្ធគណនាពន្ធប្រាក់បៀវតន៏ និងពន្ធអចលនទ្រព្យសម្រាប់ប្រទេសកម្ពុជា
+                    ដោយប្រើប្រាស់ Django Framework និង Python</p>
+
+                    <h4>អត្ថប្រយោជន៍សិក្សា</h4>
+                    <div class="benefits-grid">
+                        <div class="benefit-item">
+                            <i class="fas fa-code"></i>
+                            <span>ការរៀនចំនេះដឹងអំពីការអភិវឌ្ឍកម្មវិធីវេប</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-balance-scale"></i>
+                            <span>ការអនុវត្តច្បាប់ពន្ធនៃប្រទេសកម្ពុជា</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-database"></i>
+                            <span>ការប្រើប្រាស់ Django Framework និង Database</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-users"></i>
+                            <span>ការងារក្នុងក្រុម និងការគ្រប់គ្រងគម្រោង</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="team-section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h2>សមាជិកក្រុម</h2>
+            </div>
+            <div class="team-grid">
+                <!-- Member 1 -->
+                <div class="team-card project-manager">
+                    <div class="card-header">
+                        <div class="member-avatar">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h3>Project Manager</h3>
+                        <div class="member-badge">PM</div>
+                    </div>
+                    <div class="card-body">
+                        <h4>ឈ្មោះ: [ឈ្មោះពិត]</h4>
+                        <div class="responsibilities">
+                            <h5>តួនាទី:</h5>
+                            <ul>
+                                <li>• គ្រប់គ្រងគម្រោង</li>
+                                <li>• រៀបចំពេលវេលា</li>
+                                <li>• ត្រួតពិនិត្យគុណភាព</li>
+                                <li>• រាយការណ៍</li>
+                            </ul>
+                        </div>
+                        <div class="skills">
+                            <h5>ជំនាញត្រូវសិក្សា:</h5>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Project Management</span>
+                                <span class="skill-tag">Leadership</span>
+                                <span class="skill-tag">Communication</span>
+                                <span class="skill-tag">Planning</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 2 -->
+                <div class="team-card backend-developer">
+                    <div class="card-header">
+                        <div class="member-avatar">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h3>Backend Developer</h3>
+                        <div class="member-badge">BE</div>
+                    </div>
+                    <div class="card-body">
+                        <h4>ឈ្មោះ: [ឈ្មោះពិត]</h4>
+                        <div class="responsibilities">
+                            <h5>តួនាទី:</h5>
+                            <ul>
+                                <li>• អភិវឌ្ឍ Backend Logic</li>
+                                <li>• រចនា Database Models</li>
+                                <li>• អនុវត្ត Tax Calculation Algorithms</li>
+                                <li>• API Development</li>
+                            </ul>
+                        </div>
+                        <div class="skills">
+                            <h5>ជំនាញត្រូវសិក្សា:</h5>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Django Framework</span>
+                                <span class="skill-tag">Python Programming</span>
+                                <span class="skill-tag">Database Design</span>
+                                <span class="skill-tag">Algorithms</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 3 -->
+                <div class="team-card frontend-developer">
+                    <div class="card-header">
+                        <div class="member-avatar">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3>Frontend Developer</h3>
+                        <div class="member-badge">FE</div>
+                    </div>
+                    <div class="card-body">
+                        <h4>ឈ្មោះ: [ឈ្មោះពិត]</h4>
+                        <div class="responsibilities">
+                            <h5>តួនាទី:</h5>
+                            <ul>
+                                <li>• រចនា User Interface</li>
+                                <li>• អភិវឌ្ឍ HTML/CSS Templates</li>
+                                <li>• អនុវត្ត Responsive Design</li>
+                                <li>• JavaScript Integration</li>
+                            </ul>
+                        </div>
+                        <div class="skills">
+                            <h5>ជំនាញត្រូវសិក្សា:</h5>
+                            <div class="skill-tags">
+                                <span class="skill-tag">HTML5 & CSS3</span>
+                                <span class="skill-tag">Bootstrap</span>
+                                <span class="skill-tag">JavaScript</span>
+                                <span class="skill-tag">UI/UX Design</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 4 -->
+                <div class="team-card database-specialist">
+                    <div class="card-header">
+                        <div class="member-avatar">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3>Database Specialist</h3>
+                        <div class="member-badge">DB</div>
+                    </div>
+                    <div class="card-body">
+                        <h4>ឈ្មោះ: [ឈ្មោះពិត]</h4>
+                        <div class="responsibilities">
+                            <h5>តួនាទី:</h5>
+                            <ul>
+                                <li>• រចនា Database Schema</li>
+                                <li>• អភិវឌ្ឍ Data Models</li>
+                                <li>• Database Optimization</li>
+                                <li>• Data Migration</li>
+                            </ul>
+                        </div>
+                        <div class="skills">
+                            <h5>ជំនាញត្រូវសិក្សា:</h5>
+                            <div class="skill-tags">
+                                <span class="skill-tag">SQL & SQLite</span>
+                                <span class="skill-tag">Django ORM</span>
+                                <span class="skill-tag">Data Modeling</span>
+                                <span class="skill-tag">Database Administration</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 5 -->
+                <div class="team-card quality-assurance">
+                    <div class="card-header">
+                        <div class="member-avatar">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3>Quality Assurance</h3>
+                        <div class="member-badge">QA</div>
+                    </div>
+                    <div class="card-body">
+                        <h4>ឈ្មោះ: [ឈ្មោះពិត]</h4>
+                        <div class="responsibilities">
+                            <h5>តួនាទី:</h5>
+                            <ul>
+                                <li>• សាកល្បងប្រព័ន្ធ</li>
+                                <li>• រកឃើញកំហុស</li>
+                                <li>• សរសេរ Test Cases</li>
+                                <li>• Documentation</li>
+                            </ul>
+                        </div>
+                        <div class="skills">
+                            <h5>ជំនាញត្រូវសិក្សា:</h5>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Software Testing</span>
+                                <span class="skill-tag">Quality Assurance</span>
+                                <span class="skill-tag">Documentation</span>
+                                <span class="skill-tag">Bug Tracking</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Study Timeline -->
+        <section class="timeline-section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <h2>ពេលវេលាសិក្សា</h2>
+            </div>
+            <div class="timeline-container">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h4>សប្តាហ៍ 1-2</h4>
+                                <span class="timeline-phase">Phase 1</span>
+                            </div>
+                            <h5>ការរៀន Python & Django Basics</h5>
+                            <p>រៀនមូលដ្ឋាន Programming</p>
+                            <div class="timeline-assignees">
+                                <span class="assignee">សមាជិកទាំងអស់</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h4>សប្តាហ៍ 3-4</h4>
+                                <span class="timeline-phase">Phase 2</span>
+                            </div>
+                            <h5>Project Setup & Planning</h5>
+                            <p>ដំឡើង Environment និងរៀបចំគម្រោង</p>
+                            <div class="timeline-assignees">
+                                <span class="assignee">Project Manager</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h4>សប្តាហ៍ 5-6</h4>
+                                <span class="timeline-phase">Phase 3</span>
+                            </div>
+                            <h5>Database Design & Models</h5>
+                            <p>រចនា Database Schema</p>
+                            <div class="timeline-assignees">
+                                <span class="assignee">Backend Developer & Database Specialist</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h4>សប្តាហ៍ 7-8</h4>
+                                <span class="timeline-phase">Phase 4</span>
+                            </div>
+                            <h5>Backend Development</h5>
+                            <p>អភិវឌ្ឍ Logic និង Tax Calculations</p>
+                            <div class="timeline-assignees">
+                                <span class="assignee">Backend Developer</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h4>សប្តាហ៍ 9-10</h4>
+                                <span class="timeline-phase">Phase 5</span>
+                            </div>
+                            <h5>Frontend Development</h5>
+                            <p>រចនា User Interface</p>
+                            <div class="timeline-assignees">
+                                <span class="assignee">Frontend Developer</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h4>សប្តាហ៍ 11-12</h4>
+                                <span class="timeline-phase">Phase 6</span>
+                            </div>
+                            <h5>Deployment & Documentation</h5>
+                            <p>បញ្ចប់គម្រោង</p>
+                            <div class="timeline-assignees">
+                                <span class="assignee">សមាជិកទាំងអស់</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Learning Objectives -->
+        <section class="objectives-section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <h2>គោលដៅសិក្សា</h2>
+            </div>
+            <div class="objectives-grid">
+                <div class="objective-card technical">
+                    <div class="card-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Technical Skills</h3>
+                    <ul>
+                        <li>Python Programming</li>
+                        <li>Django Web Framework</li>
+                        <li>HTML/CSS/JavaScript</li>
+                        <li>Database Management</li>
+                        <li>Git Version Control</li>
+                    </ul>
+                </div>
+                <div class="objective-card soft">
+                    <div class="card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Soft Skills</h3>
+                    <ul>
+                        <li>Team Collaboration</li>
+                        <li>Project Management</li>
+                        <li>Problem Solving</li>
+                        <li>Communication</li>
+                        <li>Time Management</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Assessment Methods -->
+        <section class="assessment-section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-clipboard-check"></i>
+                </div>
+                <h2>វិធីសាស្ត្រវាយតម្លៃ</h2>
+            </div>
+            <div class="assessment-card">
+                <h3>វិធីវាយតម្លៃសមាជិក</h3>
+                <div class="assessment-breakdown">
+                    <div class="assessment-item">
+                        <div class="assessment-label">Code Quality</div>
+                        <div class="assessment-value">40%</div>
+                    </div>
+                    <div class="assessment-item">
+                        <div class="assessment-label">Functionality</div>
+                        <div class="assessment-value">30%</div>
+                    </div>
+                    <div class="assessment-item">
+                        <div class="assessment-label">Documentation</div>
+                        <div class="assessment-value">15%</div>
+                    </div>
+                    <div class="assessment-item">
+                        <div class="assessment-label">Presentation</div>
+                        <div class="assessment-value">10%</div>
+                    </div>
+                    <div class="assessment-item">
+                        <div class="assessment-label">Team Work</div>
+                        <div class="assessment-value">5%</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources Needed -->
+        <section class="resources-section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h2>ធនធានដែលត្រូវការ</h2>
+            </div>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3>Technical Resources</h3>
+                    <ul>
+                        <li><i class="fab fa-python"></i> Python 3.8+</li>
+                        <li><i class="fas fa-cogs"></i> Django Framework</li>
+                        <li><i class="fas fa-database"></i> SQLite Database</li>
+                        <li><i class="fab fa-git"></i> Git Repository</li>
+                        <li><i class="fas fa-globe"></i> Web Browser</li>
+                    </ul>
+                </div>
+                <div class="resource-card">
+                    <h3>Learning Resources</h3>
+                    <ul>
+                        <li><i class="fas fa-book"></i> Django Documentation</li>
+                        <li><i class="fab fa-python"></i> Python Tutorials</li>
+                        <li><i class="fas fa-laptop-code"></i> Web Development Courses</li>
+                        <li><i class="fas fa-balance-scale"></i> Cambodian Tax Law Documents</li>
+                        <li><i class="fas fa-graduation-cap"></i> Online Learning Platforms</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}

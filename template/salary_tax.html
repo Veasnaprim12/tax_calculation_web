@@ -1,125 +1,201 @@
 {% extends "base.html" %}
-
-{% block title %}ពន្ធលើប្រាក់បៀវតន៏ - Salary Tax{% endblock %}
+{% load static %} {% block title %}ពន្ធលើប្រាក់បៀវត្ស - Salary Tax{% endblock %}
 
 {% block nav_calculator %}salary{% endblock %}
 
 {% block content %}
-	<section class="hero" id="calculator">
-		<div class="hero-text">
-			<h2>💼 គណនាពន្ធលើប្រាក់បៀវតន៏</h2>
-			<p>
-				បញ្ចូលព័ត៌មានចំណូលប្រចាំខែរបស់អ្នក ដើម្បីទទួលបានការគណនាពន្ធ និងការបែងចែក
-				ប្រាក់សុទ្ធ។
-			</p>
-			<div class="hero-actions">
-				<button type="submit" form="tax-form" class="btn btn-primary">🚀 ចាប់ផ្តើមគណនា</button>
-				<button class="btn btn-secondary">📄 ទាញយករបាយការណ៍</button>
-			</div>
-		</div>
+    <div style="background-color: #9bb7d0 ; min-height: 100vh; padding: 20px 0;">
+        <div id="calculator-section">
+            <section class="hero" id="calculator">
+                <div class="hero-text" style="text-align: center; margin-bottom: 40px;">
+                    <img src="{% static 'images/logo.png' %}" alt="Logo" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 3px solid rgba(255, 255, 255, 0.3); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                    <h2>គណនាពន្ធលើប្រាក់បៀវត្ស</h2>
+                    <p>
+                        បញ្ចូលព័ត៌មានចំណូលប្រចាំឆ្នាំរបស់អ្នក ដើម្បីទទួលបានការគណនាពន្ធ និងការបែងចែក
+                        ប្រាក់សុទ្ធ។
+                    </p>
+                </div>
 
-		<div class="panel">
-			<form id="tax-form" method="post">
-				{% csrf_token %}
-				<h3 class="form-title">📝 ព័ត៌មានចំណូលប្រចាំខែ</h3>
-				<div class="grid">
-					<div>
-						{{ form.currency.label_tag }}
-						{{ form.currency }}
-					</div>
-					<div>
-						{{ form.income.label_tag }}
-						<span style="color: var(--muted); font-size: 14px;">({{ currency_symbol }})</span>
-						{{ form.income }}
-					</div>
-					<div>
-						{{ form.status.label_tag }}
-						{{ form.status }}
-					</div>
-					<div>
-						{{ form.dependents.label_tag }}
-						{{ form.dependents }}
-					</div>
-					<div>
-						{{ form.grants_benefits.label_tag }}
-						<span style="color: var(--muted); font-size: 14px;">({{ currency_symbol }})</span>
-						{{ form.grants_benefits }}
-					</div>
-				</div>
-				<div class="result">
-					<span>💰 ពន្ធប៉ាន់ស្មាន</span>
-					<strong>{{ currency_symbol }} {% if tax_amount is not None %}{{ tax_amount|floatformat:2 }}{% else %}0.00{% endif %}</strong>
-				</div>
-				<div class="tax-breakdown">
-					<h4 style="margin-top: 20px; margin-bottom: 10px; color: var(--primary);">📊 ព័ត៌មានលម្អិតនៃការគណនាពន្ធ</h4>
-					<div class="breakdown-item">
-						<span>💵 ចំណូលសរុប:</span>
-						<strong>{{ currency_symbol }} {% if form.income.value is not None %}{{ form.income.value|floatformat:2 }}{% else %}0.00{% endif %}</strong>
-					</div>
-					<div class="breakdown-item">
-						<span>🎁 អត្ថប្រយោជន៍/អំណោយ:</span>
-						<strong>{{ currency_symbol }} {% if grants_benefits_amount is not None %}{{ grants_benefits_amount|floatformat:2 }}{% else %}0.00{% endif %}</strong>
-					</div>
-					<div class="breakdown-item">
-						<span>👶 គ្មានពន្ធលើកូន:</span>
-						<strong>{{ currency_symbol }} {% if deduction_children is not None %}{{ deduction_children|floatformat:2 }}{% else %}0.00{% endif %}</strong>
-					</div>
-					<div class="breakdown-item">
-						<span>💑 គ្មានពន្ធលើប្រពន្ធ:</span>
-						<strong>{{ currency_symbol }} {% if deduction_wife is not None %}{{ deduction_wife|floatformat:2 }}{% else %}0.00{% endif %}</strong>
-					</div>
-					<div class="breakdown-item">
-						<span>💰 ពន្ធលើប្រាក់ខែ:</span>
-						<strong>{{ currency_symbol }} {% if salary_tax is not None %}{{ salary_tax|floatformat:2 }}{% else %}0.00{% endif %}</strong>
-					</div>
-					<div class="breakdown-item">
-						<span>🎁 ពន្ធលើអត្ថប្រយោជន៍ (20%):</span>
-						<strong>{{ currency_symbol }} {% if grant_tax is not None %}{{ grant_tax|floatformat:2 }}{% else %}0.00{% endif %}</strong>
-					</div>
-					<div class="breakdown-item">
-						<span>🎁 អត្ថប្រយោជន៍សង្គម:</span>
-						<strong>{{ currency_symbol }} {% if grants_benefits_amount is not None %}{{ grants_benefits_amount|floatformat:2 }}{% else %}0.00{% endif %}</strong>
-					</div>
-					<div class="breakdown-item total">
-						<span>💰 ពន្ធសរុប:</span>
-						<strong>{{ currency_symbol }} {% if tax_amount is not None %}{{ tax_amount|floatformat:2 }}{% else %}0.00{% endif %}</strong>
-					</div>
-				</div>
-				{% if net_income is not None %}
-				<div class="result">
-					<span>💸 ប្រាក់សុទ្ធ</span>
-					<strong>{{ currency_symbol }} {{ net_income|floatformat:2 }}</strong>
-				</div>
-				{% endif %}
-			</form>
-		</div>
-	</section>
+                <div class="panel">
+                    <form id="tax-form" method="post">
+                        {% csrf_token %}
+                        <h3 class="form-title">ព័ត៌មានចំណូលប្រចាំឆ្នាំ</h3>
+                        
+                        <div class="grid">
+                            <div>
+                                {{ form.currency.label_tag }}
+                                {{ form.currency }}
+                            </div>
+                            <div>
+                                {{ form.income.label_tag }}
+                                <span style="color: var(--muted); font-size: 14px;">({{ currency_symbol }})</span>
+                                {{ form.income }}
+                            </div>
+                            <div>
+                                {{ form.status.label_tag }}
+                                {{ form.status }}
+                            </div>
+                            <div id="wife-status-field">
+                                {{ form.wife_status.label_tag }}
+                                {{ form.wife_status }}
+                            </div>
+                            <div id="dependents-field">
+                                {{ form.dependents.label_tag }}
+                                {{ form.dependents }}
+                            </div>
+                            <div>
+                                {{ form.grants_benefits.label_tag }}
+                                <span style="color: var(--muted); font-size: 14px;">({{ currency_symbol }})</span>
+                                {{ form.grants_benefits }}
+                            </div>
+                        </div>
 
-	<section class="hero" id="guide">
-		<div class="panel">
-			<h3 class="form-title">📋 វិធីប្រើប្រាស់</h3>
-			<div class="grid">
-				<div>
-					<label>1️⃣ បញ្ចូលចំណូល និងអ្នកអាស្រ័យ</label>
-					<input type="text" value="បញ្ចូលទិន្នន័យចាំបាច់" disabled />
-				</div>
-				<div>
-					<label>2️⃣ ចុច "ចាប់ផ្តើមគណនា"</label>
-					<input type="text" value="ប្រព័ន្ធគណនាពន្ធដោយស្វ័យប្រវត្តិ" disabled />
-				</div>
-				<div>
-					<label>3️⃣ ទាញយករបាយការណ៍</label>
-					<input type="text" value="រក្សាទុកជាកំណត់ត្រា" disabled />
-				</div>
-			</div>
-		</div>
+                        <div class="result">
+                            <span>ពន្ធប៉ាន់ស្មាន</span>
+                            <strong>
+                                {{ currency_symbol }} {% if tax_amount is not None %}{{ tax_amount|floatformat:2 }}{% else %}0.00{% endif %}
+                            </strong>
+                        </div>
 
-		<div class="hero-text">
-			<h2>✅ ទទួលបានភាពទុកចិត្តក្នុងការគ្រប់គ្រងពន្ធ</h2>
-			<p>
-				ប្រព័ន្ធរបស់យើងប្រើប្រាស់ច្បាប់ពន្ធបច្ចុប្បន្នរបស់កម្ពុជា
-				ដើម្បីធានាបាននូវភាពត្រឹមត្រូវនៃការគណនា។
-			</p>
-		</div>
-	</section>
+                        <div style="text-align: center; margin-top: 20px;">
+                            <button type="submit" class="btn btn-primary">ចាប់ផ្តើមគណនា</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <section class="hero" id="guide">
+                <div class="panel">
+                    <h3 class="form-title">វិធីប្រើប្រាស់</h3>
+                    <div class="grid">
+                        <div>
+                            <label>1️បញ្ចូលចំណូល និងអ្នកអាស្រ័យ</label>
+                            <input type="text" value="បញ្ចូលទិន្នន័យចាំបាច់" disabled />
+                        </div>
+                        <div>
+                            <label>2️ ចុច "ចាប់ផ្តើមគណនា"</label>
+                            <input type="text" value="ប្រព័ន្ធគណនាពន្ធដោយស្វ័យប្រវត្តិ" disabled />
+                        </div>
+                        <div>
+                            <label>3️ទាញយករបាយការណ៍</label>
+                            <input type="text" value="រក្សាទុកជាកំណត់ត្រា" disabled />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-text">
+                    <h2>ទទួលបានភាពទុកចិត្តក្នុងការគ្រប់គ្រងពន្ធ</h2>
+                    <p>
+                        ប្រព័ន្ធរបស់យើងប្រើប្រាស់ច្បាប់ពន្ធបច្ចុប្បន្នរបស់កម្ពុជា
+                        ដើម្បីធានាបាននូវភាពត្រឹមត្រូវនៃការគណនា។
+                    </p>
+                </div>
+            </section>
+        </div>
+
+        <div id="results-section" style="display: none;">
+            <section class="hero" id="results">
+                <div class="hero-text">
+                    <h2>ព័ត៌មានលម្អិតនៃការគណនាពន្ធ</h2>
+                    <p>លទ្ធផលការគណនាពន្ធលើប្រាក់បៀវតន៏របស់អ្នក</p>
+                    <div class="hero-actions">
+                        <button onclick="showCalculator()" class="btn btn-secondary">⬅ ត្រឡប់ទៅការគណនា</button>
+                        <a href="{% url 'home' %}" class="btn btn-primary">ទំព័រដើម</a>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="tax-breakdown">
+                        <div class="breakdown-item">
+                            <span>ចំណូល:</span>
+                            <strong>{{ currency_symbol }} {% if form.income.value is not None %}{{ form.income.value|floatformat:2 }}{% else %}0.00{% endif %}</strong>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>អត្ថប្រយោជន៍/អំណោយ:</span>
+                            <strong>{{ currency_symbol }} {% if grants_benefits_amount is not None %}{{ grants_benefits_amount|floatformat:2 }}{% else %}0.00{% endif %}</strong>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>គ្មានពន្ធលើកូន:</span>
+                            <strong>{{ currency_symbol }} {% if deduction_children is not None %}{{ deduction_children|floatformat:2 }}{% else %}0.00{% endif %}</strong>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>គ្មានពន្ធលើប្រពន្ធ (បើធ្វើការផ្ទះ):</span>
+                            <strong>{{ currency_symbol }} {% if deduction_wife is not None %}{{ deduction_wife|floatformat:2 }}{% else %}0.00{% endif %}</strong>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>អត្រាពន្ធលើប្រាក់ខែ:</span>
+                            <strong>{% if tax_rate_percentage is not None %}{{ tax_rate_percentage|floatformat:1 }}%{% else %}0.0%{% endif %}</strong>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>ពន្ធលើប្រាក់ខែ:</span>
+                            <strong>{{ currency_symbol }} {% if salary_tax is not None %}{{ salary_tax|floatformat:2 }}{% else %}0.00{% endif %}</strong>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>ពន្ធលើអត្ថប្រយោជន៍ (20%):</span>
+                            <strong>{{ currency_symbol }} {% if grant_tax is not None %}{{ grant_tax|floatformat:2 }}{% else %}0.00{% endif %}</strong>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>អត្ថប្រយោជន៍សង្គម:</span>
+                            <strong>{{ currency_symbol }} {% if grants_benefits_amount is not None %}{{ grants_benefits_amount|floatformat:2 }}{% else %}0.00{% endif %}</strong>
+                        </div>
+                        <div class="breakdown-item total">
+                            <span>ពន្ធសរុប:</span>
+                            <strong>{{ currency_symbol }} {% if tax_amount is not None %}{{ tax_amount|floatformat:2 }}{% else %}0.00{% endif %}</strong>
+                        </div>
+                        {% if net_income is not None %}
+                        <div class="breakdown-item net-income">
+                            <span>ប្រាក់សុទ្ធ:</span>
+                            <strong>{{ currency_symbol }} {{ net_income|floatformat:2 }}</strong>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('tax-form').addEventListener('submit', function(e) {
+            setTimeout(function() {
+                document.getElementById('calculator-section').style.display = 'none';
+                document.getElementById('results-section').style.display = 'block';
+            }, 100);
+        });
+
+        function showCalculator() {
+            document.getElementById('results-section').style.display = 'none';
+            document.getElementById('calculator-section').style.display = 'block';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const statusField = document.querySelector('[name="status"]');
+            const wifeStatusField = document.getElementById('wife-status-field');
+            const dependentsField = document.getElementById('dependents-field');
+
+            function toggleFields() {
+                const selectedStatus = statusField.value.toLowerCase();
+                if (selectedStatus === 'single' || selectedStatus === 'បង្ក្រាន់') {
+                    wifeStatusField.style.display = 'none';
+                    dependentsField.style.display = 'none';
+                    const wifeSelect = wifeStatusField.querySelector('select');
+                    const dependentsInput = dependentsField.querySelector('input');
+                    if (wifeSelect) wifeSelect.value = '';
+                    if (dependentsInput) dependentsInput.value = '0';
+                } else {
+                    wifeStatusField.style.display = 'block';
+                    dependentsField.style.display = 'block';
+                }
+            }
+
+            if (statusField) {
+                statusField.addEventListener('change', toggleFields);
+                toggleFields();
+            }
+
+            {% if tax_amount is not None %}
+                document.getElementById('calculator-section').style.display = 'none';
+                document.getElementById('results-section').style.display = 'block';
+            {% endif %}
+        });
+    </script>
 {% endblock %}

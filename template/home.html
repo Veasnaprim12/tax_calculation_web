@@ -1,43 +1,56 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}គណនាពន្ធ - Tax Calculation{% endblock %}
 
 {% block content %}
-	<section class="hero">
-		<div class="hero-text">
-			<h2>សួស្តី! សូមស្វាគមន៍មកកាន់ប្រព័ន្ធគណនាពន្ធ</h2>
-			<p>
-				យើងផ្តល់សេវាកម្មគណនាពន្ធសម្រាប់ប្រភេទពន្ធផ្សេងៗនៅក្នុងប្រទេសកម្ពុជា។
-			</p>
-		</div>
-	</section>
+    <section class="hero" style="background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('{% static 'images/tax_image.png' %}') no-repeat center center/cover; color: white; padding: 60px 20px;">
+        
+        <div class="hero-text" style="text-align: center; margin-bottom: 40px;">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 3px solid rgba(255, 255, 255, 0.3); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+            
+            <h2 style="color: white; margin-bottom: 15px;">សូមស្វាគមន៍មកកាន់ប្រព័ន្ធគណនាពន្ធ</h2>
+            <p style="color: rgba(255, 255, 255, 0.9); font-size: 1.1rem; max-width: 800px; margin: 0 auto;">
+                យើងផ្តល់សេវាកម្មគណនាពន្ធសម្រាប់ប្រភេទពន្ធផ្សេងៗនៅក្នុងប្រទេសកម្ពុជា។
+            </p>
+        </div>
 
-	<section class="hero" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
-		<div class="panel" style="background: transparent; color: white; text-align: center;">
-			<h2 style="color: white; margin-bottom: 24px;">ជ្រើសរើសប្រភេទការគណនាពន្ធរបស់អ្នក</h2>
-			<p style="font-size: 18px; margin-bottom: 32px;">
-				យើងផ្តល់ការគណនាសម្រាប់ពន្ធប្រាក់បៀវតន៏ និងពន្ធអាករ
-			</p>
-			<div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 900px; margin: 0 auto;">
-				<div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 40px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); transition: transform 0.3s ease;">
-					<div style="font-size: 4rem; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">�</div>
-					<h3 style="color: white; margin-bottom: 16px; font-size: 1.4rem;">អំពីពន្ធ</h3>
-					<p style="margin-bottom: 25px; line-height: 1.6;">ស្វែងយល់អំពីពន្ធ អត្រា និងច្បាប់នៅក្នុងប្រទេសកម្ពុជា</p>
-					<a href="{% url 'about_tax' %}" class="btn btn-primary" style="background: linear-gradient(45deg, #ff6b6b, #ee5a24); color: white; padding: 12px 30px; border-radius: 25px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(255,107,107,0.4); transition: all 0.3s ease;">ស្វែងយល់បន្ថែម</a>
-				</div>
-				<div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 40px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); transition: transform 0.3s ease;">
-					<div style="font-size: 4rem; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">�</div>
-					<h3 style="color: white; margin-bottom: 16px; font-size: 1.4rem;">ពន្ធប្រាក់បៀវតន៏</h3>
-					<p style="margin-bottom: 25px; line-height: 1.6;">គណនាពន្ធប្រាក់បៀវតន៏ប្រចាំខែរបស់អ្នកដោយផ្អែកលើចំណូល និងអ្នកអាស្រ័យ</p>
-					<a href="{% url 'salary_tax' %}" class="btn btn-primary" style="background: linear-gradient(45deg, #4ecdc4, #44a08d); color: white; padding: 12px 30px; border-radius: 25px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(78,205,196,0.4); transition: all 0.3s ease;">គណនាឥឡូវនេះ</a>
-				</div>
-				<div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 40px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); transition: transform 0.3s ease;">
-					<div style="font-size: 4rem; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">�️</div>
-					<h3 style="color: white; margin-bottom: 16px; font-size: 1.4rem;">ពន្ធអាករ</h3>
-					<p style="margin-bottom: 25px; line-height: 1.6;">គណនាពន្ធអាករសម្រាប់ផ្ទះ ដី និងអចលនទ្រព្យផ្សេងទៀត</p>
-					<a href="{% url 'property_tax' %}" class="btn btn-primary" style="background: linear-gradient(45deg, #a8e6cf, #52c234); color: white; padding: 12px 30px; border-radius: 25px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(168,230,207,0.4); transition: all 0.3s ease;">គណនាឥឡូវនេះ</a>
-				</div>
-			</div>
-		</div>
-	</section>
+        <div class="panel" style="background: transparent; color: white; max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; align-items: stretch;">
+        
+            <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; gap: 20px;">
+                
+                <div class="service-card" style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 25px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; gap: 20px; transition: all 0.3s ease;">
+                    <div style="font-size: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">ℹ️</div>
+                    <div style="flex-grow: 1; text-align: left;">
+                        <h3 style="color: white; margin-bottom: 8px; font-size: 1.3rem;">អំពីពន្ធ</h3>
+                        <p style="margin-bottom: 0; line-height: 1.5; color: rgba(255, 255, 255, 0.9);">ស្វែងយល់អំពីពន្ធ អត្រា និងច្បាប់ស្ដីពីពន្ធនៅក្នុងប្រទេសកម្ពុជា</p>
+                    </div>
+                    <a href="{% url 'about_tax' %}" class="btn btn-primary" style="background: linear-gradient(45deg, #ff6b6b, #ee5a24); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(255,107,107,0.4); white-space: nowrap;">ស្វែងយល់បន្ថែម</a>
+                </div>
+
+                <div class="service-card" style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 25px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; gap: 20px; transition: all 0.3s ease;">
+                    <div style="width: 3.5rem; height: 3.5rem; flex-shrink: 0; border-radius: 50%; overflow: hidden; border: 2px solid rgba(255, 255, 255, 0.2);">
+                        <img src="{% static 'images/salary_logo.png' %}" alt="Salary Tax" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div style="flex-grow: 1; text-align: left;">
+                        <h3 style="color: white; margin-bottom: 8px; font-size: 1.3rem;">ពន្ធប្រាក់បៀវត្ស</h3>
+                        <p style="margin-bottom: 0; line-height: 1.5; color: rgba(255, 255, 255, 0.9);">គណនាពន្ធប្រាក់បៀវត្សប្រចាំខែរបស់អ្នកដោយផ្អែកលើចំណូល</p>
+                    </div>
+                    <a href="{% url 'salary_tax' %}" class="btn btn-primary" style="background: linear-gradient(45deg, #ff6b6b, #ee5a24); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(255,107,107,0.4); white-space: nowrap;">ចូលទៅកាន់ការគណនា</a>
+                </div>
+
+                <div class="service-card" style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 25px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; gap: 20px; transition: all 0.3s ease;">
+                    <div style="width: 3.5rem; height: 3.5rem; flex-shrink: 0; border-radius: 50%; overflow: hidden; border: 2px solid rgba(255, 255, 255, 0.2);">
+                        <img src="{% static 'images/property_logo.png' %}" alt="Property Tax" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div style="flex-grow: 1; text-align: left;">
+                        <h3 style="color: white; margin-bottom: 8px; font-size: 1.3rem;">ពន្ធអាករ</h3>
+                        <p style="margin-bottom: 0; line-height: 1.5; color: rgba(255, 255, 255, 0.9);">គណនាពន្ធអាករសម្រាប់ផ្ទះ ដី និងអចលនទ្រព្យផ្សេងទៀត</p>
+                    </div>
+                    <a href="{% url 'property_tax' %}" class="btn btn-primary" style="background: linear-gradient(45deg, #ff6b6b, #ee5a24); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(255,107,107,0.4); white-space: nowrap;">ចូលទៅកាន់ការគណនា</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
 {% endblock %}

@@ -13,11 +13,11 @@ class SalaryTaxForm(forms.Form):
     )
     
     income = forms.DecimalField(
-        label="ចំណូលប្រចាំខែ",
+        label="ចំណូលប្រចាំឆ្នាំ",
         min_value=0,
         decimal_places=2,
         widget=forms.NumberInput(attrs={
-            'placeholder': 'ឧ. 2,500,000',
+            'placeholder': 'ឧ. 12,000,000',
             'class': 'form-input',
             'step': '0.01'
         })
@@ -30,6 +30,16 @@ class SalaryTaxForm(forms.Form):
             ('married', 'រៀបការ'),
             ('family', 'មានកូន'),
         ],
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+    
+    wife_status = forms.ChoiceField(
+        label="ស្ថានភាពប្រពន្ធ",
+        choices=[
+            ('housework', 'ធ្វើការផ្ទះ'),
+            ('working', 'ធ្វើការ'),
+        ],
+        required=False,
         widget=forms.Select(attrs={'class': 'form-select'})
     )
     
