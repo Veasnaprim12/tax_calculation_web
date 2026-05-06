@@ -5,6 +5,7 @@ class TaxRecord(models.Model):
     TAX_TYPE_CHOICES = [
         ('salary', 'ពន្ធលើប្រាក់បៀវតន៏'),
         ('property', 'ពន្ធអាក'),
+        ('vat', 'ពន្ធលើតម្លៃបន្ថែម'),
     ]
     
     CURRENCY_CHOICES = [

@@ -50,6 +50,17 @@
                     <a href="{% url 'property_tax' %}" class="btn btn-primary" style="background: linear-gradient(45deg, #ff6b6b, #ee5a24); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(255,107,107,0.4); white-space: nowrap;">ចូលទៅកាន់ការគណនា</a>
                 </div>
 
+                <div class="service-card" style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 25px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; gap: 20px; transition: all 0.3s ease;">
+                    <div style="width: 3.5rem; height: 3.5rem; flex-shrink: 0; border-radius: 50%; overflow: hidden; border: 2px solid rgba(255, 255, 255, 0.2);">
+                        <img src="{% static 'images/vat_logo.png' %}" alt="VAT Tax" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div style="flex-grow: 1; text-align: left;">
+                        <h3 style="color: white; margin-bottom: 8px; font-size: 1.3rem;">ពន្ធក្រុមហ៊ុន</h3>
+                        <p style="margin-bottom: 0; line-height: 1.5; color: rgba(255, 255, 255, 0.9);">គណនាពន្ធក្រុមហ៊ុន (VAT)សម្រាប់ការលក់និងផលិតផល</p>
+                    </div>
+                    <a href="{% url 'vat_tax' %}" class="btn btn-primary" style="background: linear-gradient(45deg, #ff6b6b, #ee5a24); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(255,107,107,0.4); white-space: nowrap;">ចូលទៅកាន់ការគណនា</a>
+                </div>
+
             </div>
         </div>
     </section>

@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}ពន្ធលើក្រុមហ៊ុន​ VAT- VAT Tax Information{% endblock %}
+
+{% block nav_about %}active{% endblock %}
+
+{% block content %}
+
+    <section class="info-hero">
+		<div class="hero-text" style="text-align: center; margin-bottom: 40px;">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 3px solid rgba(255, 255, 255, 0.3); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+			<div style="max-width: 900px; margin: 0 auto; color: white; text-align: center; position: relative; z-index: 1;">
+				<span style="font-size: 3rem; display: block; margin-bottom: 15px;"></span>
+				<h1 style="font-family: 'Khmer Moul', cursive; font-size: 2rem; margin-bottom: 15px; color: white;">អំពីពន្ធលើប្រាក់បៀវត្ស</h1>
+				<p style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.85); line-height: 1.8;">
+					ស្វែងយល់អំពីការគណនា ច្បាប់ និងបទប្បញ្ញត្តិពាក់ព័ន្ធនឹងពន្ធលើប្រាក់បៀវត្សនៅក្នុងប្រទេសកម្ពុជា។
+				</p>
+			</div>
+    </section>
+
+    <section class="info-grid-section">
+        <div class="container" style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
+            
+            <div class="info-panel">
+                <h2>១. សេចក្តីសង្ខេបអំពីពន្ធលើតម្លៃបន្ថែម</h2>
+                <p style="color: #475569; line-height: 1.8; margin-bottom: 20px;">
+                    ពន្ធលើតម្លៃបន្ថែម (VAT - Value Added Tax) គឺជាពន្ធលើការប្រើប្រាស់ដែលត្រូវបង់ក្នុងពេលលក់ទិន្នន័យ ឬផ្តល់សេវាកម្ម។ នេះគឺជាពន្ធសាធារណៈដ៏សំខាន់ដែលប៉ះពាល់ដល់ច្បាប់ពាណិជ្ជកម្ម និងប្រជាជនទូទៅ។ វាត្រូវបានគណនាដូចខាងក្រោម៖
+                </p>
+                <ul>
+                    <li><span style="color: #3b82f6; font-weight: bold;">✓</span> អត្រាមាតិលោក (Standard Rate): ១០%</li>
+                    <li><span style="color: #3b82f6; font-weight: bold;">✓</span> អ្នកលក់អាចកាត់បន្ថយក្នុងបន្ទុក VAT បានលើការទិញទិន្នន័យ និងសេវាកម្ម</li>
+                    <li><span style="color: #3b82f6; font-weight: bold;">✓</span> មានការលើកលែង VAT សម្រាប់អាហារូបករណ៍ និងផលិតផលជាក់លាក់</li>
+                </ul>
+            </div>
+
+            <div class="info-panel">
+                <h2>២. ច្បាប់ និងបទប្បញ្ញត្តិ</h2>
+                <p style="color: #475569; margin-bottom: 15px; line-height: 1.8;">គ្រប់គ្រងដោយច្បាប់ និងអនុក្រឹត្យជាធរមាន៖</p>
+                <ul style="font-size: 0.95rem;">
+                    <li><strong style="color: #1e293b;">• ច្បាប់ស្តីពីពន្ធលើតម្លៃបន្ថែម៖</strong> ច្បាប់គ្រឹះសម្រាប់ប្រព័ន្ធ VAT នៅកម្ពុជា</li>
+                    <li><strong style="color: #1e293b;">• អនុក្រឹត្យលេខ ឆ្នាំ (បច្ចុប្បន្ន)៖</strong> ការកែប្រែ និងការបង្ហាញលម្អិតច្បាប់</li>
+                    <li><strong style="color: #1e293b;">• សារាចរណែនាំរបស់មន្ត្រីពន្ធដារ៖</strong> លម្អិតលម្អិតអំពីនីតិវិធីចុងក្រោយ និងលក្ខណៈលម្អិត</li>
+                    <li><strong style="color: #1e293b;">• នីតិវិធីឯកសារ៖</strong> ទាំងឯកសារគ្រប់ប្រភេទសម្រាប់ការលើកលែង ឬរាយការណ៍ VAT</li>
+                </ul>
+            </div>
+
+            <div class="info-panel">
+                <h2>៣. ឯកសារ និងការលើកលែង VAT</h2>
+                <p style="color: #475569; margin-bottom: 20px; line-height: 1.8;">ផលិតផល និងសេវាកម្មខាងក្រោមត្រូវបានលើកលែងពី VAT៖</p>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <div style="border-left: 4px solid #3b82f6; padding-left: 12px;">
+                        <span style="color: #475569;"><strong>អាហារូបករណ៍គ្រឹត្យចត្រ</strong></span>
+                        <p style="color: #64748b; font-size: 0.9rem; margin: 5px 0;">ចាប់រាប់ដូចជា អង្ករ ដាំឹង ម្សៅប្រេង ទឹក នោះសមរភូមិនិងផលិតផលក្រុមគ្រឺប៉ាល់ផ្សេងទៀត</p>
+                    </div>
+                    <div style="border-left: 4px solid #10b981; padding-left: 12px;">
+                        <span style="color: #475569;"><strong>ផលិតផលថាំទង់</strong></span>
+                        <p style="color: #64748b; font-size: 0.9rem; margin: 5px 0;">ផលិតផលក្រុមថាំទង់នឹងផលិតផលដែលគ្រប់គ្រងដោយក្រសួងសុខាភិបាល</p>
+                    </div>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 12px;">
+                        <span style="color: #475569;"><strong>សេវាកម្មបច្ចេកទេស និងសិក្សា</strong></span>
+                        <p style="color: #64748b; font-size: 0.9rem; margin: 5px 0;">សេវាកម្មផ្សេងៗដែលគ្រប់គ្រងដោយរាជរដ្ឋាភិបាល ឬស្ថាប័នអប់រEducation</p>
+                    </div>
+                </div>
+                <p style="font-size: 0.85rem; color: #64748b; margin-top: 15px; background: #f0fdf4; padding: 10px; border-radius: 8px; margin-bottom: 0;">
+                    💡 <strong>សម្គាល់:</strong> អ្នកលក់ដែលមាន turnover ទាបក៏ដោយក៏អាចរៀបចំឯកសារដែលលើកលែង VAT បានដែរ។
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+	<section class="tax-rates-section">
+		<div class="container" style="max-width: 900px; margin: 0 auto;">
+			
+			<div class="section-header">
+				<h2>4. អត្រា និងការគណនា VAT</h2>
+				<p>
+					ពន្ធលើតម្លៃបន្ថែម (VAT) នៅកម្ពុជាត្រូវបានគណនាដូចខាងក្រោម៖
+				</p>
+			</div>
+
+			<div class="tax-table-container">
+				<table class="tax-table">
+					<thead>
+						<tr>
+							<th>ប្រភេទ</th>
+							<th style="text-align: center;">អត្រា</th>
+							<th>រូបមន្តគណនា</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><strong>អត្រាមាតិលោក</strong></td>
+							<td style="text-align: center; font-weight: bold; color: #3b82f6; font-size: 1.1rem;">១០%</td>
+							<td>VAT = តម្លៃលក់ × ១០%</td>
+						</tr>
+						<tr>
+							<td><strong>តម្លៃលក់ឈរសម (Taxable)</strong></td>
+							<td style="text-align: center; font-weight: bold; color: #10b981;">គាស់</td>
+							<td>តម្លៃលក់មូលដ្ឋាននៃពន្ធ = តម្លៃលក់អាល់ដែលមាន VAT</td>
+						</tr>
+						<tr>
+							<td><strong>ការលើកលែង</strong></td>
+							<td style="text-align: center; font-weight: bold; color: #f59e0b;">០%</td>
+							<td>ផលិតផលក្រុមក្រុមដែលលើកលែងមិនមាន VAT</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="example-calculation">
+				<h3>ឧទាហរណ៍ការគណនា VAT៖</h3>
+				<p style="color: #475569; line-height: 1.8; margin-bottom: 16px;">
+					ប្រសិនបើតម្លៃលក់របស់អ្នក <strong>10,000,000 រៀល</strong> (មិនរាប់ VAT)៖
+				</p>
+				<ul>
+					<li><strong>តម្លៃលក់មូលដ្ឋាន៖</strong> 10,000,000 រៀល</li>
+					<li><strong>ពន្ធលើតម្លៃបន្ថែម (10%)៖</strong> 10,000,000 × 10% = <strong style="color: #10b981;">1,000,000 រៀល</strong></li>
+					<li><strong>តម្លៃលក់សរុប (រួម VAT)៖</strong> 10,000,000 + 1,000,000 = <strong style="color: #1e3c72;">11,000,000 រៀល</strong></li>
+				</ul>
+				<div style="background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
+					<strong style="color: #1e293b; display: block; margin-bottom: 10px;">ការគណនា៖</strong>
+					<code style="font-size: 1.05rem; color: #0f172a;">
+						VAT = 10,000,000 × 10% = <strong>1,000,000 រៀល</strong>
+					</code>
+					<p style="margin-top: 12px; font-weight: bold; color: #10b981; font-size: 1.1rem; margin-bottom: 0;">
+						ក្រុមហ៊ុនឬតម្លៃលក់ត្រូវបង់ វិក្កយបត្រសរុប = 11,000,000 រៀល
+					</p>
+				</div>
+			</div>
+
+		</div>
+	</section>
+    <section class="button-section">
+        <div style="max-width: 600px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+            <a href="{% url 'vat_tax' %}">
+                ចាប់ផ្តើមគណនាពន្ធឥឡូវនេះ
+            </a>
+            <a href="{% url 'about_tax' %}">
+                ត្រឡប់ទៅកាន់ព័ត៌មានពន្ធ
+            </a>
+        </div>
+    </section>
+
+{% endblock %}
