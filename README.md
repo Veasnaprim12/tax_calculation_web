@@ -10,18 +10,21 @@ This application provides an intuitive interface for calculating income taxes an
 
 - **Salary Tax Calculation**: Compute income tax based on salary, deductions, and tax brackets with support for spouse status
 - **Property Tax Calculation**: Calculate property taxes based on property value, type, and location
-- **Multi-Currency Support**: Handle tax calculations in multiple currencies with automatic conversion
+- **VAT Tax Calculation**: Calculate Value Added Tax (10%) on sales with multi-currency support
+- **Multi-Currency Support**: Handle tax calculations in multiple currencies (KHR, USD) with automatic conversion
 - **Admin Records Management**: Store, retrieve, and manage all tax calculation records with detailed histories
 - **Tax Calculation Details**: View comprehensive breakdowns of how taxes are calculated
 - **Responsive Web Interface**: User-friendly design that works across desktop and mobile devices
+- **Educational Information Pages**: Detailed information pages for each tax type explaining taxation rules
 - **Study Plan Integration**: Educational resources about tax calculations
 
 ## Technologies Used
 
-- **Backend**: Django 3.8+
-- **Database**: SQLite3
+- **Backend**: Django 3.2+
+- **Database**: SQLite3 (Development), MySQL/PostgreSQL (Production)
 - **Frontend**: HTML5, CSS3
-- **Language**: Python
+- **Language**: Python 3.8+
+- **Currency**: Multi-currency support (KHR, USD)
 
 ## Installation
 
@@ -64,9 +67,11 @@ This application provides an intuitive interface for calculating income taxes an
 
 ## Usage
 
-- **Home Page**: Navigate to the home page to select between salary or property tax calculation
+- **Home Page**: Navigate to the home page to select between salary, property, or VAT tax calculation
 - **Salary Tax**: Enter your salary details, deductions, and personal information to calculate income tax
-- **Property Tax**: Provide property details including value, type, and location for property tax estimation
+- **Property Tax**: Provide property details including value and type for property tax estimation
+- **VAT Tax**: Enter your sales amount to calculate Value Added Tax (10%)
+- **Information Pages**: Click the info button on each calculator to view detailed tax information
 - **Admin Panel**: Access records at `/admin` using superuser credentials
 - **Study Materials**: Learn about tax calculations from the study plan section
 
@@ -85,6 +90,7 @@ tax_calculation/
 ├── tax_calculators/               # Calculation logic
 │   ├── salary_tax.py             # Salary tax calculation algorithms
 │   ├── property_tax.py           # Property tax calculation algorithms
+│   ├── vat_tax.py                # VAT tax calculation algorithms
 │   └── currency_utils.py         # Currency conversion utilities
 ├── tax_calculation/               # Django project settings
 │   ├── settings.py               # Project configuration
@@ -96,7 +102,11 @@ tax_calculation/
 │   ├── home.html                 # Home page
 │   ├── salary_tax.html           # Salary tax form
 │   ├── property_tax.html         # Property tax form
-│   ├── about_tax.html            # Tax information
+│   ├── vat_tax.html              # VAT tax form
+│   ├── about_tax.html            # General tax information
+│   ├── about_salary_tax.html     # Salary tax details
+│   ├── about_property_tax.html   # Property tax details
+│   ├── about_vat_tax.html        # VAT tax details
 │   └── admin_records.html        # Records management
 ├── static/                        # Static files
 │   ├── style.css                 # Stylesheet
@@ -108,6 +118,33 @@ tax_calculation/
 
 - **TaxRecord**: Stores tax calculation records with user input and results
 - **TaxCalculationDetail**: Stores detailed breakdown of tax calculations including rates and amounts
+
+## Database Documentation
+
+Comprehensive database documentation is available in the following files:
+
+- **DATABASE_README.md** - Quick start guide and documentation index
+- **DATABASE_DESIGN.md** - Complete schema design and architecture
+- **DATABASE_SCHEMA_VISUAL.md** - Visual diagrams and references
+- **DATABASE_SQL_REFERENCE.md** - SQL operations and queries
+- **DATABASE_ADMIN_GUIDE.md** - Administration and operations procedures
+
+## Tax Types and Rates
+
+### Salary Tax
+- **Progressive Rates**: 0%, 5%, 10%, 15%, 20%
+- **Deductions**: Children (150K/month), Spouse (150K/month)
+- **Currencies Supported**: KHR, USD
+
+### Property Tax
+- **Base Rate**: 0.1% per year
+- **Multipliers**: Type-based (0.8-1.5), Value-based (1.0-1.5)
+- **Currencies Supported**: KHR, USD
+
+### VAT Tax
+- **Standard Rate**: 10%
+- **Calculation**: Sales Amount × 10%
+- **Currencies Supported**: KHR, USD
 
 ## Testing
 
