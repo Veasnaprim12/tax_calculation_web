@@ -101,6 +101,29 @@ class PropertyTaxForm(forms.Form):
     )
 
 
+class VATTaxForm(forms.Form):
+    currency = forms.ChoiceField(
+        label="រូបិយប័ណ្ណ",
+        choices=[
+            ('KHR', '៛ រៀលកម្ពុជា'),
+            ('USD', '$ ដុល្លារអាមេរិក'),
+        ],
+        initial='KHR',
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+    
+    amount = forms.DecimalField(
+        label="តម្លៃលក់ (មិនរាប់ពន្ធ)",
+        min_value=0,
+        decimal_places=2,
+        widget=forms.NumberInput(attrs={
+            'placeholder': 'ឧ. 10,000,000',
+            'class': 'form-input',
+            'step': '0.01'
+        })
+    )
+
+
 # Keep the old form for backward compatibility
 class TaxCalculatorForm(SalaryTaxForm):
     pass
