@@ -27,6 +27,7 @@
                 <a href="{% url 'about_tax' %}" {% if 'about' in request.resolver_match.url_name %}class="active"{% endif %}>ស្វែងយល់អំពីពន្ធ</a>
                 <a href="{% url 'salary_tax' %}" {% if request.resolver_match.url_name == 'salary_tax' %}class="active"{% endif %}>ពន្ធប្រាក់បៀវត្ស</a>
                 <a href="{% url 'property_tax' %}" {% if request.resolver_match.url_name == 'property_tax' %}class="active"{% endif %}>ពន្ធអាករ</a>
+                <a href="{% url 'vat_tax' %}" {% if request.resolver_match.url_name == 'vat_tax' %}class="active"{% endif %}>ពន្ធក្រុមហ៊ុន</a>
                 <a href="{% url 'study_plan' %}" {% if request.resolver_match.url_name == 'study_plan' %}class="active"{% endif %}>អំពីគម្រោងសិក្សា</a>
             </nav>
         </header>
@@ -42,6 +43,7 @@
                     <a href="{% url 'about_tax' %}">ស្វែងយល់អំពីពន្ធ</a>
                     <a href="{% url 'salary_tax' %}">ពន្ធប្រាក់បៀវត្ស</a>
                     <a href="{% url 'property_tax' %}">ពន្ធអាករ</a>
+                    <
                 </div>
             </div>
         </footer>

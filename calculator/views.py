@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.contrib.admin.views.decorators import staff_member_required
-from .forms import SalaryTaxForm, PropertyTaxForm
+from .forms import SalaryTaxForm, PropertyTaxForm, VATTaxForm
 from .models import TaxRecord, TaxCalculationDetail
 from decimal import Decimal
 from tax_calculators import (
     calculate_salary_tax_with_breakdown,
     calculate_property_tax,
+    calculate_actual_vat,
     convert_to_khr,
     convert_from_khr,
     get_currency_symbol
@@ -77,6 +78,63 @@ def about_property_tax(request):
     """
     return render(request, "about_property_tax.html")
 
+def about_vat_tax(request):
+    """
+    Render the detailed VAT tax information page.
+    """
+    return render(request, "about_vat_tax.html")
+
+def vat_tax(request):
+    """
+    Render and handle the VAT tax calculation page.
+    """
+    form = VATTaxForm()
+    tax_amount = None
+    total_amount = None
+    selected_currency = 'KHR'
+    currency_symbol = '៛'
+    
+    if request.method == 'POST':
+        form = VATTaxForm(request.POST)
+        if form.is_valid():
+            currency = form.cleaned_data['currency']
+            amount = form.cleaned_data['amount']
+            selected_currency = currency
+            currency_symbol = get_currency_symbol(currency)
+            
+            # Convert to KHR for calculation if needed
+            amount_khr = convert_to_khr(amount, currency)
+            
+            # Calculate VAT (10% in Cambodia)
+            tax_amount_khr = calculate_actual_vat(amount_khr)
+            
+            # Total amount including VAT
+            total_amount_khr = amount_khr + tax_amount_khr
+            
+            # Convert back to selected currency for display
+            tax_amount = convert_from_khr(tax_amount_khr, currency)
+            total_amount = convert_from_khr(total_amount_khr, currency)
+            
+            # Save to database in KHR
+            tax_record = TaxRecord.objects.create(
+                tax_type='vat',
+                currency=currency,
+                income=amount,
+                tax_amount=tax_amount_khr,
+                net_income=total_amount_khr,
+            )
+    
+    currency_symbol = get_currency_symbol(selected_currency)
+    
+    context = {
+        'form': form,
+        'tax_amount': tax_amount,
+        'total_amount': total_amount,
+        'selected_currency': selected_currency,
+        'currency_symbol': currency_symbol,
+    }
+    
+    return render(request, "vat_tax.html", context)
 
 def study_plan(request):
     """
@@ -251,6 +309,17 @@ def property_tax(request):
         'selected_currency': selected_currency,
         'currency_symbol': get_currency_symbol(selected_currency)
     })
+    def vat_tax(request):
+        if request.method == 'POST':
+            vat_input = request.POST.get('vat_input')
+            vat_type = request.POST.get('vat_type')
+            tax_amount = calculate_vat_tax(vat_input, vat_type)
+            return render(request, "vat_tax.html", {
+                'tax_amount': tax_amount,
+                'vat_input': vat_input,
+                'vat_type': vat_type
+            })
+        return render(request, "vat_tax.html")
 
 
 @staff_member_required
