@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from django.contrib.admin.views.decorators import staff_member_required
-from .forms import SalaryTaxForm, PropertyTaxForm
+from .forms import SalaryTaxForm, PropertyTaxForm, VATTaxForm
 from .models import TaxRecord, TaxCalculationDetail
 from decimal import Decimal
 from tax_calculators import (
     calculate_salary_tax_with_breakdown,
     calculate_property_tax,
+    calculate_vat_tax,
+    calculate_vat_tax_with_breakdown,
     convert_to_khr,
     convert_from_khr,
     get_currency_symbol
@@ -76,6 +78,13 @@ def about_property_tax(request):
     Render the detailed property tax information page.
     """
     return render(request, "about_property_tax.html")
+
+
+def about_vat_tax(request):
+    """
+    Render the detailed VAT tax information page.
+    """
+    return render(request, "about_vat_tax.html")
 
 
 def study_plan(request):
@@ -253,6 +262,66 @@ def property_tax(request):
     })
 
 
+def vat_tax(request):
+    """
+    Handle VAT tax calculation form submission and display.
+    """
+    form = VATTaxForm()
+    tax_amount = None
+    total_amount = None
+    selected_currency = 'KHR'
+
+    # Initialize breakdown variables
+    vat_rate = None
+    vat_rate_percentage = None
+    amount = None
+
+    if request.method == 'POST':
+        form = VATTaxForm(request.POST)
+        if form.is_valid():
+            currency = form.cleaned_data['currency']
+            amount = form.cleaned_data['amount']
+            vat_rate = Decimal(form.cleaned_data['vat_rate'])
+
+            selected_currency = currency
+
+            # Calculate VAT tax with breakdown
+            tax_amount, vat_rate_percentage, total_amount = calculate_vat_tax_with_breakdown(amount, vat_rate)
+
+            # Save to database
+            tax_record = TaxRecord.objects.create(
+                tax_type='vat',
+                currency=currency,
+                income=amount,  # Use income field for amount
+                tax_amount=tax_amount
+            )
+
+            # Create detailed calculation breakdown
+            TaxCalculationDetail.objects.create(
+                tax_record=tax_record,
+                tax_rate=vat_rate,
+                taxable_amount=amount,
+                tax_components={
+                    'calculation_type': 'vat_tax',
+                    'amount': float(amount),
+                    'vat_rate': float(vat_rate),
+                    'tax_amount': float(tax_amount),
+                    'total_amount': float(total_amount)
+                }
+            )
+
+    return render(request, "vat_tax.html", {
+        'form': form,
+        'tax_amount': tax_amount,
+        'total_amount': total_amount,
+        'amount': amount,
+        'selected_currency': selected_currency,
+        'currency_symbol': get_currency_symbol(selected_currency),
+        'vat_rate': vat_rate,
+        'vat_rate_percentage': vat_rate_percentage
+    })
+
+
 @staff_member_required
 def admin_records(request):
     """
@@ -270,6 +339,7 @@ def admin_records(request):
     total_records = records.count()
     salary_records = records.filter(tax_type='salary').count()
     property_records = records.filter(tax_type='property').count()
+    vat_records = records.filter(tax_type='vat').count()
     
     # Calculate total tax collected (convert USD to KHR for total)
     total_tax_collected_khr = 0
@@ -284,6 +354,7 @@ def admin_records(request):
         'total_records': total_records,
         'salary_records': salary_records,
         'property_records': property_records,
+        'vat_records': vat_records,
         'total_tax_collected_khr': total_tax_collected_khr,
         'tax_type_filter': tax_type_filter,
     })

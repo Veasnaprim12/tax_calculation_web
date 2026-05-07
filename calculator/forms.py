@@ -101,6 +101,40 @@ class PropertyTaxForm(forms.Form):
     )
 
 
+class VATTaxForm(forms.Form):
+    currency = forms.ChoiceField(
+        label="រូបិយប័ណ្ណ",
+        choices=[
+            ('KHR', '៛ រៀលកម្ពុជា'),
+            ('USD', '$ ដុល្លារអាមេរិក'),
+        ],
+        initial='KHR',
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+    
+    amount = forms.DecimalField(
+        label="តម្លៃទំនិញ/សេវាកម្ម",
+        min_value=0,
+        decimal_places=2,
+        widget=forms.NumberInput(attrs={
+            'placeholder': 'ឧ. 1,000,000',
+            'class': 'form-input',
+            'step': '0.01'
+        })
+    )
+    
+    vat_rate = forms.ChoiceField(
+        label="អត្រា VAT",
+        choices=[
+            ('0.10', '10% - អត្រាស្តង់ដារ'),
+            ('0.00', '0% - ទំនិញអាហារូបករណ៍ និងសេវាកម្មគ្រប់គ្រង'),
+            ('0.05', '5% - ទំនិញនាំចូល'),
+        ],
+        initial='0.10',
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+
+
 # Keep the old form for backward compatibility
 class TaxCalculatorForm(SalaryTaxForm):
     pass

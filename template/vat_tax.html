@@ -1,0 +1,289 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+ពន្ធលើតម្លៃបន្ថែម - VAT Tax
+{% endblock %}
+
+{% block content %}
+
+<div style="background-color: #9bb7d0; min-height: 100vh; padding: 20px 0">
+
+  <!-- Calculator Section -->
+  <div id="calculator-section"
+       {% if tax_amount is not None %}style="display: none;"{% endif %}>
+
+    <section class="hero" id="calculator">
+
+      <div class="hero-text" style="text-align: center; margin-bottom: 40px">
+        <img
+          src="{% static 'images/logo.png' %}"
+          alt="Logo"
+          style="
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+          "
+        />
+
+        <h2>គណនាពន្ធលើតម្លៃបន្ថែម (VAT)</h2>
+
+        <p>
+          បញ្ចូលតម្លៃទំនិញ ឬសេវាកម្ម
+          ដើម្បីទទួលបានការគណនាពន្ធតម្លៃបន្ថែម។
+        </p>
+      </div>
+
+      <div class="panel">
+
+        <form id="tax-form" method="post">
+
+          {% csrf_token %}
+
+          <h3 class="form-title">
+            ព័ត៌មានទំនិញ/សេវាកម្ម
+          </h3>
+
+          <div class="grid">
+
+            <div>
+              {{ form.currency.label_tag }}
+              {{ form.currency }}
+            </div>
+
+            <div>
+              {{ form.amount.label_tag }}
+
+              <span style="color: var(--muted); font-size: 14px">
+                ({{ currency_symbol }})
+              </span>
+
+              {{ form.amount }}
+            </div>
+
+            <div>
+              {{ form.vat_rate.label_tag }}
+              {{ form.vat_rate }}
+            </div>
+
+          </div>
+
+          <div class="result">
+
+            <span>ពន្ធតម្លៃបន្ថែម</span>
+
+            <strong>
+              {{ currency_symbol }}
+
+              {% if tax_amount is not None %}
+                {{ tax_amount|floatformat:2 }}
+              {% else %}
+                0.00
+              {% endif %}
+            </strong>
+
+          </div>
+
+          <div style="text-align: center; margin-top: 20px">
+
+            <button type="submit" class="btn btn-primary">
+              ចាប់ផ្តើមគណនា
+            </button>
+
+          </div>
+
+        </form>
+
+      </div>
+
+    </section>
+
+    <!-- Guide Section -->
+    <section class="hero" id="guide">
+
+      <div class="panel">
+
+        <h3 class="form-title">
+          វិធីប្រើប្រាស់
+        </h3>
+
+        <div class="grid">
+
+          <div>
+            <label>1️ បញ្ចូលតម្លៃទំនិញ/សេវាកម្ម</label>
+
+            <input
+              type="text"
+              value="បញ្ចូលទិន្នន័យចាំបាច់"
+              disabled
+            />
+          </div>
+
+          <div>
+            <label>2️ ជ្រើសរើសអត្រា VAT</label>
+
+            <input
+              type="text"
+              value="10% សម្រាប់ទំនិញស្តង់ដារ"
+              disabled
+            />
+          </div>
+
+          <div>
+            <label>3️ ចុច 'ចាប់ផ្តើមគណនា'</label>
+
+            <input
+              type="text"
+              value="ប្រព័ន្ធគណនាពន្ធដោយស្វ័យប្រវត្តិ"
+              disabled
+            />
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="hero-text">
+
+        <h2>
+          ទទួលបានភាពទុកចិត្តក្នុងការគ្រប់គ្រងពន្ធ
+        </h2>
+
+        <p>
+          ប្រព័ន្ធរបស់យើងប្រើប្រាស់ច្បាប់ពន្ធបច្ចុប្បន្នរបស់កម្ពុជា
+          ដើម្បីធានាបាននូវភាពត្រឹមត្រូវនៃការគណនា។
+        </p>
+
+      </div>
+
+    </section>
+
+  </div>
+
+  <!-- Results Section -->
+  <div id="results-section"
+       {% if tax_amount is None %}style="display: none;"{% endif %}>
+
+    <section class="hero" id="results">
+
+      <div class="hero-text">
+
+        <h2>
+          ព័ត៌មានលម្អិតនៃការគណនាពន្ធ
+        </h2>
+
+        <p>
+          លទ្ធផលការគណនាពន្ធតម្លៃបន្ថែមរបស់អ្នក
+        </p>
+
+        <div class="hero-actions">
+
+          <button
+            onclick="showCalculator()"
+            class="btn btn-secondary"
+          >
+            ⬅ ត្រឡប់ទៅការគណនា
+          </button>
+
+          <a href="{% url 'home' %}" class="btn btn-primary">
+            ទំព័រដើម
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="panel">
+
+        <div class="tax-breakdown">
+
+          <div class="breakdown-item">
+
+            <span>តម្លៃទំនិញ/សេវាកម្ម:</span>
+
+            <strong>
+              {{ currency_symbol }}
+
+              {% if amount is not None %}
+                {{ amount|floatformat:2 }}
+              {% else %}
+                0.00
+              {% endif %}
+            </strong>
+
+          </div>
+
+          <div class="breakdown-item">
+
+            <span>អត្រា VAT:</span>
+
+            <strong>
+              {% if vat_rate_percentage is not None %}
+                {{ vat_rate_percentage|floatformat:1 }}%
+              {% else %}
+                0.0%
+              {% endif %}
+            </strong>
+
+          </div>
+
+          <div class="breakdown-item total">
+
+            <span>ពន្ធតម្លៃបន្ថែម:</span>
+
+            <strong>
+              {{ currency_symbol }}
+
+              {% if tax_amount is not None %}
+                {{ tax_amount|floatformat:2 }}
+              {% else %}
+                0.00
+              {% endif %}
+            </strong>
+
+          </div>
+
+          {% if amount is not None and tax_amount is not None %}
+
+          <div class="breakdown-item net-income">
+
+            <span>
+              តម្លៃសរុប (រួមបញ្ចូល VAT):
+            </span>
+
+            <strong>
+              {{ currency_symbol }}
+
+              {% if total_amount is not None %}
+                {{ total_amount|floatformat:2 }}
+              {% else %}
+                0.00
+              {% endif %}
+            </strong>
+
+          </div>
+
+          {% endif %}
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+
+</div>
+
+<script>
+  function showCalculator() {
+    document.getElementById("results-section").style.display = "none";
+    document.getElementById("calculator-section").style.display = "block";
+  }
+</script>
+
+{% endblock %}

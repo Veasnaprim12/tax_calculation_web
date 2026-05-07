@@ -5,6 +5,7 @@ class TaxRecord(models.Model):
     TAX_TYPE_CHOICES = [
         ('salary', 'ពន្ធលើប្រាក់បៀវតន៏'),
         ('property', 'ពន្ធអាក'),
+        ('vat', 'ពន្ធតម្លៃបន្ថែម'),
     ]
     
     CURRENCY_CHOICES = [
@@ -43,8 +44,12 @@ class TaxRecord(models.Model):
     def __str__(self):
         if self.tax_type == 'salary':
             return f"ពន្ធប្រាក់បៀវតន៏: {self.income:,}៛ → ពន្ធ: {self.tax_amount:,}៛ (ថ្ងៃ {self.created_at.date()})"
-        else:
+        elif self.tax_type == 'property':
             return f"ពន្ធអាក: {self.property_value:,}៛ → ពន្ធ: {self.tax_amount:,}៛ (ថ្ងៃ {self.created_at.date()})"
+        elif self.tax_type == 'vat':
+            return f"ពន្ធតម្លៃបន្ថែម: {self.income:,}៛ → ពន្ធ: {self.tax_amount:,}៛ (ថ្ងៃ {self.created_at.date()})"
+        else:
+            return f"ពន្ធ: {self.income:,}៛ → ពន្ធ: {self.tax_amount:,}៛ (ថ្ងៃ {self.created_at.date()})"
 
 
 class TaxCalculationDetail(models.Model):

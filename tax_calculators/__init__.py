@@ -4,12 +4,15 @@
 
 from .salary_tax import calculate_salary_tax_with_breakdown, calculate_salary_tax
 from .property_tax import calculate_property_tax
+from .vat_tax import calculate_vat_tax, calculate_vat_tax_with_breakdown
 from .currency_utils import convert_to_khr, convert_from_khr, get_currency_symbol
 
 __all__ = [
     'calculate_salary_tax_with_breakdown',
     'calculate_salary_tax',
     'calculate_property_tax',
+    'calculate_vat_tax',
+    'calculate_vat_tax_with_breakdown',
     'convert_to_khr',
     'convert_from_khr',
     'get_currency_symbol'
