@@ -50,13 +50,13 @@ header {
 	width: 52px;
 	height: 52px;
 	border-radius: 18px;
-	background: var(--gradient-primary);
+	background: rgba(255, 255, 255, 0.2);
 	display: grid;
 	place-items: center;
-	color: #99d2e0;
+	color: white;
 	font-family: "Khmer Moul", cursive;
 	font-size: 18px;
-	box-shadow: var(--shadow);
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 	transition: all 0.3s ease;
 	animation: pulse 2s infinite;
 }
@@ -71,11 +71,12 @@ header {
 	font-family: "Khmer Moul", cursive;
 	font-size: clamp(20px, 3vw, 28px);
 	letter-spacing: 0.5px;
+	color: white;
 }
 
 .brand p {
 	margin: 4px 0 0;
-	color: var(--muted);
+	color: rgba(255, 255, 255, 0.8);
 	font-size: 14px;
 }
 
@@ -87,7 +88,7 @@ nav {
 
 nav a {
 	text-decoration: none;
-	color: var(--ink);
+	color: white;
 	font-weight: 600;
 	padding-bottom: 4px;
 	border-bottom: 2px solid transparent;
@@ -96,8 +97,8 @@ nav a {
 }
 
 nav a:hover {
-	border-bottom-color: var(--accent);
-	color: var(--accent);
+	border-bottom-color: white;
+	color: white;
 	transform: translateY(-2px);
 }
 
@@ -113,9 +114,9 @@ nav a::after {
 }
 
 nav a.active {
-	border-bottom-color: var(--accent);
-	color: var(--accent);
-	background: rgba(0, 102, 204, 0.1);
+	border-bottom-color: white;
+	color: white;
+	background: rgba(255, 255, 255, 0.2);
 	padding: 8px 12px;
 	border-radius: 6px;
 	font-weight: 700;

@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}ពន្ធលើប្រាក់ចំណូល - Income Tax Information{% endblock %}
+
+{% block nav_about %}active{% endblock %}
+
+{% block content %}
+
+    <section class="info-hero" style="background: linear-gradient(rgba(15, 32, 67, 0.85), rgba(26, 54, 104, 0.85)), url('{% static 'images/tax_image.png' %}') no-repeat center center/cover; color: white; padding: 80px 20px; text-align: center;">
+		<div class="hero-text" style="text-align: center; margin-bottom: 40px;">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 3px solid rgba(255, 255, 255, 0.3); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+			<div style="max-width: 900px; margin: 0 auto; color: white; text-align: center; position: relative; z-index: 1;">
+				<span style="font-size: 3rem; display: block; margin-bottom: 15px;">💼</span>
+				<h1 style="font-family: 'Khmer Moul', cursive; font-size: 2rem; margin-bottom: 15px; color: white;">ពន្ធលើប្រាក់ចំណូល (Income Tax)</h1>
+				<p style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.85); line-height: 1.8;">
+					ស្វែងយល់អំពីរូបមន្តគណនា អត្រាពន្ធ ប្រភេទចំណូល និងបទប្បញ្ញត្តិពាក់ព័ន្ធនឹងពន្ធលើប្រាក់ចំណូលនៅក្នុងប្រទេសកម្ពុជា។
+				</p>
+			</div>
+		</div>
+    </section>
+
+    <section class="info-grid-section">
+        <div class="container" style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
+            
+            <div class="info-panel">
+                <h2>១. សេចក្តីសង្ខេបអំពីពន្ធលើលុយប្រតិបត្តិការ</h2>
+                <p style="color: #475569; line-height: 1.8; margin-bottom: 20px;">
+                    ពន្ធលើលុយប្រតិបត្តិការគឺជាប្រភេទពន្ធដែលបង្កើតលើចំណូលដែលមិនមែនជាប្រាក់ខែផ្សាច់ដែលទទួលបានពីសកម្មភាពផ្សេងៗ រួមមាន៖
+                </p>
+                <ul>
+                    <li><span style="color: #3b82f6; font-weight: bold;">✓</span> ចំណូលលុយបូលពុង (ភាគលាភ, ការប្រឹក្សាយោបល់, ដើមទុនចែងចាយ)</li>
+                    <li><span style="color: #3b82f6; font-weight: bold;">✓</span> ចំណូលលុយប្រតិបត្តិការពីអាជីវកម្ម</li>
+                    <li><span style="color: #3b82f6; font-weight: bold;">✓</span> ឈ្នួលលើកម្មន្តិរឬលាក់ខ្លួន</li>
+                    <li><span style="color: #3b82f6; font-weight: bold;">✓</span> លុយប្រតិបត្តិការផ្សេងទៀត</li>
+                </ul>
+            </div>
+
+            <div class="info-panel">
+                <h2>២. ច្បាប់ និងបទប្បញ្ញត្តិ</h2>
+                <p style="color: #475569; margin-bottom: 15px; line-height: 1.8;">គ្រប់គ្រងដោយច្បាប់ និងអនុក្រឹត្យជាធរមាន៖</p>
+                <ul style="font-size: 0.95rem;">
+                    <li><strong style="color: #1e293b;">• ច្បាប់ស្តីពីសារពើពន្ធ៖</strong> ច្បាប់គ្រឹះនៃប្រព័ន្ធពន្ធដារកម្ពុជា</li>
+                    <li><strong style="color: #1e293b;">• អនុក្រឹត្យលេខ ៤៨ អនក្រ.បក (២០២៤)៖</strong> អត្រាពន្ធលើលុយប្រតិបត្តិការផ្សេងៗ</li>
+                    <li><strong style="color: #1e293b;">• សារាចរណែនាំលេខ ០១២ សហវ (២០១៦)៖</strong> ការចុះបញ្ជីលុយប្រតិបត្តិការក្នុងវិក័យប័ត្រ</li>
+                </ul>
+            </div>
+
+            <div class="info-panel">
+                <h2>៣. ការលើកលែងពន្ធ (Deductions)</h2>
+                <p style="color: #475569; margin-bottom: 20px; line-height: 1.8;">អាស្រ័យលើប្រភេទលុយប្រតិបត្តិការ ការលើកលែងពន្ធក៏ប្រែប្រួលដូចខាងក្រោម៖</p>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.95rem; border-bottom: 1px dashed #e2e8f0; padding-bottom: 8px;">
+                        <span style="color: #475569;"><strong>លុយបូលពុង</strong></span>
+                        <span style="color: #ef4444; font-weight: bold;">គ្មាន</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.95rem; border-bottom: 1px dashed #e2e8f0; padding-bottom: 8px;">
+                        <span style="color: #475569;"><strong>លុយប្រតិបត្តិការ</strong></span>
+                        <span style="color: #10b981; font-weight: bold;">ការចំណាយលើការងារ</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.95rem;">
+                        <span style="color: #475569;"><strong>ឈ្នួលលើលាក់ខ្លួន/ឈ្នួលផ្ទះ</strong></span>
+                        <span style="color: #ef4444; font-weight: bold;">គ្មាន</span>
+                    </div>
+                </div>
+                <p style="font-size: 0.85rem; color: #64748b; margin-top: 15px; background: #f0fdf4; padding: 10px; border-radius: 8px; margin-bottom: 0;">
+                    💡 <strong>សម្គាល់:</strong> លុយប្រតិបត្តិការទាំងអស់ក៏ដោយ លើកលែងលុយប្រតិបត្តិការលឹង មានពន្ធប្រយុក្ត ឬលើកលែងលើការងារលើស៊ីវិល។
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+	<section class="tax-rates-section">
+		<div class="container" style="max-width: 900px; margin: 0 auto;">
+			
+			<div class="section-header">
+				<h2>៤. អត្រាពន្ធលើលុយប្រតិបត្តិការ</h2>
+				<p>
+					អត្រាពន្ធលើលុយប្រតិបត្តិការផ្សេងៗគ្នា អាស្រ័យលើប្រភេទលុយប្រតិបត្តិការដែលបានទទួល។
+				</p>
+			</div>
+
+			<div class="tax-table-container">
+				<table class="tax-table">
+					<thead>
+						<tr>
+							<th>ចំណូលដែលក្រោយពន្ធលើលុយប្រតិបត្តិការ (រៀល)</th>
+							<th style="text-align: center;">អត្រាពន្ធ</th>
+							<th>រូបមន្តគណនាពន្ធ</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>0 - 18,000,000 រៀល</td>
+							<td style="text-align: center; font-weight: bold; color: #64748b;">0%</td>
+							<td style="color: #64748b;">គ្មានពន្ធ</td>
+						</tr>
+						<tr>
+							<td>18,000,001 - 24,000,000 រៀល</td>
+							<td style="text-align: center; font-weight: bold; color: #3b82f6;">5%</td>
+							<td>P × 5% - 900,000</td>
+						</tr>
+						<tr>
+							<td>24,000,001 - 102,000,000 រៀល</td>
+							<td style="text-align: center; font-weight: bold; color: #10b981;">10%</td>
+							<td>P × 10% - 2,100,000</td>
+						</tr>
+						<tr>
+							<td>102,000,001 - 150,000,000 រៀល</td>
+							<td style="text-align: center; font-weight: bold; color: #f59e0b;">15%</td>
+							<td>P × 15% - 7,200,000</td>
+						</tr>
+						<tr>
+							<td>លើសពី 150,000,000 រៀល</td>
+							<td style="text-align: center; font-weight: bold; color: #ef4444;">20%</td>
+							<td>P × 20% - 14,200,000</td>
+						</tr>
+					</tbody>
+				</table>
+				<p style="font-size: 0.85rem; color: #64748b; margin-top: 10px; font-style: italic;">
+					(P = Taxable Profit ដែលក្រោយពន្ធលើលុយប្រតិបត្តិការ)
+				</p>
+			</div>
+
+			<div class="example-calculation">
+				<h3>ឧទាហរណ៍ការគណនាពន្ធលើលុយប្រតិបត្តិការ:</h3>
+				
+				<div style="background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 20px;">
+					<h4 style="color: #1e293b; margin-top: 0;">ឧទាហរណ៍ ១៖ ចំណូលលុយបូលពុង</h4>
+					<p style="color: #475569; line-height: 1.8; margin-bottom: 12px;">
+						អ្នកទទួលបានភាគលាភពីភាគហ៊ុននៃក្រុមហ៊ុនកម្ពុជាក្នុងឆ្នាំ <strong>50,000,000 រៀល</strong>៖
+					</p>
+					<ul style="margin-bottom: 12px;">
+						<li><strong>លុយប្រតិបត្តិការលុយបូលពុងសរុប៖</strong> 50,000,000 រៀល</li>
+						<li><strong>អត្របង្កើត៖</strong> 20%</li>
+					</ul>
+					<code style="font-size: 1rem; color: #0f172a;">
+						ពន្ធ = 50,000,000 × 20% = <strong>10,000,000 រៀល</strong>
+					</code>
+				</div>
+
+				<div style="background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
+					<h4 style="color: #1e293b; margin-top: 0;">ឧទាហរណ៍ ២៖ ចំណូលលុយប្រតិបត្តិការ</h4>
+					<p style="color: #475569; line-height: 1.8; margin-bottom: 12px;">
+						អ្នកមានលុយប្រតិបត្តិការពីក្រុមហ៊ុនក្ដីប្រឹក្សាយោបល់របស់ខ្លួនក្នុងឆ្នាំ <strong>100,000,000 រៀល</strong> ដែលមានការចំណាយលើការងារសរុប <strong>30,000,000 រៀល</strong>៖
+					</p>
+					<ul style="margin-bottom: 12px;">
+						<li><strong>ចំណូលលុយប្រតិបត្តិការសរុប៖</strong> 100,000,000 រៀល</li>
+						<li><strong>ដក៖ ការចំណាយលើការងារ៖</strong> 30,000,000 រៀល</li>
+						<li><strong>ចំណូលដែលក្រោយពន្ធលើលុយប្រតិបត្តិការ (P)៖</strong> 100,000,000 - 30,000,000 = <strong>70,000,000 រៀល</strong></li>
+					</ul>
+					<p style="color: #475569; line-height: 1.8; margin-bottom: 12px;">
+						ចំណូលដែលក្រោយពន្ធលើលុយប្រតិបត្តិការ ៧០,០០០,០០០ រៀល ស្ថិតក្នុងកម្រិត ១០% (ចន្លោះ 24,000,001 - 102,000,000) ដូច្នេះ៖
+					</p>
+					<code style="font-size: 1rem; color: #0f172a;">
+						ពន្ធ = (70,000,000 × 10%) - 2,100,000 = <strong>7,000,000 - 2,100,000 = 4,900,000 រៀល</strong>
+					</code>
+				</div>
+			</div>
+
+		</div>
+	</section>
+
+	<section style="background: #f8fafc; padding: 40px 20px; margin-top: 40px;">
+		<div class="container" style="max-width: 900px; margin: 0 auto;">
+			<h2 style="text-align: center; color: #1e293b; margin-bottom: 30px;">៥. ដំបូន្ដិ្របូពាក់ព័ន្ធ</h2>
+			<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+				<div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #3b82f6; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+					<h4 style="color: #3b82f6; margin-top: 0;">📋 ឯកសាររក្សាទុក</h4>
+					<p style="font-size: 0.9rem; color: #475569; margin-bottom: 0;">រក្សាទុកឯកសារលម្អិតលម្អិតគ្រប់ប្រភេទដែលទាក់ទងនឹងលុយប្រតិបត្តិការ។</p>
+				</div>
+				<div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #10b981; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+					<h4 style="color: #10b981; margin-top: 0;">💼 ចុះបញ្ជីលុយប្រតិបត្តិការ</h4>
+					<p style="font-size: 0.9rem; color: #475569; margin-bottom: 0;">ដាក់ឈ្មោះលុយប្រតិបត្តិការក្នុងវិក័យប័ត្របៃតង ឬឯកសារពន្ធ។</p>
+				</div>
+				<div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #f59e0b; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+					<h4 style="color: #f59e0b; margin-top: 0;">🏦 ប្រក្រតីលើឥណទាន</h4>
+					<p style="font-size: 0.9rem; color: #475569; margin-bottom: 0;">ប្រើប្រាស់គណនីផ្លូវការដែលអាចរក្សាលម្អិតលម្អិតលុយប្រតិបត្តិការ។</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+    <section class="button-section" style="background: white; padding: 60px 20px; text-align: center;">
+        <div style="max-width: 600px; margin: 0 auto;">
+            <h2 style="color: #1e293b; margin-bottom: 30px;">ចាប់ផ្តើមគណនាពន្ធ</h2>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+                <a href="{% url 'income_tax' %}" style="background: linear-gradient(135deg, #22c55e, #16a34a); color: white; padding: 14px 30px; border-radius: 12px; text-decoration: none; font-weight: bold; display: inline-block; transition: all 0.3s ease;">
+                    💼 គណនាពន្ធឥឡូវនេះ
+                </a>
+                <a href="{% url 'about_tax' %}" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; padding: 14px 30px; border-radius: 12px; text-decoration: none; font-weight: bold; display: inline-block; transition: all 0.3s ease;">
+                    📖 ត្រឡប់ទៅព័ត៌មានពន្ធ
+                </a>
+            </div>
+        </div>
+    </section>
+

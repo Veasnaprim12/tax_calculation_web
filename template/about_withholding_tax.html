@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}ពន្ធកាត់ទុក - Withholding Tax Information{% endblock %}
+
+{% block content %}
+    <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%); min-height: 100vh; padding: 40px 20px;">
+        <div style="max-width: 900px; margin: 0 auto;">
+            <!-- Header -->
+            <div style="text-align: center; margin-bottom: 50px; padding: 30px;">
+                <h1 style="color: #16a34a; font-size: 2.5rem; margin-bottom: 15px;">ពន្ធកាត់ទុក (Withholding Tax)</h1>
+                <p style="color: #4a4a4a; font-size: 1.1rem;">ឈ្មាះផ្សេងទៀត: ពន្ធលើប្រាក់ឈ្នួល ក្រុមហ៊ុន ឈ្នួលផ្ទះ និងចំណូលផ្សេងទៀត</p>
+            </div>
+
+            <!-- Main Content -->
+            <div style="background: white; border-radius: 15px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); margin-bottom: 30px;">
+                <!-- Definition Section -->
+                <h2 style="color: #16a34a; font-size: 1.8rem; margin-bottom: 20px;">📋 និយមន័យ</h2>
+                <p style="color: #4a4a4a; line-height: 1.8; margin-bottom: 20px;">
+                    ពន្ធកាត់ទុក គឺជាពន្ធដែលកាត់ក្នុងលក្ខណៈលើកម្មន្តិរ មុនពេលលាក់ប្រាក់ឲ្យឧបត្ថម្ភ។ 
+                    វាជាមូលនិធិលម្អិតលេខដ៏ធំប្រឆាំងនឹងពន្ធចុងក្រោយដែលត្រូវបង់នៅពេលលេខរាយប្រាក់ប្រចាំឆ្នាំ។
+                </p>
+
+                <!-- Types of Withholding Tax -->
+                <h2 style="color: #16a34a; font-size: 1.8rem; margin-bottom: 20px; margin-top: 30px;">💼 ប្រភេទពន្ធកាត់ទុក</h2>
+                
+                <div style="display: grid; gap: 20px; margin-bottom: 30px;">
+                    <!-- Salary Withholding -->
+                    <div style="background: #f8f9fa; border-left: 4px solid #22c55e; padding: 20px; border-radius: 8px;">
+                        <h3 style="color: #16a34a; margin-bottom: 10px;">1. ពន្ធកាត់ទុកលើប្រាក់ឈ្នួល</h3>
+                        <p style="color: #4a4a4a; margin: 0; line-height: 1.6;">
+                            ពន្ធដែលកាត់ពីប្រាក់ឈ្នួលប្រចាំខែ ឬប្រចាំឆ្នាំរបស់បុគ្គលិក។ 
+                            អត្របែបចម្រុង៖ <strong>0% ដល់ 20%</strong> អាស្រ័យលើលំដាប់ប្រាក់ឈ្នួល
+                        </p>
+                    </div>
+
+                    <!-- Dividend Withholding -->
+                    <div style="background: #f8f9fa; border-left: 4px solid #22c55e; padding: 20px; border-radius: 8px;">
+                        <h3 style="color: #16a34a; margin-bottom: 10px;">2. ពន្ធកាត់ទុកលើផលប័ត្រ/ក្រុមហ៊ុន</h3>
+                        <p style="color: #4a4a4a; margin: 0; line-height: 1.6;">
+                            ពន្ធលើប្រាក់ចំណូលដែលទទួលបានមកពីផលប័ត្រ ឬលុយចូលក្រុមហ៊ុន។ 
+                            អត្រា៖ <strong>10%</strong>
+                        </p>
+                    </div>
+
+                    <!-- Rental Withholding -->
+                    <div style="background: #f8f9fa; border-left: 4px solid #22c55e; padding: 20px; border-radius: 8px;">
+                        <h3 style="color: #16a34a; margin-bottom: 10px;">3. ពន្ធកាត់ទុកលើឈ្នួលផ្ទះ</h3>
+                        <p style="color: #4a4a4a; margin: 0; line-height: 1.6;">
+                            ពន្ធលើប្រាក់ឈ្នួលដែលទទួលបានមកពីលាក់ផ្ទះ ឬទម្ងន់មន្ទីរ។ 
+                            អត្រា៖ <strong>10%</strong>
+                        </p>
+                    </div>
+
+                    <!-- Other Withholding -->
+                    <div style="background: #f8f9fa; border-left: 4px solid #22c55e; padding: 20px; border-radius: 8px;">
+                        <h3 style="color: #16a34a; margin-bottom: 10px;">4. ពន្ធកាត់ទុកលើចំណូលផ្សេងទៀត</h3>
+                        <p style="color: #4a4a4a; margin: 0; line-height: 1.6;">
+                            ពន្ធលើចំណូលផ្សេងទៀតដែលមិនរាយបញ្ជីក្នុងក្រុមក្នុងចំណាកប្រាក់។ 
+                            អត្រា៖ <strong>20%</strong>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Calculation Examples -->
+                <h2 style="color: #16a34a; font-size: 1.8rem; margin-bottom: 20px; margin-top: 30px;">📊 ឧទាហរណ៍នៃការគណនា</h2>
+
+                <div style="background: #f0fdf4; border: 2px solid #22c55e; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                    <h3 style="color: #16a34a; margin-bottom: 15px;">ឧទាហរណ៍ ១៖ ពន្ធកាត់ទុកលើប្រាក់ឈ្នួល</h3>
+                    <p style="margin: 0; color: #4a4a4a; line-height: 1.8;">
+                        <strong>ចំណូលមូលដ្ឋាន:</strong> 5,000,000 KHR<br>
+                        <strong>អត្របែបចម្រុង:</strong> 10%<br>
+                        <strong>ពន្ធកាត់ទុក:</strong> 5,000,000 × 10% = 500,000 KHR<br>
+                        <strong>លុយបន្ទាប់ពីកាត់:</strong> 5,000,000 - 500,000 = 4,500,000 KHR
+                    </p>
+                </div>
+
+                <div style="background: #f0fdf4; border: 2px solid #22c55e; padding: 20px; border-radius: 8px;">
+                    <h3 style="color: #16a34a; margin-bottom: 15px;">ឧទាហរណ៍ ២៖ ពន្ធកាត់ទុកលើផលប័ត្របច្ចុប្បន្ន</h3>
+                    <p style="margin: 0; color: #4a4a4a; line-height: 1.8;">
+                        <strong>ចំណូលផលប័ត្របច្ចុប្បន្ន:</strong> 10,000,000 KHR<br>
+                        <strong>អត្រា:</strong> 10%<br>
+                        <strong>ពន្ធកាត់ទុក:</strong> 10,000,000 × 10% = 1,000,000 KHR<br>
+                        <strong>លុយបន្ទាប់ពីកាត់:</strong> 10,000,000 - 1,000,000 = 9,000,000 KHR
+                    </p>
+                </div>
+
+                <!-- Important Information -->
+                <h2 style="color: #16a34a; font-size: 1.8rem; margin-bottom: 20px; margin-top: 30px;">⚠️ ព័ត៌មានសំខាន់</h2>
+                <ul style="color: #4a4a4a; line-height: 2; margin: 0; padding-left: 20px;">
+                    <li>ពន្ធកាត់ទុកគឺជាបង់ប្រាក់ក្នុងលក្ខណៈលម្អិតដែលដាក់ក្នុងលេខរាយប្រាក់ប្រចាំឆ្នាំ</li>
+                    <li>អាច​ធ្វើការ​ដកម៉ាកពន្ធលើលុយទទួលក្រុមហ៊ុនរបស់ឆ្នាយប្រាក់ដែលលើសពីលុយកាត់ទុក</li>
+                    <li>ការខ្វះខាតនៃលេខរាយប្រាក់ប្រចាំឆ្នាំ​បង្ហាញថាមានការឈ្នួលលម្អិតលេខ</li>
+                    <li>ប្រាក់កាត់ទុកត្រូវតែរាយប្រាក់នៅលេខលុយលាក់ប្រាក់ប្រចាំឆ្នាំ</li>
+                </ul>
+            </div>
+
+            <!-- Call to Action -->
+            <div style="text-align: center; padding: 20px;">
+                <a href="{% url 'withholding_tax' %}" class="btn btn-primary" style="display: inline-block; background: linear-gradient(45deg, #22c55e, #3b82f6); color: white; padding: 15px 40px; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 1rem; box-shadow: 0 4px 15px rgba(34,197,94,0.4);">
+                    ចូលទៅកាន់ការគណនា
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

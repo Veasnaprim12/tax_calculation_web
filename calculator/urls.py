@@ -8,9 +8,13 @@ urlpatterns = [
 	path("about/salary/", views.about_salary_tax, name="about_salary_tax"),
 	path("about/property/", views.about_property_tax, name="about_property_tax"),
 	path("about/vat/", views.about_vat_tax, name="about_vat_tax"),
+	path("about/income/", views.about_income_tax, name="about_income_tax"),
+	path("about/withholding/", views.about_withholding_tax, name="about_withholding_tax"),
 	path("salary/", views.salary_tax, name="salary_tax"),
 	path("property/", views.property_tax, name="property_tax"),	
 	path("vat/", views.vat_tax, name="vat_tax"),
+	path("income/", views.income_tax, name="income_tax"),
+	path("withholding/", views.withholding_tax, name="withholding_tax"),
 	path("admin/records/", views.admin_records, name="admin_records"),
 	path("study-plan/", views.study_plan, name="study_plan"),
 ]

@@ -6,6 +6,8 @@ class TaxRecord(models.Model):
         ('salary', 'ពន្ធលើប្រាក់បៀវតន៏'),
         ('property', 'ពន្ធអាក'),
         ('vat', 'ពន្ធលើតម្លៃបន្ថែម'),
+        ('income', 'ពន្ធលើចំណូលលុយប្រតិបត្តិការ'),
+        ('withholding', 'ពន្ធកាត់ទុក'),
     ]
     
     CURRENCY_CHOICES = [
@@ -24,7 +26,7 @@ class TaxRecord(models.Model):
         ('working', 'ធ្វើការ'),
     ]
 
-    tax_type = models.CharField(max_length=10, choices=TAX_TYPE_CHOICES, default='salary', verbose_name="ប្រភេទពន្ធ")
+    tax_type = models.CharField(max_length=15, choices=TAX_TYPE_CHOICES, default='salary', verbose_name="ប្រភេទពន្ធ")
     currency = models.CharField(max_length=3, choices=CURRENCY_CHOICES, default='KHR', verbose_name="រូបិយប័ណ្ណ")
     income = models.DecimalField(max_digits=15, decimal_places=2, verbose_name="ចំណូល/តម្លៃអចលនទ្រព្យ")
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, verbose_name="ស្ថានភាពគ្រួសារ", blank=True, null=True)
