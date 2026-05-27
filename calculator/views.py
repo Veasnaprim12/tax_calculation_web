@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.admin.views.decorators import staff_member_required
-from .forms import SalaryTaxForm, PropertyTaxForm, VATTaxForm
+from .forms import SalaryTaxForm, PropertyTaxForm, VATTaxForm, IncomeTaxForm, WithholdingTaxForm
 from .models import TaxRecord, TaxCalculationDetail
 from decimal import Decimal
 from tax_calculators import (
@@ -11,6 +11,7 @@ from tax_calculators import (
     convert_from_khr,
     get_currency_symbol
 )
+from tax_calculators.income_tax import calculate_income_tax_with_breakdown
 
 
 def get_tax_bracket(taxable_income):
@@ -309,17 +310,151 @@ def property_tax(request):
         'selected_currency': selected_currency,
         'currency_symbol': get_currency_symbol(selected_currency)
     })
-    def vat_tax(request):
-        if request.method == 'POST':
-            vat_input = request.POST.get('vat_input')
-            vat_type = request.POST.get('vat_type')
-            tax_amount = calculate_vat_tax(vat_input, vat_type)
-            return render(request, "vat_tax.html", {
-                'tax_amount': tax_amount,
-                'vat_input': vat_input,
-                'vat_type': vat_type
-            })
-        return render(request, "vat_tax.html")
+
+
+def about_income_tax(request):
+    """
+    Render the detailed income tax information page.
+    """
+    return render(request, "about_income_tax.html")
+
+
+def income_tax(request):
+    """
+    Render and handle the income tax calculation page.
+    Income tax applies to investment, business, rental, and other non-employment income.
+    """
+    form = IncomeTaxForm()
+    tax_amount = None
+    net_income = None
+    selected_currency = 'KHR'
+    tax_rate = None
+    taxable_income = None
+    deductions = None
+    
+    if request.method == 'POST':
+        form = IncomeTaxForm(request.POST)
+        if form.is_valid():
+            currency = form.cleaned_data['currency']
+            income_type = form.cleaned_data['income_type']
+            income = form.cleaned_data['income']
+            business_expenses = form.cleaned_data.get('business_expenses', 0) or 0
+            selected_currency = currency
+            
+            # Convert to KHR for calculation if needed
+            income_khr = convert_to_khr(income, currency)
+            business_expenses_khr = convert_to_khr(business_expenses, currency)
+            
+            # Calculate tax with breakdown
+            tax_amount_khr, tax_rate, deductions_khr, taxable_income_khr = calculate_income_tax_with_breakdown(
+                income_khr, income_type, business_expenses_khr
+            )
+            
+            # Net income calculation
+            net_income_khr = income_khr - tax_amount_khr
+            
+            # Convert back to selected currency for display
+            tax_amount = convert_from_khr(tax_amount_khr, currency)
+            net_income = convert_from_khr(net_income_khr, currency)
+            taxable_income = convert_from_khr(taxable_income_khr, currency)
+            deductions = convert_from_khr(deductions_khr, currency)
+            
+            # Save to database in KHR
+            tax_record = TaxRecord.objects.create(
+                tax_type='income',
+                currency=currency,
+                income=income,
+                tax_amount=tax_amount,
+                net_income=net_income
+            )
+            
+            # Create detailed calculation breakdown
+            TaxCalculationDetail.objects.create(
+                tax_record=tax_record,
+                tax_rate=tax_rate,
+                taxable_amount=taxable_income_khr,
+                total_deductions=deductions_khr,
+                tax_components={
+                    'calculation_type': 'income_tax',
+                    'income_type': income_type,
+                    'annual_income_khr': float(income_khr),
+                    'business_expenses_khr': float(business_expenses_khr),
+                    'tax_rate': float(tax_rate),
+                    'effective_rate': float(tax_amount_khr / income_khr) if income_khr > 0 else 0
+                }
+            )
+    
+    return render(request, "income_tax.html", {
+        'form': form,
+        'tax_amount': tax_amount,
+        'net_income': net_income,
+        'selected_currency': selected_currency,
+        'currency_symbol': get_currency_symbol(selected_currency),
+        'tax_rate': tax_rate,
+        'tax_rate_percentage': tax_rate * 100 if tax_rate else None,
+        'taxable_income': taxable_income,
+        'deductions': deductions
+    })
+
+
+def vat_tax(request):
+    """
+    Render and handle the VAT tax calculation page.
+    """
+    form = VATTaxForm()
+    tax_amount = None
+    total_amount = None
+    selected_currency = 'KHR'
+    currency_symbol = '៛'
+    
+    if request.method == 'POST':
+        form = VATTaxForm(request.POST)
+        if form.is_valid():
+            currency = form.cleaned_data['currency']
+            amount = form.cleaned_data['amount']
+            selected_currency = currency
+            currency_symbol = get_currency_symbol(currency)
+            
+            # Convert to KHR for calculation if needed
+            amount_khr = convert_to_khr(amount, currency)
+            
+            # Calculate VAT (10% in Cambodia)
+            tax_amount_khr = calculate_actual_vat(amount_khr)
+            
+            # Total amount including VAT
+            total_amount_khr = amount_khr + tax_amount_khr
+            
+            # Convert back to selected currency for display
+            tax_amount = convert_from_khr(tax_amount_khr, currency)
+            total_amount = convert_from_khr(total_amount_khr, currency)
+            
+            # Save to database in KHR
+            tax_record = TaxRecord.objects.create(
+                tax_type='vat',
+                currency=currency,
+                income=amount,
+                tax_amount=tax_amount
+            )
+            
+            # Create detailed calculation breakdown
+            TaxCalculationDetail.objects.create(
+                tax_record=tax_record,
+                tax_rate=Decimal('0.10'),
+                taxable_amount=amount_khr,
+                tax_components={
+                    'calculation_type': 'vat_tax',
+                    'sale_amount_khr': float(amount_khr),
+                    'vat_rate': 0.10
+                }
+            )
+    
+    return render(request, "vat_tax.html", {
+        'form': form,
+        'tax_amount': tax_amount,
+        'total_amount': total_amount,
+        'selected_currency': selected_currency,
+        'currency_symbol': currency_symbol
+    })
 
 
 @staff_member_required
@@ -356,6 +491,95 @@ def admin_records(request):
         'total_tax_collected_khr': total_tax_collected_khr,
         'tax_type_filter': tax_type_filter,
     })
+
+
+def withholding_tax(request):
+    """
+    Render and handle the withholding tax calculation page.
+    Withholding tax is deducted from salary, dividends, rental income, and other sources.
+    """
+    form = WithholdingTaxForm()
+    tax_amount = None
+    net_amount = None
+    selected_currency = 'KHR'
+    tax_rate = None
+    
+    if request.method == 'POST':
+        form = WithholdingTaxForm(request.POST)
+        if form.is_valid():
+            currency = form.cleaned_data['currency']
+            withholding_type = form.cleaned_data['withholding_type']
+            amount = form.cleaned_data['amount']
+            selected_currency = currency
+            
+            # Convert to KHR for calculation if needed
+            amount_khr = convert_to_khr(amount, currency)
+            
+            # Calculate withholding tax based on type
+            if withholding_type == 'salary':
+                # For salary: typically 0% to 20% based on progressive brackets
+                tax_rate = Decimal('0.10')  # Standard 10% withholding on salary
+            elif withholding_type == 'dividend':
+                # For dividends/corporate: 10% withholding tax
+                tax_rate = Decimal('0.10')
+            elif withholding_type == 'rental':
+                # For rental income: 10% withholding tax
+                tax_rate = Decimal('0.10')
+            else:
+                # Other: 20% withholding tax
+                tax_rate = Decimal('0.20')
+            
+            # Calculate withholding tax amount
+            tax_amount_khr = amount_khr * tax_rate
+            
+            # Net amount after withholding
+            net_amount_khr = amount_khr - tax_amount_khr
+            
+            # Convert back to selected currency for display
+            tax_amount = convert_from_khr(tax_amount_khr, currency)
+            net_amount = convert_from_khr(net_amount_khr, currency)
+            
+            # Save to database in KHR
+            tax_record = TaxRecord.objects.create(
+                tax_type='withholding',
+                currency=currency,
+                income=amount,
+                tax_amount=tax_amount,
+                net_income=net_amount
+            )
+            
+            # Create detailed calculation breakdown
+            TaxCalculationDetail.objects.create(
+                tax_record=tax_record,
+                tax_rate=tax_rate,
+                taxable_amount=amount_khr,
+                tax_components={
+                    'calculation_type': 'withholding_tax',
+                    'withholding_type': withholding_type,
+                    'amount_khr': float(amount_khr),
+                    'tax_rate': float(tax_rate),
+                }
+            )
+    
+    return render(request, "withholding_tax.html", {
+        'form': form,
+        'tax_amount': tax_amount,
+        'net_amount': net_amount,
+        'selected_currency': selected_currency,
+        'currency_symbol': get_currency_symbol(selected_currency),
+        'tax_rate': tax_rate,
+        'amount': None
+    })
+
+
+def about_withholding_tax(request):
+    """
+    Display information about withholding tax.
+    """
+    return render(request, "about_withholding_tax.html", {
+        'title': 'ពន្ធកាត់ទុក'
+    })
+
 
 
 
