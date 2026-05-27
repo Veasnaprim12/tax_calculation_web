@@ -13,8 +13,8 @@
         />
         <link rel="stylesheet" href="{% static 'style.css' %}" />
     </head>
-    <body class="{% block body_class %}{% endblock %}" style="background-image: none; background-color: #e5ead4;">
-        <header>
+    <body class="{% block body_class %}{% endblock %}" style="background-image: none; background-color: #e5ead4; margin: 0; padding: 0;">
+        <header style="background: linear-gradient(135deg, #60678a 0%, #496553 100%); padding: 32px 8vw 12px;">
             <div class="brand">
                 <div class="logo">ពន្ធ</div>
                 <div>
@@ -36,13 +36,13 @@
             {% block content %}{% endblock %}
         </main>
 
-        <footer style="text-align: center; display: flex; justify-content: center; width: 100%;">
+        <footer style="text-align: center; display: flex; justify-content: center; width: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px 0; color: white; margin-top: 60px;">
             <div class="footer-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-                <p>© 2026 Tax Calculation · បង្កើតសម្រាប់គម្រោងសិក្សារបស់និស្សិត​(Dept. AMS) សាលា(ITC) </p>
+                <p style="color: white; margin: 0;">© 2026 Tax Calculation · បង្កើតសម្រាប់គម្រោងសិក្សារបស់និស្សិត​(Dept. AMS) សាលា(ITC) </p>
                 <div class="footer-links" style="display: flex; justify-content: center; gap: 15px; margin-top: 5px;">
-                    <a href="{% url 'about_tax' %}">ស្វែងយល់អំពីពន្ធ</a>
-                    <a href="{% url 'salary_tax' %}">ពន្ធប្រាក់បៀវត្ស</a>
-                    <a href="{% url 'property_tax' %}">ពន្ធអាករ</a>
+                    <a href="{% url 'about_tax' %}" style="color: white; text-decoration: none;">ស្វែងយល់អំពីពន្ធ</a>
+                    <a href="{% url 'salary_tax' %}" style="color: white; text-decoration: none;">ពន្ធប្រាក់បៀវត្ស</a>
+                    <a href="{% url 'property_tax' %}" style="color: white; text-decoration: none;">ពន្ធអាករ</a>
                     <
                 </div>
             </div>

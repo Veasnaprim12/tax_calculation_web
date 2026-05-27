@@ -124,6 +124,89 @@ class VATTaxForm(forms.Form):
     )
 
 
+class IncomeTaxForm(forms.Form):
+    currency = forms.ChoiceField(
+        label="រូបិយប័ណ្ណ",
+        choices=[
+            ('KHR', '៛ រៀលកម្ពុជា'),
+            ('USD', '$ ដុល្លារអាមេរិក'),
+        ],
+        initial='KHR',
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+    
+    income_type = forms.ChoiceField(
+        label="ប្រភេទចំណូល",
+        choices=[
+            ('investment', 'ចំណូលវិនិយោគ (Dividend/Interest)'),
+            ('business', 'ចំណូលពីលុយប្រតិបត្តិការ'),
+            ('rental', 'ចំណូលឈ្នួលផ្ទះ'),
+            ('other', 'ចំណូលផ្សេងទៀត'),
+        ],
+        initial='investment',
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+    
+    income = forms.DecimalField(
+        label="ចំណូលប្រចាំឆ្នាំ",
+        min_value=0,
+        decimal_places=2,
+        widget=forms.NumberInput(attrs={
+            'placeholder': 'ឧ. 5,000,000',
+            'class': 'form-input',
+            'step': '0.01'
+        })
+    )
+    
+    business_expenses = forms.DecimalField(
+        label="ការចំណាយលើលុយប្រតិបត្តិការ (ប្រសិនបើអាច)",
+        min_value=0,
+        initial=0,
+        decimal_places=2,
+        required=False,
+        widget=forms.NumberInput(attrs={
+            'placeholder': '0',
+            'class': 'form-input',
+            'step': '0.01'
+        })
+    )
+
+
 # Keep the old form for backward compatibility
 class TaxCalculatorForm(SalaryTaxForm):
     pass
+
+
+class WithholdingTaxForm(forms.Form):
+    currency = forms.ChoiceField(
+        label="រូបិយប័ណ្ណ",
+        choices=[
+            ('KHR', '៛ រៀលកម្ពុជា'),
+            ('USD', '$ ដុល្លារអាមេរិក'),
+        ],
+        initial='KHR',
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+    
+    withholding_type = forms.ChoiceField(
+        label="ប្រភេទពន្ធកាត់ទុក",
+        choices=[
+            ('salary', 'ពន្ធកាត់ទុកលើប្រាក់ឈ្នួល'),
+            ('dividend', 'ពន្ធកាត់ទុកលើផលប័ត្រ/ក្រុមហ៊ុន'),
+            ('rental', 'ពន្ធកាត់ទុកលើឈ្នួលផ្ទះ'),
+            ('other', 'ពន្ធកាត់ទុកផ្សេងទៀត'),
+        ],
+        initial='salary',
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+    
+    amount = forms.DecimalField(
+        label="ចំនួនដើម",
+        min_value=0,
+        decimal_places=2,
+        widget=forms.NumberInput(attrs={
+            'placeholder': 'ឧ. 5,000,000',
+            'class': 'form-input',
+            'step': '0.01'
+        })
+    )

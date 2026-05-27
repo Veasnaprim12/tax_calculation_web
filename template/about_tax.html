@@ -5,11 +5,10 @@
 
 {% block content %}
 
-    <section class="about-hero" style="background: linear-gradient(rgba(15, 32, 67, 0.85), rgba(26, 54, 104, 0.85)), url('{% static 'images/tax_image.png' %}') no-repeat center center/cover; color: white; padding: 80px 20px; text-align: center;">
+    <section class="about-hero" style="background: linear-gradient(rgba(15, 32, 67, 0.85), rgba(26, 54, 104, 0.85)); color: white; padding: 80px 20px; text-align: center;">
         <div class="hero-content" style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 40px;">
             <div class="hero-text" style="flex: 1; min-width: 300px; text-align: left;">
                 <div class="hero-text" style="text-align: center; margin-bottom: 40px;">
-                    <img src="{% static 'images/logo.png' %}" alt="Logo" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 3px solid rgba(255, 255, 255, 0.3); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
                     <h1 style="font-family: 'Khmer Moul', cursive; font-size: 2.2rem; margin-bottom: 15px; color: white;">សិក្សាស្វែងយល់អំពីពន្ធ</h1>
                     <p style="font-size: 1.2rem; color: rgba(255, 255, 255, 0.9); margin-bottom: 30px;">ស្វែងយល់អំពីប្រព័ន្ធពន្ធក្នុងប្រទេសកម្ពុជា</p>
                     
@@ -81,9 +80,7 @@
         <div class="container" style="max-width: 1200px; margin: 0 auto;">
             
             <div class="section-header" style="text-align: center; margin-bottom: 50px;">
-                <div style="width: 100px; height: 100px; margin: 0 auto 20px auto; border-radius: 50%; overflow: hidden; border: 3px solid #e2e8f0; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); background: white; display: flex; align-items: center; justify-content: center;">
-                    <img src="{% static 'images/logo.png' %}" alt="Tax Logo" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
+
                 
                 <h2 style="font-family: 'Khmer Moul', cursive; color: #1e3c72; font-size: 1.6rem; margin-bottom: 12px; letter-spacing: 0.5px;">
                     ប្រភេទពន្ធសំខាន់ៗ
@@ -134,6 +131,34 @@
                         </p>
                     </div>
                     <a href="{% url 'about_vat_tax' %}" class="card-link" style="color: #050505; text-decoration: none; font-weight: bold; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 8px; align-self: flex-start;">
+                        <span>ស្វែងយល់បន្ថែម</span> <span class="arrow" style="font-size: 1.1rem;">→</span>
+                    </a>
+                </div>
+                <div class="tax-type-card" style="background: transparent; padding: 35px 30px; border-radius: 20px; border: 1px solid #cbd5e1; display: flex; flex-direction: column; justify-content: space-between; gap: 25px; box-shadow: none; height: 100%;">
+                    <div class="card-content">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px;">
+                            <h3 style="font-size: 1.35rem; color: #1e293b; font-weight: bold; margin: 0;">ពន្ធប្រាក់ចំណូល​ Income</h3>
+                            <span style="font-size: 1.8rem; background: rgba(59, 130, 246, 0.08); padding: 8px; border-radius: 12px; line-height: 1;"></span>
+                        </div>
+                        <p style="color: #64748b; font-size: 0.95rem; line-height: 1.7; margin: 0;">
+                            ពន្ធលើចំណូលសរុប (Income Tax) លើចំណូលសរុបរបស់បុគ្គលនិងសហគ្រាស ដើម្បីគាំទ្រការអភិវឌ្ឍសង្គម និងសេដ្ឋកិច្sច។
+                        </p>
+                    </div>
+                    <a href="{% url 'about_income_tax' %}" class="card-link" style="color: #050505; text-decoration: none; font-weight: bold; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 8px; align-self: flex-start;">
+                        <span>ស្វែងយល់បន្ថែម</span> <span class="arrow" style="font-size: 1.1rem;">→</span>
+                    </a>
+                </div>
+                <div class="tax-type-card" style="background: transparent; padding: 35px 30px; border-radius: 20px; border: 1px solid #cbd5e1; display: flex; flex-direction: column; justify-content: space-between; gap: 25px; box-shadow: none; height: 100%;">
+                    <div class="card-content">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px;">
+                            <h3 style="font-size: 1.35rem; color: #1e293b; font-weight: bold; margin: 0;">ពន្ធកាត់ទុក​ Withholing Tax </h3ព>
+                            <span style="font-size: 1.8rem; background: rgba(59, 130, 246, 0.08); padding: 8px; border-radius: 12px; line-height: 1;"></span>
+                        </div>
+                        <p style="color: #64748b; font-size: 0.95rem; line-height: 1.7; margin: 0;">
+                            ពន្ធកាត់ទុក (Withholding Tax) គឺជាពន្ធដែលត្រូវបានកាត់ចេញពីប្រាក់ចំណូលមួយចំនួន ដូចជាប្រាក់ឈ្នួល ប្រាក់បៀវត្ស ប្រាក់រង្វាន់ និងប្រាក់ចំណេញពីការវិនិយោគ។
+                        </p>
+                    </div>
+                    <a href="{% url 'about_withholding_tax' %}" class="card-link" style="color: #050505; text-decoration: none; font-weight: bold; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 8px; align-self: flex-start;">
                         <span>ស្វែងយល់បន្ថែម</span> <span class="arrow" style="font-size: 1.1rem;">→</span>
                     </a>
                 </div>
@@ -189,7 +214,157 @@
         </div>
     </section>
 
-    <section class="why-section" style="background: white; padding: 60px 20px;">
+    <section class="income-tax-section" style="background: #f8fafc; padding: 60px 20px;">
+        <div class="container" style="max-width: 1200px; margin: 0 auto;">
+            <div class="section-header" style="text-align: center; margin-bottom: 50px;">
+                <h2 style="font-family: 'Khmer Moul', cursive; color: #1e3c72; font-size: 1.6rem; margin-bottom: 12px;">
+                    ពន្ធលើប្រាក់ចំណូល (Income Tax)
+                </h2>
+                <p style="color: #64748b; margin-top: 10px; font-size: 1rem;">ពន្ធលើប្រាក់ចំណូលប្រាក់ឈានដល់ដែលរប់ចូលក្នុងប្របូលភាព ឬផលប្រយោជន៍ដែលបុគ្គលឬសហគ្រាសរកបាន</p>
+                <div style="width: 80px; height: 4px; margin: 15px auto 0; border-radius: 2px;"></div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 50px; align-items: start;">
+                <div>
+                    <h3 style="font-size: 1.3rem; color: #1e293b; margin-bottom: 20px; font-weight: bold;">តើពន្ធលើប្រាក់ចំណូលជាអ្វី?</h3>
+                    <p style="color: #475569; line-height: 1.7; margin-bottom: 15px;">ពន្ធលើប្រាក់ចំណូល គឺជាពន្ធដែលគិតលើប្រាក់ចំណូលសរុបរបស់បុគ្គលឬសហគ្រាស ដែលលទ្ធផលមកពីការងារ អាជីវកម្ម ឬប្រភពផ្សេងទៀត។</p>
+                    <p style="color: #475569; line-height: 1.7; margin-bottom: 15px;">ប្រព័ន្ធពន្ធលើប្រាក់ចំណូលក្នុងប្រទេសកម្ពុជាប្រើប្រាស់វិធីគណនាលំដាប់លំដោយ (progressive tax brackets) ដែលមានន័យថា អត្រាពន្ធកើនឡើងនៅពេលដែលប្រាក់ចំណូលកើនឡើង។</p>
+                </div>
+                
+                <div style="background: white; padding: 30px; border-radius: 20px; border: 2px solid #cbd5e1; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                    <h3 style="font-size: 1.2rem; color: #1e293b; margin-bottom: 20px; font-weight: bold;">💼 ប្រភេទចំណូល</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #e2e8f0; color: #475569;">
+                            <span style="font-weight: bold; color: #1e293b;">• ចំណូលលក្ខន៍អាជីវកម្ម</span><br/>
+                            <span style="font-size: 0.9rem;">គិតដោយលំដាប់លំដោយ (Progressive)</span>
+                        </li>
+                        <li style="margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #e2e8f0; color: #475569;">
+                            <span style="font-weight: bold; color: #1e293b;">• ចំណូលវិនិយោគ</span><br/>
+                            <span style="font-size: 0.9rem;">អត្រាថេរ ២០%</span>
+                        </li>
+                        <li style="margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #e2e8f0; color: #475569;">
+                            <span style="font-weight: bold; color: #1e293b;">• ចំណូលឈ្នួលផ្ទះ</span><br/>
+                            <span style="font-size: 0.9rem;">អត្រាថេរ ២០%</span>
+                        </li>
+                        <li style="color: #475569;">
+                            <span style="font-weight: bold; color: #1e293b;">• ចំណូលផ្សេងទៀត</span><br/>
+                            <span style="font-size: 0.9rem;">អត្រាថេរ ២០%</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="background: white; padding: 40px; border-radius: 20px; border: 2px solid #cbd5e1; margin-bottom: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                <h3 style="font-size: 1.3rem; color: #1e293b; margin-bottom: 25px; font-weight: bold;">📊 តារាងលំដាប់លំដោយពន្ធលើប្រាក់ចំណូលលក្ខន៍អាជីវកម្ម</h3>
+                
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background: linear-gradient(135deg, #3b82f6, #1e3a8a); color: white;">
+                                <th style="padding: 15px; text-align: left; border: 1px solid #cbd5e1;">ប្រាក់ចំណូលលក្ខន៍ (Taxable Profit)</th>
+                                <th style="padding: 15px; text-align: center; border: 1px solid #cbd5e1;">អត្រាពន្ធ</th>
+                                <th style="padding: 15px; text-align: left; border: 1px solid #cbd5e1;">រូបមន្តគណនា</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background: #f9fafb;">
+                                <td style="padding: 15px; border: 1px solid #cbd5e1; color: #475569;">០៛ ដល់ ១៨,០००,០००៛</td>
+                                <td style="padding: 15px; text-align: center; border: 1px solid #cbd5e1; color: #1e293b; font-weight: bold;">០%</td>
+                                <td style="padding: 15px; border: 1px solid #cbd5e1; color: #475569;">Tax = ០</td>
+                            </tr>
+                            <tr style="background: white;">
+                                <td style="padding: 15px; border: 1px solid #cbd5e1; color: #475569;">១៨,០००,០០១៛ ដល់ ២៤,០००,०००៛</td>
+                                <td style="padding: 15px; text-align: center; border: 1px solid #cbd5e1; color: #1e293b; font-weight: bold;">៥%</td>
+                                <td style="padding: 15px; border: 1px solid #cbd5e1; color: #475569;">Tax = P × ៥% − ९००,०००</td>
+                            </tr>
+                            <tr style="background: #f9fafb;">
+                                <td style="padding: 15px; border: 1px solid #cbd5e1; color: #475569;">២៤,०००,००១៛ ដល់ १०२,००००००៛</td>
+                                <td style="padding: 15px; text-align: center; border: 1px solid #cbd5e1; color: #1e293b; font-weight: bold;">១០%</td>
+                                <td style="padding: 15px; border: 1px solid #cbd5e1; color: #475569;">Tax = P × ១០% − २,१००,००००</td>
+                            </tr>
+                            <tr style="background: white;">
+                                <td style="padding: 15px; border: 1px solid #cbd5e1; color: #475569;">१०២,००००००१៛ ដល់ १५०,००००००៛</td>
+                                <td style="padding: 15px; text-align: center; border: 1px solid #cbd5e1; color: #1e293b; font-weight: bold;">១៥%</td>
+                                <td style="padding: 15px; border: 1px solid #cbd5e1; color: #475569;">Tax = P × ១៥% − ७,२००,००००</td>
+                            </tr>
+                            <tr style="background: #f9fafb;">
+                                <td style="padding: 15px; border: 1px solid #cbd5e1; color: #475569;">លើសពី ១៥០,०००,००० ៛</td>
+                                <td style="padding: 15px; text-align: center; border: 1px solid #cbd5e1; color: #1e293b; font-weight: bold;">២០%</td>
+                                <td style="padding: 15px; border: 1px solid #cbd5e1; color: #475569;">Tax = P × २०% − १४,२००,००००</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                <div style="background: white; padding: 30px; border-radius: 20px; border: 1px solid #cbd5e1;">
+                    <h3 style="font-size: 1.1rem; color: #1e293b; margin-bottom: 15px; font-weight: bold;">📋 វិធីគណនា</h3>
+                    <ol style="margin: 0; padding: 0 0 0 20px; color: #475569; line-height: 1.8;">
+                        <li style="margin-bottom: 10px;">គណនាប្រាក់ចំណូលលក្ខន៍៖ <br/><span style="color: #0ea5e9; font-weight: bold;">Taxable Income = ប្រាក់ចំណូលសរុប − ការដកប្រាក់</span></li>
+                        <li style="margin-bottom: 10px;">កំណត់ប្រភេទលំដាប់លំដោយ</li>
+                        <li style="margin-bottom: 10px;">ប្រើរូបមន្តសមស្របលើប្រាក់ចំណូលលក្ខន៍</li>
+                        <li>ធានាថាពន្ធ ≥ ០ (មិនអាចលើឡើងបាន)</li>
+                    </ol>
+                </div>
+
+                <div style="background: #eff6ff; padding: 30px; border-radius: 20px; border: 2px solid #bfdbfe; border-left: 5px solid #3b82f6;">
+                    <h3 style="font-size: 1.1rem; color: #1e40af; margin-bottom: 15px; font-weight: bold;">💡 ឧទាហរណ៍</h3>
+                    <div style="background: white; padding: 15px; border-radius: 10px; margin-bottom: 10px; font-size: 0.9rem; color: #475569;">
+                        <p style="margin: 0 0 8px 0; color: #1e293b; font-weight: bold;">ប្រាក់ចំណូល: ៥០ លាន KHR</p>
+                        <p style="margin: 0; color: #475569;">ស្ថិតក្នុងក្រុម: ២៤-១០២ លាន (១០% អត្រា)</p>
+                        <p style="margin: 0; font-weight: bold; color: #059669;">Tax = ५०M × १०% − २.१M = २.७ លាន KHR</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="exemptions-section" style="background: white; padding: 60px 20px;">
+        <div class="container" style="max-width: 1200px; margin: 0 auto;">
+            <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+                <h2 style="font-family: 'Khmer Moul', cursive; color: #1e3c72; font-size: 1.5rem;">ប្រាក់ចំណូលម្ិៃជារ់ពៃធលលើប្រាក់ចំណូល</h2>
+                <p style="color: #64748b; margin-top: 5px; font-size: 1rem;">ប្រាក់ចំណូលដែលមិនដែលបង់ពន្ធលើប្រាក់ចំណូល</p>
+                <div style="width: 60px; height: 4px; margin: 15px auto; border-radius: 2px;"></div>
+            </div>
+
+            <div class="exemptions-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px;">
+                
+                <div class="exemption-card" style="background: transparent; padding: 30px; border-radius: 20px; border: 1px solid #cbd5e1; border-left: 5px solid #22c55e; box-shadow: none; display: flex; flex-direction: column; gap: 15px;">
+                    <h3 style="font-size: 1.15rem; color: #1e293b; margin: 0; font-weight: bold;">❑ ផលិតផលកសិកម្ម</h3>
+                    <p style="color: #475569; font-size: 0.95rem; line-height: 1.6; margin: 0;">ប្រាក់ចំណូលខដលាៃម្កពើការលក់ផលិតផលកស្ិកម្ម ខដលរុគគលម្ិៃជារ់ពៃធាម្រររស្ែ័យប្ររកាស្ ផលិតាៃលដយខែ ួៃឯង។</p>
+                </div>
+
+                <div class="exemption-card" style="background: transparent; padding: 30px; border-radius: 20px; border: 1px solid #cbd5e1; border-left: 5px solid #22c55e; box-shadow: none; display: flex; flex-direction: column; gap: 15px;">
+                    <h3 style="font-size: 1.15rem; color: #1e293b; margin: 0; font-weight: bold;">❑ ឈ្នួលផ្ទះ</h3>
+                    <p style="color: #475569; font-size: 0.95rem; line-height: 1.6; margin: 0;">ប្រាក់ចំណូលខដលជានងែ ន ួ លផទុះ ៃិងដើ ររស្់រុគគលខដលម្ិៃស្ថ ិតកន ុងរររស្ែ័យប្ររកាស្ រុគគលជារ់ពៃធាម្រររស្ែ័យប្ររកាស្ប្រាក់ចំណូលលៃុះជាចំណូលលទ្ធផលក្ស្វាស។</p>
+                </div>
+
+                <div class="exemption-card" style="background: transparent; padding: 30px; border-radius: 20px; border: 1px solid #cbd5e1; border-left: 5px solid #22c55e; box-shadow: none; display: flex; flex-direction: column; gap: 15px;">
+                    <h3 style="font-size: 1.15rem; color: #1e293b; margin: 0; font-weight: bold;">❑ អង្គការរដ្ឋាភិបាល</h3>
+                    <p style="color: #475569; font-size: 0.95rem; line-height: 1.6; margin: 0;">ប្រាក់ចំណូលររស្់រាជរដឋភិាល ឬសាថរ័ៃរាជរដឋភិាល លលើកខលងខតសាថរ័ៃណាខដលលធែ ើអាជើវកម្មរកចំណូលដូចស្ហប្រាស្សាធារណៈជាលដើម្។</p>
+                </div>
+
+                <div class="exemption-card" style="background: transparent; padding: 30px; border-radius: 20px; border: 1px solid #cbd5e1; border-left: 5px solid #22c55e; box-shadow: none; display: flex; flex-direction: column; gap: 15px;">
+                    <h3 style="font-size: 1.15rem; color: #1e293b; margin: 0; font-weight: bold;">❑ អង្គការសាលាធម៌</h3>
+                    <p style="color: #475569; font-size: 0.95rem; line-height: 1.6; margin: 0;">ប្រាក់ចំណូលររស្់អងគការណាម្ួយខដល ក. ប្រតូវាៃលរៀរចំល ើ ងៃិងដំលណើ រការស្ប្រមារ់លាលលៅស្ុទធសាធខាងសាស្នាស្រប ុ រស្ធម៌ វ ិទាសា្ស្ត អកេរសា្ស្ត ឬអរ់រ ំ។</p>
+                </div>
+
+                <div class="exemption-card" style="background: transparent; padding: 30px; border-radius: 20px; border: 1px solid #cbd5e1; border-left: 5px solid #22c55e; box-shadow: none; display: flex; flex-direction: column; gap: 15px;">
+                    <h3 style="font-size: 1.15rem; color: #1e293b; margin: 0; font-weight: bold;">❑ អង្គការពលករ និងសហកម្ម</h3>
+                    <p style="color: #475569; font-size: 0.95rem; line-height: 1.6; margin: 0;">ប្រាក់ចំណូលររស្់អងគការពលករ ឬស្ភាពាណិ ជជកម្មឧស្ាហកម្ម ឬកស្ិកម្ម នៅក្នុងករណើ ខដលប្រាក់ចំណូល ferenc្ង់របស់អងគការទាំងលនាុះម្ិៃប្រតូវាៃលប្ររើប្រាស្់ជាផលប្ររលោជៃ៍ឯកជៃ។</p>
+                </div>
+
+                <div class="exemption-card" style="background: transparent; padding: 30px; border-radius: 20px; border: 1px solid #cbd5e1; border-left: 5px solid #22c55e; box-shadow: none; display: flex; flex-direction: column; gap: 15px;">
+                    <h3 style="font-size: 1.15rem; color: #1e293b; margin: 0; font-weight: bold;">❑ ភាគលាភមូលនិធិ</h3>
+                    <p style="color: #475569; font-size: 0.95rem; line-height: 1.6; margin: 0;">ភាគលាភខដលាៃទទួលម្កពើស្ហប្រាស្ៃិវាស្ៃជៃ នៅក្នុងករណើ ខដលប្រាក់ពៃធប្រតូវាៃរង់ាម្ មាប្រា ២០ ងម ើ មាប្រា ២៣ ងម ើ ៃិងមាប្រា ២៦ ងម ើ នៃចារ់លៃុះប្រតូវាៃរង់រួចរាល់។</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="why-section" style="background: #f8fafc; padding: 60px 20px;">
         <div class="container" style="max-width: 1200px; margin: 0 auto;">
             <div class="section-header" style="text-align: center; margin-bottom: 40px;">
                 <h2 style="font-family: 'Khmer Moul', cursive; color: #1e3c72; font-size: 1.5rem;">ហេតុអ្វីយើងត្រូវបង់ពន្ធ?</h2>

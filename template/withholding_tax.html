@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block title %}ពន្ធកាត់ទុក - Withholding Tax{% endblock %}
+
+{% block nav_calculator %}withholding{% endblock %}
+
+{% block content %}
+    <div style="background-color: #9bb7d0 ; min-height: 100vh; padding: 20px 0;">
+        <div id="calculator-section">
+            <section class="hero" id="calculator">
+                <div class="hero-text" style="text-align: center; margin-bottom: 40px;">
+                    <img src="{% static 'images/logo.png' %}" alt="Logo" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 3px solid rgba(255, 255, 255, 0.3); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                    <h2>គណនាពន្ធកាត់ទុក</h2>
+                    <p>
+                        គណនាពន្ធកាត់ទុក (Withholding Tax) ដែលកាត់ប្រាក់ពីប្រាក់ឈ្នួល ដូចជា ក្រុមហ៊ុន ប្រាក់ឈ្នួល និងលុយប្រតិបត្តិការផ្សេងទៀត
+                    </p>
+                    <div style="margin-top: 20px;">
+                        <a href="{% url 'about_withholding_tax' %}" class="btn btn-secondary" style="display: inline-block; padding: 10px 20px; background-color: rgba(97, 57, 209, 0.2); color: white; text-decoration: none; border-radius: 8px; border: 1px solid rgba(255,255,255,0.4); margin-top: 15px; font-size: 0.9rem;">ℹ️ ព័ត៌មានលម្អិត</a>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <form id="tax-form" method="post">
+                        {% csrf_token %}
+                        <h3 class="form-title">ព័ត៌មានពន្ធកាត់ទុក</h3>
+                        
+                        <div class="grid">
+                            <div>
+                                {{ form.currency.label_tag }}
+                                {{ form.currency }}
+                            </div>
+                            <div>
+                                {{ form.withholding_type.label_tag }}
+                                {{ form.withholding_type }}
+                            </div>
+                            <div>
+                                {{ form.amount.label_tag }}
+                                <span style="color: var(--muted); font-size: 14px;">({{ currency_symbol }})</span>
+                                {{ form.amount }}
+                            </div>
+                        </div>
+
+                        <div class="result">
+                            <span>ពន្ធកាត់ទុកប៉ាន់ស្មាន</span>
+                            <strong>
+                                {{ currency_symbol }} {% if tax_amount is not None %}{{ tax_amount|floatformat:2 }}{% else %}0.00{% endif %}
+                            </strong>
+                        </div>
+
+                        <div style="text-align: center; margin-top: 20px;">
+                            <button type="submit" class="btn btn-primary">ចាប់ផ្តើមគណនា</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <section class="hero" id="guide">
+                <div class="panel">
+                    <h3 class="form-title">ប្រភេទពន្ធកាត់ទុក</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                        <div style="padding: 15px; background: rgba(255,255,255,0.1); border-radius: 8px;">
+                            <h4 style="margin-top: 0; color: #fff;">💼 ប្រាក់ឈ្នួល</h4>
+                            <p style="margin: 0; font-size: 0.9rem; color: rgba(255,255,255,0.9);">ពន្ធកាត់ទុកលើប្រាក់ឈ្នួលប្រចាំខែ ឬប្រចាំឆ្នាំ ។ អត្របែបចម្រុង</p>
+                        </div>
+                        <div style="padding: 15px; background: rgba(255,255,255,0.1); border-radius: 8px;">
+                            <h4 style="margin-top: 0; color: #fff;">🏢 ក្រុមហ៊ុន/ផលប័ត្រ</h4>
+                            <p style="margin: 0; font-size: 0.9rem; color: rgba(255,255,255,0.9);">ពន្ធកាត់ទុកលើប្រាក់ចំណូលក្រុមហ៊ុន រឺផលប័ត្រ ។ អត្រាឧស្ម័ន 10%</p>
+                        </div>
+                        <div style="padding: 15px; background: rgba(255,255,255,0.1); border-radius: 8px;">
+                            <h4 style="margin-top: 0; color: #fff;">🏠 ឈ្នួលផ្ទះ</h4>
+                            <p style="margin: 0; font-size: 0.9rem; color: rgba(255,255,255,0.9);">ពន្ធកាត់ទុកលើឈ្នួលផ្ទះ ឬលាក់ខ្លួនផ្សេងទៀត ។ អត្រាឧស្ម័ន 10%</p>
+                        </div>
+                        <div style="padding: 15px; background: rgba(255,255,255,0.1); border-radius: 8px;">
+                            <h4 style="margin-top: 0; color: #fff;">📋 ប្រាក់រង្វាន់/ប្រាក់រង្វាន់</h4>
+                            <p style="margin: 0; font-size: 0.9rem; color: rgba(255,255,255,0.9);">ពន្ធកាត់ទុកលើប្រាក់រង្វាន់ ឬកម្មប័ន្នផ្សេងទៀត ។ អត្របែបចម្រុង</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-text">
+                    <h2>ធានាសម្រាប់ភាពត្រឹមត្រូវនៃការគណនា</h2>
+                    <p>
+                        ប្រព័ន្ធរបស់យើងប្រើប្រាស់ច្បាប់ពន្ធបច្ចុប្បន្នរបស់កម្ពុជា
+                        ដើម្បីធានាបាននូវភាពត្រឹមត្រូវនៃការគណនាពន្ធកាត់ទុក។
+                    </p>
+                </div>
+            </section>
+        </div>
+
+        <div id="results-section" style="display: none;">
+            <section class="hero" id="results">
+                <div class="hero-text">
+                    <h2>ព័ត៌មានលម្អិតនៃការគណនាពន្ធកាត់ទុក</h2>
+                    <p>លទ្ធផលការគណនាពន្ធកាត់ទុករបស់អ្នក</p>
+                    <div class="hero-actions">
+                        <button onclick="showCalculator()" class="btn btn-secondary">⬅ ត្រឡប់ទៅការគណនា</button>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="results-grid">
+                        <div class="result-item">
+                            <span>ចំនួនដើម</span>
+                            <strong>{{ currency_symbol }} {% if amount is not None %}{{ amount|floatformat:2 }}{% else %}0.00{% endif %}</strong>
+                        </div>
+                        <div class="result-item">
+                            <span>អត្របែបចម្រុង</span>
+                            <strong>{% if tax_rate is not None %}{{ tax_rate|floatformat:2 }}%{% else %}0.00%{% endif %}</strong>
+                        </div>
+                        <div class="result-item">
+                            <span>ពន្ធកាត់ទុក</span>
+                            <strong style="color: #e74c3c;">{{ currency_symbol }} {% if tax_amount is not None %}{{ tax_amount|floatformat:2 }}{% else %}0.00{% endif %}</strong>
+                        </div>
+                        <div class="result-item">
+                            <span>លុយបន្ទាប់ពីកាត់ពន្ធ</span>
+                            <strong style="color: #27ae60;">{{ currency_symbol }} {% if net_amount is not None %}{{ net_amount|floatformat:2 }}{% else %}0.00{% endif %}</strong>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // Toggle withholding type selection
+        const withholdingTypeSelect = document.querySelector('select[name="withholding_type"]');
+        if (withholdingTypeSelect) {
+            withholdingTypeSelect.addEventListener('change', function() {
+                console.log('Withholding type changed to:', this.value);
+            });
+        }
+
+        function showCalculator() {
+            document.getElementById('calculator-section').style.display = 'block';
+            document.getElementById('results-section').style.display = 'none';
+            window.scrollTo(0, 0);
+        }
+
+        // Handle form submission
+        document.getElementById('tax-form').addEventListener('submit', function(e) {
+            setTimeout(() => {
+                if (document.getElementById('results-section')) {
+                    document.getElementById('calculator-section').style.display = 'none';
+                    document.getElementById('results-section').style.display = 'block';
+                    window.scrollTo(0, 0);
+                }
+            }, 100);
+        });
+    </script>
+{% endblock %}
