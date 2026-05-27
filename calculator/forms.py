@@ -440,7 +440,7 @@ class AccomodationTaxForm(forms.Form):
         widget=forms.Select(attrs={'class': 'form-select'})
     )
     
-    room_nights = forms.IntegerField(
+    nights = forms.IntegerField(
         label="ចំនួនបន្ទប់-យប់ (Room-Nights)",
         min_value=1,
         initial=1,

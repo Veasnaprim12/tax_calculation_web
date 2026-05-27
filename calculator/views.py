@@ -109,57 +109,7 @@ def about_unused_land_tax(request):
     Render the detailed unused land tax information page.
     """
     return render(request, "about_unused_land.html")
-def vat_tax(request):
-    """
-    Render and handle the VAT tax calculation page.
-    """
-    form = VATTaxForm()
-    tax_amount = None
-    total_amount = None
-    selected_currency = 'KHR'
-    currency_symbol = '៛'
-    
-    if request.method == 'POST':
-        form = VATTaxForm(request.POST)
-        if form.is_valid():
-            currency = form.cleaned_data['currency']
-            amount = form.cleaned_data['amount']
-            selected_currency = currency
-            currency_symbol = get_currency_symbol(currency)
-            
-            # Convert to KHR for calculation if needed
-            amount_khr = convert_to_khr(amount, currency)
-            
-            # Calculate VAT (10% in Cambodia)
-            tax_amount_khr = calculate_actual_vat(amount_khr)
-            
-            # Total amount including VAT
-            total_amount_khr = amount_khr + tax_amount_khr
-            
-            # Convert back to selected currency for display
-            tax_amount = convert_from_khr(tax_amount_khr, currency)
-            total_amount = convert_from_khr(total_amount_khr, currency)
-            
-            # Save to database in KHR
-            tax_record = TaxRecord.objects.create(
-                tax_type='vat',
-                currency=currency,
-                income=amount,
-                tax_amount=tax_amount_khr,
-                net_income=total_amount_khr,
-            )
-    
-    currency_symbol = get_currency_symbol(selected_currency)
-    
-    context = {
-        'form': form,
-        'tax_amount': tax_amount,
-        'total_amount': total_amount,
-        'selected_currency': selected_currency,
-        'currency_symbol': currency_symbol,
-    }
-    
-    return render(request, "vat_tax.html", context)
+
 
 def study_plan(request):
     """
@@ -452,12 +402,13 @@ def vat_tax(request):
             tax_amount = convert_from_khr(tax_amount_khr, currency)
             total_amount = convert_from_khr(total_amount_khr, currency)
             
-            # Save to database in KHR
+            # Save to database
             tax_record = TaxRecord.objects.create(
                 tax_type='vat',
                 currency=currency,
                 income=amount,
-                tax_amount=tax_amount
+                tax_amount=tax_amount,
+                net_income=total_amount
             )
             
             # Create detailed calculation breakdown
@@ -592,7 +543,7 @@ def withholding_tax(request):
         'selected_currency': selected_currency,
         'currency_symbol': get_currency_symbol(selected_currency),
         'tax_rate': tax_rate,
-        'amount': None
+        'amount': amount
     })
 
 

@@ -12,6 +12,7 @@ class TaxRecord(models.Model):
         ('special', 'ពន្ធលើកិច្ចការពិសេស'),
         ('registration', 'ពន្ធលើការចុះបញ្ជី'),
         ('unused_land', 'ពន្ធលើដីដែលមិនប្រើប្រាស់'),
+        ('accomodation', 'ពន្ធលើការស្នាក់នៅ'),
     ]
     
     CURRENCY_CHOICES = [
