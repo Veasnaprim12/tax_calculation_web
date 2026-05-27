@@ -1,157 +1,149 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}ពន្ធអាករ - Property Tax Information{% endblock %}
+{% block title %}ពន្ធលើអចលនទ្រព្យ - Property Tax Information{% endblock %}
 
 {% block nav_about %}active{% endblock %}
 
 {% block content %}
 
-    <section class="info-section">
-        <div class="info-panel">
-            <h2> អំពីពន្ធអាករ</h2>
-            <span class="emoji-large"></span>
-            <p>
-                ពន្ធលើអចលនទ្រព្យ គឺជាពន្ធដែលត្រូវបង់លើអចលនទ្រព្យទាំងអស់ដែលមានកម្មសិទ្ធិក្នុងប្រទេសកម្ពុជា។ ពន្ធនេះធានាបាននូវការចែកចាយការទទួលខុសត្រូវក្នុងការថែរក្សា និងអភិវឌ្ឍហេដ្ឋារចនាសម្ព័ន្ធ។
-            </p>
-            <ul class="info-list">
-                <li><strong> ផ្ទះ:</strong> អចលនទ្រព្យប្រភេទលំនៅឋាន</li>
-                <li><strong> ដី:</strong> ដីសម្រាប់កសិកម្ម ឬវិនិយោគ</li>
-                <li><strong> អាផាតមិន:</strong> អចលនទ្រព្យប្រភេទលំនៅឋានចម្រុះ</li>
-                <li><strong> ពាណិជ្ជកម្ម:</strong> អចលនទ្រព្យសម្រាប់អាជីវកម្ម</li>
-            </ul>
-        </div>
-    </section>
-
-    <section class="info-section">
-        <div class="info-panel">
-            <h2> បទបង្ហាញស្តីពីអាករសម្រាប់បំភ្លឺសាធារណៈ</h2>
-            <h2>១. ច្បាប់ និងបទប្បញ្ញត្តិពាក់ព័ន្ធនឹងអាករបំភ្លឺសាធារណៈ</h2>
-            <span class="emoji-large"></span>
-            <ul class="info-list">
-                <li><strong> ច្បាប់ស្តីពីការគ្រប់គ្រងហិរញ្ញវត្ថុសម្រាប់ការគ្រប់គ្រងឆ្នាំ ១៩៩៩</strong></li>
-                <li><strong> ច្បាប់ស្តីពីការគ្រប់គ្រងហិរញ្ញវត្ថុសម្រាប់ការគ្រប់គ្រងឆ្នាំ ២០០២</strong></li>
-                <li><strong>អនុក្រឹត្យលេខ ១១៤ អនក្រ.បក គឺជាលិខិតបទដ្ឋានគតិយុត្តដ៏សំខាន់មួយរបស់រាជរដ្ឋាភិបាលកម្ពុជា៖</strong></li>
-                <li><strong> ប្រកាសអន្តរក្រសួងលេខ ៥៨៣ សហវ.ពដ.ប្រក ចុះថ្ងៃទី៣០ ខែកក្កដា ឆ្នាំ១៩៩៩ គឺជាលិខិតបទដ្ឋានគតិយុត្តដ៏សំខាន់មួយ ដែលដាក់ចេញដោយក្រសួងសេដ្ឋកិច្ច និងហិរញ្ញវត្ថុ ដើម្បីគ្រប់គ្រង និងប្រមូល អាករសម្រាប់បំភ្លឺសាធារណៈ (Tax for Public Lighting - PLT)</strong></li>
-                <li><strong>ប្រកាសអន្តរក្រសួងលេខ ១៧៥ សហវ.ពដ.ប្រក ចុះថ្ងៃទី២២ ខែមករា ឆ្នាំ២០០២ គឺជាលិខិតបទដ្ឋានគតិយុត្តដែលចេញរួមគ្នាដោយ ក្រសួងសេដ្ឋកិច្ច និងហិរញ្ញវត្ថុ និង ក្រសួងមហាផ្ទៃ ដើម្បីគ្រប់គ្រង និងប្រមូល អាករសម្រាប់បំភ្លឺសាធារណៈ</strong></li>
-                <li><strong>ប្រកាសលេខ ៩៧៦ សហវ.ប្រក ចុះថ្ងៃទី០៩ ខែតុលា ឆ្នាំ២០១៧ គឺជាលិខិតបទដ្ឋានគតិយុត្តដែលចេញដោយ ក្រសួងសេដ្ឋកិច្ច និងហិរញ្ញវត្ថុ ក្នុងគោលបំណងកែសម្រួល មូលដ្ឋានគិតអាករសម្រាប់បំភ្លឺសាធារណៈ (Tax for Public Lighting - PLT) លើការផ្គត់ផ្គង់ផលិតផលគ្រឿងស្រវឹង និងថ្នាំជក់ (បារី) នៅក្នុងប្រទេសកម្ពុជា</strong></li>
-                <li><strong>ប្រកាសលេខ ១៦៨ សហវ.ប្រក.អពដ ចុះថ្ងៃទី២០ ខែមីនា ឆ្នាំ២០២៤ គឺជាលិខិតបទដ្ឋានគតិយុត្តថ្មីបំផុត ដែលចេញដោយ ក្រសួងសេដ្ឋកិច្ច និងហិរញ្ញវត្ថុ ក្នុងគោលបំណងកែសម្រួលនូវវិធាន និងនីតិវិធីនៃការគ្រប់គ្រង ព្រមទាំងការប្រមូល អាករសម្រាប់បំភ្លឺសាធារណៈ (Tax for Public Lighting - PLT)។</strong></li>
-            </ul>
-            <h2>២. វិធាន និងនីតិវិធី </h2>
-            <h3> ២.១ កម្មវត្ថុអាករ</h3>
-            <ul class="tax-info-list">
-                <li><strong>ស្រាគ្រប់ប្រភេទ៖</strong> ស្រាផលិតពីទំពាំងបាយជូរស្រស់ ស្រាវីស្គី ស្រា brandy ស្រា gin ភេសជ្ជៈមានជាតិអាល់កុល និងអាល់កុលអេទីលិកសុទ្ធ...</li>
-                <li><strong>ស្រាបៀរគ្រប់ប្រភេទ</strong></li>
-                <li><strong>បារី បារីស៊ីហ្គា និងផលិតផលថ្នាំជក់គ្រប់ប្រភេទ</strong></li>
-            </ul>
-            <h3>២.២. ការលើកលែងអាករ</h3>
-            <p>អាករសម្រាប់បំភ្លឺសាធារណៈ ត្រូវបានលើកលែងចំពោះ៖</p>
-            <ul class="tax-info-list">
-                <li><strong>ស្រាស ដែលផលិតជាលក្ខណៈគ្រួសារ</strong> (មិនមែនជាការផលិតជាលក្ខណៈឧស្សាហកម្ម ឬអាជីវកម្មខ្នាតធំ)</li>
-                <li><strong>ទឹកត្នោតជូរ</strong></li>
-                <li><strong>ថ្នាំជក់ដែលជាវត្ថុធាតុដើម</strong> (មិនទាន់បានកែច្នៃជាបារី ឬផលិតផលសម្រេច)</li>
-            </ul>
-			<div class="info-section-card">
-				<h3>២.៣. មូលដ្ឋានគិតអាករ អត្រា និងការគណនាអាករ</h3>
-
-				<p><strong>សម្រាប់អ្នកលក់លើកដំបូង</strong></p>
-				<ul>
-					<li>មូលដ្ឋានគិតអាករ = តម្លៃលក់ជាប់អាករ + អាករផ្សេងៗ</li>
-					<li>ឬ = តម្លៃលក់ - អាករលើតម្លៃបន្ថែម (VAT) - អាករបំភ្លឺសាធារណៈ</li>
-					<li>ឬ = (តម្លៃលក់កត់ត្រាលើវិក្កយបត្រ / 110%) / 105%</li>
-				</ul>
-
-				<p><strong>សម្រាប់អ្នកលក់បន្ត</strong></p>
-				<ul>
-					<li>មូលដ្ឋានគិតអាករ = (តម្លៃលក់កត់ត្រាលើវិក្កយបត្រ - VAT - អាករបំភ្លឺសាធារណៈ) × 20%</li>
-					<li>ឬ = [(តម្លៃលក់ / 110%) / 105%] × 20%</li>
-				</ul>
-
-				<p><strong>អត្រាអាករ</strong>: ៥%</p>
-
-				<p><strong>រូបមន្តគណនា</strong>៖</p>
-				<p>អាករ = មូលដ្ឋានគិតអាករ × ៥%</p>
-				
+    <section class="info-hero">
+		<div class="hero-text" style="text-align: center; margin-bottom: 40px;">
+			<div style="max-width: 900px; margin: 0 auto; color: white; text-align: center; position: relative; z-index: 1;">
+				<span style="font-size: 3rem; display: block; margin-bottom: 15px;"></span>
+				<h1 style="font-family: 'Khmer Moul', cursive; font-size: 2rem; margin-bottom: 15px; color: white;">អំពីពន្ធលើអចលនទ្រព្យ</h1>
+				<p style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.85); line-height: 1.8;">
+					ស្វែងយល់អំពីការគណនា ច្បាប់ និងបទប្បញ្ញត្តិពាក់ព័ន្ធនឹងពន្ធលើអចលនទ្រព្យនៅក្នុងប្រទេសកម្ពុជា។
+				</p>
 			</div>
-        </div>
     </section>
 
-    <section class="property-tax-section">
-        <div class="info-panel">
-            <div class="property-tax-table">
-                <h4>អត្រាពន្ធតាមប្រភេទអចលនទ្រព្យ</h4>
-                 <p style="color: black;">ពន្ធអាករត្រូវបានគណនាដោយផ្អែកលើតម្លៃអចលនទ្រព្យ និងប្រភេទអចលនទ្រព្យ។ អត្រាគោលដៅគឺ 0.1% ក្នុងមួយឆ្នាំ។</p>
-                <table class="tax-table">
-
-                    <thead>
-                        <tr>
-                            <th>ប្រភេទអចលនទ្រព្យ</th>
-                            <th>អត្រាពន្ធ</th>
-                            <th>ការគណនា</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>ផ្ទះ</td>
-                            <td class="rate-highlight">0.1%</td>
-                            <td>អត្រាគោល</td>
-                        </tr>
-                        <tr>
-                            <td>ដី</td>
-                            <td class="rate-highlight">0.12%</td>
-                            <td>អត្រាគោល × 1.2</td>
-                        </tr>
-                        <tr>
-                            <td>អាផាតមិន</td>
-                            <td class="rate-highlight">0.08%</td>
-                            <td>អត្រាគោល × 0.8</td>
-                        </tr>
-                        <tr>
-                            <td>ពាណិជ្ជកម្ម</td>
-                            <td class="rate-highlight">0.15%</td>
-                            <td>អត្រាគោល × 1.5</td>
-                        </tr>
-                    </tbody>
-                </table>
+    <section class="info-grid-section">
+        <div class="container" style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
+            
+            <div class="info-panel">
+                <h2>១. សេចក្តីសង្ខេបអំពីពន្ធ</h2>
+                <p style="color: #475569; line-height: 1.8; margin-bottom: 20px;">
+                    ពន្ធលើអចលនទ្រព្យគឺជាពន្ធដែលត្រូវបង់លើអចលនទ្រព្យទាំងអស់ដែលមានកម្មសិទ្ធិក្នុងប្រទេសកម្ពុជា។ ពន្ធនេះធានាបាននូវការចែកចាយការទទួលខុសត្រូវក្នុងការថែរក្សា និងអភិវឌ្ឍហេដ្ឋារចនាសម្ព័ន្ធ។
+                </p>
+                <ul>
+                    <li><span style="color: #3b82f6; font-weight: bold;">✓</span> ផ្ទះ - អចលនទ្រព្យប្រភេទលំនៅឋាន</li>
+                    <li><span style="color: #3b82f6; font-weight: bold;">✓</span> ដី - ដីសម្រាប់កសិកម្ម ឬវិនិយោគ</li>
+                    <li><span style="color: #3b82f6; font-weight: bold;">✓</span> អាផាតមិន - អចលនទ្រព្យលំនៅឋានចម្រុះ</li>
+                    <li><span style="color: #3b82f6; font-weight: bold;">✓</span> ពាណិជ្ជកម្ម - អចលនទ្រព្យសម្រាប់អាជីវកម្ម</li>
+                </ul>
             </div>
-        </div>
 
-        <div class="info-panel">
-            <h3>ពន្ធដំណាក់កាលសម្រាប់អចលនទ្រព្យថ្លៃ</h3>
-            <p>សម្រាប់អចលនទ្រព្យដែលមានតម្លៃខ្ពស់ អត្រាពន្ធនឹងកើនឡើងដើម្បីធានាភាពយុត្តិធម៌៖</p>
-            <ul class="tax-info-list">
-                <li><strong>តម្លៃលើសពី 50 លានរៀល:</strong> អត្រាពន្ធពង្រីក 1.2 ដង</li>
-                <li><strong>តម្លៃលើសពី 100 លានរៀល:</strong> អត្រាពន្ធពង្រីក 1.5 ដង</li>
-            </ul>
-        </div>
+            <div class="info-panel">
+                <h2>២. ច្បាប់ និងបទប្បញ្ញត្តិ</h2>
+                <p style="color: #475569; margin-bottom: 15px; line-height: 1.8;">គ្រប់គ្រងដោយច្បាប់ និងអនុក្រឹត្យ ដូចខាងក្រោម៖</p>
+                <ul style="font-size: 0.95rem;">
+                    <li><strong style="color: #1e293b;">• ច្បាប់ស្តីពីលក្ខណៈកម្មសិទ្ធិ៖</strong> គ្រឹះនៃប្រព័ន្ធលក្ខណៈកម្មសិទ្ធិកម្ពុជា</li>
+                    <li><strong style="color: #1e293b;">• អនុក្រឹត្យលេខ ១១៤ (អនក្រ.បក)៖</strong> ការគ្រប់គ្រងពន្ធលើអចលនទ្រព្យ</li>
+                    <li><strong style="color: #1e293b;">• ប្រកាសលេខ ០១៦ (សហវ.ពដ)៖</strong> មូលដ្ឋាននិងលក្ខខណ្ឌស្តីពីលក្ខណៈកម្មសិទ្ធិ</li>
+                </ul>
+            </div>
 
-        <div class="example-calculation">
-            <p><strong>ឧទាហរណ៍ការគណនាពន្ធអាករ:</strong></p>
-            <ul>
-                <li><strong>ផ្ទះតម្លៃ 80 លានរៀល:</strong> 80,000,000 × 0.1% × 1.2 = 96,000 រៀលក្នុងមួយឆ្នាំ</li>
-                <li><strong>អចលនទ្រព្យពាណិជ្ជកម្មតម្លៃ 150 លានរៀល:</strong> 150,000,000 × 0.15% × 1.5 = 337,500 រៀលក្នុងមួយឆ្នាំ</li>
-                <li><strong>ដីតម្លៃ 30 លានរៀល:</strong> 30,000,000 × 0.12% = 36,000 រៀលក្នុងមួយឆ្នាំ</li>
-            </ul>
-        </div>
+            <div class="info-panel">
+                <h2>៣. អត្រាពន្ធតាមប្រភេទ</h2>
+                <p style="color: #475569; margin-bottom: 20px; line-height: 1.8;">ពន្ធលើអចលនទ្រព្យត្រូវបានគណនាដោយផ្អែកលើតម្លៃអចលនទ្រព្យ និងប្រភេទរបស់វា។ អត្រាគោលដៅគឺ ០.១% ក្នុងមួយឆ្នាំ។</p>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.95rem; border-bottom: 1px dashed #e2e8f0; padding-bottom: 8px;">
+                        <span style="color: #475569;"><strong>ផ្ទះលំនៅឋាន</strong></span>
+                        <span style="color: #10b981; font-weight: bold;">០.១%/ឆ្នាំ</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.95rem; border-bottom: 1px dashed #e2e8f0; padding-bottom: 8px;">
+                        <span style="color: #475569;"><strong>ដី</strong></span>
+                        <span style="color: #10b981; font-weight: bold;">០.១២%/ឆ្នាំ</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.95rem; border-bottom: 1px dashed #e2e8f0; padding-bottom: 8px;">
+                        <span style="color: #475569;"><strong>អាផាតមិន</strong></span>
+                        <span style="color: #10b981; font-weight: bold;">០.០៨%/ឆ្នាំ</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.95rem;">
+                        <span style="color: #475569;"><strong>ពាណិជ្ជកម្ម</strong></span>
+                        <span style="color: #10b981; font-weight: bold;">០.១៥%/ឆ្នាំ</span>
+                    </div>
+                </div>
+                <p style="font-size: 0.85rem; color: #64748b; margin-top: 15px; background: #f0fdf4; padding: 10px; border-radius: 8px; margin-bottom: 0;">
+                    💡 <strong>សម្គាល់៖</strong> សម្រាប់អចលនទ្រព្យដែលមានតម្លៃលើសពី ៥០ លានរៀល អត្រាពន្ធផ្លាស់ប្តូរដូចខាងក្រោម។
+                </p>
+            </div>
 
-        <div class="info-section-card">
-            <h3>ពេលវេលាបង់ពន្ធអាករ</h3>
-            <p>ពន្ធអាករត្រូវបង់ប្រចាំឆ្នាំក្នុងរយៈពេល 3 ខែដំបូងនៃឆ្នាំ (មករា-មីនា)។ ការបង់ពន្ធអាករអាចធ្វើបានតាមរយៈធនាគាររដ្ឋ ឬតាមអនឡាញ។</p>
-        </div>
-
-        <div class="info-section-card">
-            <h3>អត្ថប្រយោជន៍ពន្ធអាករ</h3>
-            <p>ពន្ធអាករត្រូវបានប្រើប្រាស់ដើម្បី៖</p>
-            <ul class="tax-info-list">
-                <li><strong>ការកសាងហេដ្ឋារចនាសម្ព័ន្ធ:</strong> ផ្លូវ ស្ពាន និងការដ្ឋានផ្សេងៗ</li>
-                <li><strong>សេវាសាធារណៈ:</strong> សុខភាព អប់រំ និងសន្តិសុខ</li>
-                <li><strong>ការអភិវឌ្ឍក្នុងតំបន់:</strong> ការអភិវឌ្ឍសហគមន៍ក្នុងតំបន់</li>
-            </ul>
-        </div>
-
-        <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;">
-            <a href="{% url 'about_tax' %}" class="back-button">⬅ ត្រឡប់ទៅកាន់ព័ត៌មានពន្ធ</a>
-            <a href="{% url 'property_tax' %}" class="back-button"> គណនាពន្ធអារក</a>
         </div>
     </section>
 
+	<section class="tax-rates-section">
+		<div class="container" style="max-width: 900px; margin: 0 auto;">
+			
+			<div class="section-header">
+				<h2>4. ប្រព័ន្ធពន្ធតាមដំណាក់កាល (Progressive Tax)</h2>
+				<p>
+					សម្រាប់អចលនទ្រព្យដែលមានតម្លៃខ្ពស់ អត្របង់ពន្ធកើនឡើងដើម្បីធានាភាពយុត្តិធម៌ក្នុងការចែកចាយ។
+				</p>
+			</div>
+
+			<div class="tax-table-container">
+				<table class="tax-table">
+					<thead>
+						<tr>
+							<th>តម្លៃអចលនទ្រព្យ (រៀល)</th>
+							<th style="text-align: center;">អត្របង្កើន</th>
+							<th>រូបមន្តគណនា</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>0 - 50,000,000 រៀល</td>
+							<td style="text-align: center; font-weight: bold; color: #64748b;">x 1.0</td>
+							<td style="color: #64748b;">អត្រាគោល</td>
+						</tr>
+						<tr>
+							<td>50,000,001 - 100,000,000 រៀល</td>
+							<td style="text-align: center; font-weight: bold; color: #3b82f6;">x 1.2</td>
+							<td>អត្រាគោល × 1.2</td>
+						</tr>
+						<tr>
+							<td>លើសពី 100,000,000 រៀល</td>
+							<td style="text-align: center; font-weight: bold; color: #10b981;">x 1.5</td>
+							<td>អត្របង្កើន × 1.5</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="example-calculation">
+				<h3>ឧទាហរណ៍ការគណនាពន្ធលើអចលនទ្រព្យ៖</h3>
+				<p style="color: #475569; line-height: 1.8; margin-bottom: 16px;">
+					ប្រសិនបើអ្នកមានផ្ទះតម្លៃ <strong>80,000,000 រៀល</strong>៖
+				</p>
+				<ul>
+					<li><strong>តម្លៃអចលនទ្រព្យ៖</strong> 80,000,000 រៀល</li>
+					<li><strong>ប្រភេទ៖</strong> ផ្ទះលំនៅឋាន</li>
+					<li><strong>អត្របង្កើន៖</strong> <strong style="color: #10b981;">x 1.2</strong> (ដោយសារតម្លៃលើសពី ៥០ លាន)</li>
+				</ul>
+				<div style="background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
+					<strong style="color: #1e293b; display: block; margin-bottom: 10px;">ការគណនាលម្អិត៖</strong>
+					<code style="font-size: 1.05rem; color: #0f172a;">
+						ពន្ធ = 80,000,000 × 0.1% × 1.2 = <strong>96,000 រៀល/ឆ្នាំ</strong>
+					</code>
+					<p style="margin-top: 12px; font-weight: bold; color: #10b981; font-size: 1.1rem; margin-bottom: 0;">
+						ពន្ធលើអចលនទ្រព្យដែលត្រូវបង់សរុប = 96,000 រៀលក្នុងមួយឆ្នាំ
+					</p>
+				</div>
+			</div>
+
+		</div>
+	</section>
+
+    <section class="button-section">
+        <div style="max-width: 600px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+            <a href="{% url 'property_tax' %}">
+                ចាប់ផ្តើមគណនាពន្ធឥឡូវនេះ
+            </a>
+            <a href="{% url 'about_tax' %}">
+                ត្រឡប់ទៅកាន់ព័ត៌មានពន្ធ
+            </a>
+        </div>
+    </section>
 {% endblock %}

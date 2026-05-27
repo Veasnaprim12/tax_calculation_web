@@ -428,13 +428,15 @@ nav a.active {
 }
 
 @keyframes slideInRight {
-		opacity: 0;
+	opacity: 0;{
+		transform: translateX(30px);
 	}
 	to {
 		transform: translateX(0);
 		opacity: 1;
 	}
 }
+	
 
 footer {
 	padding: 24px 8vw 16px;
@@ -2253,7 +2255,7 @@ footer {
 	padding: 25px;
 	border-radius: var(--border-radius);
 	box-shadow: var(--shadow-light);
-	border-left: 4px solid #667eea;
+	border-left: 4px solid #050c3e;
 	transition: var(--transition);
 	position: relative;
 }

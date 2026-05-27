@@ -4,12 +4,10 @@
 {% block nav_calculator %}income{% endblock %}
 
 {% block content %}
-    <div style="background-color: #9bb7d0 ; min-height: 100vh; padding: 20px 0;">
+    <div style="background-color: #7a9ab7 ; min-height: 100vh; padding: 20px 0;">
         <div id="calculator-section">
             <section class="hero" id="calculator">
                 <div class="hero-text" style="text-align: center; margin-bottom: 40px;">
-                    <img src="{% static 'images/logo.png' %}" alt="Logo" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 3px solid rgba(255, 255, 255, 0.3); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
-                    <h2>គណនាពន្ធលើចំណូលលុយប្រតិបត្តិការ</h2>
                     <p>
                         គណនាពន្ធលើចំណូលមិនថ្វាយផ្ទាល់គណនេយ្យរបស់អ្នក រួមទាំងលុយបូលពុងរស់ ឈ្នួលផ្ទះ និងលុយប្រតិបត្តិការផ្សេងទៀត
                     </p>
@@ -58,37 +56,46 @@
                 </div>
             </section>
 
-            <section class="hero" id="guide">
-                <div class="panel">
-                    <h3 class="form-title">ប្រភេទចំណូលលុយប្រតិបត្តិការ</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-                        <div style="padding: 15px; background: rgba(255,255,255,0.1); border-radius: 8px;">
-                            <h4 style="margin-top: 0; color: #fff;">💰 ចំណូលលុយបូលពុង</h4>
-                            <p style="margin: 0; font-size: 0.9rem; color: rgba(255,255,255,0.9);">ពន្ធលើភាគលាភ ការប្រឹក្សាយោបល់ ដើមទុនចែងចាយ ។ អត្រាថេរ 20%</p>
-                        </div>
-                        <div style="padding: 15px; background: rgba(255,255,255,0.1); border-radius: 8px;">
-                            <h4 style="margin-top: 0; color: #fff;">🏢 ចំណូលលុយប្រតិបត្តិការ</h4>
-                            <p style="margin: 0; font-size: 0.9rem; color: rgba(255,255,255,0.9);">លុយប្រតិបត្តិការពីអាជីវកម្ម សម្រាប់ការដកប្រាក់ផ្សេងទៀត ។ អត្របែបចម្រុង</p>
-                        </div>
-                        <div style="padding: 15px; background: rgba(255,255,255,0.1); border-radius: 8px;">
-                            <h4 style="margin-top: 0; color: #fff;">🏠 ឈ្នួលផ្ទះ</h4>
-                            <p style="margin: 0; font-size: 0.9rem; color: rgba(255,255,255,0.9);">ឈ្នួលលើកម្មន្តិរ ឬលាក់ខ្លួន ។ អត្រាថេរ 20%</p>
-                        </div>
-                        <div style="padding: 15px; background: rgba(255,255,255,0.1); border-radius: 8px;">
-                            <h4 style="margin-top: 0; color: #fff;">📋 លុយប្រតិបត្តិការផ្សេងទៀត</h4>
-                            <p style="margin: 0; font-size: 0.9rem; color: rgba(255,255,255,0.9);">លុយប្រតិបត្តិការផ្សេងទៀតដែលមិនបានរាយបញ្ជី ។ អត្រាថេរ 20%</p>
-                        </div>
+           <section class="hero" id="guide">
+            <div class="panel" style="margin-bottom: 30px;">
+                <h3 class="form-title" style="color: #080808; margin-bottom: 20px;">ប្រភេទប្រាក់ចំណូលជាប់ពន្ធ</h3>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    
+                    <!-- Card 1 -->
+                    <div style="padding: 15px; background: rgba(255,255,255,0.1); border-radius: 8px; border: 1px solid rgba(255,255,255,0.15);">
+                        <h4 style="margin-top: 0; color: #0d0d0d;">ចំណូលពីភាគលាភ</h4>
+                        <p style="margin: 0; font-size: 0.9rem; color: rgba(5, 5, 5, 0.9); line-height: 1.5;">ពន្ធលើភាគលាភ ការប្រឹក្សាយោបល់ និងការបែងចែកដើមទុន។ អត្រាថេរ 20%</p>
                     </div>
-                </div>
+                    
+                    <!-- Card 2 -->
+                    <div style="padding: 15px; background: rgba(255,255,255,0.1); border-radius: 8px; border: 1px solid rgba(255,255,255,0.15);">
+                        <h4 style="margin-top: 0; color: #0d0d0d;"> ចំណូលពីអាជីវកម្ម</h4>
+                        <p style="margin: 0; font-size: 0.9rem; color: rgba(6, 6, 6, 0.9); line-height: 1.5;">ប្រាក់ចំណូលបានមកពីប្រតិបត្តិការអាជីវកម្ម និងការងារផ្សេងៗ។ អត្រាតាមថ្នាក់ (គិតតាមកម្រងចំណូល)</p>
+                    </div>
+                    
+                    <!-- Card 3 -->
+                    <div style="padding: 15px; background: rgba(255,255,255,0.1); border-radius: 8px; border: 1px solid rgba(255,255,255,0.15);">
+                        <h4 style="margin-top: 0; color: #0d0d0d;">ឈ្នួលផ្ទះ និងដីធ្លី</h4>
+                        <p style="margin: 0; font-size: 0.9rem; color: rgba(8, 8, 8, 0.9); line-height: 1.5;">ថ្លៃឈ្នួលលើអចលនទ្រព្យ ផ្ទះ បន្ទប់ ឬដីធ្លីរបស់បុគ្គលម្នាក់ៗ។ អត្រាថេរ 20%</p>
+                    </div>
+                    
+                    <!-- Card 4 -->
+                    <div style="padding: 15px; background: rgba(255,255,255,0.1); border-radius: 8px; border: 1px solid rgba(255,255,255,0.15);">
+                        <h4 style="margin-top: 0; color: #0d0d0d;"> ចំណូលផ្សេងៗទៀត</h4>
+                        <p style="margin: 0; font-size: 0.9rem; color: rgba(6, 6, 6, 0.9); line-height: 1.5;">ប្រាក់ចំណូលពីប្រតិបត្តិការផ្សេងទៀតដែលមិនបានរាយបញ្ជីខាងលើ។ អត្រាថេរ 20%</p>
+                    </div>
 
-                <div class="hero-text">
-                    <h2>ធានាសម្រាប់ភាពត្រឹមត្រូវនៃការគណនា</h2>
-                    <p>
-                        ប្រព័ន្ធរបស់យើងប្រើប្រាស់ច្បាប់ពន្ធបច្ចុប្បន្នរបស់កម្ពុជា
-                        ដើម្បីធានាបាននូវភាពត្រឹមត្រូវនៃការគណនា។
-                    </p>
                 </div>
-            </section>
+            </div>
+
+            <div class="hero-text" style="color: #070707; text-align: center; margin-top: 40px;">
+                <h2 style="font-size: 2rem; margin-bottom: 10px;">ធានាសម្រាប់ភាពត្រឹមត្រូវនៃការគណនា</h2>
+                <p style="color: #060606; max-width: 600px; margin: 0 auto; line-height: 1.6;">
+                    ប្រព័ន្ធរបស់យើងប្រើប្រាស់ច្បាប់ពន្ធបច្ចុប្បន្នរបស់ប្រទេសកម្ពុជា ដើម្បីធានាបាននូវភាពត្រឹមត្រូវដាច់ខាតនៃការគណនា។
+                </p>
+            </div>
+        </section>
         </div>
 
         <div id="results-section" style="display: none;">
