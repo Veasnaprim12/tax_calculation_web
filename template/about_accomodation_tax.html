@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}ពន្ធលើការស្នាក់នៅ - Accommodation Tax{% endblock %}
+
+{% block nav_about %}active{% endblock %}
+
+{% block content %}
+
+    <section class="info-hero" style="background: linear-gradient(rgba(106, 126, 177, 0.85), rgba(106, 126, 177, 0.85)), url('{% static 'images/tax_image.png' %}') no-repeat center center/cover; color: white; padding: 80px 20px; text-align: center;">
+		<div class="hero-text" style="text-align: center; margin-bottom: 40px;">
+			<div style="max-width: 900px; margin: 0 auto; color: white; text-align: center; position: relative; z-index: 1;">
+				<h1 style="font-family: 'Khmer Moul', cursive; font-size: 2rem; margin-bottom: 15px; color: white;">ពន្ធលើការស្នាក់នៅ (Accommodation Tax)</h1>
+				<p style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.85); line-height: 1.8;">
+					ស្វែងយល់អំពីរូបមន្តគណនា អត្របង់ពន្ធ (២%) ច្បាប់ និងបទប្បញ្ញត្តិអាករលើការស្នាក់នៅក្នុងប្រទេសកម្ពុជា។
+				</p>
+			</div>
+    </section>
+
+    <section class="info-grid-section">
+        <div class="container" style="max-width: 1200px; margin: 0 auto;">
+            
+            <!-- Section 1: Definition and Overview -->
+            <div class="info-panel" style="margin-bottom: 40px;">
+                <h2 style="color: #6a7eb1; border-bottom: 3px solid #6a7eb1; padding-bottom: 10px; margin-bottom: 20px;">១. អ្វីដែលម្ហូប ពន្ធលើការស្នាក់នៅ</h2>
+                <p style="color: #475569; line-height: 1.8; margin-bottom: 20px;">
+                    ពន្ធលើការស្នាក់នៅគឺជាពន្ធដែលត្រូវបង់ដោយភ្ងាក់ផ្តល់សេវាកម្មលំនៅឋាន ដែលមានអាម្រាពន្ធថេរ <strong>២%</strong> លើម៉ូដ្ឋានគិតនៃការផ្គត់ផ្គង់សេវាស្នាក់នៅ។ ពន្ធនេះត្រូវបង់ដោយលទ្ធផលក្នុងផលប៉ះពាល់ដល់ថវិកាថ្នាក់ក្រោមជាតិដើម្បីផ្នែកលើការងារលម្អិតលម្អិតលម្អិត។
+                </p>
+                <div style="background: #f0f4f8; padding: 20px; border-radius: 12px; border-left: 4px solid #6a7eb1;">
+                    <h4 style="margin-top: 0; color: #1e293b;">🏨 ប្រភេទមូលដ្ឋានស្នាក់នៅ៖</h4>
+                    <ul style="color: #475569; margin: 10px 0; padding-left: 20px;">
+                        <li><strong>សណ្ឋាគារ (Hotel)</strong> - មូលដ្ឋានស្នាក់នៅដែលផ្តល់សេវាស្នាក់នៅពេញលេញ ភោជនីយដ្ឋាន សេវាបម្រើអាហារ និងសេវាបោកអ៊ុត</li>
+                        <li><strong>អាផាតមិន (Apartment Hotel)</strong> - សណ្ឋាគារដែលមានបំពាក់សម្ភារៈផ្ទះបាយ</li>
+                        <li><strong>រីសត (Resort)</strong> - សណ្ឋាគារដែលសាងសង់ក្នុងតំបន់ទេសចរណ៍ ឬតំបន់លម្ហែកាយ</li>
+                        <li><strong>ម៉ូតែល (Motel)</strong> - មូលដ្ឋានស្នាក់នៅស្ថិតនៅតំបន់ជាយក្រុង មានសេវាកម្រិតកំណត់</li>
+                        <li><strong>ឡូដ (Lodge)</strong> - មូលដ្ឋានស្នាក់នៅក្នុងតំបន់សម្រាកកម្សាន្ត ឬតំបន់ធម្មជាតិ</li>
+                        <li><strong>បឹងកាឡូ (Bungalow)</strong> - មូលដ្ឋានស្នាក់នៅដែលមានបន្ទប់គេង បន្ទប់ទទួលភ្ញៀវ</li>
+                        <li><strong>ផ្ទះភ្ញៀវ (Guest House)</strong> - មូលដ្ឋានស្នាក់នៅដែលមានទំហំតូចជាងសណ្ឋាគារ</li>
+                        <li><strong>កន្លែងបោះជំរំ (Camping Site)</strong> - កន្លែងដែលបង្កើតឡើងក្នុងតំបន់ទេសចរណ៍សម្រាប់បោះជំរំ</li>
+                    </ul>
+                    <p style="color: #64748b; font-size: 0.9rem; margin: 15px 0 0 0; padding-top: 15px; border-top: 1px solid #e2e8f0;">
+                        <strong>⚠️ សម្គាល់៖</strong> មិនរាប់បញ្ចូល ផ្ទះជួលរយៈពេលវែង ឬផ្ទះល្វែងជួលសម្រាប់រស់នៅជាប្រចាំឡើយ។
+                    </p>
+                </div>
+            </div>
+
+            <!-- Section 2: Tax Calculation Formulas -->
+            <div class="info-panel" style="margin-bottom: 40px;">
+                <h2 style="color: #6a7eb1; border-bottom: 3px solid #6a7eb1; padding-bottom: 10px; margin-bottom: 20px;">២. រូបមន្ត និងវិធីគណនាពន្ធលើការស្នាក់នៅ</h2>
+                
+                <div style="background: #fff3cd; padding: 20px; border-radius: 12px; border-left: 4px solid #ff9800; margin-bottom: 20px;">
+                    <h4 style="margin-top: 0; color: #1e293b;">📊 អាម្រាពន្ធលើការស្នាក់នៅ</h4>
+                    <p style="font-size: 1.2rem; color: #1e293b; font-weight: bold; margin: 10px 0;">អាម្រា = <span style="color: #ff9800;">២%</span> (ថេរ)</p>
+                </div>
+
+                <div style="background: #e3f2fd; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                    <h4 style="margin-top: 0; color: #1e293b;">រូបមន្តទី១៖ មូលដ្ឋានគិតអាករ (Method 1)</h4>
+                    <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #2196F3;">
+                        <p style="margin: 0; font-weight: 600; color: #1e293b; font-size: 1.05rem;">ម៉ូដ្ឋាននៃការគណនា = តម្លៃបន្ទប់ + ពន្ធអាករដទៃ + ថ្លៃសេវាកម្ម</p>
+                    </div>
+                </div>
+
+                <div style="background: #f3e5f5; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                    <h4 style="margin-top: 0; color: #1e293b;">រូបមន្តទី២៖ មូលដ្ឋានគិតអាករ (Method 2)</h4>
+                    <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #9C27B0;">
+                        <p style="margin: 0; font-weight: 600; color: #1e293b; font-size: 1.05rem;">ម៉ូដ្ឋាននៃការគណនា = តម្លៃផ្គត់ផ្គង់សរុប - VAT - ពន្ធលើការស្នាក់នៅខ្លួនឯង</p>
+                    </div>
+                </div>
+
+                <div style="background: #e8f5e9; padding: 20px; border-radius: 12px;">
+                    <h4 style="margin-top: 0; color: #1e293b;">🔢 រូបមន្តគណនាពន្ធលើការស្នាក់នៅ</h4>
+                    <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #4CAF50;">
+                        <p style="margin: 0; font-weight: 600; color: #1e293b; font-size: 1.05rem;">ពន្ធលើការស្នាក់នៅដែលត្រូវបង់ = ម៉ូដ្ឋាននៃការគណនា × <span style="color: #4CAF50;">២%</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: Laws and Regulations -->
+            <div class="info-panel" style="margin-bottom: 40px;">
+                <h2 style="color: #6a7eb1; border-bottom: 3px solid #6a7eb1; padding-bottom: 10px; margin-bottom: 20px;">៣. ច្បាប់ និងបទប្បញ្ញត្តិពាក់ព័ន្ធ</h2>
+                <div style="background: #f8fafc; padding: 20px; border-radius: 12px;">
+                    <ul style="color: #475569; margin: 0; padding-left: 25px; line-height: 2;">
+                        <li><strong>មាត្រា ៨២</strong> នៃច្បាប់ស្តីពីហិរញ្ញវត្ថុសម្រាប់ការគ្រប់គ្រងឆ្នាំ២០០៥ ដែលប្រកាសឱ្យប្រើដោយព្រះរាជក្រមលេខ នស/រកម្ម/១២០៤/០៣២ ចុះថ្ងៃទី៣០ ខែធ្នូ ឆ្នាំ២០០៤</li>
+                        <li><strong>ប្រកាសលេខ ៣៨០</strong> សហវ.ពដ ចុះថ្ងៃទី១៤ ខែកក្កដា ឆ្នាំ២០០៥ ស្តីពីការអនុវត្តអាករលើការស្នាក់នៅ</li>
+                        <li><strong>ប្រកាសលេខ ៦០១</strong> សហវ.ប្រក ចុះថ្ងៃទី២៣ ខែកញ្ញា ឆ្នាំ២០០៥ ស្តីពីការពន្យារពេលការអនុវត្តអាករលើការស្នាក់នៅ</li>
+                        <li><strong>សេចក្តីជូនដំណឹងលេខ ៧១២៧</strong> សហវ.ពដ ចុះថ្ងៃទី២៧ ខែវិច្ឆិកា ឆ្នាំ២០០៦ ស្តីពីការអនុវត្តអាករលើការស្នាក់នៅ</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Section 4: Calculation Examples -->
+            <div class="info-panel">
+                <h2 style="color: #6a7eb1; border-bottom: 3px solid #6a7eb1; padding-bottom: 10px; margin-bottom: 20px;">៤. ឧទាហរណ៍ការគណនាលម្អិត</h2>
+                
+                <div style="background: #fef3c7; padding: 20px; border-radius: 12px; margin-bottom: 25px;">
+                    <h4 style="margin-top: 0; color: #1e293b;">ឧទាហរណ៍ទី១៖ ពន្ធលើការស្នាក់នៅ ដោយគ្មានថ្លៃសេវាកម្ម</h4>
+                    <p style="color: #475569; margin-bottom: 15px;">តម្លៃបន្ទប់ = <strong>10,000,000 រៀល</strong> | ថ្លៃសេវាកម្ម = <strong>0 រៀល</strong></p>
+                    <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #ff9800;">
+                        <code style="color: #0f172a; font-size: 0.95rem; line-height: 1.8;">
+                            <strong>ម៉ូដ្ឋាន</strong> = 10,000,000 + 0 = <strong>10,000,000 រៀល</strong><br/>
+                            <strong>ពន្ធលើការស្នាក់នៅ</strong> = 10,000,000 × 2% = <strong style="color: #ff9800;">200,000 រៀល</strong>
+                        </code>
+                    </div>
+                </div>
+
+                <div style="background: #c8e6c9; padding: 20px; border-radius: 12px;">
+                    <h4 style="margin-top: 0; color: #1e293b;">ឧទាហរណ៍ទី២៖ ពន្ធលើការស្នាក់នៅ ដែលមានថ្លៃសេវាកម្ម</h4>
+                    <p style="color: #475569; margin-bottom: 15px;">តម្លៃបន្ទប់ = <strong>10,000,000 រៀល</strong> | ថ្លៃសេវាកម្ម = <strong>500,000 រៀល</strong></p>
+                    <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #4CAF50;">
+                        <code style="color: #0f172a; font-size: 0.95rem; line-height: 1.8;">
+                            <strong>ម៉ូដ្ឋាន</strong> = 10,000,000 + 500,000 = <strong>10,500,000 រៀល</strong><br/>
+                            <strong>ពន្ធលើការស្នាក់នៅ</strong> = 10,500,000 × 2% = <strong style="color: #4CAF50;">210,000 រៀល</strong>
+                        </code>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="button-section">
+        <div style="max-width: 600px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+            <a href="{% url 'accomodation_tax' %}">
+                ចាប់ផ្តើមគណនាពន្ធឥឡូវនេះ
+            </a>
+            <a href="{% url 'about_tax' %}">
+                ត្រឡប់ទៅកាន់ព័ត៌មានពន្ធ
+            </a>
+        </div>
+    </section>
+{% endblock %}
