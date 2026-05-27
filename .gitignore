@@ -2,5 +2,7 @@
 **/*.pyc
 **/*.pyo
 **/*.pyd
+venv/
 .venv/
+env/
 .env
