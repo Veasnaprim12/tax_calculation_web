@@ -428,3 +428,35 @@ class UnusedLandTaxForm(forms.Form):
         required=False,
         widget=forms.Select(attrs={'class': 'form-select'})
     )
+
+class AccomodationTaxForm(forms.Form):
+    currency = forms.ChoiceField(
+        label="រូបិយប័ណ្ណ",
+        choices=[
+            ('KHR', '៛ រៀលកម្ពុជា'),
+            ('USD', '$ ដុល្លារអាមេរិក'),
+        ],
+        initial='KHR',
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+    
+    room_nights = forms.IntegerField(
+        label="ចំនួនបន្ទប់-យប់ (Room-Nights)",
+        min_value=1,
+        initial=1,
+        widget=forms.NumberInput(attrs={
+            'placeholder': 'ឧ. 10',
+            'class': 'form-input'
+        })
+    )
+    
+    room_rate = forms.DecimalField(
+        label="តម្លៃបន្ទប់ក្នុងមួយយប់ (Room Rate per Night)",
+        min_value=0,
+        decimal_places=2,
+        widget=forms.NumberInput(attrs={
+            'placeholder': 'ឧ. 100,000',
+            'class': 'form-input',
+            'step': '0.01'
+        })
+    )

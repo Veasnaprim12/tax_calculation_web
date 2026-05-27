@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.admin.views.decorators import staff_member_required
 from .forms import (SalaryTaxForm, PropertyTaxForm, VATTaxForm, IncomeTaxForm, WithholdingTaxForm, PatentTaxForm,
-                    SpecialTaxForm, RegistrationTaxForm, UnusedLandTaxForm)
+                    SpecialTaxForm, RegistrationTaxForm, UnusedLandTaxForm, AccomodationTaxForm)
 from .models import TaxRecord, TaxCalculationDetail
 from decimal import Decimal
 from tax_calculators import (
@@ -849,6 +849,62 @@ def unused_land_tax(request):
         'total_tax': total_tax,
         'breakdown': breakdown,
         'yearly_breakdown': yearly_breakdown,
+        'selected_currency': selected_currency,
+        'currency_symbol': currency_symbol,
+    })
+
+def about_accomodation_tax(request):
+    """
+    Render the detailed accommodation tax information page.
+    """
+    return render(request, "about_accomodation_tax.html")
+
+def accomodation_tax(request):
+    """
+    Render and handle the accommodation tax calculation page.
+    Accommodation tax applies to hotels, guesthouses, and similar establishments.
+    """
+    form = AccomodationTaxForm()
+    tax_amount = None
+    total_amount = None
+    selected_currency = 'KHR'
+    currency_symbol = '៛'
+    
+    if request.method == 'POST':
+        form = AccomodationTaxForm(request.POST)
+        if form.is_valid():
+            currency = form.cleaned_data['currency']
+            room_rate = form.cleaned_data['room_rate']
+            nights = form.cleaned_data['nights']
+            selected_currency = currency
+            currency_symbol = get_currency_symbol(currency)
+            
+            # Convert to KHR for calculation if needed
+            room_rate_khr = convert_to_khr(room_rate, currency)
+            
+            # Calculate accommodation tax (5% of room rate per night)
+            tax_amount_khr = room_rate_khr * Decimal('0.05') * nights
+            
+            # Total amount including tax
+            total_amount_khr = (room_rate_khr * nights) + tax_amount_khr
+            
+            # Convert back to selected currency for display
+            tax_amount = convert_from_khr(tax_amount_khr, currency)
+            total_amount = convert_from_khr(total_amount_khr, currency)
+            
+            # Save to database in KHR
+            tax_record = TaxRecord.objects.create(
+                tax_type='accomodation',
+                currency=currency,
+                income=room_rate * nights,
+                tax_amount=tax_amount,
+                net_income=total_amount
+            )
+    
+    return render(request, "accomodation_tax.html", {
+        'form': form,
+        'tax_amount': tax_amount,
+        'total_amount': total_amount,
         'selected_currency': selected_currency,
         'currency_symbol': currency_symbol,
     })
