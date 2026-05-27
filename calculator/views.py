@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.admin.views.decorators import staff_member_required
-from .forms import SalaryTaxForm, PropertyTaxForm, VATTaxForm, IncomeTaxForm, WithholdingTaxForm
+from .forms import (SalaryTaxForm, PropertyTaxForm, VATTaxForm, IncomeTaxForm, WithholdingTaxForm, PatentTaxForm,
+                    SpecialTaxForm, RegistrationTaxForm, UnusedLandTaxForm)
 from .models import TaxRecord, TaxCalculationDetail
 from decimal import Decimal
 from tax_calculators import (
@@ -12,6 +13,10 @@ from tax_calculators import (
     get_currency_symbol
 )
 from tax_calculators.income_tax import calculate_income_tax_with_breakdown
+from tax_calculators.patent_tax import calculate_total_patent_tax
+from tax_calculators.special_tax import calculate_special_tax_with_breakdown
+from tax_calculators.registration_tax import calculate_registration_tax_with_renewal
+from tax_calculators.unused_land_tax import calculate_unused_land_tax_progressive
 
 
 def get_tax_bracket(taxable_income):
@@ -84,7 +89,26 @@ def about_vat_tax(request):
     Render the detailed VAT tax information page.
     """
     return render(request, "about_vat_tax.html")
-
+def about_patent_tax(request):
+    """
+    Render the detailed patent tax information page.
+    """
+    return render(request, "about_patent.html")
+def about_special_tax(request):
+    """
+    Render the detailed special tax information page.
+    """
+    return render(request, "about_special_tax.html")
+def about_registration_tax(request):
+    """
+    Render the detailed registration tax information page.
+    """
+    return render(request, "about_registration_tax.html")
+def about_unused_land_tax(request):
+    """
+    Render the detailed unused land tax information page.
+    """
+    return render(request, "about_unused_land.html")
 def vat_tax(request):
     """
     Render and handle the VAT tax calculation page.
@@ -581,5 +605,250 @@ def about_withholding_tax(request):
     })
 
 
+def patent_tax(request):
+    """
+    Render and handle the patent tax calculation page.
+    """
+    form = PatentTaxForm()
+    main_tax = None
+    branch_tax = None
+    total_tax = None
+    breakdown = None
+    selected_currency = 'KHR'
+    
+    if request.method == 'POST':
+        form = PatentTaxForm(request.POST)
+        if form.is_valid():
+            category = form.cleaned_data['category']
+            activities = form.cleaned_data['activities']
+            timing = form.cleaned_data['timing']
+            branches = form.cleaned_data['branches']
+            
+            # Calculate patent tax using import from tax_calculators
+            from tax_calculators.patent_tax import calculate_patent_tax
+            main_tax_khr, branch_tax_khr, total_tax_khr, breakdown_dict = calculate_patent_tax(
+                category, activities, timing, branches
+            )
+            
+            main_tax = main_tax_khr
+            branch_tax = branch_tax_khr
+            total_tax = total_tax_khr
+            breakdown = breakdown_dict
+            
+            # Save to database (income is total_tax for patent tax)
+            tax_record = TaxRecord.objects.create(
+                tax_type='patent',
+                currency='KHR',
+                income=Decimal(total_tax_khr),
+                tax_amount=Decimal(total_tax_khr)
+            )
+            
+            # Create detailed calculation breakdown
+            TaxCalculationDetail.objects.create(
+                tax_record=tax_record,
+                tax_rate=Decimal('0'),
+                taxable_amount=Decimal(total_tax_khr),
+                tax_components=breakdown_dict
+            )
+            
+    return render(request, "patent_tax.html", {
+        'form': form,
+        'main_tax': main_tax,
+        'branch_tax': branch_tax,
+        'total_tax': total_tax,
+        'breakdown': breakdown,
+        'selected_currency': selected_currency,
+        'currency_symbol': get_currency_symbol(selected_currency),
+    })
 
 
+def special_tax(request):
+    """
+    Render and handle the special tax calculation page.
+    """
+    form = SpecialTaxForm()
+    tax_amount = None
+    total_tax = None
+    breakdown = None
+    selected_currency = 'KHR'
+    currency_symbol = '៛'
+    
+    if request.method == 'POST':
+        form = SpecialTaxForm(request.POST)
+        if form.is_valid():
+            currency = form.cleaned_data['currency']
+            transaction_value = form.cleaned_data['transaction_value']
+            transaction_type = form.cleaned_data['transaction_type']
+            supply_type = form.cleaned_data['supply_type']
+            number_of_transactions = form.cleaned_data['number_of_transactions']
+            selected_currency = currency
+            currency_symbol = get_currency_symbol(currency)
+            
+            # Convert value to KHR for calculation
+            value_khr = convert_to_khr(transaction_value, currency)
+            
+            from tax_calculators.special_tax import calculate_special_tax_with_breakdown
+            total_tax_khr, breakdown_dict = calculate_special_tax_with_breakdown(
+                value_khr, transaction_type, number_of_transactions, supply_type
+            )
+            
+            # Convert back to selected currency for display
+            tax_amount = convert_from_khr(Decimal(str(breakdown_dict['tax_per_transaction'])), currency)
+            total_tax = convert_from_khr(Decimal(str(total_tax_khr)), currency)
+            
+            # Save to database
+            tax_record = TaxRecord.objects.create(
+                tax_type='special',
+                currency=currency,
+                income=transaction_value,
+                tax_amount=total_tax
+            )
+            
+            # Create detailed calculation breakdown
+            TaxCalculationDetail.objects.create(
+                tax_record=tax_record,
+                tax_rate=Decimal(str(breakdown_dict['tax_rate'])),
+                taxable_amount=convert_to_khr(transaction_value, currency),
+                tax_components=breakdown_dict
+            )
+            
+    return render(request, "special_tax.html", {
+        'form': form,
+        'tax_amount': tax_amount,
+        'total_tax': total_tax,
+        'breakdown': breakdown,
+        'selected_currency': selected_currency,
+        'currency_symbol': currency_symbol,
+    })
+
+
+def registration_tax(request):
+    """
+    Render and handle the registration tax calculation page.
+    """
+    form = RegistrationTaxForm()
+    total_tax = None
+    breakdown = None
+    selected_currency = 'KHR'
+    currency_symbol = '៛'
+    
+    if request.method == 'POST':
+        form = RegistrationTaxForm(request.POST)
+        if form.is_valid():
+            currency = form.cleaned_data['currency']
+            asset_type = form.cleaned_data['asset_type']
+            property_value = form.cleaned_data['property_value']
+            relationship = form.cleaned_data.get('relationship', 'none')
+            is_vehicle_exempt = form.cleaned_data.get('is_vehicle_exempt', False)
+            selected_currency = currency
+            currency_symbol = get_currency_symbol(currency)
+            
+            # Convert to KHR for calculation
+            value_khr = convert_to_khr(property_value, currency)
+            
+            from tax_calculators.registration_tax import calculate_registration_tax
+            tax_amount_khr, tax_rate, breakdown_dict = calculate_registration_tax(
+                value_khr, asset_type, relationship, is_vehicle_exempt
+            )
+            
+            # Convert back to selected currency for display
+            total_tax = convert_from_khr(Decimal(str(tax_amount_khr)), currency)
+            breakdown = breakdown_dict
+            
+            # Save to database
+            tax_record = TaxRecord.objects.create(
+                tax_type='registration',
+                currency=currency,
+                income=property_value,
+                tax_amount=total_tax
+            )
+            
+            # Create detailed calculation breakdown
+            TaxCalculationDetail.objects.create(
+                tax_record=tax_record,
+                tax_rate=Decimal(str(tax_rate)),
+                taxable_amount=value_khr,
+                tax_components=breakdown_dict
+            )
+            
+    return render(request, "registration_tax.html", {
+        'form': form,
+        'total_tax': total_tax,
+        'breakdown': breakdown,
+        'selected_currency': selected_currency,
+        'currency_symbol': currency_symbol,
+    })
+
+
+def unused_land_tax(request):
+    """
+    Render and handle the unused land tax calculation page.
+    """
+    form = UnusedLandTaxForm()
+    annual_tax = None
+    total_tax = None
+    breakdown = None
+    yearly_breakdown = None
+    selected_currency = 'KHR'
+    currency_symbol = '៛'
+    
+    if request.method == 'POST':
+        form = UnusedLandTaxForm(request.POST)
+        if form.is_valid():
+            currency = form.cleaned_data['currency']
+            land_area_sqm = form.cleaned_data['land_area_sqm']
+            land_value = form.cleaned_data['land_value']
+            years_unused = form.cleaned_data['years_unused']
+            selected_currency = currency
+            currency_symbol = get_currency_symbol(currency)
+            
+            # Convert land value per sqm to KHR if currency is USD
+            land_value_khr = convert_to_khr(land_value, currency)
+            
+            from tax_calculators.unused_land_tax import calculate_unused_land_tax
+            annual_tax_khr, total_tax_khr, breakdown_dict = calculate_unused_land_tax(
+                land_value_khr, land_area_sqm, years_unused
+            )
+            
+            # Convert back to selected currency for display
+            annual_tax = convert_from_khr(Decimal(str(annual_tax_khr)), currency)
+            total_tax = convert_from_khr(Decimal(str(total_tax_khr)), currency)
+            breakdown = breakdown_dict
+            
+            # Construct a progressive year-by-year breakdown list for UI
+            yearly_taxes = []
+            cumulative_tax = Decimal('0')
+            for year in range(1, int(years_unused) + 1):
+                cumulative_tax += Decimal(str(annual_tax))
+                yearly_taxes.append({
+                    'year': year,
+                    'annual_tax': float(annual_tax),
+                    'cumulative_tax': float(cumulative_tax)
+                })
+            yearly_breakdown = yearly_taxes
+            
+            # Save to database
+            tax_record = TaxRecord.objects.create(
+                tax_type='unused_land',
+                currency=currency,
+                income=land_value * land_area_sqm,
+                tax_amount=total_tax
+            )
+            
+            # Create detailed calculation breakdown
+            TaxCalculationDetail.objects.create(
+                tax_record=tax_record,
+                tax_rate=Decimal('0.02'),
+                taxable_amount=convert_to_khr(Decimal(str(breakdown_dict['tax_base'])), currency),
+                tax_components=breakdown_dict
+            )
+            
+    return render(request, "unused_land_tax.html", {
+        'form': form,
+        'annual_tax': annual_tax,
+        'total_tax': total_tax,
+        'breakdown': breakdown,
+        'yearly_breakdown': yearly_breakdown,
+        'selected_currency': selected_currency,
+        'currency_symbol': currency_symbol,
+    })

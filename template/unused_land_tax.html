@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% load static %} {% block title %}ពន្ធលើដីមិនប្រើប្រាស់ - Unused Land Tax{% endblock %}
+
+{% block nav_calculator %}unused_land{% endblock %}
+
+{% block content %}
+<div style="background-color: #2d6a4f; min-height: 100vh; padding: 40px 0;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+
+        <section class="hero" id="calculator" style="margin-bottom: 40px; padding: 0;">
+            <div class="hero-text" style="text-align: center; margin-bottom: 40px; color: white;">
+                <img src="{% static 'images/logo.png' %}" alt="Logo"
+                    style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 3px solid rgba(255, 255, 255, 0.3); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                <h2 style="color: white; font-family: 'Khmer Moul', cursive;">គណនាពន្ធលើដីដែលមិនប្រើប្រាស់ (Unused Land Tax)</h2>
+                <p style="color: rgba(255, 255, 255, 0.9); max-width: 700px; margin: 0 auto;">
+                    គណនាពន្ធលើដីដែលមិនប្រើប្រាស់ប្រចាំឆ្នាំ (២%) ដោយដកហូតការលើកលែងដីទំហំ ៥ ហិកតា (៥០,០០០ ម២) 
+                    សម្រាប់ទីតាំងនីមួយៗ ស្របតាមច្បាប់ពន្ធដារកម្ពុជា។
+                </p>
+                <div style="margin-top: 20px;">
+                    <a href="{% url 'about_unused_land_tax' %}" class="btn btn-secondary"
+                        style="display: inline-block; padding: 10px 20px; background-color: rgba(255, 255, 255, 0.2); color: white; text-decoration: none; border-radius: 8px; border: 1px solid rgba(255,255,255,0.4); font-size: 0.9rem;">ℹ️ ព័ត៌មានលម្អិតអំពីពន្ធលើដីមិនប្រើប្រាស់</a>
+                </div>
+            </div>
+
+            <div class="panel"
+                style="background: white; padding: 35px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.15);">
+                <form id="tax-form" method="post">
+                    {% csrf_token %}
+                    <h3 class="form-title" style="color: #1e3c72; margin-bottom: 25px; font-family: 'Khmer Moul', cursive;">ព័ត៌មានអចលនទ្រព្យ/ដីធ្លី</h3>
+                    
+                    <div class="grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px;">
+                        <div>
+                            {{ form.currency.label_tag }}
+                            {{ form.currency }}
+                        </div>
+                        <div>
+                            {{ form.land_area_sqm.label_tag }}
+                            {{ form.land_area_sqm }}
+                        </div>
+                        <div>
+                            {{ form.land_value.label_tag }}
+                            <span style="color: var(--muted); font-size: 14px;">({{ currency_symbol }}/ម២)</span>
+                            {{ form.land_value }}
+                        </div>
+                        <div>
+                            {{ form.years_unused.label_tag }}
+                            {{ form.years_unused }}
+                        </div>
+                        <div>
+                            {{ form.urban_type.label_tag }}
+                            {{ form.urban_type }}
+                        </div>
+                    </div>
+
+                    {% if total_tax is not None %}
+                    <div style="background: #fef08a; padding: 25px; border-radius: 12px; margin-top: 30px; border: 2px solid #eab308; color: #713f12;">
+                        <h4 style="color: #854d0e; margin: 0 0 15px 0; font-family: 'Khmer Moul', cursive;">លទ្ធផលនៃការគណនា</h4>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 20px; border-bottom: 1px solid #fef3c7; padding-bottom: 20px;">
+                            <div>
+                                <span style="color: #854d0e; font-size: 0.9rem; font-weight: bold; display: block;">ផ្ទៃដីសរុប</span>
+                                <strong style="font-size: 1.1rem;">{{ breakdown.land_area_sqm|floatformat:2 }} ម២ ({{ breakdown.land_area_hectares|floatformat:2 }} ហិកតា)</strong>
+                            </div>
+                            <div>
+                                <span style="color: #854d0e; font-size: 0.9rem; font-weight: bold; display: block;">ការលើកលែងពន្ធ (៥ ហិកតា)</span>
+                                <strong style="font-size: 1.1rem; color: #16a34a;">- {{ breakdown.deduction_sqm|floatformat:0 }} ម២ ({{ breakdown.deduction_hectares|floatformat:0 }} ហិកតា)</strong>
+                            </div>
+                            <div>
+                                <span style="color: #854d0e; font-size: 0.9rem; font-weight: bold; display: block;">ផ្ទៃដីជាប់ពន្ធសុទ្ធ</span>
+                                <strong style="font-size: 1.1rem;">{{ breakdown.taxable_area_sqm|floatformat:2 }} ម២ ({{ breakdown.taxable_area_hectares|floatformat:2 }} ហិកតា)</strong>
+                            </div>
+                            <div>
+                                <span style="color: #854d0e; font-size: 0.9rem; font-weight: bold; display: block;">តម្លៃដីវាយតម្លៃ</span>
+                                <strong style="font-size: 1.1rem;">{{ selected_currency }} {{ breakdown.land_value_per_sqm|floatformat:2 }}/ម២</strong>
+                            </div>
+                            <div>
+                                <span style="color: #854d0e; font-size: 0.9rem; font-weight: bold; display: block;">មូលដ្ឋានគិតពន្ធសរុប (Tax Base)</span>
+                                <strong style="font-size: 1.1rem;">{{ selected_currency }} {{ breakdown.tax_base|floatformat:2 }}</strong>
+                            </div>
+                            <div>
+                                <span style="color: #854d0e; font-size: 0.9rem; font-weight: bold; display: block;">អត្រាពន្ធឆ្នាំ</span>
+                                <strong style="font-size: 1.1rem;">{{ breakdown.tax_percentage|floatformat:0 }}%</strong>
+                            </div>
+                        </div>
+
+                        {% if breakdown.tax_base == 0 %}
+                        <div style="margin: 15px 0; font-size: 0.95rem; line-height: 1.5; color: #166534; background: #dcfce7; padding: 10px 15px; border-radius: 8px; border-left: 3px solid #22c55e;">
+                            🎉 <strong>ដីរបស់អ្នកត្រូវបានលើកលែងពន្ធ៖</strong> ផ្ទៃដីមិនលើសពី ៥ ហិកតា (៥០,០០០ ម២) ក្នុងមួយទីតាំង ត្រូវបានលើកលែងពន្ធទាំងស្រុង។
+                        </div>
+                        {% endif %}
+
+                        <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
+                            <div style="display: flex; justify-content: space-between; font-weight: bold;">
+                                <span>ពន្ធដីមិនប្រើប្រាស់ប្រចាំឆ្នាំ (Annual Tax)៖</span>
+                                <span>{{ currency_symbol }} {{ annual_tax|floatformat:2 }}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; font-weight: bold;">
+                                <span>រយៈពេលមិនប្រើប្រាស់៖</span>
+                                <span>{{ breakdown.years_unused }} ឆ្នាំ</span>
+                            </div>
+                        </div>
+
+                        <div class="result"
+                            style="background: white; padding: 20px; border-radius: 12px; border: 1px solid #fef3c7; display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-weight: bold; color: #854d0e; font-size: 1.1rem;">ពន្ធលើដីមិនប្រើប្រាស់សរុប (Total Unused Land Tax)</span>
+                            <strong style="color: #d97706; font-size: 2rem;">{{ currency_symbol }} {{ total_tax|floatformat:2 }}</strong>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <div style="text-align: center; margin-top: 30px;">
+                        <button type="submit" class="btn btn-primary"
+                            style="padding: 12px 35px; font-size: 1rem; background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white; border-radius: 30px; border: none; cursor: pointer; font-weight: bold; box-shadow: 0 4px 15px rgba(30,60,114,0.3);">ចាប់ផ្តើមគណនា</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section class="hero" id="guide" style="padding: 0;">
+            <div class="panel"
+                style="background: white; padding: 35px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); margin-bottom: 40px; width: 100%;">
+                <h3 class="form-title" style="color: #1e3c72; margin-bottom: 20px; font-family: 'Khmer Moul', cursive;">ឯកសារចាំបាច់សម្រាប់ការចុះបញ្ជីព័ត៌មានដីធ្លី</h3>
+                <p style="font-size: 0.95rem; line-height: 1.6; color: var(--muted); margin-bottom: 20px;">
+                    ដើម្បីចុះបញ្ជី ឬធ្វើបច្ចុប្បន្នភាពព័ត៌មានដីដែលមិនប្រើប្រាស់ អ្នកជាប់ពន្ធត្រូវរៀបចំឯកសារដូចខាងក្រោម៖
+                </p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px;">
+                    <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 15px; border-radius: 10px; font-size: 0.9rem;">
+                        <strong>📄 ឯកសារកម្មសិទ្ធិ</strong>
+                        <p style="margin: 5px 0 0 0; color: #475569;">វិញ្ញាបនបត្រសម្គាល់ម្ចាស់អចលនទ្រព្យ (ប្លង់រឹង) ឬឯកសារផ្ទេរសិទ្ធិកាន់កាប់ដែលបញ្ជាក់ដោយអាជ្ញាធរឃុំ/សង្កាត់ឡើងទៅ (ប្លង់ទន់)។</p>
+                    </div>
+                    <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 15px; border-radius: 10px; font-size: 0.9rem;">
+                        <strong>🆔 អត្តសញ្ញាណប័ណ្ណ</strong>
+                        <p style="margin: 5px 0 0 0; color: #475569;">អត្តសញ្ញាណប័ណ្ណសញ្ជាតិខ្មែរ សៀវភៅគ្រួសារ សៀវភៅស្នាក់នៅ ឬលិខិតឆ្លងដែនរបស់ម្ចាស់ដី។</p>
+                    </div>
+                    <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 15px; border-radius: 10px; font-size: 0.9rem;">
+                        <strong>📸 រូបភាពអចលនទ្រព្យ</strong>
+                        <p style="margin: 5px 0 0 0; color: #475569;">រូបថតស្ថានភាពដីធ្លីជាក់ស្តែង វិមាត្រទំហំដី (ទទឹង និងបណ្តោយ) និងវិក្កយបត្រទឹក/ភ្លើង (ប្រសិនបើមាន)។</p>
+                    </div>
+                    <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 15px; border-radius: 10px; font-size: 0.9rem;">
+                        <strong>📝 ពាក្យស្នើសុំ (ទម្រង់ PT01)</strong>
+                        <p style="margin: 5px 0 0 0; color: #475569;">បំពេញទម្រង់ស្នើសុំចុះបញ្ជី និងធ្វើបច្ចុប្បន្នភាពព័ត៌មានអចលនទ្រព្យ PT01 របស់អគ្គនាយកដ្ឋានពន្ធដារ។</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</div>
+{% endblock %}
