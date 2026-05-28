@@ -7,14 +7,15 @@ class TaxRecord(models.Model):
         ('property', 'ពន្ធអាករ'),
         ('vat', 'អាករលើតម្លៃបន្ថែម'),
         ('income', 'ពន្ធលើចំណូលលុយប្រតិបត្តិការ'),
-        ('withholding', 'ពន្ធកាត់ទុក'),
+        ('withholding', 'ពន្ធលើថ្លៃឈ្នួលអចលនទ្រព្យ'),
         ('patent', 'ពន្ធលើប៉ាតង់'),
         ('special', 'អាករពិសេស'),
         ('registration', 'ពន្ធប្រថាប់ត្រា'),
         ('unused_land', 'ពន្ធលើដីធ្លីមិនបានប្រើប្រាស់'),
         ('accomodation', 'ពន្ធលើការស្នាក់នៅ'),
+        ('advertising', 'Tax on advertising boards'),
     ]
-    
+
     CURRENCY_CHOICES = [
         ('KHR', '៛ រៀលកម្ពុជា'),
         ('USD', '$ ដុល្លារអាមេរិក'),

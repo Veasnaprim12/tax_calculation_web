@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}ពន្ធលើផ្ទាំងផ្សព្វផ្សាយ{% endblock %}
+
+{% block content %}
+<div style="background-color: #5b6f9f; min-height: 100vh; padding: 40px 0;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+
+        <section class="hero" id="calculator" style="margin-bottom: 40px; padding: 0;">
+            <div class="hero-text" style="text-align: center; margin-bottom: 40px; color: white;">
+                <h2 style="color: white; font-family: 'Khmer Moul', cursive;">ពន្ធលើផ្ទាំងផ្សព្វផ្សាយ</h2>
+                <p style="color: rgba(255, 255, 255, 0.9); max-width: 760px; margin: 0 auto;">
+                    គណនាពន្ធប្រចាំឆ្នាំសម្រាប់ប័ណ្ណផ្សព្វផ្សាយពាណិជ្ជកម្ម ស្លាកអាជីវកម្ម
+                    និងផ្ទាំងអក្សរ ឬផ្ទាំងរូបភាពពាណិជ្ជកម្ម។
+                </p>
+                <div style="margin-top: 20px;">
+                    <a href="{% url 'about_advertising_board_tax' %}" class="btn btn-secondary" style="display: inline-block; padding: 10px 20px; background-color: rgba(255, 255, 255, 0.2); color: white; text-decoration: none; border-radius: 8px; border: 1px solid rgba(255,255,255,0.4); font-size: 0.9rem;">ព័ត៌មានលម្អិត</a>
+                </div>
+            </div>
+
+            <div class="panel" style="background: white; padding: 35px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.15);">
+                <form id="tax-form" method="post">
+                    {% csrf_token %}
+                    <h3 class="form-title" style="color: #1e3c72; margin-bottom: 25px; font-family: 'Khmer Moul', cursive;">ព័ត៌មានផ្ទាំងផ្សព្វផ្សាយ</h3>
+
+                    <div class="grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px;">
+                        <div>
+                            {{ form.board_type.label_tag }}
+                            {{ form.board_type }}
+                        </div>
+                        <div>
+                            {{ form.width_m.label_tag }}
+                            {{ form.width_m }}
+                        </div>
+                        <div>
+                            {{ form.height_m.label_tag }}
+                            {{ form.height_m }}
+                        </div>
+                        <div>
+                            {{ form.quantity.label_tag }}
+                            {{ form.quantity }}
+                        </div>
+                        <div>
+                            {{ form.display_type.label_tag }}
+                            {{ form.display_type }}
+                        </div>
+                        <div>
+                            {{ form.foreign_letter_dm.label_tag }}
+                            {{ form.foreign_letter_dm }}
+                        </div>
+                        <div>
+                            {{ form.declaration_period.label_tag }}
+                            {{ form.declaration_period }}
+                        </div>
+                    </div>
+
+                    {% if total_tax is not None %}
+                    <div style="background: #eff6ff; padding: 25px; border-radius: 12px; margin-top: 30px; border: 2px solid #bfdbfe; color: #1e3a8a;">
+                        <h4 style="color: #1e3c72; margin: 0 0 15px 0; font-family: 'Khmer Moul', cursive;">លទ្ធផលនៃការគណនា</h4>
+
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 18px; margin-bottom: 20px;">
+                            <div>
+                                <span style="font-size: 0.9rem; font-weight: bold; display: block;">ផ្ទៃក្រឡា</span>
+                                <strong>{{ breakdown.area_dm2|floatformat:2 }} ដម2</strong>
+                            </div>
+                            <div>
+                                <span style="font-size: 0.9rem; font-weight: bold; display: block;">អត្រាពន្ធ</span>
+                                <strong>{{ currency_symbol }} {{ breakdown.rate|floatformat:0 }}</strong>
+                            </div>
+                            <div>
+                                <span style="font-size: 0.9rem; font-weight: bold; display: block;">ពន្ធគោល</span>
+                                <strong>{{ currency_symbol }} {{ breakdown.base_tax|floatformat:2 }}</strong>
+                            </div>
+                            <div>
+                                <span style="font-size: 0.9rem; font-weight: bold; display: block;">ពន្ធអក្សរបរទេស</span>
+                                <strong>{{ currency_symbol }} {{ breakdown.foreign_tax|floatformat:2 }}</strong>
+                            </div>
+                            <div>
+                                <span style="font-size: 0.9rem; font-weight: bold; display: block;">មេគុណរយៈពេល</span>
+                                <strong>{{ breakdown.period_multiplier|floatformat:2 }}</strong>
+                            </div>
+                        </div>
+
+                        {% if breakdown.notes %}
+                        <div style="background: #fff7ed; border-left: 4px solid #f97316; color: #9a3412; padding: 12px 14px; border-radius: 0 8px 8px 0; margin-bottom: 20px;">
+                            {% for note in breakdown.notes %}
+                                <div>{{ note }}</div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+
+                        <div class="result" style="background: white; padding: 20px; border-radius: 12px; border: 1px solid #bfdbfe; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;">
+                            <span style="font-weight: bold; color: #1e3c72; font-size: 1.1rem;">ពន្ធលើផ្ទាំងផ្សព្វផ្សាយសរុប</span>
+                            <strong style="color: #1d4ed8; font-size: 2rem;">{{ currency_symbol }} {{ total_tax|floatformat:2 }}</strong>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <div style="text-align: center; margin-top: 30px;">
+                        <button type="submit" class="btn btn-primary" style="padding: 12px 35px; font-size: 1rem; background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white; border-radius: 30px; border: none; cursor: pointer; font-weight: bold; box-shadow: 0 4px 15px rgba(30,60,114,0.3);">ចាប់ផ្តើមគណនា</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section class="hero" id="guide" style="padding: 0;">
+            <div class="panel" style="background: white; padding: 35px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); margin-bottom: 40px; width: 100%;">
+                <h3 class="form-title" style="color: #1e3c72; margin-bottom: 25px; font-family: 'Khmer Moul', cursive;">តារាងអត្រាពន្ធ</h3>
+
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.95rem;">
+                        <thead>
+                            <tr style="background: #f3f4f6; border-bottom: 2px solid #e5e7eb;">
+                                <th style="padding: 12px; border: 1px solid #e5e7eb;">ប្រភេទ</th>
+                                <th style="padding: 12px; border: 1px solid #e5e7eb;">អត្រាពន្ធ</th>
+                                <th style="padding: 12px; border: 1px solid #e5e7eb;">លក្ខខណ្ឌអក្សរបរទេស</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #e5e7eb;">ប័ណ្ណក្រដាស ផ្ទៃក្រឡាមិនលើស 40 ដម2</td>
+                                <td style="padding: 12px; border: 1px solid #e5e7eb;">500 រៀល/សន្លឹក</td>
+                                <td style="padding: 12px; border: 1px solid #e5e7eb;">1,500 រៀល/សន្លឹក</td>
+                            </tr>
+                            <tr style="background: #f9fafb;">
+                                <td style="padding: 12px; border: 1px solid #e5e7eb;">ប័ណ្ណក្រដាស ផ្ទៃក្រឡាលើស 40 ដម2</td>
+                                <td style="padding: 12px; border: 1px solid #e5e7eb;">700 រៀល/សន្លឹក</td>
+                                <td style="padding: 12px; border: 1px solid #e5e7eb;">2,100 រៀល/សន្លឹក</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #e5e7eb;">កៅស៊ូ/ក្រណាត់/សម្ភារៈផ្សេងៗ មិនលើស 40 ដម2</td>
+                                <td style="padding: 12px; border: 1px solid #e5e7eb;">700 រៀល/ផ្ទាំង</td>
+                                <td style="padding: 12px; border: 1px solid #e5e7eb;">2,100 រៀល/ផ្ទាំង</td>
+                            </tr>
+                            <tr style="background: #f9fafb;">
+                                <td style="padding: 12px; border: 1px solid #e5e7eb;">កៅស៊ូ/ក្រណាត់/សម្ភារៈផ្សេងៗ លើស 40 ដល់ 100 ដម2</td>
+                                <td style="padding: 12px; border: 1px solid #e5e7eb;">1,000 រៀល/ផ្ទាំង</td>
+                                <td style="padding: 12px; border: 1px solid #e5e7eb;">3,000 រៀល/ផ្ទាំង</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #e5e7eb;">ស្លាកអាជីវកម្ម</td>
+                                <td style="padding: 12px; border: 1px solid #e5e7eb;">100-250 រៀល/ដម2/ឆ្នាំ</td>
+                                <td style="padding: 12px; border: 1px solid #e5e7eb;">គិតតាមកម្ពស់អក្សរបរទេស</td>
+                            </tr>
+                            <tr style="background: #f9fafb;">
+                                <td style="padding: 12px; border: 1px solid #e5e7eb;">ផ្ទាំងអក្សរ ឬផ្ទាំងរូបភាព</td>
+                                <td style="padding: 12px; border: 1px solid #e5e7eb;">500-1,500 រៀល/ដម2/ឆ្នាំ</td>
+                                <td style="padding: 12px; border: 1px solid #e5e7eb;">2,000 រៀល ក្នុង 1 ដម នៃកម្ពស់អក្សរបរទេសសរុប</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div style="margin-top: 25px; padding: 18px; background-color: #f8fafc; border-left: 4px solid #3b82f6; border-radius: 0 8px 8px 0; color: #1e3a8a; line-height: 1.6;">
+                    <strong>ឧទាហរណ៍:</strong> ផ្ទាំងរូបភាពទំហំ 2ម x 4ម មានភ្លើងបំភ្លឺ និងដាក់កែងនឹងផ្លូវ មានផ្ទៃក្រឡា 800 ដម2។
+                    ពន្ធគោលគឺ 800 x 1,000 = 800,000 រៀល។ កម្ពស់អក្សរបរទេសសរុប 26 ដម បន្ថែមពន្ធ 26 x 2,000 = 52,000 រៀល។
+                    ពន្ធត្រូវបង់សរុបគឺ 852,000 រៀល។
+                </div>
+            </div>
+        </section>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+﻿{% extends "base.html" %}
 {% load static %}
 
 {% block title %}គណនាពន្ធ - Tax Calculation{% endblock %}
@@ -96,8 +96,10 @@
             style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
             <div style="font-size: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">💼</div>
             <div style="flex-grow: 1; text-align: center;">
-                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">ពន្ធកាត់ទុក</h3>
-                <p style="margin-bottom: 0; line-height: 1.5; color: #4a4a4a;">គណនាពន្ធកាត់ទុកលើប្រាក់ឈ្នួល ក្រុមហ៊ុន
+                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">
+                    ពន្ធលើថ្លៃឈ្នួលអចលនទ្រព្យ</h3>
+                <p style="margin-bottom: 0; line-height: 1.5; color: #4a4a4a;">
+                    គណនាពន្ធលើថ្លៃឈ្នួលអចលនទ្រព្យលើប្រាក់ឈ្នួល ក្រុមហ៊ុន
                     និងចំណូលផ្សេងទៀត</p>
             </div>
             <a href="{% url 'withholding_tax' %}" class="btn btn-primary"
@@ -200,7 +202,8 @@
             style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
             <div style="font-size: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">📝</div>
             <div style="flex-grow: 1; text-align: center;">
-                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">ពន្ធលើមធ្យោបាយដឹកជញ្ជូន
+                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">
+                    ពន្ធលើមធ្យោបាយដឹកជញ្ជូន
                 </h3>
                 <p style="margin-bottom: 0; line-height: 1.5; color: #4a4a4a;">
                     ចូលទៅកាន់ការគណនាពន្ធលើមធ្យោបាយដឹកជញ្ជូន</p>
@@ -209,6 +212,20 @@
                 style="background: linear-gradient(45deg, #22c55e, #3b82f6); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(34,197,94,0.4); white-space: nowrap; align-self: center;">ចូលទៅកាន់ការគណនា</a>
         </div>
 
+
+        <!-- 12. Advertising Board Tax -->
+        <div class="service-card"
+            style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
+            <div style="font-size: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">📢</div>
+            <div style="flex-grow: 1; text-align: center;">
+                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">
+                    ពន្ធលើផ្ទាំងផ្សព្វផ្សាយ</h3>
+                <p style="margin-bottom: 0; line-height: 1.5; color: #4a4a4a;">
+                    គណនាពន្ធសម្រាប់ប័ណ្ណផ្សព្វផ្សាយ ស្លាកអាជីវកម្ម និងផ្ទាំងរូបភាពពាណិជ្ជកម្ម។</p>
+            </div>
+            <a href="{% url 'advertising_board_tax' %}" class="btn btn-primary"
+                style="background: linear-gradient(45deg, #22c55e, #3b82f6); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(34,197,94,0.4); white-space: nowrap; align-self: center;">ចូលទៅកាន់ការគណនា</a>
+        </div>
 
     </div>
 </section>

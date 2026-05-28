@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.contrib.admin.views.decorators import staff_member_required
 from .forms import (SalaryTaxForm, PropertyTaxForm, VATTaxForm, IncomeTaxForm, WithholdingTaxForm, PatentTaxForm,
-                    SpecialTaxForm, RegistrationTaxForm, UnusedLandTaxForm, AccomodationTaxForm, PLTTaxForm, TransportationTaxForm)
+                    SpecialTaxForm, RegistrationTaxForm, UnusedLandTaxForm, AccomodationTaxForm,
+                    PLTTaxForm, TransportationTaxForm, AdvertisingBoardTaxForm)
 from .models import TaxRecord, TaxCalculationDetail
 from decimal import Decimal
 from tax_calculators import (
@@ -17,6 +18,7 @@ from tax_calculators.patent_tax import calculate_total_patent_tax
 from tax_calculators.special_tax import calculate_special_tax_with_breakdown
 from tax_calculators.registration_tax import calculate_registration_tax_with_renewal
 from tax_calculators.unused_land_tax import calculate_unused_land_tax_progressive
+from tax_calculators.advertising_board_tax import calculate_advertising_board_tax
 
 
 def get_tax_bracket(taxable_income):
@@ -553,7 +555,7 @@ def about_withholding_tax(request):
     Display information about withholding tax.
     """
     return render(request, "about_withholding_tax.html", {
-        'title': 'ពន្ធកាត់ទុក'
+        'title': 'ពន្ធលើថ្លៃឈ្នួលអចលនទ្រព្យ'
     })
 
 
@@ -811,6 +813,13 @@ def about_accomodation_tax(request):
     """
     return render(request, "about_accomodation_tax.html")
 
+
+def about_advertising_board_tax(request):
+    """
+    Render the detailed advertising board tax information page.
+    """
+    return render(request, "about_advertising.html")
+
 def accomodation_tax(request):
     """
     Render and handle the accommodation tax calculation page.
@@ -1011,5 +1020,74 @@ def transportation_tax(request):
         'penalty_amount': penalty_amount,
         'total_to_pay': total_to_pay,
         'selected_currency': selected_currency,
+        'currency_symbol': currency_symbol,
+    })
+
+
+def advertising_board_tax(request):
+    """
+    Render and handle the advertising board tax calculation page.
+    Rules are based on tax.md: paper/material posters, business signs,
+    and commercial text/image boards.
+    """
+    form = AdvertisingBoardTaxForm()
+    breakdown = None
+    total_tax = None
+    currency_symbol = get_currency_symbol('KHR')
+
+    if request.method == 'POST':
+        form = AdvertisingBoardTaxForm(request.POST)
+        if form.is_valid():
+            board_type = form.cleaned_data['board_type']
+            width_m = form.cleaned_data['width_m']
+            height_m = form.cleaned_data['height_m']
+            quantity = form.cleaned_data['quantity']
+            display_type = form.cleaned_data['display_type']
+            foreign_letter_dm = form.cleaned_data.get('foreign_letter_dm', 0) or 0
+            declaration_period = form.cleaned_data['declaration_period']
+
+            breakdown = calculate_advertising_board_tax(
+                board_type=board_type,
+                width_m=width_m,
+                height_m=height_m,
+                quantity=quantity,
+                display_type=display_type,
+                declaration_period=declaration_period,
+                foreign_letter_dm=foreign_letter_dm,
+            )
+            total_tax = breakdown['total_tax']
+
+            tax_record = TaxRecord.objects.create(
+                tax_type='advertising',
+                currency='KHR',
+                income=breakdown['area_dm2'] * breakdown['quantity'],
+                tax_amount=total_tax,
+            )
+
+            TaxCalculationDetail.objects.create(
+                tax_record=tax_record,
+                tax_rate=Decimal('0'),
+                taxable_amount=breakdown['area_dm2'],
+                tax_components={
+                    'calculation_type': 'advertising_board_tax',
+                    'board_type': board_type,
+                    'display_type': display_type,
+                    'declaration_period': declaration_period,
+                    'quantity': float(breakdown['quantity']),
+                    'area_dm2': float(breakdown['area_dm2']),
+                    'rate_khr': float(breakdown['rate']),
+                    'base_tax_khr': float(breakdown['base_tax']),
+                    'foreign_letter_dm': float(breakdown['foreign_letter_dm']),
+                    'foreign_tax_khr': float(breakdown['foreign_tax']),
+                    'period_multiplier': float(breakdown['period_multiplier']),
+                    'total_tax_khr': float(total_tax),
+                    'notes': breakdown['notes'],
+                }
+            )
+
+    return render(request, "advertising_board_tax.html", {
+        'form': form,
+        'breakdown': breakdown,
+        'total_tax': total_tax,
         'currency_symbol': currency_symbol,
     })

@@ -1,4 +1,4 @@
-from django import forms
+﻿from django import forms
 
 
 class SalaryTaxForm(forms.Form):
@@ -189,12 +189,12 @@ class WithholdingTaxForm(forms.Form):
     )
     
     withholding_type = forms.ChoiceField(
-        label="ប្រភេទពន្ធកាត់ទុក",
+        label="ប្រភេទពន្ធលើថ្លៃឈ្នួលអចលនទ្រព្យ",
         choices=[
-            ('salary', 'ពន្ធកាត់ទុកលើប្រាក់ឈ្នួល'),
-            ('dividend', 'ពន្ធកាត់ទុកលើផលប័ត្រ/ក្រុមហ៊ុន'),
-            ('rental', 'ពន្ធកាត់ទុកលើឈ្នួលផ្ទះ'),
-            ('other', 'ពន្ធកាត់ទុកផ្សេងទៀត'),
+            ('salary', 'ពន្ធលើថ្លៃឈ្នួលអចលនទ្រព្យលើប្រាក់ឈ្នួល'),
+            ('dividend', 'ពន្ធលើថ្លៃឈ្នួលអចលនទ្រព្យលើផលប័ត្រ/ក្រុមហ៊ុន'),
+            ('rental', 'ពន្ធលើថ្លៃឈ្នួលអចលនទ្រព្យលើឈ្នួលផ្ទះ'),
+            ('other', 'ពន្ធលើថ្លៃឈ្នួលអចលនទ្រព្យផ្សេងទៀត'),
         ],
         initial='salary',
         widget=forms.Select(attrs={'class': 'form-select'})
@@ -460,75 +460,200 @@ class AccomodationTaxForm(forms.Form):
             'step': '0.01'
         })
     )
+
+
+from django import forms
+
+
 class PLTTaxForm(forms.Form):
+
     currency = forms.ChoiceField(
         label="រូបិយប័ណ្ណ",
         choices=[
-            ('KHR', '៛ រៀលកម្ពុជា'),
-            ('USD', '$ ដុល្លារអាមេរិក'),
+            ('KHR', '៛ រៀល'),
+            ('USD', '$ ដុល្លារ'),
         ],
         initial='KHR',
+        widget=forms.Select(
+            attrs={
+                'class': 'form-select'
+            }
+        )
+    )
+
+    amount = forms.DecimalField(
+        label="តម្លៃលក់",
+        min_value=0,
+        decimal_places=2,
+        widget=forms.NumberInput(
+            attrs={
+                'placeholder': 'ឧ. 10,000,000',
+                'class': 'form-input',
+                'step': '0.01'
+            }
+        )
+    )
+
+
+class TransportationTaxForm(forms.Form):
+
+    currency = forms.ChoiceField(
+        label="រូបិយប័ណ្ណ",
+        choices=[
+            ('KHR', '៛ រៀល'),
+            ('USD', '$ ដុល្លារ'),
+        ],
+        initial='KHR',
+        widget=forms.Select(
+            attrs={
+                'class': 'form-select'
+            }
+        )
+    )
+
+    vehicle_type = forms.ChoiceField(
+        label="ប្រភេទយានយន្ត",
+        choices=[
+            (
+                'car_sedan_suv',
+                'រថយន្តធុនតូច (Sedan, SUV, Pickup)'
+            ),
+
+            (
+                'motorcycle',
+                'ម៉ូតូ និង តុកតុក'
+            ),
+
+            (
+                'truck_bus',
+                'រថយន្តដឹកទំនិញ និង រថយន្តក្រុង'
+            ),
+        ],
+        initial='car_sedan_suv',
+        widget=forms.Select(
+            attrs={
+                'class': 'form-select'
+            }
+        )
+    )
+
+    engine_capacity = forms.IntegerField(
+        label="ទំហំស៊ីឡាំង / កម្លាំងម៉ាស៊ីន (CC)",
+        min_value=0,
+        widget=forms.NumberInput(
+            attrs={
+                'placeholder': 'ឧ. 1800 (សេសេ CC)',
+                'class': 'form-input',
+                'step': '1'
+            }
+        )
+    )
+
+    CURRENT_YEAR = 2026
+
+    YEAR_CHOICES = [
+        (str(year), str(year))
+        for year in range(CURRENT_YEAR, 1979, -1)
+    ]
+
+    manufacture_year = forms.ChoiceField(
+        label="ឆ្នាំផលិតយានយន្ត",
+        choices=YEAR_CHOICES,
+        initial=str(CURRENT_YEAR),
+        widget=forms.Select(
+            attrs={
+                'class': 'form-select'
+            }
+        )
+    )
+
+    is_late = forms.BooleanField(
+        label="បង់យឺតពេល (ក្រោយ ថ្ងៃកំណត់)",
+        required=False,
+        widget=forms.CheckboxInput(
+            attrs={
+                'class': 'form-checkbox',
+                'style': 'margin-right: 8px; transform: scale(1.2);'
+            }
+        )
+    )
+class AdvertisingBoardTaxForm(forms.Form):
+    board_type = forms.ChoiceField(
+        label="ប្រភេទផ្ទាំងផ្សព្វផ្សាយ",
+        choices=[
+            ('paper_poster', 'ប័ណ្ណផ្សព្វផ្សាយពាណិជ្ជកម្មធ្វើពីក្រដាសធម្មតា'),
+            ('material_poster', 'ប័ណ្ណផ្សព្វផ្សាយធ្វើពីកៅស៊ូ ក្រណាត់ ឬសម្ភារៈផ្សេងៗ'),
+            ('business_sign', 'ស្លាកអាជីវកម្ម'),
+            ('text_image', 'ផ្ទាំងអក្សរ ឬផ្ទាំងរូបភាពពាណិជ្ជកម្ម'),
+        ],
+        initial='text_image',
         widget=forms.Select(attrs={'class': 'form-select'})
     )
-    
-    amount = forms.DecimalField(
-        label="ចំនួនដើម",
+
+    width_m = forms.DecimalField(
+        label="ទទឹង (ម៉ែត្រ)",
         min_value=0,
         decimal_places=2,
         widget=forms.NumberInput(attrs={
-            'placeholder': 'ឧ. 10,000,000',
+            'placeholder': 'ឧ. 4',
             'class': 'form-input',
             'step': '0.01'
         })
     )
-class TransportationTaxForm(forms.Form):
-    currency = forms.ChoiceField(
-        label="រូបិយប័ណ្ណ",
-        choices=[
-            ('KHR', '៛ រៀលកម្ពុជា'),
-            ('USD', '$ ដុល្លារអាមេរិក'),
-        ],
-        initial='KHR',
-        widget=forms.Select(attrs={'class': 'form-select'})
-    )
-    
-    vehicle_type = forms.ChoiceField(
-        label="ប្រភេទយានជំនិះ",
-        choices=[
-            ('car_sedan_suv', 'រថយន្តទេសចរណ៍ (Sedan, SUV, លក្ខណៈគ្រួសារ)'),
-            ('motorcycle', 'ម៉ូតូ ឬរ៉ឺម៉កកង់បី (Motorcycle/TukTuk)'),
-            ('truck_bus', 'រថយន្តដឹកទំនិញ ឬរថយន្តក្រុងដឹកអ្នកដំណើរ'),
-        ],
-        initial='car_sedan_suv',
-        widget=forms.Select(attrs={'class': 'form-select'})
-    )
-    
-    engine_capacity = forms.IntegerField(
-        label="កម្លាំងម៉ាស៊ីន / ទំហំស៊ីឡាំង (CC)",
+
+    height_m = forms.DecimalField(
+        label="កម្ពស់ (ម៉ែត្រ)",
         min_value=0,
+        decimal_places=2,
         widget=forms.NumberInput(attrs={
-            'placeholder': 'ឧ. 1800 (គិតជា CC)',
+            'placeholder': 'ឧ. 2',
             'class': 'form-input',
-            'step': '1'
+            'step': '0.01'
         })
     )
-    
-    # បង្កើតបញ្ជីឆ្នាំផលិតថយក្រោយ (ឡានចាស់បំផុតត្រឹមឆ្នាំ ១៩៨០ រហូតដល់ឆ្នាំបច្ចុប្បន្ន ២០២៦)
-    CURRENT_YEAR = 2026
-    YEAR_CHOICES = [(str(year), str(year)) for year in range(CURRENT_YEAR, 1979, -1)]
-    
-    manufacture_year = forms.ChoiceField(
-        label="ឆ្នាំផលិតយានជំនិះ",
-        choices=YEAR_CHOICES,
-        initial=str(CURRENT_YEAR),
+
+    quantity = forms.IntegerField(
+        label="ចំនួនផ្ទាំង",
+        min_value=1,
+        initial=1,
+        widget=forms.NumberInput(attrs={
+            'placeholder': '1',
+            'class': 'form-input'
+        })
+    )
+
+    display_type = forms.ChoiceField(
+        label="ភ្លើងបំភ្លឺ / ទីតាំងដាក់",
+        choices=[
+            ('no_light_parallel', 'គ្មានភ្លើង ដាក់ស្របនឹងផ្លូវ'),
+            ('no_light_perpendicular', 'គ្មានភ្លើង ដាក់កែងនឹងផ្លូវ'),
+            ('light_parallel', 'មានភ្លើង ដាក់ស្របនឹងផ្លូវ'),
+            ('light_perpendicular', 'មានភ្លើង ដាក់កែងនឹងផ្លូវ'),
+            ('vehicle', 'ភ្ជាប់ ឬគូរលើយានយន្តដឹកជញ្ជូន'),
+        ],
+        initial='light_perpendicular',
         widget=forms.Select(attrs={'class': 'form-select'})
     )
-    
-    is_late = forms.BooleanField(
-        label="បង់ប្រាក់ពន្ធយឺតយ៉ាវ (ហួសថ្ងៃទី ៣០ ខែកញ្ញា)",
-        required=False, # មិនបង្ខំឱ្យទំពក់យកទេ (Optional checkbox)
-        widget=forms.CheckboxInput(attrs={
-            'class': 'form-checkbox',
-            'style': 'margin-right: 8px; transform: scale(1.2);'
+
+    foreign_letter_dm = forms.DecimalField(
+        label="កម្ពស់អក្សរបរទេសសរុប (ដេស៊ីម៉ែត្រ)",
+        min_value=0,
+        initial=0,
+        decimal_places=2,
+        required=False,
+        widget=forms.NumberInput(attrs={
+            'placeholder': 'ឧ. 26',
+            'class': 'form-input',
+            'step': '0.01'
         })
+    )
+
+    declaration_period = forms.ChoiceField(
+        label="រយៈពេលប្រកាសបង់ពន្ធ",
+        choices=[
+            ('first_half', '៦ខែដំបូងនៃឆ្នាំ - បង់ពន្ធ 100%'),
+            ('second_half', '៦ខែចុងក្រោយនៃឆ្នាំ - បង់ពន្ធ 50%'),
+        ],
+        initial='first_half',
+        widget=forms.Select(attrs={'class': 'form-select'})
     )

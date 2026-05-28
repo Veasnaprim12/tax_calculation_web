@@ -25,12 +25,20 @@
             </div>
         </div>
         <nav>
-            <a href="{% url 'home' %}" {% if request.resolver_match.url_name=='home' %}class="active" {% endif
-                %}>ទំព័រដើម</a>
-            <a href="{% url 'about_tax' %}" {% if 'about' in request.resolver_match.url_name %}class="active" {% endif
-                %}>ស្វែងយល់អំពីពន្ធ</a>
-            <a href="{% url 'study_plan' %}" {% if request.resolver_match.url_name=='study_plan' %}class="active" {%
-                endif %}>អំពីគម្រោងសិក្សា</a>
+            <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %} active {% endif %}">
+                ទំព័រដើម
+            </a>
+
+            <a href="{% url 'about_tax' %}"
+                class="{% if 'about' in request.resolver_match.url_name %} active {% endif %}">
+                ស្វែងយល់អំពីពន្ធ
+            </a>
+
+            <a href="{% url 'study_plan' %}"
+                class="{% if request.resolver_match.url_name == 'study_plan' %} active {% endif %}">
+                អំពីគម្រោងសិក្សា
+            </a>
+
         </nav>
     </header>
 
