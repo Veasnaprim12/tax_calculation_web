@@ -54,7 +54,7 @@ class SalaryTaxForm(forms.Form):
     )
     
     grants_benefits = forms.DecimalField(
-        label="អត្ថប្រយោជន៍សង្គម/អំណោទិ៍ (Grants/Benefits)",
+        label="អត្ថប្រយោជន៍សង្គម/អំណោយ (Grants/Benefits)",
         min_value=0,
         initial=0,
         decimal_places=2,

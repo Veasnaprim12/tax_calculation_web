@@ -18,11 +18,11 @@
 				<strong>{{ total_records }}</strong>
 			</div>
 			<div class="result">
-				<span>ពន្ធប្រាក់បៀវតន៏</span>
+				<span>ពន្ធប្រាក់បៀវត្ស</span>
 				<strong>{{ salary_records }}</strong>
 			</div>
 			<div class="result">
-				<span>ពន្ធអាក</span>
+				<span>ពន្ធអាករ</span>
 				<strong>{{ property_records }}</strong>
 			</div>
 			<div class="result">
@@ -37,8 +37,8 @@
 			<h3 class="form-title">តារាងកំណត់ត្រា</h3>
 			<div>
 				<a href="?tax_type=" class="btn btn-secondary" style="margin-right: 8px;">ទាំងអស់</a>
-				<a href="?tax_type=salary" class="btn btn-primary" style="margin-right: 8px;">ពន្ធប្រាក់បៀវតន៏</a>
-				<a href="?tax_type=property" class="btn btn-secondary">ពន្ធអាក</a>
+				<a href="?tax_type=salary" class="btn btn-primary" style="margin-right: 8px;">ពន្ធប្រាក់បៀវត្ស</a>
+				<a href="?tax_type=property" class="btn btn-secondary">ពន្ធអាករ</a>
 			</div>
 		</div>
 
@@ -60,9 +60,9 @@
 					<tr style="border-bottom: 1px solid var(--border);">
 						<td style="padding: 12px; border: 1px solid var(--border);">
 							{% if record.tax_type == 'salary' %}
-								<span style="background-color: var(--primary); color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px;">ពន្ធប្រាក់បៀវតន៏</span>
+								<span style="background-color: var(--primary); color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px;">ពន្ធប្រាក់បៀវត្ស</span>
 							{% else %}
-								<span style="background-color: var(--secondary); color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px;">ពន្ធអាក</span>
+								<span style="background-color: var(--secondary); color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px;">ពន្ធអាករ</span>
 							{% endif %}
 						</td>
 						<td style="padding: 12px; border: 1px solid var(--border);">

@@ -1,422 +1,137 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}ពន្ធប្រថាប់ត្រា{% endblock %}
+{% block title %}ពន្ធប្រថាប់ត្រា - Registration Tax Information{% endblock %}
+
+{% block nav_about %}active{% endblock %}
 
 {% block content %}
 
-<div style="background-color: #a89d7c; min-height: 100vh; padding: 20px 0;">
+    <section class="info-hero">
+		<div class="hero-text" style="text-align: center; margin-bottom: 40px;">
+			<div style="max-width: 900px; margin: 0 auto; color: white; text-align: center; position: relative; z-index: 1;">
+				<span style="font-size: 3rem; display: block; margin-bottom: 15px;">📝</span>
+				<h1 style="font-family: 'Khmer Moul', cursive; font-size: 2rem; margin-bottom: 15px; color: white;">អំពីពន្ធប្រថាប់ត្រា (Registration Tax)</h1>
+				<p style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.85); line-height: 1.8;">
+					ស្វែងយល់អំពីការបង់ពន្ធលើការផ្ទេរកម្មសិទ្ធិអចលនទ្រព្យ និងយានយន្តគ្រប់ប្រភេទនៅក្នុងប្រទេសកម្ពុជា។
+				</p>
+			</div>
+		</div>
+    </section>
 
-    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-
-        <!-- HERO -->
-        <section class="hero" style="margin-bottom: 40px;">
-
-            <div class="hero-text" style="
-                    text-align: center;
-                    margin-bottom: 40px;
-                    color: white;
-                 ">
-
-                <img src="{% static 'images/logo.png' %}" alt="Logo" style="
-                        width: 120px;
-                        height: 120px;
-                        border-radius: 50%;
-                        object-fit: cover;
-                        margin-bottom: 20px;
-                        border: 3px solid rgba(255,255,255,0.3);
-                        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-                     ">
-
-                <h1 style="
-                    color: white;
-                    margin-bottom: 15px;
-                    font-size: 2.5rem;
-                ">
-                    ពន្ធប្រថាប់ត្រា
-                </h1>
-
-                <p style="
-                    color: rgba(255,255,255,0.9);
-                    max-width: 900px;
-                    margin: auto;
-                    line-height: 1.8;
-                    font-size: 1.05rem;
-                ">
-                    ពន្ធប្រថាប់ត្រា
-                    គឺជាប្រភេទពន្ធដែលកំណត់លើ
-                    ការផ្ទេរកម្មសិទ្ធិ
-                    ឬសិទ្ធិកាន់កាប់ទ្រព្យ។
+    <section class="info-grid-section">
+        <div class="container" style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
+            
+            <div class="info-panel">
+                <h2>១. តើពន្ធប្រថាប់ត្រាជាអ្វី?</h2>
+                <p style="color: #475569; line-height: 1.8; margin-bottom: 20px;">
+                    ពន្ធប្រថាប់ត្រា គឺជាពន្ធដែលត្រូវបង់នៅពេលមានការផ្ទេរកម្មសិទ្ធិ ឬសិទ្ធិកាន់កាប់អចលនទ្រព្យ (ដី ផ្ទះ អគារ) និងចលនទ្រព្យមួយចំនួន (រថយន្ត ម៉ូតូ កប៉ាល់)។
                 </p>
-
+                <ul>
+                    <li><span style="color: #3b82f6; font-weight: bold;">✓</span> ការទិញ-លក់ អចលនទ្រព្យ</li>
+                    <li><span style="color: #3b82f6; font-weight: bold;">✓</span> ការផ្ទេរកម្មសិទ្ធិយានយន្ត</li>
+                    <li><span style="color: #3b82f6; font-weight: bold;">✓</span> ការផ្ទេរភាគហ៊ុនក្រុមហ៊ុន</li>
+                </ul>
             </div>
 
-        </section>
+            <div class="info-panel">
+                <h2>២. ការលើកលែងពន្ធ និងការកាត់បន្ថយ</h2>
+                <p style="color: #475569; margin-bottom: 15px; line-height: 1.8;">ការលើកលែងពន្ធត្រូវបានអនុវត្តក្នុងករណីខ្លះដូចជា៖</p>
+                <ul style="font-size: 0.95rem;">
+                    <li><strong style="color: #1e293b;">• រវាងសាច់ញាតិផ្ទាល់៖</strong> ប្តី-ប្រពន្ធ ឪពុកម្តាយ-កូន ជីដូនជីតា-ចៅ (លើកលែង ១០០%)</li>
+                    <li><strong style="color: #1e293b;">• មរតក/អំណោយ៖</strong> រវាងបងប្អូនបង្កើត ឬដន្លង (មានការកាត់កងតាមកម្រិតកំណត់)</li>
+                    <li><strong style="color: #1e293b;">• យានយន្តខ្នាតតូច៖</strong> ម៉ូតូ កង់បី និងយានជំនិះកសិកម្មមួយចំនួន</li>
+                </ul>
+            </div>
 
-        <!-- DEFINITION -->
-        <section style="margin-bottom: 35px;">
-
-            <div class="panel" style="
-                    background: white;
-                    padding: 35px;
-                    border-radius: 20px;
-                    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-                 ">
-
-                <h2 style="
-                    color: #1e3c72;
-                    margin-bottom: 20px;
-                ">
-                    តើពន្ធប្រថាប់ត្រាជាអ្វី?
-                </h2>
-
-                <p style="
-                    color: #475569;
-                    line-height: 2;
-                    font-size: 1rem;
-                ">
-                    ពន្ធប្រថាប់ត្រា
-                    គឺជាពន្ធដែលត្រូវបង់
-                    នៅពេលមានការផ្ទេរកម្មសិទ្ធិ
-                    ឬសិទ្ធិកាន់កាប់
-                    អចលនទ្រព្យ និងចលនទ្រព្យ
-                    ដូចជា ដី ផ្ទះ រថយន្ត
-                    និងយានជំនិះផ្សេងៗ។
+            <div class="info-panel">
+                <h2>៣. កាតព្វកិច្ចបង់ពន្ធ</h2>
+                <p style="color: #475569; margin-bottom: 20px; line-height: 1.8;">អ្នកទទួលកម្មសិទ្ធិមានភារៈត្រូវបង់ពន្ធក្នុងរយៈពេលកំណត់៖</p>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.95rem; border-bottom: 1px dashed #e2e8f0; padding-bottom: 8px;">
+                        <span style="color: #475569;"><strong>រយៈពេលកំណត់</strong></span>
+                        <span style="color: #10b981; font-weight: bold;">៣ ខែ ក្រោយការផ្ទេរ</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.95rem;">
+                        <span style="color: #475569;"><strong>កន្លែងបង់ពន្ធ</strong></span>
+                        <span style="color: #10b981; font-weight: bold;">សាខាពន្ធដារ ឬធនាគារ</span>
+                    </div>
+                </div>
+                <p style="font-size: 0.85rem; color: #64748b; margin-top: 15px; background: #f0fdf4; padding: 10px; border-radius: 8px; margin-bottom: 0;">
+                    💡 <strong>សម្គាល់:</strong> ការខកខានមិនបានបង់ពន្ធតាមកំណត់នឹងត្រូវរងការផាកពិន័យតាមច្បាប់។
                 </p>
-
             </div>
 
-        </section>
-
-        <!-- PROPERTY TYPES -->
-        <section style="margin-bottom: 35px;">
-
-            <div class="panel" style="
-                    background: white;
-                    padding: 35px;
-                    border-radius: 20px;
-                    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-                 ">
-
-                <h2 style="
-                    color: #1e3c72;
-                    margin-bottom: 25px;
-                ">
-                    ប្រភេទទ្រព្យជាប់ពន្ធ
-                </h2>
-
-                <div style="
-                    display: grid;
-                    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
-                    gap: 20px;
-                ">
-
-                    <div style="
-                        background: #f8fafc;
-                        padding: 25px;
-                        border-radius: 15px;
-                    ">
-
-                        <h3 style="
-                            color: #1e3c72;
-                            margin-bottom: 15px;
-                        ">
-                            អចលនទ្រព្យ
-                        </h3>
-
-                        <ul style="
-                            color: #475569;
-                            line-height: 2;
-                            padding-left: 20px;
-                        ">
-
-                            <li>ដី</li>
-                            <li>ផ្ទះ</li>
-                            <li>អគារ</li>
-                            <li>សំណង់ផ្សេងៗ</li>
-
-                        </ul>
-
-                    </div>
-
-                    <div style="
-                        background: #f8fafc;
-                        padding: 25px;
-                        border-radius: 15px;
-                    ">
-
-                        <h3 style="
-                            color: #1e3c72;
-                            margin-bottom: 15px;
-                        ">
-                            ចលនទ្រព្យ
-                        </h3>
-
-                        <ul style="
-                            color: #475569;
-                            line-height: 2;
-                            padding-left: 20px;
-                        ">
-
-                            <li>រថយន្ត</li>
-                            <li>ម៉ូតូ</li>
-                            <li>កប៉ាល់</li>
-                            <li>យានជំនិះផ្សេងៗ</li>
-
-                        </ul>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <!-- TAX RATE -->
-        <section style="margin-bottom: 35px;">
-
-            <div class="panel" style="
-                    background: white;
-                    padding: 35px;
-                    border-radius: 20px;
-                    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-                 ">
-
-                <h2 style="
-                    color: #1e3c72;
-                    margin-bottom: 25px;
-                ">
-                    អត្រាពន្ធ
-                </h2>
-
-                <div style="
-                    background: #f8fafc;
-                    padding: 25px;
-                    border-radius: 15px;
-                ">
-
-                    <p style="
-                        color: #475569;
-                        line-height: 2;
-                        font-size: 1.05rem;
-                    ">
-
-                        អត្រាពន្ធប្រថាប់ត្រា
-                        ត្រូវបានកំណត់តាមអត្រា
-
-                        <strong style="color:#1e3c72;">
-                            4%
-                        </strong>
-
-                        នៃមូលដ្ឋានគិតពន្ធ។
-
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <!-- FORMULA -->
-        <section style="margin-bottom: 35px;">
-
-            <div class="panel" style="
-                    background: linear-gradient(135deg,#e0f2fe,#dbeafe);
-                    padding: 35px;
-                    border-radius: 20px;
-                    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-                 ">
-
-                <h2 style="
-                    color: #1e3c72;
-                    margin-bottom: 20px;
-                ">
-                    រូបមន្តគណនា
-                </h2>
-
-                <div style="
-                    background: white;
-                    padding: 25px;
-                    border-radius: 15px;
-                    text-align: center;
-                    font-size: 1.1rem;
-                    line-height: 2;
-                    color: #1e3c72;
-                    font-weight: bold;
-                    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-                ">
-
-                    ប្រាក់ពន្ធ =
-                    មូលដ្ឋានគិតពន្ធ × 4%
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <!-- EXAMPLE -->
-        <section style="margin-bottom: 40px;">
-
-            <div class="panel" style="
-                    background: white;
-                    padding: 35px;
-                    border-radius: 20px;
-                    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-                 ">
-
-                <h2 style="
-                    color: #1e3c72;
-                    margin-bottom: 25px;
-                ">
-                    ឧទាហរណ៍គណនា
-                </h2>
-
-                <div style="
-                    background: #f8fafc;
-                    padding: 25px;
-                    border-radius: 15px;
-                    border-left: 6px solid #1e3c72;
-                ">
-
-                    <p style="
-                        color: #475569;
-                        line-height: 2;
-                        margin-bottom: 20px;
-                    ">
-
-                        ករណីផ្ទេរកម្មសិទ្ធិផ្ទះល្វែង
-                        ដែលមានតម្លៃសរុប
-                        235,200,000៛។
-
-                    </p>
-
-                    <div style="
-                        background: white;
-                        padding: 20px;
-                        border-radius: 12px;
-                        line-height: 2;
-                        color: #1e3c72;
-                        font-weight: bold;
-                    ">
-
-                        មូលដ្ឋានគិតពន្ធ =
-                        235,200,000៛
-                        <br><br>
-
-                        ប្រាក់ពន្ធ =
-                        235,200,000៛ × 4%
-                        <br><br>
-
-                        ប្រាក់ពន្ធត្រូវបង់ =
-                        9,408,000៛
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <!-- EXEMPTION -->
-        <section style="margin-bottom: 35px;">
-
-            <div class="panel" style="
-                    background: white;
-                    padding: 35px;
-                    border-radius: 20px;
-                    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-                 ">
-
-                <h2 style="
-                    color: #1e3c72;
-                    margin-bottom: 20px;
-                ">
-                    ការលើកលែងពន្ធ
-                </h2>
-
-                <ul style="
-                    color: #475569;
-                    line-height: 2.2;
-                    padding-left: 25px;
-                ">
-
-                    <li>
-                        ការផ្ទេរកម្មសិទ្ធិក្នុងរង្វង់ញាតិ។
-                    </li>
-
-                    <li>
-                        សន្តតិកម្ម។
-                    </li>
-
-                    <li>
-                        ប្រទានកម្មលើកទី១។
-                    </li>
-
-                    <li>
-                        ទ្រព្យរបស់ស្ថាប័នរដ្ឋ។
-                    </li>
-
-                    <li>
-                        ទ្រព្យរបស់បេសកកម្មទូត
-                        និងអង្គការអន្តរជាតិ។
-                    </li>
-
-                </ul>
-
-            </div>
-
-        </section>
-
-        <!-- OBLIGATION -->
-        <section style="margin-bottom: 40px;">
-
-            <div class="panel" style="
-                    background: white;
-                    padding: 35px;
-                    border-radius: 20px;
-                    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-                 ">
-
-                <h2 style="
-                    color: #1e3c72;
-                    margin-bottom: 20px;
-                ">
-                    កាតព្វកិច្ចបង់ពន្ធ
-                </h2>
-
-                <ul style="
-                    color: #475569;
-                    line-height: 2.2;
-                    padding-left: 25px;
-                ">
-
-                    <li>
-                        ត្រូវដាក់លិខិតប្រកាសបង់ពន្ធ
-                        ក្នុងរយៈពេល 3 ខែ។
-                    </li>
-
-                    <li>
-                        ត្រូវបង់ពន្ធនៅអគ្គនាយកដ្ឋានពន្ធដារ
-                        ឬសាខាពន្ធដារ។
-                    </li>
-
-                    <li>
-                        អាចបង់តាមធនាគារ
-                        ឬប្រព័ន្ធ Online។
-                    </li>
-
-                </ul>
-
-            </div>
-
-        </section>
-
-    </div>
-
-</div>
+        </div>
+    </section>
+
+	<section class="tax-rates-section">
+		<div class="container" style="max-width: 900px; margin: 0 auto;">
+			
+			<div class="section-header">
+				<h2>៤. អត្រាពន្ធប្រថាប់ត្រា</h2>
+				<p>
+					អត្រាពន្ធត្រូវបានកំណត់តាមប្រភេទនៃទ្រព្យសម្បត្តិដែលត្រូវបានផ្ទេរកម្មសិទ្ធិ។
+				</p>
+			</div>
+
+			<div class="tax-table-container">
+				<table class="tax-table">
+					<thead>
+						<tr>
+							<th>ប្រភេទទ្រព្យសម្បត្តិ/ប្រតិបត្តិការ</th>
+							<th style="text-align: center;">អត្រាពន្ធ</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>អចលនទ្រព្យ (ដី ផ្ទះ អគារ និងសំណង់ផ្សេងៗ)</td>
+							<td style="text-align: center; font-weight: bold; color: #ef4444;">៤%</td>
+						</tr>
+						<tr>
+							<td>យានយន្ត និងមធ្យោបាយដឹកជញ្ជូនគ្រប់ប្រភេទ</td>
+							<td style="text-align: center; font-weight: bold; color: #ef4444;">៤%</td>
+						</tr>
+						<tr>
+							<td>ការផ្ទេរភាគហ៊ុនក្រុមហ៊ុន</td>
+							<td style="text-align: center; font-weight: bold; color: #3b82f6;">០.១%</td>
+						</tr>
+						<tr>
+							<td>លិខិតសន្យាផ្គត់ផ្គង់ទំនិញ ឬសេវាប្រើប្រាស់ថវិការដ្ឋ</td>
+							<td style="text-align: center; font-weight: bold; color: #3b82f6;">០.១%</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="example-calculation">
+				<h3>ឧទាហរណ៍ការគណនា:</h3>
+				<p style="color: #475569; line-height: 1.8; margin-bottom: 16px;">
+					ប្រសិនបើលោកអ្នកទិញផ្ទះមួយខ្នងដែលមានតម្លៃវាយតម្លៃ <strong>២០០,០០០,០០០ រៀល</strong>:
+				</p>
+				<div style="background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
+					<strong style="color: #1e293b; display: block; margin-bottom: 10px;">ការគណនា (អត្រា ៤%):</strong>
+					<code style="font-size: 1.05rem; color: #0f172a;">
+						២០០,០០០,០០០ × ៤% = <strong>៨,០០០,០០០ រៀល</strong>
+					</code>
+					<p style="margin-top: 12px; font-weight: bold; color: #10b981; font-size: 1.1rem; margin-bottom: 0;">
+						នាំឲ្យពន្ធប្រថាប់ត្រាដែលត្រូវបង់ = ៨,០០០,០០០ រៀល
+					</p>
+				</div>
+			</div>
+
+		</div>
+	</section>
+
+    <section class="button-section">
+        <div style="max-width: 600px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+            <a href="{% url 'registration_tax' %}">
+                ចាប់ផ្តើមគណនាពន្ធឥឡូវនេះ
+            </a>
+            <a href="{% url 'about_tax' %}">
+                ត្រឡប់ទៅកាន់ព័ត៌មានពន្ធ
+            </a>
+        </div>
+    </section>
 
 {% endblock %}

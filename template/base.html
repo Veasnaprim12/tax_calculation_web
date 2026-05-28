@@ -1,44 +1,54 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="km">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{% block title %}គណនាពន្ធ - Tax Calculation{% endblock %}</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Battambang:wght@300;400;700&family=Khmer+Moul:wght@400&display=swap"
-            rel="stylesheet"
-        />
-        <link rel="stylesheet" href="{% static 'style.css' %}" />
-    </head>
-    <body class="{% block body_class %}{% endblock %}" style="background-image: none; background-color: #e5ead4; margin: 0; padding: 0;">
-        <header style="background: linear-gradient(135deg, #8794ae 0%, #08b545 100%); padding: 32px 8vw 12px;">
-            <div class="brand">
-                <div class="logo">ពន្ធ</div>
-                <div>
-                    <h1>ប្រព័ន្ធគណនាពន្ធនៃប្រទេសកម្ពុជា</h1>
-                    <p>ជួយគណនាពន្ធប្រាក់ចំណូលបានរហ័ស និងច្បាស់លាស់</p>
-                </div>
-            </div>
-            <nav>
-                <a href="{% url 'home' %}" {% if request.resolver_match.url_name == 'home' %}class="active"{% endif %}>ទំព័រដើម</a>
-                <a href="{% url 'about_tax' %}" {% if 'about' in request.resolver_match.url_name %}class="active"{% endif %}>ស្វែងយល់អំពីពន្ធ</a>
-                <a href="{% url 'study_plan' %}" {% if request.resolver_match.url_name == 'study_plan' %}class="active"{% endif %}>អំពីគម្រោងសិក្សា</a>
-            </nav>
-        </header>
 
-        <main>
-            {% block content %}{% endblock %}
-        </main>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}គណនាពន្ធ - Tax Calculation{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Battambang:wght@300;400;700&family=Khmer+Moul:wght@400&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+</head>
 
-        <footer style="text-align: center; display: flex; justify-content: center; width: 100%; background: linear-gradient(135deg, #467f73 100%); padding: 30px 0; color: white; margin-top: 60px;">
-            <div class="footer-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-                <p style="color: white; margin: 0;">© 2026 Tax Calculation · បង្កើតសម្រាប់គម្រោងសិក្សារបស់និស្សិត​(Dept. AMS) សាលា(ITC) </p>
-                <div class="footer-links" style="display: flex; justify-content: center; gap: 15px; margin-top: 5px;">
-                    <a href="{% url 'about_tax' %}" style="color: white; text-decoration: none;">ស្វែងយល់អំពីពន្ធ</a>             </div>
+<body class="{% block body_class %}{% endblock %}"
+    style="background-image: none; background-color: #e5ead4; margin: 0; padding: 0;">
+    <header style="background: linear-gradient(135deg, #8794ae 0%, #08b545 100%); padding: 32px 8vw 12px;">
+        <div class="brand">
+            <div class="logo">ពន្ធ</div>
+            <div>
+                <h1>ប្រព័ន្ធគណនាពន្ធនៃប្រទេសកម្ពុជា</h1>
+                <p>ជួយគណនាពន្ធប្រាក់ចំណូលបានរហ័ស និងច្បាស់លាស់</p>
             </div>
-        </footer>
-    </body>
+        </div>
+        <nav>
+            <a href="{% url 'home' %}" {% if request.resolver_match.url_name=='home' %}class="active" {% endif
+                %}>ទំព័រដើម</a>
+            <a href="{% url 'about_tax' %}" {% if 'about' in request.resolver_match.url_name %}class="active" {% endif
+                %}>ស្វែងយល់អំពីពន្ធ</a>
+            <a href="{% url 'study_plan' %}" {% if request.resolver_match.url_name=='study_plan' %}class="active" {%
+                endif %}>អំពីគម្រោងសិក្សា</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer
+        style="text-align: center; display: flex; justify-content: center; width: 100%; background: linear-gradient(135deg, #467f73 100%); padding: 30px 0; color: white; margin-top: 60px;">
+        <div class="footer-content"
+            style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+            <p style="color: white; margin: 0;">© 2026 Tax Calculation · បង្កើតសម្រាប់គម្រោងសិក្សារបស់និស្សិត​(Dept.
+                AMS) សាលា(ITC) </p>
+            <div class="footer-links" style="display: flex; justify-content: center; gap: 15px; margin-top: 5px;">
+                <a href="{% url 'about_tax' %}" style="color: white; text-decoration: none;">ស្វែងយល់អំពីពន្ធ</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
 </html>

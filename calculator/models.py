@@ -3,15 +3,15 @@ from django.db import models
 
 class TaxRecord(models.Model):
     TAX_TYPE_CHOICES = [
-        ('salary', 'ពន្ធលើប្រាក់បៀវតន៏'),
-        ('property', 'ពន្ធអាក'),
-        ('vat', 'ពន្ធលើតម្លៃបន្ថែម'),
+        ('salary', 'ពន្ធលើប្រាក់បៀវត្ស'),
+        ('property', 'ពន្ធអាករ'),
+        ('vat', 'អាករលើតម្លៃបន្ថែម'),
         ('income', 'ពន្ធលើចំណូលលុយប្រតិបត្តិការ'),
         ('withholding', 'ពន្ធកាត់ទុក'),
-        ('patent', 'ពន្ធលើច្បាប់ផលិតម្ល'),
-        ('special', 'ពន្ធលើកិច្ចការពិសេស'),
-        ('registration', 'ពន្ធលើការចុះបញ្ជី'),
-        ('unused_land', 'ពន្ធលើដីដែលមិនប្រើប្រាស់'),
+        ('patent', 'ពន្ធលើប៉ាតង់'),
+        ('special', 'អាករពិសេស'),
+        ('registration', 'ពន្ធប្រថាប់ត្រា'),
+        ('unused_land', 'ពន្ធលើដីធ្លីមិនបានប្រើប្រាស់'),
         ('accomodation', 'ពន្ធលើការស្នាក់នៅ'),
     ]
     
@@ -50,9 +50,9 @@ class TaxRecord(models.Model):
 
     def __str__(self):
         if self.tax_type == 'salary':
-            return f"ពន្ធប្រាក់បៀវតន៏: {self.income:,}៛ → ពន្ធ: {self.tax_amount:,}៛ (ថ្ងៃ {self.created_at.date()})"
+            return f"ពន្ធប្រាក់បៀវត្ស: {self.income:,}៛ → ពន្ធ: {self.tax_amount:,}៛ (ថ្ងៃ {self.created_at.date()})"
         else:
-            return f"ពន្ធអាក: {self.property_value:,}៛ → ពន្ធ: {self.tax_amount:,}៛ (ថ្ងៃ {self.created_at.date()})"
+            return f"ពន្ធអាករ: {self.property_value:,}៛ → ពន្ធ: {self.tax_amount:,}៛ (ថ្ងៃ {self.created_at.date()})"
 
 
 class TaxCalculationDetail(models.Model):
@@ -70,7 +70,7 @@ class TaxCalculationDetail(models.Model):
     deduction_children = models.DecimalField(max_digits=15, decimal_places=2, default=0, verbose_name="ការកាត់ពន្ធកូន")
     deduction_wife = models.DecimalField(max_digits=15, decimal_places=2, default=0, verbose_name="ការកាត់ពន្ធប្រពន្ធ")
     total_deductions = models.DecimalField(max_digits=15, decimal_places=2, default=0, verbose_name="ការកាត់ពន្ធសរុប")
-    salary_tax_amount = models.DecimalField(max_digits=15, decimal_places=2, default=0, verbose_name="ពន្ធប្រាក់បៀវតន៏")
+    salary_tax_amount = models.DecimalField(max_digits=15, decimal_places=2, default=0, verbose_name="ពន្ធប្រាក់បៀវត្ស")
     grant_benefit_amount = models.DecimalField(max_digits=15, decimal_places=2, default=0, verbose_name="អត្ថប្រយោជន៍/អំណោយ")
     grant_tax_amount = models.DecimalField(max_digits=15, decimal_places=2, default=0, verbose_name="ពន្ធលើអត្ថប្រយោជន៍")
 

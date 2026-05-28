@@ -1,372 +1,137 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}អំពីពន្ធប៉ាតង់{% endblock %}
+{% block title %}អំពីពន្ធប៉ាតង់ - Patent Tax Information{% endblock %}
+
+{% block nav_about %}active{% endblock %}
 
 {% block content %}
 
-<div style="background-color: #a89d7c; min-height: 100vh; padding: 20px 0;">
+    <section class="info-hero">
+		<div class="hero-text" style="text-align: center; margin-bottom: 40px;">
+			<div style="max-width: 900px; margin: 0 auto; color: white; text-align: center; position: relative; z-index: 1;">
+				<span style="font-size: 3rem; display: block; margin-bottom: 15px;">📜</span>
+				<h1 style="font-family: 'Khmer Moul', cursive; font-size: 2rem; margin-bottom: 15px; color: white;">អំពីពន្ធប៉ាតង់</h1>
+				<p style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.85); line-height: 1.8;">
+					ស្វែងយល់អំពីការបង់ពន្ធប្រចាំឆ្នាំ សកម្មភាពអាជីវកម្ម និងកាតព្វកិច្ចពាក់ព័ន្ធនឹងពន្ធប៉ាតង់នៅក្នុងប្រទេសកម្ពុជា។
+				</p>
+			</div>
+		</div>
+    </section>
 
-    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-
-        <!-- HERO SECTION -->
-        <section class="hero" style="margin-bottom: 40px;">
-
-            <div class="hero-text" style="
-                    text-align: center;
-                    margin-bottom: 40px;
-                    color: rgba(255, 255, 255, 0.577);
-                 ">
-
-                <img src="{% static 'images/logo.png' %}" alt="Logo" style="
-                        width: 120px;
-                        height: 120px;
-                        border-radius: 50%;
-                        object-fit: cover;
-                        margin-bottom: 20px;
-                        border: 3px solid rgba(255,255,255,0.3);
-                        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-                     ">
-
-                <h1 style="
-                    color: white;
-                    margin-bottom: 15px;
-                    font-size: 2.5rem;
-                ">
-                    អំពីពន្ធប៉ាតង់
-                </h1>
-
-                <p style="
-                    color: rgba(255,255,255,0.9);
-                    max-width: 850px;
-                    margin: auto;
-                    line-height: 1.8;
-                    font-size: 1.05rem;
-                ">
-                    ពន្ធប៉ាតង់ គឺជាប្រភេទពន្ធប្រចាំឆ្នាំ
-                    ដែលត្រូវបានកំណត់លើសកម្មភាពអាជីវកម្ម
-                    របស់អ្នកជាប់ពន្ធនៅក្នុងព្រះរាជាណាចក្រកម្ពុជា។
+    <section class="info-grid-section">
+        <div class="container" style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
+            
+            <div class="info-panel">
+                <h2>១. តើពន្ធប៉ាតង់ជាអ្វី?</h2>
+                <p style="color: #475569; line-height: 1.8; margin-bottom: 20px;">
+                    ពន្ធប៉ាតង់ គឺជាប្រភេទពន្ធប្រចាំឆ្នាំ ដែលត្រូវបានកំណត់លើសកម្មភាពអាជីវកម្មនីមួយៗរបស់អ្នកជាប់ពន្ធតាមរបបស្វ័យប្រកាស ដែលប្រកបអាជីវកម្មនៅក្នុងកម្ពុជា ដោយផ្អែកលើប្រភេទអ្នកជាប់ពន្ធ និងកម្រិតផលរបរ។
                 </p>
-
+                <ul>
+                    <li><span style="color: #3b82f6; font-weight: bold;">✓</span> ត្រូវបង់ជារៀងរាល់ឆ្នាំ</li>
+                    <li><span style="color: #3b82f6; font-weight: bold;">✓</span> ផ្អែកលើប្រភេទអ្នកជាប់ពន្ធ (តូច មធ្យម ធំ)</li>
+                    <li><span style="color: #3b82f6; font-weight: bold;">✓</span> សម្រាប់រាល់សកម្មភាពអាជីវកម្ម</li>
+                </ul>
             </div>
 
-        </section>
+            <div class="info-panel">
+                <h2>២. ការលើកលែងពន្ធ</h2>
+                <p style="color: #475569; margin-bottom: 15px; line-height: 1.8;">សកម្មភាព ឬស្ថាប័នដែលត្រូវបានលើកលែងរួមមាន៖</p>
+                <ul style="font-size: 0.95rem;">
+                    <li><strong style="color: #1e293b;">• ស្ថាប័នរដ្ឋ៖</strong> បេសកកម្មទូត ឬកុងស៊ុលបរទេស អង្គការអន្តរជាតិ</li>
+                    <li><strong style="color: #1e293b;">• អង្គការសង្គម៖</strong> អង្គការសាសនា សប្បុរសធម៌ វិទ្យាសាស្ត្រ អក្សរសាស្ត្រ និងអប់រំ</li>
+                    <li><strong style="color: #1e293b;">• អាជីវកម្មខ្នាតតូច៖</strong> អាជីវកម្មដែលមានផលរបរប្រចាំឆ្នាំក្រោមកម្រិតកំណត់</li>
+                </ul>
+            </div>
 
-        <!-- DEFINITION -->
-        <section style="margin-bottom: 35px;">
-
-            <div class="panel" style="
-                    background: white;
-                    padding: 35px;
-                    border-radius: 20px;
-                    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-                 ">
-
-                <h2 style="
-                    color: #1e3c72;
-                    margin-bottom: 20px;
-                ">
-                    ក. តើពន្ធប៉ាតង់ជាអ្វី?
-                </h2>
-
-                <p style="
-                    color: #475569;
-                    line-height: 2;
-                    font-size: 1rem;
-                ">
-                    ពន្ធប៉ាតង់ គឺជាប្រភេទពន្ធប្រចាំឆ្នាំ
-                    ដែលត្រូវបានកំណត់លើសកម្មភាពអាជីវកម្មនីមួយៗ
-                    របស់អ្នកជាប់ពន្ធតាមរបបស្វ័យប្រកាស
-                    ដែលប្រកបអាជីវកម្មនៅក្នុងកម្ពុជា
-                    ដោយផ្អែកលើប្រភេទអ្នកជាប់ពន្ធ
-                    និងកម្រិតផលរបរ។
+            <div class="info-panel">
+                <h2>៣. កាតព្វកិច្ច និងពេលវេលា</h2>
+                <p style="color: #475569; margin-bottom: 20px; line-height: 1.8;">អ្នកជាប់ពន្ធត្រូវគោរពតាមពេលវេលាកំណត់ដូចខាងក្រោម៖</p>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.95rem; border-bottom: 1px dashed #e2e8f0; padding-bottom: 8px;">
+                        <span style="color: #475569;"><strong>កាលបរិច្ឆេទបង់ពន្ធ</strong></span>
+                        <span style="color: #10b981; font-weight: bold;">១ មករា - ៣១ មីនា</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.95rem;">
+                        <span style="color: #475569;"><strong>អាជីវកម្មថ្មី (ឆមាសទី២)</strong></span>
+                        <span style="color: #10b981; font-weight: bold;">បង់ពាក់កណ្តាល (៥០%)</span>
+                    </div>
+                </div>
+                <p style="font-size: 0.85rem; color: #64748b; margin-top: 15px; background: #f0fdf4; padding: 10px; border-radius: 8px; margin-bottom: 0;">
+                    💡 <strong>សម្គាល់:</strong> ប្រសិនបើលោកអ្នកប្រកបអាជីវកម្មលើសពីមួយ លោកអ្នកត្រូវបង់ពន្ធប៉ាតង់ទៅតាមសកម្មភាពនីមួយៗ។
                 </p>
-
             </div>
 
-        </section>
-
-        <!-- EXEMPTION -->
-        <section style="margin-bottom: 35px;">
-
-            <div class="panel" style="
-                    background: white;
-                    padding: 35px;
-                    border-radius: 20px;
-                    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-                 ">
-
-                <h2 style="
-                    color: #1e3c72;
-                    margin-bottom: 20px;
-                ">
-                    ខ. ការលើកលែងពន្ធ
-                </h2>
-
-                <ul style="
-                    color: #475569;
-                    line-height: 2.2;
-                    padding-left: 25px;
-                ">
-
-                    <li>
-                        ស្ថាប័នរដ្ឋ បេសកកម្មទូត ឬកុងស៊ុលបរទេស
-                        អង្គការអន្តរជាតិ និងទីភ្នាក់ងារសហប្រតិបត្តិការ។
-                    </li>
-
-                    <li>
-                        អង្គការសាសនា សប្បុរសធម៌
-                        វិទ្យាសាស្ត្រ អក្សរសាស្ត្រ
-                        និងអប់រំ ដែលមិនមានការបែងចែកប្រាក់ចំណូល
-                        ជាផលប្រយោជន៍ផ្ទាល់ខ្លួន។
-                    </li>
-
-                    <li>
-                        អាជីវកម្មដែលមានផលរបរប្រចាំឆ្នាំ
-                        ក្រោមកម្រិតកំណត់។
-                    </li>
-
-                </ul>
-
-            </div>
-
-        </section>
-
-        <!-- TAX RATE -->
-        <section style="margin-bottom: 35px;">
-
-            <div class="panel" style="
-                    background: white;
-                    padding: 35px;
-                    border-radius: 20px;
-                    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-                 ">
-
-                <h2 style="
-                    color: #1e3c72;
-                    margin-bottom: 25px;
-                ">
-                    គ. អត្រាពន្ធប៉ាតង់
-                </h2>
-
-                <div style="overflow-x: auto;">
-
-                    <table style="
-                        width: 100%;
-                        border-collapse: collapse;
-                    ">
-
-                        <thead>
-
-                            <tr style="
-                                background: #1e3c72;
-                                color: white;
-                            ">
-
-                                <th style="
-                                    padding: 15px;
-                                    text-align: left;
-                                ">
-                                    ប្រភេទអ្នកជាប់ពន្ធ
-                                </th>
-
-                                <th style="
-                                    padding: 15px;
-                                    text-align: left;
-                                ">
-                                    ពន្ធប្រចាំឆ្នាំ
-                                </th>
-
-                            </tr>
-
-                        </thead>
-
-                        <tbody>
-
-                            <tr style="background: #f8fafc;">
-
-                                <td style="
-                                    padding: 15px;
-                                    border-bottom: 1px solid #e2e8f0;
-                                ">
-                                    អ្នកជាប់ពន្ធតូច
-                                </td>
-
-                                <td style="
-                                    padding: 15px;
-                                    border-bottom: 1px solid #e2e8f0;
-                                    font-weight: bold;
-                                    color: #1e3c72;
-                                ">
-                                    ៤០០,០០០ ៛
-                                </td>
-
-                            </tr>
-
-                            <tr>
-
-                                <td style="
-                                    padding: 15px;
-                                    border-bottom: 1px solid #e2e8f0;
-                                ">
-                                    អ្នកជាប់ពន្ធមធ្យម
-                                </td>
-
-                                <td style="
-                                    padding: 15px;
-                                    border-bottom: 1px solid #e2e8f0;
-                                    font-weight: bold;
-                                    color: #1e3c72;
-                                ">
-                                    ១,២០០,០០០ ៛
-                                </td>
-
-                            </tr>
-
-                            <tr style="background: #f8fafc;">
-
-                                <td style="
-                                    padding: 15px;
-                                    border-bottom: 1px solid #e2e8f0;
-                                ">
-                                    អ្នកជាប់ពន្ធធំ
-                                </td>
-
-                                <td style="
-                                    padding: 15px;
-                                    border-bottom: 1px solid #e2e8f0;
-                                    font-weight: bold;
-                                    color: #1e3c72;
-                                ">
-                                    ៣,០០០,០០០ ៛
-                                </td>
-
-                            </tr>
-
-                            <tr>
-
-                                <td style="padding: 15px;">
-                                    អ្នកជាប់ពន្ធធំ
-                                    (ផលរបរប្រចាំឆ្នាំលើសពី
-                                    ១០,០០០ លានរៀល)
-                                </td>
-
-                                <td style="
-                                    padding: 15px;
-                                    font-weight: bold;
-                                    color: #1e3c72;
-                                ">
-                                    ៥,០០០,០០០ ៛
-                                </td>
-
-                            </tr>
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <!-- OBLIGATION -->
-        <section style="margin-bottom: 35px;">
-
-            <div class="panel" style="
-                    background: white;
-                    padding: 35px;
-                    border-radius: 20px;
-                    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-                 ">
-
-                <h2 style="
-                    color: #1e3c72;
-                    margin-bottom: 20px;
-                ">
-                    ឃ. កាតព្វកិច្ចបង់ពន្ធ
-                </h2>
-
-                <ul style="
-                    color: #475569;
-                    line-height: 2.2;
-                    padding-left: 25px;
-                ">
-
-                    <li>
-                        ពន្ធប៉ាតង់ត្រូវបង់ចាប់ពីថ្ងៃទី១ ខែមករា
-                        ដល់ថ្ងៃទី៣១ ខែមីនា ជារៀងរាល់ឆ្នាំ។
-                    </li>
-
-                    <li>
-                        បើចាប់ផ្តើមអាជីវកម្មក្នុង
-                        ៦ ខែដើមឆ្នាំ
-                        ត្រូវបង់ពន្ធពេញមួយឆ្នាំ។
-                    </li>
-
-                    <li>
-                        បើចាប់ផ្តើមអាជីវកម្មក្នុង
-                        ៦ ខែចុងឆ្នាំ
-                        ត្រូវបង់ពន្ធពាក់កណ្តាល។
-                    </li>
-
-                    <li>
-                        អាជីវកម្មផ្សេងៗ
-                        ត្រូវបង់ពន្ធផ្សេងគ្នា
-                        ទៅតាមសកម្មភាពអាជីវកម្ម។
-                    </li>
-
-                </ul>
-
-            </div>
-
-        </section>
-
-        <!-- PATENT CARD -->
-        <section style="margin-bottom: 40px;">
-
-            <div class="panel" style="
-                    background: linear-gradient(135deg,#e0f2fe,#dbeafe);
-                    padding: 35px;
-                    border-radius: 20px;
-                    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-                 ">
-
-                <h2 style="
-                    color: #1e3c72;
-                    margin-bottom: 20px;
-                ">
-                    រូបមន្តគណនា
-                </h2>
-
-                <div style="
-                    background: white;
-                    padding: 25px;
-                    border-radius: 15px;
-                    text-align: center;
-                    font-size: 1.15rem;
-                    line-height: 2;
-                    color: #1e3c72;
-                    font-weight: bold;
-                    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-                ">
-
-                    ពន្ធត្រូវបង់ =
-                    ពន្ធប្រចាំឆ្នាំ ÷ ២
-                    <br>
-
-                    (បើចាប់ផ្តើមអាជីវកម្ម
-                    ក្នុង៦ខែចុងឆ្នាំ)
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </div>
-
-</div>
+        </div>
+    </section>
+
+	<section class="tax-rates-section">
+		<div class="container" style="max-width: 900px; margin: 0 auto;">
+			
+			<div class="section-header">
+				<h2>៤. អត្រាពន្ធប៉ាតង់ប្រចាំឆ្នាំ</h2>
+				<p>
+					ចំនួនទឹកប្រាក់ដែលត្រូវបង់ ត្រូវបានកំណត់ទៅតាមប្រភេទអ្នកជាប់ពន្ធ និងកម្រិតផលរបរប្រចាំឆ្នាំ។
+				</p>
+			</div>
+
+			<div class="tax-table-container">
+				<table class="tax-table">
+					<thead>
+						<tr>
+							<th>ប្រភេទអ្នកជាប់ពន្ធ</th>
+							<th style="text-align: center;">ពន្ធប៉ាតង់ត្រូវបង់</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>អ្នកជាប់ពន្ធតូច (Small Taxpayer)</td>
+							<td style="text-align: center; font-weight: bold; color: #10b981;">៤០០,០០០ រៀល</td>
+						</tr>
+						<tr>
+							<td>អ្នកជាប់ពន្ធមធ្យម (Medium Taxpayer)</td>
+							<td style="text-align: center; font-weight: bold; color: #3b82f6;">១,២០០,០០០ រៀល</td>
+						</tr>
+						<tr>
+							<td>អ្នកជាប់ពន្ធធំ (Large Taxpayer)</td>
+							<td style="text-align: center; font-weight: bold; color: #f59e0b;">៣,០០០,០០០ រៀល</td>
+						</tr>
+						<tr>
+							<td>អ្នកជាប់ពន្ធធំ (ផលរបរលើសពី ១០ប៊ីលានរៀល)</td>
+							<td style="text-align: center; font-weight: bold; color: #ef4444;">៥,០០០,០០០ រៀល</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="example-calculation">
+				<h3>ឧទាហរណ៍ការគណនា:</h3>
+				<p style="color: #475569; line-height: 1.8; margin-bottom: 16px;">
+					ប្រសិនបើលោកអ្នកបង្កើតអាជីវកម្មថ្មីជា <strong>អ្នកជាប់ពន្ធមធ្យម</strong> នៅក្នុងខែកក្កដា (ឆមាសទី២)៖
+				</p>
+				<div style="background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
+					<strong style="color: #1e293b; display: block; margin-bottom: 10px;">ការគណនា:</strong>
+					<code style="font-size: 1.05rem; color: #0f172a;">
+						១,២០០,០០០ ÷ ២ = <strong>៦០០,០០០ រៀល</strong>
+					</code>
+					<p style="margin-top: 12px; font-weight: bold; color: #10b981; font-size: 1.1rem; margin-bottom: 0;">
+						នាំឲ្យពន្ធដែលត្រូវបង់សម្រាប់ឆ្នាំដំបូង = ៦០០,០០០ រៀល
+					</p>
+				</div>
+			</div>
+
+		</div>
+	</section>
+
+    <section class="button-section">
+        <div style="max-width: 600px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+            <a href="{% url 'patent_tax' %}">
+                ចាប់ផ្តើមគណនាពន្ធឥឡូវនេះ
+            </a>
+            <a href="{% url 'about_tax' %}">
+                ត្រឡប់ទៅកាន់ព័ត៌មានពន្ធ
+            </a>
+        </div>
+    </section>
 
 {% endblock %}

@@ -1,574 +1,149 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}អំពីអាករពិសេស{% endblock %}
+{% block title %}អំពីអាករពិសេស - Special Tax Information{% endblock %}
+
+{% block nav_about %}active{% endblock %}
 
 {% block content %}
 
-<div style="background-color: #a89d7c; min-height: 100vh; padding: 20px 0;">
+    <section class="info-hero">
+		<div class="hero-text" style="text-align: center; margin-bottom: 40px;">
+			<div style="max-width: 900px; margin: 0 auto; color: white; text-align: center; position: relative; z-index: 1;">
+				<span style="font-size: 3rem; display: block; margin-bottom: 15px;">💎</span>
+				<h1 style="font-family: 'Khmer Moul', cursive; font-size: 2rem; margin-bottom: 15px; color: white;">អំពីអាករពិសេស (Special Tax)</h1>
+				<p style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.85); line-height: 1.8;">
+					ស្វែងយល់អំពីអាករពិសេសដែលត្រូវបានកំណត់លើទំនិញ និងសេវាកម្មជាក់លាក់មួយចំនួននៅក្នុងប្រទេសកម្ពុជា។
+				</p>
+			</div>
+		</div>
+    </section>
 
-    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-
-        <!-- HERO -->
-        <section class="hero" style="margin-bottom: 40px;">
-
-            <div class="hero-text" style="
-                    text-align: center;
-                    margin-bottom: 40px;
-                    color: white;
-                 ">
-
-                <img src="{% static 'images/logo.png' %}" alt="Logo" style="
-                        width: 120px;
-                        height: 120px;
-                        border-radius: 50%;
-                        object-fit: cover;
-                        margin-bottom: 20px;
-                        border: 3px solid rgba(255,255,255,0.3);
-                        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-                     ">
-
-                <h1 style="
-                    color: white;
-                    margin-bottom: 15px;
-                    font-size: 2.5rem;
-                ">
-                    អំពីអាករពិសេស
-                </h1>
-
-                <p style="
-                    color: rgba(255,255,255,0.9);
-                    max-width: 900px;
-                    margin: auto;
-                    line-height: 1.8;
-                    font-size: 1.05rem;
-                ">
-                    អាករពិសេស គឺជាអាករដែលប្រមូលលើទំនិញ
-                    ឬសេវាមួយចំនួន
-                    ដែលមានលក្ខណៈប្រណីត
-                    ឬប៉ះពាល់ដល់សុខភាព សង្គម
-                    និងបរិស្ថាន។
+    <section class="info-grid-section">
+        <div class="container" style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
+            
+            <div class="info-panel">
+                <h2>១. តើអាករពិសេសជាអ្វី?</h2>
+                <p style="color: #475569; line-height: 1.8; margin-bottom: 20px;">
+                    អាករពិសេស (Special Tax) គឺជាប្រភេទអាករប្រយោលដែលប្រមូលលើទំនិញ ឬសេវាមួយចំនួនដែលមានលក្ខណៈប្រណីត ឬមិនមែនជាតម្រូវការចាំបាច់ ឬប៉ះពាល់ដល់សុខភាព សង្គម និងបរិស្ថាន។
                 </p>
-
-            </div>
-
-        </section>
-
-        <!-- WHAT IS SPECIAL TAX -->
-        <section style="margin-bottom: 35px;">
-
-            <div class="panel" style="
-                    background: white;
-                    padding: 35px;
-                    border-radius: 20px;
-                    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-                 ">
-
-                <h2 style="
-                    color: #1e3c72;
-                    margin-bottom: 20px;
-                ">
-                    ក. តើអាករពិសេសជាអ្វី?
-                </h2>
-
-                <p style="
-                    color: #475569;
-                    line-height: 2;
-                    font-size: 1rem;
-                ">
-                    អាករពិសេស ត្រូវបានប្រមូលលើទំនិញ
-                    ឬសេវាមួយចំនួន
-                    ដែលមានលក្ខណៈប្រណីត
-                    ឬមិនមែនជាតម្រូវការចាំបាច់
-                    ក្នុងជីវភាពប្រចាំថ្ងៃ
-                    ឬប៉ះពាល់ដល់សុខភាព សង្គម
-                    ឬបរិស្ថាន។
-                </p>
-
-            </div>
-
-        </section>
-
-        <!-- PRODUCTS -->
-        <section style="margin-bottom: 35px;">
-
-            <div class="panel" style="
-                    background: white;
-                    padding: 35px;
-                    border-radius: 20px;
-                    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-                 ">
-
-                <h2 style="
-                    color: #1e3c72;
-                    margin-bottom: 25px;
-                ">
-                    ទំនិញជាប់អាករពិសេស
-                </h2>
-
-                <div class="grid" style="
-                        display: grid;
-                        grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
-                        gap: 20px;
-                     ">
-
-                    <div style="
-                        background: #f8fafc;
-                        padding: 20px;
-                        border-radius: 15px;
-                     ">
-
-                        <h3 style="
-                            color: #1e3c72;
-                            margin-bottom: 15px;
-                        ">
-                            ផលិតផលប្រេង
-                        </h3>
-
-                        <ul style="
-                            color: #475569;
-                            line-height: 2;
-                            padding-left: 20px;
-                        ">
-                            <li>ប្រេងសាំង</li>
-                            <li>ប្រេងម៉ាស៊ូត</li>
-                            <li>ប្រេងសាំងយន្តហោះ</li>
-                            <li>ប្រេងរំអិល</li>
-                        </ul>
-
-                    </div>
-
-                    <div style="
-                        background: #f8fafc;
-                        padding: 20px;
-                        border-radius: 15px;
-                     ">
-
-                        <h3 style="
-                            color: #1e3c72;
-                            margin-bottom: 15px;
-                        ">
-                            ភេសជ្ជៈ
-                        </h3>
-
-                        <ul style="
-                            color: #475569;
-                            line-height: 2;
-                            padding-left: 20px;
-                        ">
-                            <li>ស្រា</li>
-                            <li>ស្រាបៀរ</li>
-                            <li>ភេសជ្ជៈមានជាតិស្ករ</li>
-                            <li>ភេសជ្ជៈប៉ូវកម្លាំង</li>
-                        </ul>
-
-                    </div>
-
-                    <div style="
-                        background: #f8fafc;
-                        padding: 20px;
-                        border-radius: 15px;
-                     ">
-
-                        <h3 style="
-                            color: #1e3c72;
-                            margin-bottom: 15px;
-                        ">
-                            ផលិតផលផ្សេងៗ
-                        </h3>
-
-                        <ul style="
-                            color: #475569;
-                            line-height: 2;
-                            padding-left: 20px;
-                        ">
-                            <li>បារី និងស៊ីហ្គា</li>
-                            <li>រថយន្ត</li>
-                            <li>ម៉ូតូ</li>
-                            <li>ផលិតផលប្លាស្ទិក</li>
-                            <li>ស៊ីម៉ង់ត៍</li>
-                        </ul>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <!-- SERVICES -->
-        <section style="margin-bottom: 35px;">
-
-            <div class="panel" style="
-                    background: white;
-                    padding: 35px;
-                    border-radius: 20px;
-                    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-                 ">
-
-                <h2 style="
-                    color: #1e3c72;
-                    margin-bottom: 20px;
-                ">
-                    សេវាជាប់អាករពិសេស
-                </h2>
-
-                <ul style="
-                    color: #475569;
-                    line-height: 2.2;
-                    padding-left: 25px;
-                ">
-
-                    <li>សេវាទូរគមនាគមន៍</li>
-
-                    <li>សេវាដឹកជញ្ជូនអ្នកដំណើរផ្លូវអាកាស</li>
-
-                    <li>សេវាលំហែកម្សាន្ត</li>
-
-                    <li>ខារ៉ាអូខេ</li>
-
-                    <li>ម៉ាស្សា</li>
-
-                    <li>Bowling និង Game គ្រប់ប្រភេទ</li>
-
+                <ul>
+                    <li><span style="color: #3b82f6; font-weight: bold;">✓</span> ទំនិញប្រណីត (រថយន្ត គ្រឿងបន្លាស់)</li>
+                    <li><span style="color: #3b82f6; font-weight: bold;">✓</span> ផលិតផលប៉ះពាល់សុខភាព (ស្រា បារី ភេសជ្ជៈផ្អែម)</li>
+                    <li><span style="color: #3b82f6; font-weight: bold;">✓</span> សេវាកម្សាន្ត និងទូរគមនាគមន៍</li>
                 </ul>
-
             </div>
 
-        </section>
-
-        <!-- TAX RATE -->
-        <section style="margin-bottom: 35px;">
-
-            <div class="panel" style="
-                    background: white;
-                    padding: 35px;
-                    border-radius: 20px;
-                    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-                 ">
-
-                <h2 style="
-                    color: #1e3c72;
-                    margin-bottom: 25px;
-                ">
-                    អត្រាអាករពិសេស
-                </h2>
-
-                <div style="overflow-x: auto;">
-
-                    <table style="
-                        width: 100%;
-                        border-collapse: collapse;
-                    ">
-
-                        <thead>
-
-                            <tr style="
-                                background: #1e3c72;
-                                color: white;
-                            ">
-
-                                <th style="
-                                    padding: 15px;
-                                    text-align: left;
-                                ">
-                                    ប្រភេទទំនិញ/សេវា
-                                </th>
-
-                                <th style="
-                                    padding: 15px;
-                                    text-align: left;
-                                ">
-                                    អត្រាអាករ
-                                </th>
-
-                            </tr>
-
-                        </thead>
-
-                        <tbody>
-
-                            <tr style="background: #f8fafc;">
-
-                                <td style="
-                                    padding: 15px;
-                                    border-bottom: 1px solid #e2e8f0;
-                                ">
-                                    ស្រាគ្រប់ប្រភេទ
-                                </td>
-
-                                <td style="
-                                    padding: 15px;
-                                    border-bottom: 1px solid #e2e8f0;
-                                    font-weight: bold;
-                                    color: #1e3c72;
-                                ">
-                                    35%
-                                </td>
-
-                            </tr>
-
-                            <tr>
-
-                                <td style="
-                                    padding: 15px;
-                                    border-bottom: 1px solid #e2e8f0;
-                                ">
-                                    ស្រាបៀរ
-                                </td>
-
-                                <td style="
-                                    padding: 15px;
-                                    border-bottom: 1px solid #e2e8f0;
-                                    font-weight: bold;
-                                    color: #1e3c72;
-                                ">
-                                    30%
-                                </td>
-
-                            </tr>
-
-                            <tr style="background: #f8fafc;">
-
-                                <td style="
-                                    padding: 15px;
-                                    border-bottom: 1px solid #e2e8f0;
-                                ">
-                                    ស៊ីហ្គា
-                                </td>
-
-                                <td style="
-                                    padding: 15px;
-                                    border-bottom: 1px solid #e2e8f0;
-                                    font-weight: bold;
-                                    color: #1e3c72;
-                                ">
-                                    25%
-                                </td>
-
-                            </tr>
-
-                            <tr>
-
-                                <td style="
-                                    padding: 15px;
-                                    border-bottom: 1px solid #e2e8f0;
-                                ">
-                                    បារី
-                                </td>
-
-                                <td style="
-                                    padding: 15px;
-                                    border-bottom: 1px solid #e2e8f0;
-                                    font-weight: bold;
-                                    color: #1e3c72;
-                                ">
-                                    20%
-                                </td>
-
-                            </tr>
-
-                            <tr style="background: #f8fafc;">
-
-                                <td style="
-                                    padding: 15px;
-                                    border-bottom: 1px solid #e2e8f0;
-                                ">
-                                    ភេសជ្ជៈគ្មានជាតិសុរា
-                                </td>
-
-                                <td style="
-                                    padding: 15px;
-                                    border-bottom: 1px solid #e2e8f0;
-                                    font-weight: bold;
-                                    color: #1e3c72;
-                                ">
-                                    10%
-                                </td>
-
-                            </tr>
-
-                            <tr>
-
-                                <td style="padding: 15px;">
-                                    សេវាទូរគមនាគមន៍
-                                </td>
-
-                                <td style="
-                                    padding: 15px;
-                                    font-weight: bold;
-                                    color: #1e3c72;
-                                ">
-                                    3%
-                                </td>
-
-                            </tr>
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
+            <div class="info-panel">
+                <h2>២. មូលដ្ឋានគិតអាករ</h2>
+                <p style="color: #475569; margin-bottom: 15px; line-height: 1.8;">មូលដ្ឋានគិតអាករពិសេសត្រូវបានកំណត់ដូចខាងក្រោម៖</p>
+                <ul style="font-size: 0.95rem;">
+                    <li><strong style="color: #1e293b;">• ទំនិញផលិតក្នុងស្រុក៖</strong> ៩០% នៃតម្លៃលក់លើវិក្កយបត្រ (មិនរួម VAT)</li>
+                    <li><strong style="color: #1e293b;">• ទំនិញនាំចូល៖</strong> តម្លៃគយ រួមទាំងពន្ធនាំចូល (មិនរួម VAT)</li>
+                    <li><strong style="color: #1e293b;">• សេវាកម្ម៖</strong> ១០០% នៃតម្លៃសេវាដែលបានផ្តល់</li>
+                </ul>
             </div>
 
-        </section>
-
-        <!-- FORMULA -->
-        <section style="margin-bottom: 40px;">
-
-            <div class="panel" style="
-                    background: linear-gradient(135deg,#e0f2fe,#dbeafe);
-                    padding: 35px;
-                    border-radius: 20px;
-                    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-                 ">
-
-                <h2 style="
-                    color: #1e3c72;
-                    margin-bottom: 20px;
-                ">
-                    រូបមន្តគណនា
-                </h2>
-
-                <div style="
-                    background: white;
-                    padding: 25px;
-                    border-radius: 15px;
-                    text-align: center;
-                    font-size: 1.15rem;
-                    line-height: 2;
-                    color: #1e3c72;
-                    font-weight: bold;
-                    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-                ">
-
-                    អាករពិសេស =
-                    មូលដ្ឋានគិតអាករ × អត្រាអាករ
-
-                </div>
-
-            </div>
-
-        </section>
-        <!-- EXAMPLE SECTION -->
-        <section style="margin-bottom: 40px;">
-
-            <div class="panel" style="
-                    background: white;
-                    padding: 35px;
-                    border-radius: 20px;
-                    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-                 ">
-
-                <h2 style="
-                    color: #1e3c72;
-                    margin-bottom: 25px;
-                ">
-                    ឧទាហរណ៍គណនា
-                </h2>
-
-                <!-- Example 1 -->
-                <div style="
-                    background: #f8fafc;
-                    padding: 25px;
-                    border-radius: 15px;
-                    margin-bottom: 25px;
-                    border-left: 6px solid #1e3c72;
-                ">
-
-                    <h3 style="
-                        color: #1e3c72;
-                        margin-bottom: 15px;
-                    ">
-                        ឧទាហរណ៍ទី១
-                    </h3>
-
-                    <p style="
-                        color: #475569;
-                        line-height: 2;
-                        margin-bottom: 15px;
-                    ">
-                        ក្រុមហ៊ុន ក ផលិត និងផ្គត់ផ្គង់ស្រាបៀរ
-                        ក្នុងតម្លៃ ១០,០០០ ដុល្លារ
-                        (មិនរួមបញ្ចូលអាករពិសេស)។
-                    </p>
-
-                    <div style="
-                        background: white;
-                        padding: 20px;
-                        border-radius: 12px;
-                        line-height: 2;
-                        color: #1e3c72;
-                        font-weight: bold;
-                    ">
-
-                        មូលដ្ឋានគិតអាករ =
-                        ១០,០០០ × ៩០%
-                        = ៩,០០០ ដុល្លារ
-                        <br><br>
-
-                        អាករពិសេស =
-                        ៩,០០០ × ៣០%
-                        = ២,៧០០ ដុល្លារ
-
+            <div class="info-panel">
+                <h2>៣. កាតព្វកិច្ចបង់ពន្ធ</h2>
+                <p style="color: #475569; margin-bottom: 20px; line-height: 1.8;">សហគ្រាសដែលផ្គត់ផ្គង់ទំនិញ ឬសេវាជាប់អាករពិសេសមានកាតព្វកិច្ច៖</p>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.95rem; border-bottom: 1px dashed #e2e8f0; padding-bottom: 8px;">
+                        <span style="color: #475569;"><strong>ការដាក់លិខិតប្រកាស</strong></span>
+                        <span style="color: #10b981; font-weight: bold;">រៀងរាល់ខែ</span>
                     </div>
-
-                </div>
-
-                <!-- Example 2 -->
-                <div style="
-                    background: #f8fafc;
-                    padding: 25px;
-                    border-radius: 15px;
-                    border-left: 6px solid #0f766e;
-                ">
-
-                    <h3 style="
-                        color: #0f766e;
-                        margin-bottom: 15px;
-                    ">
-                        ឧទាហរណ៍ទី២
-                    </h3>
-
-                    <p style="
-                        color: #475569;
-                        line-height: 2;
-                        margin-bottom: 15px;
-                    ">
-                        ក្រុមហ៊ុន ខ លក់សំបុត្រយន្តហោះ
-                        ក្នុងតម្លៃ ១,០០០ ដុល្លារ
-                        (មិនរួមបញ្ចូលអាករពិសេស)។
-                    </p>
-
-                    <div style="
-                        background: white;
-                        padding: 20px;
-                        border-radius: 12px;
-                        line-height: 2;
-                        color: #0f766e;
-                        font-weight: bold;
-                    ">
-
-                        មូលដ្ឋានគិតអាករ =
-                        ១,០០០ ដុល្លារ
-                        <br><br>
-
-                        អាករពិសេស =
-                        ១,០០០ × ១០%
-                        = ១០០ ដុល្លារ
-
+                    <div style="display: flex; justify-content: space-between; font-size: 0.95rem;">
+                        <span style="color: #475569;"><strong>កាលបរិច្ឆេទកំណត់</strong></span>
+                        <span style="color: #10b981; font-weight: bold;">ត្រឹមថ្ងៃទី២០ នៃខែបន្ទាប់</span>
                     </div>
-
                 </div>
-
+                <p style="font-size: 0.85rem; color: #64748b; margin-top: 15px; background: #f0fdf4; padding: 10px; border-radius: 8px; margin-bottom: 0;">
+                    💡 <strong>សម្គាល់:</strong> អាករពិសេសត្រូវគិតបញ្ចូលក្នុងមូលដ្ឋានគិតអាករលើតម្លៃបន្ថែម (VAT)។
+                </p>
             </div>
 
-        </section>
+        </div>
+    </section>
 
-    </div>
+	<section class="tax-rates-section">
+		<div class="container" style="max-width: 900px; margin: 0 auto;">
+			
+			<div class="section-header">
+				<h2>៤. អត្រាអាករពិសេសលើទំនិញ និងសេវាសំខាន់ៗ</h2>
+				<p>
+					អត្រាអាករត្រូវបានកំណត់ខុសៗគ្នាទៅតាមប្រភេទមុខទំនិញ ឬសេវាកម្ម។
+				</p>
+			</div>
 
-</div>
+			<div class="tax-table-container">
+				<table class="tax-table">
+					<thead>
+						<tr>
+							<th>ប្រភេទមុខទំនិញ/សេវាកម្ម</th>
+							<th style="text-align: center;">អត្រាអាករ</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>ស្រាគ្រប់ប្រភេទ (Alcohol)</td>
+							<td style="text-align: center; font-weight: bold; color: #ef4444;">៣៥%</td>
+						</tr>
+						<tr>
+							<td>ស្រាបៀរ (Beer)</td>
+							<td style="text-align: center; font-weight: bold; color: #ef4444;">៣០%</td>
+						</tr>
+						<tr>
+							<td>បារី និងស៊ីហ្គា (Cigarettes/Cigars)</td>
+							<td style="text-align: center; font-weight: bold; color: #f59e0b;">២០% - ២៥%</td>
+						</tr>
+						<tr>
+							<td>ភេសជ្ជៈផ្អែម និងភេសជ្ជៈប៉ូវកម្លាំង</td>
+							<td style="text-align: center; font-weight: bold; color: #3b82f6;">១០% - ១៥%</td>
+						</tr>
+						<tr>
+							<td>សេវាដឹកជញ្ជូនផ្លូវអាកាស និងកម្សាន្ត</td>
+							<td style="text-align: center; font-weight: bold; color: #10b981;">១០%</td>
+						</tr>
+						<tr>
+							<td>សេវាទូរគមនាគមន៍ (Telecom)</td>
+							<td style="text-align: center; font-weight: bold; color: #64748b;">៣%</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="example-calculation">
+				<h3>ឧទាហរណ៍ការគណនា:</h3>
+				<p style="color: #475569; line-height: 1.8; margin-bottom: 16px;">
+					ប្រសិនបើក្រុមហ៊ុនផលិតស្រាបៀរ លក់ស្រាបៀរក្នុងតម្លៃ <strong>១០,០០០ ដុល្លារ</strong> (តម្លៃមិនទាន់រួមអាករ):
+				</p>
+				<div style="background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
+					<strong style="color: #1e293b; display: block; margin-bottom: 10px;">ជំហានទី១៖ គណនាមូលដ្ឋានគិតអាករ (៩០%)</strong>
+					<code style="font-size: 1.05rem; color: #0f172a;">
+						១០,០០០ × ៩០% = ៩,០០០ ដុល្លារ
+					</code>
+					<strong style="color: #1e293b; display: block; margin-top: 15px; margin-bottom: 10px;">ជំហានទី២៖ គណនាអាករពិសេស (៣០%)</strong>
+					<code style="font-size: 1.05rem; color: #0f172a;">
+						៩,០០០ × ៣០% = <strong>២,៧០០ ដុល្លារ</strong>
+					</code>
+					<p style="margin-top: 12px; font-weight: bold; color: #10b981; font-size: 1.1rem; margin-bottom: 0;">
+						នាំឲ្យអាករពិសេសដែលត្រូវបង់សរុប = ២,៧០០ ដុល្លារ
+					</p>
+				</div>
+			</div>
+
+		</div>
+	</section>
+
+    <section class="button-section">
+        <div style="max-width: 600px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+            <a href="{% url 'special_tax' %}">
+                ចាប់ផ្តើមគណនាអាករឥឡូវនេះ
+            </a>
+            <a href="{% url 'about_tax' %}">
+                ត្រឡប់ទៅកាន់ព័ត៌មានពន្ធ
+            </a>
+        </div>
+    </section>
 
 {% endblock %}
