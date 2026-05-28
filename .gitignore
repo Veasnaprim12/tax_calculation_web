@@ -10,8 +10,10 @@ env/
 **/*.pyo
 **/*.pyd
 
-# Django Specific (Optional but recommended)
+# Django Specific
 db.sqlite3
 /media/
 /staticfiles/
+
+# OS Files
 .DS_Store
