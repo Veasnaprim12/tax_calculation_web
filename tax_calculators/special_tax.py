@@ -1,102 +1,128 @@
+"""
+Special Tax Calculator Module
+
+This module contains Cambodian Special Tax calculation logic based on tax.md.
+Special Tax applies to certain luxury, non-essential, or harmful goods and services.
+"""
+
 from decimal import Decimal
 
-def calculate_special_tax(selling_price, product_type='spirits', product_origin='local'):
+# Special Tax Rates by Category
+SPECIAL_TAX_RATES = {
+    'alcohol': Decimal('0.35'),
+    'beer': Decimal('0.30'),
+    'cigars': Decimal('0.25'),
+    'cigarettes': Decimal('0.20'),
+    'energy_drinks': Decimal('0.15'),
+    'non_alcoholic': Decimal('0.10'),
+    'plastic': Decimal('0.10'),
+    'air_transport': Decimal('0.10'),
+    'entertainment': Decimal('0.10'),
+    'fruit_juice': Decimal('0.05'),
+    'cement': Decimal('0.05'),
+    'telecom': Decimal('0.03'),
+    'general': Decimal('0.10') # Default fallback
+}
+
+CATEGORY_LABELS = {
+    'alcohol': 'គ្រឿងស្រវឹង (Alcohol) - 35%',
+    'beer': 'ស្រាបៀរ (Beer) - 30%',
+    'cigars': 'បារីស៊ីហ្គា (Cigars) - 25%',
+    'cigarettes': 'បារីសាមញ្ញ (Cigarettes) - 20%',
+    'energy_drinks': 'ភេសជ្ជៈពៅកម្លាំង (Energy Drinks) - 15%',
+    'non_alcoholic': 'ភេសជ្ជៈគ្មានជាតិអាល់កុល/ទឹកផ្អែម (Non-alcoholic Beverages) - 10%',
+    'plastic': 'ផលិតផលផ្លាស្ទិក (Plastic Products) - 10%',
+    'air_transport': 'សេវាដឹកជញ្ជូនអ្នកដំណើរតាមផ្លូវអាកាស (Air Transport) - 10%',
+    'entertainment': 'សេវាកម្សាន្ត (Entertainment Services) - 10%',
+    'fruit_juice': 'ទឹកផ្លែឈើ (Fruit Juice) - 5%',
+    'cement': 'ស៊ីម៉ង់ត៍ (Cement) - 5%',
+    'telecom': 'សេវាទូរគមនាគមន៍ (Telecom Services) - 3%',
+    'general': 'ទូទៅ (General) - 10%'
+}
+
+
+def calculate_special_tax(value, category='general', supply_type='domestic'):
     """
-    Calculate special tax according to Cambodian tax regulations.
-    
-    Formula for Local Products:
-    Tax Base = 90% × (Selling Price / 110% / 130%)
-    Special Tax = Tax Base × Tax Rate
-    
-    Formula for Imported Products:
-    Special Tax = Import Value × Tax Rate
-    
-    Tax Rates:
-    - Spirits/Alcohol (ស្រាវ/ម្សាធារ): 35%
-    - Beer Restaurants (ម្សាធារលបៀរ): 30%
-    - Spirits/Liquor (បារី): 20%
-    - Karaoke Bars (បារីសីហ្គា វ): 25%
-    - Furniture (ផ្គូផ្គង/ដើម): 10%
-    - Silkworm Raising (សូលឺម៉ាងត្ិ៍): 5%
-    - Transportation Services: 10%
-    - Telecommunications: 3%
+    Calculate Cambodian Special Tax for a single item/transaction.
     
     Args:
-        selling_price: Sale price or import value in KHR
-        product_type: Type of product/service
-        product_origin: 'local' or 'imported'
-    
+        value (Decimal/float): Value of the transaction/supply in KHR
+        category (str): The tax category from SPECIAL_TAX_RATES
+        supply_type (str): 'domestic' (90% base), 'service' (100% base), or 'import' (100% base)
+        
     Returns:
-        Special tax amount in KHR (Decimal)
+        tuple: (tax_amount, tax_rate, breakdown_dict)
     """
-    selling_price = Decimal(str(selling_price))
+    value = Decimal(value)
+    tax_rate = SPECIAL_TAX_RATES.get(category, SPECIAL_TAX_RATES['general'])
     
-    # Define tax rates for different product types
-    tax_rates = {
-        'spirits': Decimal('0.35'),           # ស្រាវ/ម្សាធារ - 35%
-        'beer_restaurant': Decimal('0.30'),   # ម្សាធារលបៀរ - 30%
-        'liquor': Decimal('0.20'),            # បារី - 20%
-        'karaoke': Decimal('0.25'),           # បារីសីហ្គា វ - 25%
-        'furniture': Decimal('0.10'),         # ផ្គូផ្គង/ដើម - 10%
-        'silkworm': Decimal('0.05'),          # សូលឺម៉ាងត្ិ៍ - 5%
-        'transport': Decimal('0.10'),         # ដឹកជញ្ជូន - 10%
-        'telecom': Decimal('0.03'),           # ទូរគមនាគមន៍ - 3%
+    # Determine the Tax Base based on supply type
+    if supply_type == 'domestic':
+        # For domestic goods: 90% of supply price recorded on invoice
+        tax_base = value * Decimal('0.9')
+        base_description = '៩០% នៃតម្លៃផ្គត់ផ្គង់ (Domestic Goods Base: 90%)'
+    elif supply_type == 'service':
+        # For services: 100% of service fee stated on invoice
+        tax_base = value
+        base_description = '១០០% នៃតម្លៃសេវាកម្ម (Service Fee Base: 100%)'
+    else: # import
+        # For imported goods: customs value including import duty
+        tax_base = value
+        base_description = 'តម្លៃគយបូករួមពន្ធនាំចូល (Customs Value + Import Duty Base: 100%)'
+        
+    tax_amount = tax_base * tax_rate
+    
+    breakdown = {
+        'value': float(value),
+        'category': category,
+        'category_display': CATEGORY_LABELS.get(category, category),
+        'supply_type': supply_type,
+        'supply_type_display': {
+            'domestic': 'ទំនិញក្នុងស្រុក (Domestic Goods)',
+            'service': 'សេវាកម្ម (Services)',
+            'import': 'ទំនិញនាំចូល (Imported Goods)'
+        }.get(supply_type, supply_type),
+        'base_description': base_description,
+        'tax_base': float(tax_base),
+        'tax_rate': float(tax_rate),
+        'tax_percentage': float(tax_rate * 100),
+        'tax_amount': float(tax_amount)
     }
     
-    # Get tax rate, default to 5% if type not specified
-    tax_rate = tax_rates.get(product_type, Decimal('0.05'))
-    
-    # Calculate tax base based on product origin
-    if product_origin == 'local':
-        # Formula for local products:
-        # Tax Base = 90% × (Selling Price / 110% / 130%)
-        # This accounts for VAT (110%) and special tax markup (130%)
-        tax_base = Decimal('0.90') * (selling_price / Decimal('1.10') / Decimal('1.30'))
-    else:
-        # For imported products, use the import value directly as tax base
-        tax_base = selling_price
-    
-    # Calculate special tax amount
-    special_tax_amount = tax_base * tax_rate
-    
-    return special_tax_amount
+    return float(tax_amount), float(tax_rate), breakdown
 
 
-def get_tax_base(selling_price, product_origin='local'):
+def calculate_special_tax_with_breakdown(transaction_value, transaction_type='general', number_of_transactions=1, supply_type='domestic'):
     """
-    Calculate the tax base for special tax.
-    
-    For local products: 90% × (Selling Price / 110% / 130%)
-    For imported products: Use selling price as is
-    
-    Args:
-        selling_price: Sale price or import value
-        product_origin: 'local' or 'imported'
-    
-    Returns:
-        Tax base in KHR (Decimal)
+    Calculate Cambodian Special Tax for multiple transactions/quantities.
+    Matches view signature requirements.
     """
-    selling_price = Decimal(str(selling_price))
+    transaction_value = Decimal(transaction_value)
+    number_of_transactions = int(number_of_transactions)
     
-    if product_origin == 'local':
-        tax_base = Decimal('0.90') * (selling_price / Decimal('1.10') / Decimal('1.30'))
-    else:
-        tax_base = selling_price
+    single_tax, tax_rate, single_breakdown = calculate_special_tax(
+        value=transaction_value,
+        category=transaction_type,
+        supply_type=supply_type
+    )
     
-    return tax_base
-
-
-def calculate_special_tax_legacy(selling_price, product_type):
-    """
-    Legacy function for backward compatibility.
-    Original excise tax calculation for local products.
-    """
-    if product_type == 'local_products':
-        # Formula:
-        # Excise Tax Base = 90% × (Selling Price / 110% / 130%)
-        tax_base = Decimal('0.90') * (
-            Decimal(selling_price) / Decimal('1.10') / Decimal('1.30')
-        )
-        return tax_base
+    total_tax = Decimal(single_tax) * Decimal(number_of_transactions)
+    total_transaction_value = transaction_value * Decimal(number_of_transactions)
+    total_tax_base = Decimal(single_breakdown['tax_base']) * Decimal(number_of_transactions)
     
-    return Decimal('0')
+    breakdown = {
+        'transaction_type': transaction_type,
+        'transaction_type_display': CATEGORY_LABELS.get(transaction_type, transaction_type),
+        'single_transaction_value': float(transaction_value),
+        'number_of_transactions': number_of_transactions,
+        'total_transaction_value': float(total_transaction_value),
+        'supply_type': supply_type,
+        'supply_type_display': single_breakdown['supply_type_display'],
+        'tax_base': float(total_tax_base),
+        'tax_rate': tax_rate,
+        'tax_percentage': float(tax_rate * 100),
+        'tax_per_transaction': single_tax,
+        'total_tax_amount': float(total_tax)
+    }
+    
+    return float(total_tax), breakdown

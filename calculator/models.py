@@ -8,8 +8,10 @@ class TaxRecord(models.Model):
         ('vat', 'ពន្ធលើតម្លៃបន្ថែម'),
         ('income', 'ពន្ធលើចំណូលលុយប្រតិបត្តិការ'),
         ('withholding', 'ពន្ធកាត់ទុក'),
-        ('special', 'ពន្ធអាករពិសេស'),
-        ('accomodation', 'ពន្ធស្នាក់នៅ'),
+        ('patent', 'ពន្ធលើច្បាប់ផលិតម្ល'),
+        ('special', 'ពន្ធលើកិច្ចការពិសេស'),
+        ('registration', 'ពន្ធលើការចុះបញ្ជី'),
+        ('unused_land', 'ពន្ធលើដីដែលមិនប្រើប្រាស់'),
     ]
     
     CURRENCY_CHOICES = [

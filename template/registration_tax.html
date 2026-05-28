@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+{% load static %} {% block title %}ពន្ធប្រថាប់ត្រា - Registration Tax{% endblock %}
+
+{% block nav_calculator %}registration{% endblock %}
+
+{% block content %}
+<div style="background-color: #0f766e; min-height: 100vh; padding: 40px 0;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+
+        <section class="hero" id="calculator" style="margin-bottom: 40px; padding: 0;">
+            <div class="hero-text" style="text-align: center; margin-bottom: 40px; color: white;">
+                <img src="{% static 'images/logo.png' %}" alt="Logo"
+                    style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 3px solid rgba(255, 255, 255, 0.3); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                <h2 style="color: white; font-family: 'Khmer Moul', cursive;">គណនាពន្ធប្រថាប់ត្រា (Registration Tax)</h2>
+                <p style="color: rgba(255, 255, 255, 0.9); max-width: 700px; margin: 0 auto;">
+                    គណនាពន្ធប្រថាប់ត្រា (៤%) លើការផ្ទេរកម្មសិទ្ធិ ឬសិទ្ធិកាន់កាប់អចលនទ្រព្យ ឬយានយន្ត 
+                    រួមទាំងការគណនាការលើកលែងពន្ធ និងការកាត់កងតាមសាច់ញាតិ ស្របតាមច្បាប់ពន្ធដារកម្ពុជា។
+                </p>
+                <div style="margin-top: 20px;">
+                    <a href="{% url 'about_registration_tax' %}" class="btn btn-secondary"
+                        style="display: inline-block; padding: 10px 20px; background-color: rgba(255, 255, 255, 0.2); color: white; text-decoration: none; border-radius: 8px; border: 1px solid rgba(255,255,255,0.4); font-size: 0.9rem;">ℹ️ ព័ត៌មានលម្អិតអំពីពន្ធប្រថាប់ត្រា</a>
+                </div>
+            </div>
+
+            <div class="panel"
+                style="background: white; padding: 35px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.15);">
+                <form id="tax-form" method="post">
+                    {% csrf_token %}
+                    <h3 class="form-title" style="color: #1e3c72; margin-bottom: 25px; font-family: 'Khmer Moul', cursive;">ព័ត៌មានផ្ទេរកម្មសិទ្ធិ</h3>
+                    
+                    <div class="grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px;">
+                        <div>
+                            {{ form.currency.label_tag }}
+                            {{ form.currency }}
+                        </div>
+                        <div>
+                            {{ form.asset_type.label_tag }}
+                            {{ form.asset_type }}
+                        </div>
+                        <div>
+                            {{ form.property_value.label_tag }}
+                            <span style="color: var(--muted); font-size: 14px;">({{ currency_symbol }})</span>
+                            {{ form.property_value }}
+                        </div>
+                        <div id="relationship-div">
+                            {{ form.relationship.label_tag }}
+                            {{ form.relationship }}
+                        </div>
+                        <div id="vehicle-exempt-div" style="display: flex; flex-direction: column; justify-content: center; height: 100%;">
+                            <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; color: var(--muted); font-size: 13px; margin-top: 25px;">
+                                {{ form.is_vehicle_exempt }}
+                                <span>យានយន្តប្រភេទលើកលែងពន្ធ</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    {% if total_tax is not None %}
+                    <div style="background: #fef08a; padding: 25px; border-radius: 12px; margin-top: 30px; border: 2px solid #eab308; color: #713f12;">
+                        <h4 style="color: #854d0e; margin: 0 0 15px 0; font-family: 'Khmer Moul', cursive;">លទ្ធផលនៃការគណនា</h4>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 20px; border-bottom: 1px solid #fef3c7; padding-bottom: 20px;">
+                            <div>
+                                <span style="color: #854d0e; font-size: 0.9rem; font-weight: bold; display: block;">ប្រភេទទ្រព្យសម្បត្តិ</span>
+                                <strong style="font-size: 1.1rem;">{{ breakdown.asset_type_display }}</strong>
+                            </div>
+                            <div>
+                                <span style="color: #854d0e; font-size: 0.9rem; font-weight: bold; display: block;">តម្លៃវាយតម្លៃសរុប</span>
+                                <strong style="font-size: 1.1rem;">{{ selected_currency }} {{ breakdown.value|floatformat:2 }}</strong>
+                            </div>
+                            {% if breakdown.asset_type == 'immovable' %}
+                            <div>
+                                <span style="color: #854d0e; font-size: 0.9rem; font-weight: bold; display: block;">ទំនាក់ទំនងសាច់ញាតិ</span>
+                                <strong style="font-size: 1.0rem;">{{ breakdown.relationship_display }}</strong>
+                            </div>
+                            {% endif %}
+                            <div>
+                                <span style="color: #854d0e; font-size: 0.9rem; font-weight: bold; display: block;">ការកាត់កង/លើកលែង</span>
+                                <strong style="font-size: 1.1rem; color: #b45309;">- {{ selected_currency }} {{ breakdown.deduction|floatformat:2 }}</strong>
+                            </div>
+                            <div>
+                                <span style="color: #854d0e; font-size: 0.9rem; font-weight: bold; display: block;">មូលដ្ឋានគិតពន្ធសុទ្ធ</span>
+                                <strong style="font-size: 1.1rem;">{{ selected_currency }} {{ breakdown.tax_base|floatformat:2 }}</strong>
+                            </div>
+                            <div>
+                                <span style="color: #854d0e; font-size: 0.9rem; font-weight: bold; display: block;">អត្រពន្ធប្រថាប់ត្រា</span>
+                                <strong style="font-size: 1.1rem;">{{ breakdown.tax_percentage|floatformat:0 }}%</strong>
+                            </div>
+                        </div>
+
+                        <div style="margin: 15px 0; font-size: 0.95rem; line-height: 1.5; color: #854d0e; font-style: italic; background: rgba(255,255,255,0.6); padding: 10px 15px; border-radius: 8px; border-left: 3px solid #eab308;">
+                            📌 <strong>ពន្យល់លម្អិត៖</strong> {{ breakdown.note }}
+                        </div>
+
+                        <div class="result"
+                            style="background: white; padding: 20px; border-radius: 12px; border: 1px solid #fef3c7; display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-weight: bold; color: #854d0e; font-size: 1.1rem;">ពន្ធប្រថាប់ត្រាត្រូវបង់ (Registration Tax Due)</span>
+                            <strong style="color: #d97706; font-size: 2rem;">{{ currency_symbol }} {{ total_tax|floatformat:2 }}</strong>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <div style="text-align: center; margin-top: 30px;">
+                        <button type="submit" class="btn btn-primary"
+                            style="padding: 12px 35px; font-size: 1rem; background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white; border-radius: 30px; border: none; cursor: pointer; font-weight: bold; box-shadow: 0 4px 15px rgba(30,60,114,0.3);">ចាប់ផ្តើមគណនា</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section class="hero" id="guide" style="padding: 0;">
+            <div class="panel"
+                style="background: white; padding: 35px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); margin-bottom: 40px; width: 100%;">
+                <h3 class="form-title" style="color: #1e3c72; margin-bottom: 25px; font-family: 'Khmer Moul', cursive;">ការលើកលែងពន្ធ និងការកាត់កងពន្ធប្រថាប់ត្រា</h3>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    <div style="background-color: #f0fdf4; border: 1px solid #bbf7d0; padding: 20px; border-radius: 12px; color: #166534;">
+                        <h4 style="font-family: 'Khmer Moul', cursive; margin-top: 0; color: #15803d;">១. សម្រាប់អចលនទ្រព្យ (ដីធ្លី ផ្ទះសម្បែង...)</h4>
+                        <p style="font-size: 0.9rem; line-height: 1.6; margin-bottom: 0;">
+                            <strong>លើកលែងពន្ធ ១០០% ៖</strong> រវាងប្តី-ប្រពន្ធ, ឪពុកម្តាយ និងកូនបង្កើត, ជីដូនជីតា និងចៅបង្កើត (ទាំងការផ្ទេរមរតក និងអំណោយលើកដំបូង)។<br><br>
+                            <strong>កាត់កង ២០០ លានរៀល ៖</strong> ការផ្ទេរមរតក រវាងបងប្អូនបង្កើត ឬ រវាងដន្លងនិងកូនប្រសារ។<br><br>
+                            <strong>កាត់កង ១០០ លានរៀល ៖</strong> ការផ្ទេរអំណោយលើកដំបូង រវាងបងប្អូនបង្កើត ឬ រវាងដន្លងនិងកូនប្រសារ។
+                        </p>
+                    </div>
+
+                    <div style="background-color: #eff6ff; border: 1px solid #bfdbfe; padding: 20px; border-radius: 12px; color: #1e40af;">
+                        <h4 style="font-family: 'Khmer Moul', cursive; margin-top: 0; color: #1d4ed8;">២. សម្រាប់យានយន្ត/មធ្យោបាយដឹកជញ្ជូន</h4>
+                        <p style="font-size: 0.9rem; line-height: 1.6; margin-bottom: 0;">
+                            <strong>លើកលែងពន្ធ ១០០% ៖</strong><br>
+                            - ម៉ូតូ និងម៉ូតូកង់បីគ្រប់ប្រភេទ<br>
+                            - ត្រាក់ទ័រ និងគ្រឿងយន្តកសិកម្ម<br>
+                            - ទូក កាណូត ឬនាវា ដែលមានកម្លាំងម៉ាស៊ីនរហូតដល់ ១៥០ សេះ<br>
+                            - យានយន្តរបស់រដ្ឋ និងស្ថានទូតនានា<br><br>
+                            <strong>ជាប់ពន្ធ ៤% ៖</strong> រថយន្តទេសចរណ៍ រថយន្តដឹកទំនិញ សណ្តោង និងកាណូត/នាវាលើសពី ១៥០ សេះ។
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</div>
+
+<script>
+function toggleRegistrationFields() {
+    var assetType = document.getElementById("id_asset_type").value;
+    var relationshipDiv = document.getElementById("relationship-div");
+    var vehicleExemptDiv = document.getElementById("vehicle-exempt-div");
+    
+    if (assetType === "immovable") {
+        relationshipDiv.style.display = "block";
+        vehicleExemptDiv.style.display = "none";
+    } else {
+        relationshipDiv.style.display = "none";
+        vehicleExemptDiv.style.display = "block";
+    }
+}
+
+// Run immediately and after DOM content loads to ensure state persistence
+document.addEventListener("DOMContentLoaded", function() {
+    toggleRegistrationFields();
+});
+</script>
+{% endblock %}
