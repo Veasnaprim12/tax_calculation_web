@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from django.contrib.admin.views.decorators import staff_member_required
-from .forms import SalaryTaxForm, PropertyTaxForm, VATTaxForm, IncomeTaxForm, WithholdingTaxForm
+from .forms import SalaryTaxForm, PropertyTaxForm, VATTaxForm, IncomeTaxForm, WithholdingTaxForm, AccomodationTaxForm, SpecialTaxForm   
 from .models import TaxRecord, TaxCalculationDetail
 from decimal import Decimal
 from tax_calculators import (
     calculate_salary_tax_with_breakdown,
     calculate_property_tax,
     calculate_actual_vat,
+    calculate_special_tax,
     convert_to_khr,
     convert_from_khr,
     get_currency_symbol
@@ -84,58 +85,6 @@ def about_vat_tax(request):
     Render the detailed VAT tax information page.
     """
     return render(request, "about_vat_tax.html")
-
-def vat_tax(request):
-    """
-    Render and handle the VAT tax calculation page.
-    """
-    form = VATTaxForm()
-    tax_amount = None
-    total_amount = None
-    selected_currency = 'KHR'
-    currency_symbol = '៛'
-    
-    if request.method == 'POST':
-        form = VATTaxForm(request.POST)
-        if form.is_valid():
-            currency = form.cleaned_data['currency']
-            amount = form.cleaned_data['amount']
-            selected_currency = currency
-            currency_symbol = get_currency_symbol(currency)
-            
-            # Convert to KHR for calculation if needed
-            amount_khr = convert_to_khr(amount, currency)
-            
-            # Calculate VAT (10% in Cambodia)
-            tax_amount_khr = calculate_actual_vat(amount_khr)
-            
-            # Total amount including VAT
-            total_amount_khr = amount_khr + tax_amount_khr
-            
-            # Convert back to selected currency for display
-            tax_amount = convert_from_khr(tax_amount_khr, currency)
-            total_amount = convert_from_khr(total_amount_khr, currency)
-            
-            # Save to database in KHR
-            tax_record = TaxRecord.objects.create(
-                tax_type='vat',
-                currency=currency,
-                income=amount,
-                tax_amount=tax_amount_khr,
-                net_income=total_amount_khr,
-            )
-    
-    currency_symbol = get_currency_symbol(selected_currency)
-    
-    context = {
-        'form': form,
-        'tax_amount': tax_amount,
-        'total_amount': total_amount,
-        'selected_currency': selected_currency,
-        'currency_symbol': currency_symbol,
-    }
-    
-    return render(request, "vat_tax.html", context)
 
 def study_plan(request):
     """
@@ -456,6 +405,77 @@ def vat_tax(request):
         'currency_symbol': currency_symbol
     })
 
+def accomodation_tax(request):
+    """
+    Render and handle the accommodation tax calculation page.
+    Official formula: Tax Base = Room Price + Services Charges
+                     Accommodation Tax = Tax Base × 2%
+    """
+    form = AccomodationTaxForm()
+    tax_amount = None
+    tax_base = None
+    selected_currency = 'KHR'
+    tax_rate = Decimal('0.02')  # Fixed 2% rate
+    
+    if request.method == 'POST':
+        form = AccomodationTaxForm(request.POST)
+        if form.is_valid():
+            currency = form.cleaned_data['currency']
+            room_price = form.cleaned_data['room_price']
+            services_charge = form.cleaned_data.get('services_charge', Decimal('0')) or Decimal('0')
+            selected_currency = currency
+            
+            # Convert to KHR for calculation if needed
+            room_price_khr = convert_to_khr(room_price, currency)
+            services_charge_khr = convert_to_khr(services_charge, currency)
+            
+            # Calculate tax base: Room Price + Services Charges
+            tax_base_khr = room_price_khr + services_charge_khr
+            
+            # Calculate accommodation tax: Tax Base × 2%
+            tax_amount_khr = tax_base_khr * tax_rate
+            
+            # Convert back to selected currency for display
+            tax_base = convert_from_khr(tax_base_khr, currency)
+            tax_amount = convert_from_khr(tax_amount_khr, currency)
+            
+            # Save to database
+            tax_record = TaxRecord.objects.create(
+                tax_type='accommodation',
+                currency=currency,
+                income=room_price,
+                tax_amount=tax_amount
+            )
+            
+            # Create detailed calculation breakdown
+            TaxCalculationDetail.objects.create(
+                tax_record=tax_record,
+                tax_rate=tax_rate,
+                taxable_amount=tax_base_khr,
+                final_rate=tax_rate,
+                tax_components={
+                    'calculation_type': 'accommodation_tax',
+                    'room_price_khr': float(room_price_khr),
+                    'services_charge_khr': float(services_charge_khr),
+                    'tax_base_khr': float(tax_base_khr),
+                    'tax_rate': float(tax_rate),
+                    'formula': 'Tax Base = Room Price + Services Charges | Accommodation Tax = Tax Base × 2%'
+                }
+            )
+    
+    return render(request, "accomodation_tax.html", {
+        'form': form,
+        'tax_amount': tax_amount,
+        'tax_base': tax_base,
+        'selected_currency': selected_currency,
+        'currency_symbol': get_currency_symbol(selected_currency),
+        'tax_rate': tax_rate
+    })
+def about_accomodation_tax(request):
+    """
+    Render the about accommodation tax page with information about accommodation tax.
+    """
+    return render(request, "about_accomodation_tax.html")
 
 @staff_member_required
 def admin_records(request):
@@ -580,6 +600,93 @@ def about_withholding_tax(request):
         'title': 'ពន្ធកាត់ទុក'
     })
 
-
+def about_special_tax(request):
+    """
+    Display information about special tax.
+    """
+    return render(request, "about_special_tax.html", {
+        'title': 'ពន្ធអាករពិសេស'
+    })
+def special_tax(request):
+    """
+    Render and handle the special tax calculation page.
+    Special tax applies to certain types of goods and services with specific tax rates.
+    Uses official formula: Tax Base = 90% × (Selling Price / 110% / 130%)
+    """
+    form = SpecialTaxForm()
+    tax_amount = None
+    tax_base = None
+    selected_currency = 'KHR'
+    tax_rate = None
+    
+    if request.method == 'POST':
+        form = SpecialTaxForm(request.POST)
+        if form.is_valid():
+            currency = form.cleaned_data['currency']
+            product_origin = form.cleaned_data['product_origin']
+            selling_price = form.cleaned_data['selling_price']
+            product_type = form.cleaned_data['product_type']
+            selected_currency = currency
+            
+            # Convert to KHR for calculation if needed
+            selling_price_khr = convert_to_khr(selling_price, currency)
+            
+            # Get tax rate
+            tax_rates = {
+                'spirits': Decimal('0.35'),
+                'beer_restaurant': Decimal('0.30'),
+                'liquor': Decimal('0.20'),
+                'karaoke': Decimal('0.25'),
+                'furniture': Decimal('0.10'),
+                'silkworm': Decimal('0.05'),
+                'transport': Decimal('0.10'),
+                'telecom': Decimal('0.03'),
+            }
+            tax_rate = tax_rates.get(product_type, Decimal('0.05'))
+            
+            # Calculate tax base and tax amount
+            from tax_calculators.special_tax import get_tax_base
+            tax_base_khr = get_tax_base(selling_price_khr, product_origin)
+            tax_amount_khr = tax_base_khr * tax_rate
+            
+            # Convert back to selected currency for display
+            tax_base = convert_from_khr(tax_base_khr, currency)
+            tax_amount = convert_from_khr(tax_amount_khr, currency)
+            
+            # Save to database
+            tax_record = TaxRecord.objects.create(
+                tax_type='property',
+                currency=currency,
+                income=selling_price,
+                property_value=selling_price,
+                property_type=product_type,
+                tax_amount=tax_amount
+            )
+            
+            # Create detailed calculation breakdown
+            TaxCalculationDetail.objects.create(
+                tax_record=tax_record,
+                tax_rate=tax_rate,
+                taxable_amount=tax_base_khr,
+                final_rate=tax_rate,
+                tax_components={
+                    'calculation_type': 'special_tax',
+                    'selling_price_khr': float(selling_price_khr),
+                    'product_type': product_type,
+                    'product_origin': product_origin,
+                    'tax_base_khr': float(tax_base_khr),
+                    'tax_rate': float(tax_rate),
+                    'formula': 'Tax Base = 90% × (Selling Price / 110% / 130%)' if product_origin == 'local' else 'Tax Base = Import Value'
+                }
+            )
+    
+    return render(request, "special_tax.html", {
+        'form': form,
+        'tax_amount': tax_amount,
+        'tax_base': tax_base,
+        'selected_currency': selected_currency,
+        'currency_symbol': get_currency_symbol(selected_currency),
+        'tax_rate': tax_rate
+    })
 
 

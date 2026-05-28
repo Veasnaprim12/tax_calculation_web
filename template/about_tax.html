@@ -76,90 +76,119 @@
         </div>
     </section>
 
-    <section class="tax-types-section" style="background: white; padding: 80px 20px;">
+    <section class="tax-types-section" style="background: white; padding: 60px 20px;">
         <div class="container" style="max-width: 1200px; margin: 0 auto;">
             
-            <div class="section-header" style="text-align: center; margin-bottom: 50px;">
-
-                
+            <div class="section-header" style="text-align: center; margin-bottom: 35px;">
                 <h2 style="font-family: 'Khmer Moul', cursive; color: #1e3c72; font-size: 1.6rem; margin-bottom: 12px; letter-spacing: 0.5px;">
                     ប្រភេទពន្ធសំខាន់ៗ
                 </h2>
                 <div style="width: 80px; height: 4px; margin: 0 auto; border-radius: 2px;"></div>
             </div>
 
-            <div class="tax-types-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;">
+            <div class="tax-types-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
                 
-                <div class="tax-type-card" style="background: transparent; padding: 35px 30px; border-radius: 20px; border: 1px solid #cbd5e1; display: flex; flex-direction: column; justify-content: space-between; gap: 25px; box-shadow: none; height: 100%;">
+                <div class="tax-type-card" style="background: transparent; padding: 20px; border-radius: 16px; border: 1px solid #0c67d6; display: flex; flex-direction: column; justify-content: space-between; gap: 12px; box-shadow: none;">
                     <div class="card-content">
-                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px;">
-                            <h3 style="font-size: 1.35rem; color: #1e293b; font-weight: bold; margin: 0;">ពន្ធលើប្រាក់បៀវត្ស</h3>
-                            <span style="font-size: 1.8rem; background: rgba(59, 130, 246, 0.08); padding: 8px; border-radius: 12px; line-height: 1;"></span>
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+                            <h3 style="font-size: 1.25rem; color: #0b4eb9; font-weight: bold; margin: 0;">ពន្ធលើប្រាក់បៀវត្ស</h3>
+                            <span style="font-size: 1.5rem; background: rgba(59, 130, 246, 0.08); padding: 6px; border-radius: 10px; line-height: 1;"></span>
                         </div>
-                        <p style="color: #64748b; font-size: 0.95rem; line-height: 1.7; margin: 0;">
+                        <p style="color: #64748b; font-size: 0.9rem; line-height: 1.5; margin: 0;">
                             ពន្ធលើចំណូលពីការងារ និងអាជីវកម្មសម្រាប់បុគ្គលនិយោជិតទាំងអស់នៅក្នុងប្រទេសកម្ពុជា។
                         </p>
                     </div>
-                    <a href="{% url 'about_salary_tax' %}" class="card-link" style="color: #121111; text-decoration: none; font-weight: bold; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 8px; align-self: flex-start;">
-                        <span>ស្វែងយល់បន្ថែម</span> <span class="arrow" style="font-size: 1.1rem;">→</span>
+                    <a href="{% url 'about_salary_tax' %}" class="card-link" style="color: #121111; text-decoration: none; font-weight: bold; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 6px; align-self: flex-start;">
+                        <span>ស្វែងយល់បន្ថែម</span> <span class="arrow" style="font-size: 1rem;">→</span>
                     </a>
                 </div>
 
-                <div class="tax-type-card" style="background: transparent; padding: 35px 30px; border-radius: 20px; border: 1px solid #cbd5e1; display: flex; flex-direction: column; justify-content: space-between; gap: 25px; box-shadow: none; height: 100%;">
+                <div class="tax-type-card" style="background: transparent; padding: 20px; border-radius: 16px; border: 1px solid #0c67d6; display: flex; flex-direction: column; justify-content: space-between; gap: 12px; box-shadow: none;">
                     <div class="card-content">
-                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px;">
-                            <h3 style="font-size: 1.35rem; color: #1e293b; font-weight: bold; margin: 0;">ពន្ធអាករ</h3>
-                            <span style="font-size: 1.8rem; background: rgba(59, 130, 246, 0.08); padding: 8px; border-radius: 12px; line-height: 1;"></span>
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+                            <h3 style="font-size: 1.25rem; color: #0b4eb9; font-weight: bold; margin: 0;">ពន្ធអាករ</h3>
+                            <span style="font-size: 1.5rem; background: rgba(59, 130, 246, 0.08); padding: 6px; border-radius: 10px; line-height: 1;"></span>
                         </div>
-                        <p style="color: #64748b; font-size: 0.95rem; line-height: 1.7; margin: 0;">
+                        <p style="color: #64748b; font-size: 0.9rem; line-height: 1.5; margin: 0;">
                             ពន្ធលើអចលនទ្រព្យដូចជាផ្ទះ ដី អគារ និងទ្រព្យសម្បត្តិផ្សេងៗដើម្បីការអភិវឌ្ឍមូលដ្ឋាន។
                         </p>
                     </div>
-                    <a href="{% url 'about_property_tax' %}" class="card-link" style="color: #070707; text-decoration: none; font-weight: bold; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 8px; align-self: flex-start;">
-                        <span>ស្វែងយល់បន្ថែម</span> <span class="arrow" style="font-size: 1.1rem;">→</span>
+                    <a href="{% url 'about_property_tax' %}" class="card-link" style="color: #070707; text-decoration: none; font-weight: bold; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 6px; align-self: flex-start;">
+                        <span>ស្វែងយល់បន្ថែម</span> <span class="arrow" style="font-size: 1rem;">→</span>
                     </a>
                 </div>
 
-                <div class="tax-type-card" style="background: transparent; padding: 35px 30px; border-radius: 20px; border: 1px solid #cbd5e1; display: flex; flex-direction: column; justify-content: space-between; gap: 25px; box-shadow: none; height: 100%;">
+                <div class="tax-type-card" style="background: transparent; padding: 20px; border-radius: 16px; border: 1px solid #0c67d6; display: flex; flex-direction: column; justify-content: space-between; gap: 12px; box-shadow: none;">
                     <div class="card-content">
-                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px;">
-                            <h3 style="font-size: 1.35rem; color: #1e293b; font-weight: bold; margin: 0;">ពន្ធទំនិញ និងសេវាកម្ម</h3>
-                            <span style="font-size: 1.8rem; background: rgba(59, 130, 246, 0.08); padding: 8px; border-radius: 12px; line-height: 1;"></span>
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+                            <h3 style="font-size: 1.25rem; color: #0b4eb9; font-weight: bold; margin: 0;"> ពន្ធអាកលើតម្លែបន្ថែម</h3>
+                            <span style="font-size: 1.5rem; background: rgba(59, 130, 246, 0.08); padding: 6px; border-radius: 10px; line-height: 1;"></span>
                         </div>
-                        <p style="color: #64748b; font-size: 0.95rem; line-height: 1.7; margin: 0;">
+                        <p style="color: #64748b; font-size: 0.9rem; line-height: 1.5; margin: 0;">
                             ពន្ធតម្លៃបន្ថែម (VAT) លើការប្រើប្រាស់ និងសេវាកម្មទូទៅដែលប្រមូលបានក្នុងប្រតិបត្តិការអាជីវកម្ម។
                         </p>
                     </div>
-                    <a href="{% url 'about_vat_tax' %}" class="card-link" style="color: #050505; text-decoration: none; font-weight: bold; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 8px; align-self: flex-start;">
-                        <span>ស្វែងយល់បន្ថែម</span> <span class="arrow" style="font-size: 1.1rem;">→</span>
+                    <a href="{% url 'about_vat_tax' %}" class="card-link" style="color: #050505; text-decoration: none; font-weight: bold; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 6px; align-self: flex-start;">
+                        <span>ស្វែងយល់បន្ថែម</span> <span class="arrow" style="font-size: 1rem;">→</span>
                     </a>
                 </div>
-                <div class="tax-type-card" style="background: transparent; padding: 35px 30px; border-radius: 20px; border: 1px solid #cbd5e1; display: flex; flex-direction: column; justify-content: space-between; gap: 25px; box-shadow: none; height: 100%;">
+
+                <div class="tax-type-card" style="background: transparent; padding: 20px; border-radius: 16px; border: 1px solid #0c67d6; display: flex; flex-direction: column; justify-content: space-between; gap: 12px; box-shadow: none;">
                     <div class="card-content">
-                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px;">
-                            <h3 style="font-size: 1.35rem; color: #1e293b; font-weight: bold; margin: 0;">ពន្ធប្រាក់ចំណូល​ Income</h3>
-                            <span style="font-size: 1.8rem; background: rgba(59, 130, 246, 0.08); padding: 8px; border-radius: 12px; line-height: 1;"></span>
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+                            <h3 style="font-size: 1.25rem; color: #0b4eb9; font-weight: bold; margin: 0;">ពន្ធប្រាក់ចំណូល​ Income</h3>
+                            <span style="font-size: 1.5rem; background: rgba(59, 130, 246, 0.08); padding: 6px; border-radius: 10px; line-height: 1;"></span>
                         </div>
-                        <p style="color: #64748b; font-size: 0.95rem; line-height: 1.7; margin: 0;">
-                            ពន្ធលើចំណូលសរុប (Income Tax) លើចំណូលសរុបរបស់បុគ្គលនិងសហគ្រាស ដើម្បីគាំទ្រការអភិវឌ្ឍសង្គម និងសេដ្ឋកិច្sច។
+                        <p style="color: #64748b; font-size: 0.9rem; line-height: 1.5; margin: 0;">
+                            ពន្ធលើចំណូលសរុប (Income Tax) លើចំណូលសរុបរបស់បុគ្គលនិងសហគ្រាស ដើម្បីគាំទ្រការអភិវឌ្ឍសង្គម និងសេដ្ឋកិច្ច។
                         </p>
                     </div>
-                    <a href="{% url 'about_income_tax' %}" class="card-link" style="color: #050505; text-decoration: none; font-weight: bold; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 8px; align-self: flex-start;">
-                        <span>ស្វែងយល់បន្ថែម</span> <span class="arrow" style="font-size: 1.1rem;">→</span>
+                    <a href="{% url 'about_income_tax' %}" class="card-link" style="color: #050505; text-decoration: none; font-weight: bold; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 6px; align-self: flex-start;">
+                        <span>ស្វែងយល់បន្ថែម</span> <span class="arrow" style="font-size: 1rem;">→</span>
                     </a>
                 </div>
-                <div class="tax-type-card" style="background: transparent; padding: 35px 30px; border-radius: 20px; border: 1px solid #cbd5e1; display: flex; flex-direction: column; justify-content: space-between; gap: 25px; box-shadow: none; height: 100%;">
+
+                <div class="tax-type-card" style="background: transparent; padding: 20px; border-radius: 16px; border: 1px solid #0c67d6; display: flex; flex-direction: column; justify-content: space-between; gap: 12px; box-shadow: none;">
                     <div class="card-content">
-                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px;">
-                            <h3 style="font-size: 1.35rem; color: #1e293b; font-weight: bold; margin: 0;">ពន្ធកាត់ទុក​ Withholing Tax </h3ព>
-                            <span style="font-size: 1.8rem; background: rgba(59, 130, 246, 0.08); padding: 8px; border-radius: 12px; line-height: 1;"></span>
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+                            <h3 style="font-size: 1.25rem; color: #0b4eb9; font-weight: bold; margin: 0;">ពន្ធកាត់ទុក​</h3>
+                            <span style="font-size: 1.5rem; background: rgba(59, 130, 246, 0.08); padding: 6px; border-radius: 10px; line-height: 1;"></span>
                         </div>
-                        <p style="color: #64748b; font-size: 0.95rem; line-height: 1.7; margin: 0;">
-                            ពន្ធកាត់ទុក (Withholding Tax) គឺជាពន្ធដែលត្រូវបានកាត់ចេញពីប្រាក់ចំណូលមួយចំនួន ដូចជាប្រាក់ឈ្នួល ប្រាក់បៀវត្ស ប្រាក់រង្វាន់ និងប្រាក់ចំណេញពីការវិនិយោគ។
+                        <p style="color: #64748b; font-size: 0.9rem; line-height: 1.5; margin: 0;">
+                            ពន្ធកាត់ទុក (Withholding Tax) គឺជាពន្ធដែលត្រូវបានកាត់ចេញពីប្រាក់ចំណូលមួយចំនួន ដូចជាប្រាក់ឈ្នួល ប្រាក់បៀវត្ស និងការវិនិយោគ។
                         </p>
                     </div>
-                    <a href="{% url 'about_withholding_tax' %}" class="card-link" style="color: #050505; text-decoration: none; font-weight: bold; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 8px; align-self: flex-start;">
-                        <span>ស្វែងយល់បន្ថែម</span> <span class="arrow" style="font-size: 1.1rem;">→</span>
+                    <a href="{% url 'about_withholding_tax' %}" class="card-link" style="color: #050505; text-decoration: none; font-weight: bold; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 6px; align-self: flex-start;">
+                        <span>ស្វែងយល់បន្ថែម</span> <span class="arrow" style="font-size: 1rem;">→</span>
+                    </a>
+                </div>
+                <div class="tax-type-card" style="background: transparent; padding: 20px; border-radius: 16px; border: 1px solid #0c67d6; display: flex; flex-direction: column; justify-content: space-between; gap: 12px; box-shadow: none;">
+                    <div class="card-content">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+                            <h3 style="font-size: 1.25rem; color: #0b4eb9; font-weight: bold; margin: 0;">ពន្ធអាករពិសេស</h3>
+                            <span style="font-size: 1.5rem; background: rgba(59, 130, 246, 0.08); padding: 6px; border-radius: 10px; line-height: 1;"></span>
+                        </div>
+                        <p style="color: #64748b; font-size: 0.9rem; line-height: 1.5; margin: 0;">
+                            ពន្ធអាករពិសេស (Special Tax) គឺជាពន្ធដែលត្រូវបានកាត់ចេញពីប្រាក់ចំណូលមួយចំនួន ដូចជាប្រាក់ឈ្នួល ប្រាក់បៀវត្ស និងការវិនិយោគ។
+                        </p>
+                    </div>
+                    <a href="{% url 'about_special_tax' %}" class="card-link" style="color: #050505; text-decoration: none; font-weight: bold; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 6px; align-self: flex-start;">
+                        <span>ស្វែងយល់បន្ថែម</span> <span class="arrow" style="font-size: 1rem;">→</span>
+                    </a>
+                </div>
+
+                <div class="tax-type-card" style="background: transparent; padding: 20px; border-radius: 16px; border: 1px solid #0c67d6; display: flex; flex-direction: column; justify-content: space-between; gap: 12px; box-shadow: none;">
+                    <div class="card-content">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+                            <h3 style="font-size: 1.25rem; color: #0b4eb9; font-weight: bold; margin: 0;">ពន្ធលើការស្នាក់នៅ</h3>
+                            <span style="font-size: 1.5rem; background: rgba(59, 130, 246, 0.08); padding: 6px; border-radius: 10px; line-height: 1;"></span>
+                        </div>
+                        <p style="color: #64748b; font-size: 0.9rem; line-height: 1.5; margin: 0;">
+                            ពន្ធលើការស្នាក់នៅ (Accommodation Tax) គឺជាពន្ធដែលត្រូវបានកាត់ចេញពីប្រាក់ចំណូលមួយចំនួន ដូចជាប្រាក់ឈ្នួល ប្រាក់បៀវត្ស និងការវិនិយោគ។
+                        </p>
+                    </div>
+                    <a href="{% url 'about_accomodation_tax' %}" class="card-link" style="color: #050505; text-decoration: none; font-weight: bold; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 6px; align-self: flex-start;">
+                        <span>ស្វែងយល់បន្ថែម</span> <span class="arrow" style="font-size: 1rem;">→</span>
                     </a>
                 </div>
 

@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}ពន្ធអាករពិសេស - Special Tax{% endblock %}
+
+{% block nav_calculator %}special{% endblock %}
+
+{% block content %}
+    <div style="background-color: #8b5cf6; min-height: 100vh; padding: 20px 0;">
+        <div id="calculator-section">
+            <section class="hero" id="calculator">
+                <div class="hero-text" style="text-align: center; margin-bottom: 40px;">
+                    <h2>គណនាពន្ធអាករពិសេស</h2>
+                    <p>
+                        បញ្ចូលព័ត៌មានលម្អិតនៃទំនិញ ឬសេវាកម្មរបស់អ្នក ដើម្បីគណនាពន្ធអាករពិសេស
+                        ដោយផ្អែកលើច្បាប់ពន្ធលើអាករពិសេសបច្ចុប្បន្នរបស់កម្ពុជា។
+                    </p>
+                    <div style="margin-top: 20px;">
+                        <a href="{% url 'about_special_tax' %}" class="btn btn-secondary" style="display: inline-block; padding: 10px 20px; background-color: rgba(97, 57, 209, 0.2); color: white; text-decoration: none; border-radius: 8px; border: 1px solid rgba(255,255,255,0.4); margin-top: 15px; font-size: 0.9rem;">ℹ️ ព័ត៌មានលម្អិត</a>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <form id="tax-form" method="post">
+                        {% csrf_token %}
+                        <h3 class="form-title">ព័ត៌មានលម្អិតពន្ធអាករពិសេស</h3>
+                        
+                        <div class="grid">
+                            <div>
+                                {{ form.currency.label_tag }}
+                                {{ form.currency }}
+                            </div>
+                            <div>
+                                {{ form.product_origin.label_tag }}
+                                {{ form.product_origin }}
+                            </div>
+                            <div>
+                                {{ form.product_type.label_tag }}
+                                {{ form.product_type }}
+                            </div>
+                            <div>
+                                {{ form.selling_price.label_tag }}
+                                <span style="color: var(--muted); font-size: 14px;">({{ currency_symbol }})</span>
+                                {{ form.selling_price }}
+                            </div>
+                        </div>
+
+                        <div class="result">
+                            <span>ពន្ធអាករពិសេស</span>
+                            <strong>
+                                {{ currency_symbol }} {% if tax_amount is not None %}{{ tax_amount|floatformat:2 }}{% else %}0.00{% endif %}
+                            </strong>
+                        </div>
+
+                        {% if tax_base is not None %}
+                        <div style="background: #f0f4f8; padding: 15px; border-radius: 8px; margin-bottom: 20px; font-size: 0.9rem;">
+                            <p style="color: #475569; margin: 0 0 8px 0;">
+                                <strong>ម៉ូដ្ឋានគិត:</strong> {{ currency_symbol }} {{ tax_base|floatformat:2 }}
+                            </p>
+                            <p style="color: #64748b; margin: 0; font-size: 0.85rem;">
+                                💡 រូបមន្ត (ទំនិញក្នុងស្រុក): ម៉ូដ្ឋាន = 90% × (តម្លៃលក់ / 110% / 130%)
+                            </p>
+                        </div>
+                        {% endif %}
+
+                        <div style="text-align: center; margin-top: 20px;">
+                            <button type="submit" class="btn btn-primary">ចាប់ផ្តើមគណនា</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <section class="hero" id="guide">
+                <div class="panel">
+                    <h3 class="form-title">វិធីប្រើប្រាស់</h3>
+                    <div class="grid">
+                        <div>
+                            <label>1️⃣ ជ្រើសរើសរូបិយប័ណ្ណ និងដើមកំណើត</label>
+                            <input type="text" value="បញ្ចូលរូបិយប័ណ្ណ (KHR/USD) និងប្រភេទទំនិញ" disabled />
+                        </div>
+                        <div>
+                            <label>2️⃣ បញ្ចូលលម្អិតទំនិញ</label>
+                            <input type="text" value="ជ្រើសរើសប្រភេទ ដូចជាស្រា រាង៉ាង ស្លក ជាដើម" disabled />
+                        </div>
+                        <div>
+                            <label>3️⃣ បញ្ចូលតម្លៃលក់</label>
+                            <input type="text" value="បញ្ចូលតម្លៃលក់ឬតម្លៃនាំចូល" disabled />
+                        </div>
+                        <div>
+                            <label>4️⃣ ទាញយករបាយការណ៍</label>
+                            <input type="text" value="ប្រព័ន្ធគណនាពន្ធដោយស្វ័យប្រវត្តិ" disabled />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-text">
+                    <h2>ទទួលបានភាពទុកចិត្តក្នុងការគ្រប់គ្រងពន្ធ</h2>
+                    <p>
+                        ប្រព័ន្ធរបស់យើងប្រើប្រាស់ច្បាប់ពន្ធលើអាករពិសេសបច្ចុប្បន្នរបស់កម្ពុជា
+                        ដូចជា ច្បាប់ស្តីពីការគ្រប់គ្រងហិរញ្ញវត្ថុ ប្រកាសលេខ១៥៣ និងលក្ខខណ្ឌផ្សេងទៀត
+                        ដើម្បីធានាបាននូវភាពត្រឹមត្រូវនៃការគណនា។
+                    </p>
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}

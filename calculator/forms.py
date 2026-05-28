@@ -122,6 +122,85 @@ class VATTaxForm(forms.Form):
             'step': '0.01'
         })
     )
+class SpecialTaxForm(forms.Form):
+    currency = forms.ChoiceField(
+        label="រូបិយប័ណ្ណ",
+        choices=[
+            ('KHR', '៛ រៀលកម្ពុជា'),
+            ('USD', '$ ដុល្លារអាមេរិក'),
+        ],
+        initial='KHR',
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+    
+    product_origin = forms.ChoiceField(
+        label="ដើមកំណើតទំនិញ",
+        choices=[
+            ('local', 'ទំនិញក្នុងស្រុក'),
+            ('imported', 'ទំនិញនាំចូល'),
+        ],
+        initial='local',
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+    
+    selling_price = forms.DecimalField(
+        label="តម្លៃលក់ (មិនរាប់ពន្ធ)",
+        min_value=0,
+        decimal_places=2,
+        widget=forms.NumberInput(attrs={
+            'placeholder': 'ឧ. 10,000,000',
+            'class': 'form-input',
+            'step': '0.01'
+        })
+    )
+    
+    product_type = forms.ChoiceField(
+        label="ប្រភេទទំនិញ/សេវាកម្ម",
+        choices=[
+            ('spirits', 'សុរាវ/ម្សាធារ - 35%'),
+            ('beer_restaurant', 'ម្សាធារលបៀរ - 30%'),
+            ('liquor', 'បារី - 20%'),
+            ('karaoke', 'បារីសីហ្គា វ - 25%'),
+            ('furniture', 'ផ្គូផ្គង/ដើម - 10%'),
+            ('silkworm', 'សូលឺម៉ាងត្ិ៍ - 5%'),
+            ('transport', 'ដឹកជញ្ជូន - 10%'),
+            ('telecom', 'ទូរគមនាគមន៍ - 3%'),
+        ],
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+class AccomodationTaxForm(forms.Form):
+    currency = forms.ChoiceField(
+        label="រូបិយប័ណ្ណ",
+        choices=[
+            ('KHR', '៛ រៀលកម្ពុជា'),
+            ('USD', '$ ដុល្លារអាមេរិក'),
+        ],
+        initial='KHR',
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+    room_price = forms.DecimalField(
+        label="តម្លៃបន្ទប់",
+        min_value=0,
+        decimal_places=2,
+        widget=forms.NumberInput(attrs={
+            'placeholder': 'ឧ. 10,000,000',
+            'class': 'form-input',
+            'step': '0.01'
+        })
+    )
+    services_charge = forms.DecimalField(
+        label="ថ្លៃសេវាកម្ម (ប្រសិនបើមាន)",
+        min_value=0,
+        decimal_places=2,
+        required=False,
+        initial=0,
+        widget=forms.NumberInput(attrs={
+            'placeholder': 'ឧ. 500,000 (ឯកចិត្ត)',
+            'class': 'form-input',
+            'step': '0.01'
+        })
+    )
+    
 
 
 class IncomeTaxForm(forms.Form):
@@ -210,3 +289,4 @@ class WithholdingTaxForm(forms.Form):
             'step': '0.01'
         })
     )
+    
