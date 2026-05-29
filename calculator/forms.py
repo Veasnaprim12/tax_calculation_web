@@ -460,3 +460,75 @@ class AccomodationTaxForm(forms.Form):
             'step': '0.01'
         })
     )
+class PLTTaxForm(forms.Form):
+    currency = forms.ChoiceField(
+        label="រូបិយប័ណ្ណ",
+        choices=[
+            ('KHR', '៛ រៀលកម្ពុជា'),
+            ('USD', '$ ដុល្លារអាមេរិក'),
+        ],
+        initial='KHR',
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+    
+    amount = forms.DecimalField(
+        label="ចំនួនដើម",
+        min_value=0,
+        decimal_places=2,
+        widget=forms.NumberInput(attrs={
+            'placeholder': 'ឧ. 10,000,000',
+            'class': 'form-input',
+            'step': '0.01'
+        })
+    )
+class TransportationTaxForm(forms.Form):
+    currency = forms.ChoiceField(
+        label="រូបិយប័ណ្ណ",
+        choices=[
+            ('KHR', '៛ រៀលកម្ពុជា'),
+            ('USD', '$ ដុល្លារអាមេរិក'),
+        ],
+        initial='KHR',
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+    
+    vehicle_type = forms.ChoiceField(
+        label="ប្រភេទយានជំនិះ",
+        choices=[
+            ('car_sedan_suv', 'រថយន្តទេសចរណ៍ (Sedan, SUV, លក្ខណៈគ្រួសារ)'),
+            ('motorcycle', 'ម៉ូតូ ឬរ៉ឺម៉កកង់បី (Motorcycle/TukTuk)'),
+            ('truck_bus', 'រថយន្តដឹកទំនិញ ឬរថយន្តក្រុងដឹកអ្នកដំណើរ'),
+        ],
+        initial='car_sedan_suv',
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+    
+    engine_capacity = forms.IntegerField(
+        label="កម្លាំងម៉ាស៊ីន / ទំហំស៊ីឡាំង (CC)",
+        min_value=0,
+        widget=forms.NumberInput(attrs={
+            'placeholder': 'ឧ. 1800 (គិតជា CC)',
+            'class': 'form-input',
+            'step': '1'
+        })
+    )
+    
+    # បង្កើតបញ្ជីឆ្នាំផលិតថយក្រោយ (ឡានចាស់បំផុតត្រឹមឆ្នាំ ១៩៨០ រហូតដល់ឆ្នាំបច្ចុប្បន្ន ២០២៦)
+    CURRENT_YEAR = 2026
+    YEAR_CHOICES = [(str(year), str(year)) for year in range(CURRENT_YEAR, 1979, -1)]
+    
+    manufacture_year = forms.ChoiceField(
+        label="ឆ្នាំផលិតយានជំនិះ",
+        choices=YEAR_CHOICES,
+        initial=str(CURRENT_YEAR),
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+    
+    is_late = forms.BooleanField(
+        label="បង់ប្រាក់ពន្ធយឺតយ៉ាវ (ហួសថ្ងៃទី ៣០ ខែកញ្ញា)",
+        required=False, # មិនបង្ខំឱ្យទំពក់យកទេ (Optional checkbox)
+        widget=forms.CheckboxInput(attrs={
+            'class': 'form-checkbox',
+            'style': 'margin-right: 8px; transform: scale(1.2);'
+        })
+    )

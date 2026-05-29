@@ -27,4 +27,8 @@ urlpatterns = [
 	path("study-plan/", views.study_plan, name="study_plan"),
 	path("about/accomodation-tax/", views.about_accomodation_tax, name="about_accomodation_tax"),
 	path("accomodation-tax/", views.accomodation_tax, name="accomodation_tax"),
+	path("plt/", views.plt_tax, name="plt_tax"),
+	path("about/plt/", views.about_plt_tax, name="about_plt_tax"),
+	path("transportation-tax/", views.transportation_tax, name="transportation_tax"),
+	path("about/transportation-tax/", views.about_transportation_tax, name="about_transportation_tax"),
 	]

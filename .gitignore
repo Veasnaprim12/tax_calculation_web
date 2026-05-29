@@ -1,8 +1,17 @@
-**/__pycache__/
-**/*.pyc
-**/*.pyo
-**/*.pyd
+# Virtual Environments
 venv/
 .venv/
 env/
 .env
+
+# Python Compiled Files
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+
+# Django Specific (Optional but recommended)
+db.sqlite3
+/media/
+/staticfiles/
+.DS_Store

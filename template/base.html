@@ -25,9 +25,6 @@
             <nav>
                 <a href="{% url 'home' %}" {% if request.resolver_match.url_name == 'home' %}class="active"{% endif %}>ទំព័រដើម</a>
                 <a href="{% url 'about_tax' %}" {% if 'about' in request.resolver_match.url_name %}class="active"{% endif %}>ស្វែងយល់អំពីពន្ធ</a>
-                <a href="{% url 'salary_tax' %}" {% if request.resolver_match.url_name == 'salary_tax' %}class="active"{% endif %}>ពន្ធប្រាក់បៀវត្ស</a>
-                <a href="{% url 'property_tax' %}" {% if request.resolver_match.url_name == 'property_tax' %}class="active"{% endif %}>ពន្ធអាករ</a>
-                <a href="{% url 'vat_tax' %}" {% if request.resolver_match.url_name == 'vat_tax' %}class="active"{% endif %}>អាកលើតម្លែបន្ថែម</a>
                 <a href="{% url 'study_plan' %}" {% if request.resolver_match.url_name == 'study_plan' %}class="active"{% endif %}>អំពីគម្រោងសិក្សា</a>
             </nav>
         </header>
@@ -40,10 +37,7 @@
             <div class="footer-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
                 <p style="color: white; margin: 0;">© 2026 Tax Calculation · បង្កើតសម្រាប់គម្រោងសិក្សារបស់និស្សិត​(Dept. AMS) សាលា(ITC) </p>
                 <div class="footer-links" style="display: flex; justify-content: center; gap: 15px; margin-top: 5px;">
-                    <a href="{% url 'about_tax' %}" style="color: white; text-decoration: none;">ស្វែងយល់អំពីពន្ធ</a>
-                    <a href="{% url 'salary_tax' %}" style="color: white; text-decoration: none;">ពន្ធប្រាក់បៀវត្ស</a>
-                    <a href="{% url 'property_tax' %}" style="color: white; text-decoration: none;">ពន្ធអាករ</a>
-                </div>
+                    <a href="{% url 'about_tax' %}" style="color: white; text-decoration: none;">ស្វែងយល់អំពីពន្ធ</a>             </div>
             </div>
         </footer>
     </body>

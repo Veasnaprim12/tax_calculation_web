@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% load static %} 
+
+{% block title %}គណនាពន្ធលើមធ្យោបាយដឹកជញ្ជូន - Vehicle Tax Calculator{% endblock %}
+
+{% block nav_calculator %}transportation{% endblock %}
+
+{% block content %}
+<div style="background-color: #6a7eb1; min-height: 100vh; padding: 20px 0;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        
+        <section class="hero" id="calculator" style="margin-bottom: 40px;">
+            <div class="hero-text" style="text-align: center; margin-bottom: 40px; color: white;">
+                <p style="color: rgba(255, 255, 255, 0.9); max-width: 700px; margin: 0 auto; line-height: 1.8;">
+                    បញ្ចូលព័ត៌មានលម្អិតនៃយានជំនិះរបស់អ្នក ដើម្បីគណនាប្រាក់ពន្ធផ្លូវប្រចាំឆ្នាំ និងប្រាក់ផាកពិន័យ (ករណីយឺតយ៉ាវ) ស្របតាមច្បាប់ពន្ធដារកម្ពុជា។
+                </p>
+                <div style="margin-top: 20px;">
+                    <a href="{% url 'about_transportation_tax' %}" class="btn btn-secondary" style="display: inline-block; padding: 10px 20px; background-color: rgba(62, 17, 196, 0.2); color: white; text-decoration: none; border-radius: 8px; border: 1px solid rgba(15, 14, 14, 0.4); margin-top: 15px; font-size: 0.9rem;">ℹ️ ព័ត៌មានលម្អិត</a>
+                </div>
+            </div>
+
+            <div class="panel" style="background: white; padding: 35px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.15);">
+                <form id="tax-form" method="post">
+                    {% csrf_token %}
+                    <h3 class="form-title" style="color: #1e3c72; margin-bottom: 25px;">ព័ត៌មានលម្អិត</h3>
+                    
+                    <div class="grid">
+                        <div>
+                            <label style="font-weight: bold; color: #475569; display: block; margin-bottom: 8px;">{{ form.currency.label }}</label>
+                            {{ form.currency }}
+                        </div>
+                        <div>
+                            <label style="font-weight: bold; color: #475569; display: block; margin-bottom: 8px;">{{ form.vehicle_type.label }}</label>
+                            {{ form.vehicle_type }}
+                        </div>
+                    </div>
+
+                    <div class="grid" style="margin-top: 20px;">
+                        <div>
+                            <label style="font-weight: bold; color: #475569; display: block; margin-bottom: 8px;">{{ form.engine_capacity.label }}</label>
+                            {{ form.engine_capacity }}
+                        </div>
+                        <div>
+                            <label style="font-weight: bold; color: #475569; display: block; margin-bottom: 8px;">{{ form.manufacture_year.label }}</label>
+                            {{ form.manufacture_year }}
+                        </div>
+                    </div>
+
+                    <div style="background: #fff5f5; padding: 15px; border-radius: 10px; border: 1px solid #fee2e2; margin-top: 25px; display: flex; align-items: center;">
+                        {{ form.is_late }}
+                        <label for="{{ form.is_late.id_for_label }}" style="color: #b91c1c; font-weight: bold; cursor: pointer;">
+                            {{ form.is_late.label }} <span style="font-size: 0.85rem; font-weight: normal; color: #ef4444;">(ពិន័យ ១០០% ករណីហួសថ្ងៃទី ៣០ កញ្ញា)</span>
+                        </label>
+                    </div>
+
+                    {% if tax_amount is not None %}
+                    <div class="result" style="background: #f8fafc; padding: 20px; border-radius: 12px; margin-top: 25px; border: 1px solid #e2e8f0; display: flex; flex-direction: column; gap: 12px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 8px; border-bottom: 1px solid #e2e8f0;">
+                            <span style="font-weight: bold; color: #475569;">ប្រាក់ពន្ធផ្លូវ (អត្រាថេរ)</span>
+                            <strong style="color: #475569; font-size: 1.1rem;">{{ currency_symbol }} {{ tax_amount|floatformat:2 }}</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 8px; border-bottom: 1px solid #e2e8f0;">
+                            <span style="font-weight: bold; color: #475569;">ប្រាក់ផាកពិន័យយឺតយ៉ាវ</span>
+                            <strong style="color: {% if penalty_amount > 0 %}#dc2626{% else %}#475569{% endif %}; font-size: 1.1rem;">{{ currency_symbol }} {{ penalty_amount|floatformat:2 }}</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 4px;">
+                            <span style="font-weight: bold; color: #1e293b; font-size: 1.1rem;">ទឹកប្រាក់សរុបត្រូវបង់៖</span>
+                            <strong style="color: #10b981; font-size: 1.5rem;">{{ currency_symbol }} {{ total_to_pay|floatformat:2 }}</strong>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <div style="text-align: center; margin-top: 25px;">
+                        <button type="submit" class="btn btn-primary" style="padding: 12px 35px; font-size: 1rem;">ចាប់ផ្តើមគណនា</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section class="hero" id="guide">
+            <div class="panel" style="background: white; padding: 35px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); margin-bottom: 40px;">
+                <h3 class="form-title" style="color: #1e3c72; margin-bottom: 25px;">វិធីប្រើប្រាស់</h3>
+                <div class="grid">
+                    <div>
+                        <label style="color: #475569; font-weight: bold;">1️⃣ ជ្រើសរើសប្រភេទ និងឆ្នាំផលិត</label>
+                        <input type="text" value="ជ្រើសរើសប្រភេទឡាន/ម៉ូតូ និងឆ្នាំផលិតក្នុងកាតគ្រី" disabled style="background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 8px; padding: 10px; width: 100%; margin-top: 8px;" />
+                    </div>
+                    <div>
+                        <label style="color: #475569; font-weight: bold;">2️⃣ បញ្ចូលកម្លាំងម៉ាស៊ីន (CC)</label>
+                        <input type="text" value="បញ្ចូលទំហំស៊ីឡាំងយានជំនិះ ឧទាហរណ៍៖ 1800" disabled style="background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 8px; padding: 10px; width: 100%; margin-top: 8px;" />
+                    </div>
+                    <div>
+                        <label style="color: #475569; font-weight: bold;">3️⃣ ពិនិត្យការផាកពិន័យ</label>
+                        <input type="text" value="ប្រព័ន្ធនឹងបន្ថែមទិន្នន័យពិន័យ 100% បើធិកលើប្រអប់យឺតយ៉ាវ" disabled style="background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 8px; padding: 10px; width: 100%; margin-top: 8px;" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-text" style="text-align: center; color: white;">
+                <h2 style="color: white;">ទទួលបានភាពទុកចិត្តក្នុងការគ្រប់គ្រងពន្ធ</h2>
+                <p style="color: rgba(255, 255, 255, 0.9); max-width: 700px; margin: 0 auto;">
+                    ប្រព័ន្ធរបស់យើងប្រើប្រាស់មូលដ្ឋានទិន្នន័យពន្ធលើមធ្យោបាយដឹកជញ្ជូនផ្លូវការ ដើម្បីគណនាតម្លៃលតាបត្រពន្ធផ្លូវប្រចាំឆ្នាំរបស់អ្នកឱ្យបានត្រឹមត្រូវបំផុត។
+                </p>
+            </div>
+        </section>
+
+    </div>
+</div>
+{% endblock %}
