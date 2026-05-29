@@ -2,508 +2,780 @@
 {% load static %}
 
 {% block title %}
-ពន្ធលើផ្ទាំងផ្សព្វផ្សាយ
+ពន្ធលើផ្ទាំងផ្សព្វផ្សាយ - Advertising Tax
+{% endblock %}
+
+{% block nav_about %}
+active
 {% endblock %}
 
 {% block content %}
 
-<div style="background-color: #a89d7c; min-height: 100vh; padding: 20px 0;">
+<!-- HERO SECTION -->
 
-    <div style="max-width: 1200px; margin: auto; padding: 0 20px;">
+<section class="info-hero">
 
-        <!-- HERO -->
-        <section style="margin-bottom: 40px;">
+    <div class="hero-text" style="text-align: center; margin-bottom: 40px;">
 
-            <div style="
-                text-align: center;
-                color: white;
-                margin-bottom: 40px;
-            ">
+        <div
+            style="max-width: 900px; margin: 0 auto; color: white; text-align: center; position: relative; z-index: 1;">
 
-                <img src="{% static 'images/logo.png' %}" alt="Logo" style="
-                        width: 120px;
-                        height: 120px;
-                        border-radius: 50%;
-                        object-fit: cover;
-                        margin-bottom: 20px;
-                        border: 3px solid rgba(255,255,255,0.3);
-                        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-                     ">
+            <span style="font-size: 3rem; display: block; margin-bottom: 15px;">
+                📢
+            </span>
 
-                <h1 style="
-                    font-size: 2.5rem;
-                    margin-bottom: 15px;
-                ">
-                    ពន្ធលើផ្ទាំងផ្សព្វផ្សាយ
-                </h1>
+            <h1 style="font-family: 'Khmer Moul', cursive; font-size: 2rem; margin-bottom: 15px; color: white;">
+                ពន្ធលើផ្ទាំងផ្សព្វផ្សាយ
+                (Advertising Tax)
+            </h1>
 
-                <p style="
-                    max-width: 900px;
-                    margin: auto;
-                    line-height: 1.8;
-                    color: rgba(255,255,255,0.9);
-                    font-size: 1.05rem;
-                ">
-                    ពន្ធលើផ្ទាំងផ្សព្វផ្សាយ
-                    គឺជាប្រភេទពន្ធប្រចាំឆ្នាំ
-                    អនុវត្តលើផ្ទាំងផ្សព្វផ្សាយគ្រប់ប្រភេទ
-                    នៅក្នុងព្រះរាជាណាចក្រកម្ពុជា។
-                </p>
+            <p style="font-size: 1.1rem; color: rgba(255,255,255,0.85); line-height: 1.8;">
 
-            </div>
+                ស្វែងយល់អំពីអត្រាពន្ធ
+                ប្រភេទផ្ទាំងផ្សព្វផ្សាយ
+                ការគណនាពន្ធ
+                និងបទប្បញ្ញត្តិពាក់ព័ន្ធ
+                នឹងពន្ធលើផ្ទាំងផ្សព្វផ្សាយ
+                នៅក្នុងប្រទេសកម្ពុជា។
 
-        </section>
+            </p>
 
-        <!-- DEFINITION -->
-        <section style="margin-bottom: 35px;">
-
-            <div style="
-                background: white;
-                padding: 35px;
-                border-radius: 20px;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-            ">
-
-                <h2 style="
-                    color: #1e3c72;
-                    margin-bottom: 20px;
-                ">
-                    ក. តើពន្ធលើផ្ទាំងផ្សព្វផ្សាយជាអ្វី?
-                </h2>
-
-                <p style="
-                    color: #475569;
-                    line-height: 2;
-                    font-size: 1rem;
-                ">
-                    ពន្ធលើផ្ទាំងផ្សព្វផ្សាយ
-                    គឺជាប្រភេទពន្ធប្រចាំឆ្នាំ
-                    ត្រូវអនុវត្តលើផ្ទាំងផ្សព្វផ្សាយ
-                    គ្រប់ប្រភេទ
-                    ទាំងចល័ត និងអចល័ត
-                    នៅក្នុងព្រះរាជាណាចក្រកម្ពុជា។
-                </p>
-
-            </div>
-
-        </section>
-
-        <!-- TYPES -->
-        <section style="margin-bottom: 35px;">
-
-            <div style="
-                background: white;
-                padding: 35px;
-                border-radius: 20px;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-            ">
-
-                <h2 style="
-                    color: #1e3c72;
-                    margin-bottom: 25px;
-                ">
-                    ខ. ប្រភេទផ្ទាំងផ្សព្វផ្សាយ
-                </h2>
-
-                <ul style="
-                    color: #475569;
-                    line-height: 2.2;
-                    padding-left: 25px;
-                ">
-
-                    <li>
-                        បណ្ណប្រកាសផ្សាយពាណិជ្ជកម្ម
-                    </li>
-
-                    <li>
-                        ផ្ទាំងផ្សព្វផ្សាយធ្វើពីកៅស៊ូ
-                        ក្រណាត់ សំពត់
-                        ឬវត្ថុផ្សេងៗ
-                    </li>
-
-                    <li>
-                        ស្លាកអាជីវកម្មដ្ឋាន
-                    </li>
-
-                    <li>
-                        ផ្ទាំងអក្សរ
-                        ឬផ្ទាំងរូបភាព
-                        សម្រាប់គោលបំណងពាណិជ្ជកម្ម
-                    </li>
-
-                </ul>
-
-            </div>
-
-        </section>
-
-        <!-- EXEMPTION -->
-        <section style="margin-bottom: 35px;">
-
-            <div style="
-                background: white;
-                padding: 35px;
-                border-radius: 20px;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-            ">
-
-                <h2 style="
-                    color: #1e3c72;
-                    margin-bottom: 20px;
-                ">
-                    គ. ការលើកលែងពន្ធ
-                </h2>
-
-                <ul style="
-                    color: #475569;
-                    line-height: 2.2;
-                    padding-left: 25px;
-                ">
-
-                    <li>
-                        ស្លាករបស់ស្ថាប័នរដ្ឋ
-                    </li>
-
-                    <li>
-                        ស្លាកស្ថានទូត
-                        និងស្ថានកុងស៊ុលបរទេស
-                    </li>
-
-                    <li>
-                        អង្គការជាតិ
-                        និងអង្គការអន្តរជាតិ
-                    </li>
-
-                    <li>
-                        ផ្ទាំងផ្សព្វផ្សាយ
-                        ក្នុងគោលបំណងអប់រំសង្គម
-                    </li>
-
-                    <li>
-                        ការផ្សព្វផ្សាយអំពី
-                        ការពារបរិស្ថាន
-                    </li>
-
-                    <li>
-                        ការអប់រំចរាចរណ៍
-                    </li>
-
-                    <li>
-                        ការអប់រំសុខភាពសាធារណៈ
-                    </li>
-
-                </ul>
-
-            </div>
-
-        </section>
-
-        <!-- TAX TABLE -->
-        <section style="margin-bottom: 35px;">
-
-            <div style="
-                background: white;
-                padding: 35px;
-                border-radius: 20px;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-            ">
-
-                <h2 style="
-                    color: #1e3c72;
-                    margin-bottom: 25px;
-                ">
-                    ឃ. អត្រាពន្ធ
-                </h2>
-
-                <div style="overflow-x: auto;">
-
-                    <table style="
-                        width: 100%;
-                        border-collapse: collapse;
-                    ">
-
-                        <thead>
-
-                            <tr style="
-                                background: #1e3c72;
-                                color: white;
-                            ">
-
-                                <th style="
-                                    padding: 15px;
-                                    text-align: left;
-                                ">
-                                    ប្រភេទផ្ទាំង
-                                </th>
-
-                                <th style="
-                                    padding: 15px;
-                                    text-align: left;
-                                ">
-                                    អត្រាពន្ធ
-                                </th>
-
-                            </tr>
-
-                        </thead>
-
-                        <tbody>
-
-                            <tr style="background: #f8fafc;">
-
-                                <td style="
-                                    padding: 15px;
-                                    border-bottom: 1px solid #e2e8f0;
-                                ">
-                                    បណ្ណប្រកាស ≤ 40 dm²
-                                </td>
-
-                                <td style="
-                                    padding: 15px;
-                                    border-bottom: 1px solid #e2e8f0;
-                                ">
-                                    500៛ / ទំព័រ
-                                </td>
-
-                            </tr>
-
-                            <tr>
-
-                                <td style="
-                                    padding: 15px;
-                                    border-bottom: 1px solid #e2e8f0;
-                                ">
-                                    បណ្ណប្រកាស > 40 dm²
-                                </td>
-
-                                <td style="
-                                    padding: 15px;
-                                    border-bottom: 1px solid #e2e8f0;
-                                ">
-                                    700៛ / ទំព័រ
-                                </td>
-
-                            </tr>
-
-                            <tr style="background: #f8fafc;">
-
-                                <td style="
-                                    padding: 15px;
-                                    border-bottom: 1px solid #e2e8f0;
-                                ">
-                                    ស្លាកអាជីវកម្ម
-                                </td>
-
-                                <td style="
-                                    padding: 15px;
-                                    border-bottom: 1px solid #e2e8f0;
-                                ">
-                                    100៛ – 250៛ / dm² / ឆ្នាំ
-                                </td>
-
-                            </tr>
-
-                            <tr>
-
-                                <td style="padding: 15px;">
-                                    ផ្ទាំងរូបភាពពាណិជ្ជកម្ម
-                                </td>
-
-                                <td style="padding: 15px;">
-                                    500៛ – 1,500៛ / dm² / ឆ្នាំ
-                                </td>
-
-                            </tr>
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <!-- FORMULA -->
-        <section style="margin-bottom: 35px;">
-
-            <div style="
-                background: linear-gradient(135deg,#e0f2fe,#dbeafe);
-                padding: 35px;
-                border-radius: 20px;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-            ">
-
-                <h2 style="
-                    color: #1e3c72;
-                    margin-bottom: 20px;
-                ">
-                    ង. រូបមន្តគណនា
-                </h2>
-
-                <div style="
-                    background: white;
-                    padding: 25px;
-                    border-radius: 15px;
-                    text-align: center;
-                    font-size: 1.1rem;
-                    line-height: 2;
-                    color: #1e3c72;
-                    font-weight: bold;
-                    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-                ">
-
-                    ពន្ធត្រូវបង់ =
-                    ទំហំផ្ទាំង × អត្រាពន្ធ
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <!-- EXAMPLE -->
-        <section style="margin-bottom: 40px;">
-
-            <div style="
-                background: white;
-                padding: 35px;
-                border-radius: 20px;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-            ">
-
-                <h2 style="
-                    color: #1e3c72;
-                    margin-bottom: 25px;
-                ">
-                    ឧទាហរណ៍គណនា
-                </h2>
-
-                <div style="
-                    background: #f8fafc;
-                    padding: 25px;
-                    border-radius: 15px;
-                    border-left: 6px solid #1e3c72;
-                ">
-
-                    <p style="
-                        color: #475569;
-                        line-height: 2;
-                        margin-bottom: 20px;
-                    ">
-
-                        ផ្ទាំងផ្សព្វផ្សាយមួយ
-                        ដាក់តាមដងផ្លូវ
-                        មានភ្លើងបំភ្លឺ
-
-                        <br><br>
-
-                        ទំហំ:
-                        2m × 4m
-
-                    </p>
-
-                    <div style="
-                        background: white;
-                        padding: 20px;
-                        border-radius: 12px;
-                        line-height: 2;
-                        color: #1e3c72;
-                        font-weight: bold;
-                    ">
-
-                        ទំហំ =
-                        2m × 4m
-                        <br>
-
-                        = 20dm × 40dm
-                        <br>
-
-                        = 800dm²
-
-                        <br><br>
-
-                        ពន្ធ =
-                        800 × 1,000៛
-
-                        <br><br>
-
-                        ពន្ធត្រូវបង់ =
-                        800,000៛
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <!-- PAYMENT -->
-        <section style="margin-bottom: 40px;">
-
-            <div style="
-                background: white;
-                padding: 35px;
-                border-radius: 20px;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-            ">
-
-                <h2 style="
-                    color: #1e3c72;
-                    margin-bottom: 20px;
-                ">
-                    ច. ការប្រកាស និងបង់ពន្ធ
-                </h2>
-
-                <ul style="
-                    color: #475569;
-                    line-height: 2.2;
-                    padding-left: 25px;
-                ">
-
-                    <li>
-                        ត្រូវប្រកាសពន្ធជារៀងរាល់ឆ្នាំ
-                    </li>
-
-                    <li>
-                        រយៈពេលបង់ពន្ធ៖
-                        ថ្ងៃទី១ មករា
-                        ដល់ថ្ងៃទី៣១ មីនា
-                    </li>
-
-                    <li>
-                        ផ្ទាំងផ្សព្វផ្សាយថ្មី
-                        ត្រូវប្រកាសមុនធ្វើការផ្សព្វផ្សាយ
-                    </li>
-
-                    <li>
-                        ផ្ទាំងថ្មីដាក់ក្នុង:
-                        <br>
-                        - ៦ខែដើមឆ្នាំ បង់ 100%
-                        <br>
-                        - ៦ខែចុងឆ្នាំ បង់ 50%
-                    </li>
-
-                    <li>
-                        អាចបង់តាម:
-                        <br>
-                        - សាខាពន្ធដារ
-                        <br>
-                        - GDT Taxpayer App
-                        <br>
-                        - ធនាគារដៃគូ
-                    </li>
-
-                </ul>
-
-            </div>
-
-        </section>
+        </div>
 
     </div>
 
-</div>
+</section>
+
+<!-- INFORMATION SECTION -->
+
+<section class="info-grid-section">
+
+    <div class="container" style="
+            max-width:1200px;
+            margin:0 auto;
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+            gap:30px;
+         ">
+
+        <!-- CARD 1 -->
+
+        <div class="info-panel">
+
+            <h2>១. សេចក្តីសង្ខេប</h2>
+
+            <p style="color:#475569; line-height:1.8; margin-bottom:20px;">
+
+                ពន្ធលើផ្ទាំងផ្សព្វផ្សាយ
+                គឺជាប្រភេទពន្ធប្រចាំឆ្នាំ
+                ដែលអនុវត្តលើផ្ទាំងផ្សព្វផ្សាយ
+                គ្រប់ប្រភេទ
+                ទាំងចល័ត និងអចល័ត
+                នៅក្នុងព្រះរាជាណាចក្រកម្ពុជា។
+
+            </p>
+
+            <ul>
+
+                <li>
+                    <span style="color:#3b82f6; font-weight:bold;">✓</span>
+                    បណ្ណប្រកាសផ្សាយពាណិជ្ជកម្ម
+                </li>
+
+                <li>
+                    <span style="color:#3b82f6; font-weight:bold;">✓</span>
+                    ស្លាកអាជីវកម្ម
+                </li>
+
+                <li>
+                    <span style="color:#3b82f6; font-weight:bold;">✓</span>
+                    ផ្ទាំងរូបភាពផ្សព្វផ្សាយ
+                </li>
+
+                <li>
+                    <span style="color:#3b82f6; font-weight:bold;">✓</span>
+                    ផ្ទាំងអក្សរពាណិជ្ជកម្ម
+                </li>
+
+            </ul>
+
+        </div>
+
+        <!-- CARD 2 -->
+
+        <div class="info-panel">
+
+            <h2>២. ច្បាប់ និងបទប្បញ្ញត្តិ</h2>
+
+            <p style="color:#475569; margin-bottom:15px; line-height:1.8;">
+
+                ពន្ធនេះគ្រប់គ្រងដោយ
+                អគ្គនាយកដ្ឋានពន្ធដារ (GDT)
+                និងច្បាប់ស្តីពីសារពើពន្ធ។
+
+            </p>
+
+            <ul style="font-size:0.95rem;">
+
+                <li>
+                    <strong style="color:#1e293b;">
+                        • ច្បាប់ស្តីពីសារពើពន្ធ
+                    </strong>
+                </li>
+
+                <li>
+                    <strong style="color:#1e293b;">
+                        • អនុក្រឹត្យពន្ធលើផ្ទាំងផ្សព្វផ្សាយ
+                    </strong>
+                </li>
+
+                <li>
+                    <strong style="color:#1e293b;">
+                        • សេចក្តីណែនាំ GDT
+                    </strong>
+                </li>
+
+            </ul>
+
+        </div>
+
+        <!-- CARD 3 -->
+
+        <div class="info-panel">
+
+            <h2>៣. ការលើកលែងពន្ធ</h2>
+
+            <p style="color:#475569; margin-bottom:20px; line-height:1.8;">
+
+                ផ្ទាំងផ្សព្វផ្សាយខ្លះ
+                ត្រូវបានលើកលែងពន្ធ
+                ដូចខាងក្រោម៖
+
+            </p>
+
+            <div style="display:flex; flex-direction:column; gap:12px;">
+
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    border-bottom:1px dashed #e2e8f0;
+                    padding-bottom:8px;
+                ">
+
+                    <span style="color:#475569;">
+                        <strong>ស្ថាប័នរដ្ឋ</strong>
+                    </span>
+
+                    <span style="color:#10b981; font-weight:bold;">
+                        លើកលែង
+                    </span>
+
+                </div>
+
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    border-bottom:1px dashed #e2e8f0;
+                    padding-bottom:8px;
+                ">
+
+                    <span style="color:#475569;">
+                        <strong>ស្ថានទូត</strong>
+                    </span>
+
+                    <span style="color:#10b981; font-weight:bold;">
+                        លើកលែង
+                    </span>
+
+                </div>
+
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                ">
+
+                    <span style="color:#475569;">
+                        <strong>ផ្ទាំងអប់រំសង្គម</strong>
+                    </span>
+
+                    <span style="color:#10b981; font-weight:bold;">
+                        លើកលែង
+                    </span>
+
+                </div>
+
+            </div>
+
+            <p style="
+                font-size:0.85rem;
+                color:#64748b;
+                margin-top:15px;
+                background:#f0fdf4;
+                padding:10px;
+                border-radius:8px;
+            ">
+
+                💡
+                <strong>សម្គាល់:</strong>
+                ផ្ទាំងដែលមានគោលបំណងអប់រំសង្គម
+                និងមិនរកប្រាក់ចំណេញ
+                អាចត្រូវបានលើកលែងពន្ធ។
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- DETAILED TAX RATE TABLE -->
+
+<section class="tax-rates-section" style="background: white; padding: 60px 20px;">
+
+    <div class="container" style="max-width: 1200px; margin: 0 auto;">
+
+        <div class="section-header" style="margin-bottom: 30px;">
+
+            <h2 style="color: #1e3c72; font-size: 1.7rem; margin-bottom: 10px;">
+                ៤. មូលដ្ឋានគិតពន្ធ អត្រាពន្ធ និងការគណនាពន្ធ
+            </h2>
+
+            <p style="color: #64748b; font-size: 1rem;">
+                តារាងខាងក្រោមបង្ហាញអំពីអត្រាពន្ធលម្អិត
+                សម្រាប់ផ្ទាំងផ្សព្វផ្សាយគ្រប់ប្រភេទ។
+            </p>
+
+        </div>
+
+        <div style="overflow-x:auto; border-radius: 12px;">
+
+            <table style="
+                width:100%;
+                border-collapse:collapse;
+                background:white;
+                border:1px solid #cbd5e1;
+            ">
+
+                <thead>
+
+                    <tr style="
+                        background: linear-gradient(135deg,#1e3c72,#2a5298);
+                        color:white;
+                    ">
+
+                        <th style="padding:16px; border:1px solid #cbd5e1; width:80px;">
+                            លេខរៀង
+                        </th>
+
+                        <th style="padding:16px; border:1px solid #cbd5e1;">
+                            ប្រភេទផ្ទាំងផ្សព្វផ្សាយ
+                        </th>
+
+                        <th style="padding:16px; border:1px solid #cbd5e1; width:220px;">
+                            អត្រាពន្ធ
+                        </th>
+
+                        <th style="padding:16px; border:1px solid #cbd5e1;">
+                            លក្ខខណ្ឌបន្ថែម
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <!-- SECTION 1 -->
+
+                    <tr style="background:#dbeafe; font-weight:bold;">
+
+                        <td colspan="4" style="
+                                padding:14px;
+                                border:1px solid #cbd5e1;
+                                color:#1e3c72;
+                            ">
+                            ១. បណ្ណប្រកាសផ្សាយពាណិជ្ជកម្មធ្វើពីក្រដាសធម្មតា
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            ក
+                        </td>
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            ផ្ទៃក្រឡាមិនលើសពី ៤០ ដេស៊ីម៉ែត្រការ៉េ
+                        </td>
+
+                        <td style="
+                            padding:12px;
+                            border:1px solid #e2e8f0;
+                            font-weight:bold;
+                            color:#2563eb;
+                        ">
+                            ៥០០៛/ទំព័រ
+                        </td>
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            បើមានអក្សរបរទេស
+                            ១ ៥០០៛/ទំព័រ
+                        </td>
+
+                    </tr>
+
+                    <tr style="background:#f8fafc;">
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            ខ
+                        </td>
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            ផ្ទៃក្រឡាលើសពី ៤០ ដេស៊ីម៉ែត្រការ៉េ
+                        </td>
+
+                        <td style="
+                            padding:12px;
+                            border:1px solid #e2e8f0;
+                            font-weight:bold;
+                            color:#16a34a;
+                        ">
+                            ៧០០៛/ទំព័រ
+                        </td>
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            បើមានអក្សរបរទេស
+                            ២ ១០០៛/ទំព័រ
+                        </td>
+
+                    </tr>
+
+                    <!-- SECTION 2 -->
+
+                    <tr style="background:#dbeafe; font-weight:bold;">
+
+                        <td colspan="4" style="
+                                padding:14px;
+                                border:1px solid #cbd5e1;
+                                color:#1e3c72;
+                            ">
+                            ២. បណ្ណប្រកាសផ្សាយពាណិជ្ជកម្មធ្វើពីកៅស៊ូ
+                            ក្រណាត់ ឬវត្ថុផ្សេងៗ
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            ក
+                        </td>
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            ផ្ទៃក្រឡាមិនលើសពី ៤០ ដេស៊ីម៉ែត្រការ៉េ
+                        </td>
+
+                        <td style="
+                            padding:12px;
+                            border:1px solid #e2e8f0;
+                            font-weight:bold;
+                            color:#f59e0b;
+                        ">
+                            ៧០០៛/ផ្ទាំង
+                        </td>
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            បើមានអក្សរបរទេស
+                            ២ ១០០៛/ផ្ទាំង
+                        </td>
+
+                    </tr>
+
+                    <tr style="background:#f8fafc;">
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            ខ
+                        </td>
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            ផ្ទៃក្រឡាលើសពី ៤០ ដល់ ១០០ ដេស៊ីម៉ែត្រការ៉េ។
+                            បើលើសពី ១០០ ដេស៊ីម៉ែត្រការ៉េ
+                            គិតជាផ្ទាំងអក្សរ ឬផ្ទាំងរូបភាព
+                        </td>
+
+                        <td style="
+                            padding:12px;
+                            border:1px solid #e2e8f0;
+                            font-weight:bold;
+                            color:#dc2626;
+                        ">
+                            ១ ០០០៛/ផ្ទាំង
+                        </td>
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            បើមានអក្សរបរទេស
+                            ៣ ០០០៛/ផ្ទាំង
+                        </td>
+
+                    </tr>
+
+                    <!-- SECTION 3 -->
+
+                    <tr style="background:#dbeafe; font-weight:bold;">
+
+                        <td colspan="4" style="
+                                padding:14px;
+                                border:1px solid #cbd5e1;
+                                color:#1e3c72;
+                            ">
+                            ៣. ស្លាកអាជីវកម្មដ្ឋាន
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            ក
+                        </td>
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            គ្មានពន្លឺលើកស្របដងផ្លូវ
+                        </td>
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            ១០០៛/ដម²/ឆ្នាំ
+                        </td>
+
+                        <td rowspan="4" style="
+                                padding:12px;
+                                border:1px solid #e2e8f0;
+                                vertical-align:middle;
+                                line-height:1.8;
+                                background:#f8fafc;
+                            ">
+                            បើមានអក្សរបរទេស
+                            ត្រូវគិតបន្ថែមក្នុងអក្សរ ១តួ
+                            និងក្នុងកម្ពស់ ១ដម
+                            ឬប្រភាគ
+                        </td>
+
+                    </tr>
+
+                    <tr style="background:#f8fafc;">
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            ខ
+                        </td>
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            គ្មានពន្លឺកែងដងផ្លូវ
+                        </td>
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            ១៥០៛/ដម²/ឆ្នាំ
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            គ
+                        </td>
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            មានពន្លឺលើកស្របដងផ្លូវ
+                        </td>
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            ២០០៛/ដម²/ឆ្នាំ
+                        </td>
+
+                    </tr>
+
+                    <tr style="background:#f8fafc;">
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            ឃ
+                        </td>
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            មានពន្លឺកែងដងផ្លូវ
+                        </td>
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            ២៥០៛/ដម²/ឆ្នាំ
+                        </td>
+
+                    </tr>
+
+                    <!-- SECTION 4 -->
+
+                    <tr style="background:#dbeafe; font-weight:bold;">
+
+                        <td colspan="4" style="
+                                padding:14px;
+                                border:1px solid #cbd5e1;
+                                color:#1e3c72;
+                            ">
+                            ៤. ផ្ទាំងអក្សរ ឬផ្ទាំងរូបភាព
+                            សម្រាប់គោលបំណងពាណិជ្ជកម្ម
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            ក
+                        </td>
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            គ្មានពន្លឺលើកស្របដងផ្លូវ
+                        </td>
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            ៥០០៛/ដម²/ឆ្នាំ
+                        </td>
+
+                        <td rowspan="5" style="
+                                padding:12px;
+                                border:1px solid #e2e8f0;
+                                vertical-align:middle;
+                                line-height:1.8;
+                                background:#f8fafc;
+                            ">
+                            បើមានអក្សរបរទេស
+                            ត្រូវគិតបន្ថែមក្នុងអក្សរ ១តួ
+                            និងក្នុងកម្ពស់ ១ដម
+                            ឬប្រភាគ
+                        </td>
+
+                    </tr>
+
+                    <tr style="background:#f8fafc;">
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            ខ
+                        </td>
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            គ្មានពន្លឺកែងដងផ្លូវ
+                        </td>
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            ៧០០៛/ដម²/ឆ្នាំ
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            គ
+                        </td>
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            មានពន្លឺលើកស្របដងផ្លូវ
+                        </td>
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            ៧០០៛/ដម²/ឆ្នាំ
+                        </td>
+
+                    </tr>
+
+                    <tr style="background:#f8fafc;">
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            ឃ
+                        </td>
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            មានពន្លឺកែងដងផ្លូវ
+                        </td>
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            ១ ០០០៛/ដម²/ឆ្នាំ
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            ង
+                        </td>
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            ដាក់ភ្ជាប់ តភ្ជាប់ ឬគូរផ្ទាល់
+                            លើយានជំនិះនានា
+                        </td>
+
+                        <td style="padding:12px; border:1px solid #e2e8f0;">
+                            ១ ៥០០៛/ដម²/ឆ្នាំ
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- EXAMPLE SECTION -->
+
+<section style="
+    background:#f8fafc;
+    padding:40px 20px;
+">
+
+    <div class="container" style="max-width:900px; margin:0 auto;">
+
+        <h2 style="
+            text-align:center;
+            color:#1e293b;
+            margin-bottom:30px;
+        ">
+
+            ៥. ឧទាហរណ៍គណនាពន្ធ
+
+        </h2>
+
+        <div style="
+            background:white;
+            padding:25px;
+            border-radius:12px;
+            border:1px solid #e2e8f0;
+        ">
+
+            <h4 style="color:#1e293b; margin-bottom:15px;">
+
+                ឧទាហរណ៍៖
+                ផ្ទាំងផ្សព្វផ្សាយទំហំ 2m × 4m
+
+            </h4>
+
+            <p style="color:#475569; line-height:1.8;">
+
+                ផ្ទាំងផ្សព្វផ្សាយ
+                មានពន្លឺកែងផ្លូវ
+                និងមានអក្សរបរទេស។
+
+            </p>
+
+            <ul style="
+                margin-top:15px;
+                padding-left:20px;
+                color:#475569;
+            ">
+
+                <li>
+                    ទំហំផ្ទាំង = 2m × 4m
+                </li>
+
+                <li>
+                    ផ្ទៃសរុប = 800 ដម²
+                </li>
+
+                <li>
+                    ពន្ធផ្ទាំង = 800 × 1,000៛
+                </li>
+
+                <li>
+                    ពន្ធអក្សរបរទេស = 52,000៛
+                </li>
+
+            </ul>
+
+            <div style="
+                margin-top:20px;
+                background:#eff6ff;
+                padding:15px;
+                border-radius:8px;
+            ">
+
+                <strong style="
+                    color:#1d4ed8;
+                    font-size:1.1rem;
+                ">
+
+                    ពន្ធសរុប = 852,000៛
+
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- BUTTON SECTION -->
+
+<section class="button-section" style="
+            background:white;
+            padding:60px 20px;
+            text-align:center;
+         ">
+
+    <div style="max-width:600px; margin:0 auto;">
+
+        <h2 style="
+            color:#1e293b;
+            margin-bottom:30px;
+        ">
+
+            ចាប់ផ្តើមគណនាពន្ធ
+
+        </h2>
+
+        <div style="
+            display:flex;
+            flex-wrap:wrap;
+            justify-content:center;
+            gap:20px;
+        ">
+
+            <a href="{% url 'advertising_board_tax' %}" style="
+                    background:linear-gradient(135deg,#22c55e,#16a34a);
+                    color:white;
+                    padding:14px 30px;
+                    border-radius:12px;
+                    text-decoration:none;
+                    font-weight:bold;
+               ">
+
+                គណនាពន្ធឥឡូវនេះ
+
+            </a>
+
+            <a href="#" style="
+                    background:linear-gradient(135deg,#3b82f6,#1d4ed8);
+                    color:white;
+                    padding:14px 30px;
+                    border-radius:12px;
+                    text-decoration:none;
+                    font-weight:bold;
+               ">
+
+                ត្រឡប់ទៅព័ត៌មានពន្ធ
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
 
 {% endblock %}
