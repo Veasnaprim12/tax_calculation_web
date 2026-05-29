@@ -578,82 +578,164 @@ class TransportationTaxForm(forms.Form):
         )
     )
 class AdvertisingBoardTaxForm(forms.Form):
+
+    BOARD_TYPE_CHOICES = [
+
+        (
+            'paper_small',
+            'បណ្ណប្រកាសក្រដាស ≤ 40 ដម²'
+        ),
+
+        (
+            'paper_large',
+            'បណ្ណប្រកាសក្រដាស > 40 ដម²'
+        ),
+
+        (
+            'rubber_small',
+            'បណ្ណប្រកាសកៅស៊ូ/ក្រណាត់ ≤ 40 ដម²'
+        ),
+
+        (
+            'rubber_large',
+            'បណ្ណប្រកាសកៅស៊ូ/ក្រណាត់ > 40 ដម²'
+        ),
+
+        (
+            'business_sign',
+            'ស្លាកអាជីវកម្ម'
+        ),
+
+        (
+            'commercial_board',
+            'ផ្ទាំងអក្សរ ឬ ផ្ទាំងរូបភាព'
+        ),
+
+        (
+            'vehicle',
+            'ផ្ទាំងលើយានជំនិះ'
+        ),
+
+    ]
+
+    DISPLAY_TYPE_CHOICES = [
+
+        (
+            'parallel_no_light',
+            'គ្មានពន្លឺ ស្របផ្លូវ'
+        ),
+
+        (
+            'perpendicular_no_light',
+            'គ្មានពន្លឺ កែងផ្លូវ'
+        ),
+
+        (
+            'parallel_light',
+            'មានពន្លឺ ស្របផ្លូវ'
+        ),
+
+        (
+            'perpendicular_light',
+            'មានពន្លឺ កែងផ្លូវ'
+        ),
+
+    ]
+
+    PERIOD_CHOICES = [
+
+        (
+            'monthly',
+            'ប្រចាំខែ'
+        ),
+
+        (
+            'yearly',
+            'ប្រចាំឆ្នាំ'
+        ),
+
+    ]
+
     board_type = forms.ChoiceField(
         label="ប្រភេទផ្ទាំងផ្សព្វផ្សាយ",
-        choices=[
-            ('paper_poster', 'ប័ណ្ណផ្សព្វផ្សាយពាណិជ្ជកម្មធ្វើពីក្រដាសធម្មតា'),
-            ('material_poster', 'ប័ណ្ណផ្សព្វផ្សាយធ្វើពីកៅស៊ូ ក្រណាត់ ឬសម្ភារៈផ្សេងៗ'),
-            ('business_sign', 'ស្លាកអាជីវកម្ម'),
-            ('text_image', 'ផ្ទាំងអក្សរ ឬផ្ទាំងរូបភាពពាណិជ្ជកម្ម'),
-        ],
-        initial='text_image',
-        widget=forms.Select(attrs={'class': 'form-select'})
+        choices=BOARD_TYPE_CHOICES,
+        widget=forms.Select(
+            attrs={
+                'class': 'form-select'
+            }
+        )
     )
 
     width_m = forms.DecimalField(
         label="ទទឹង (ម៉ែត្រ)",
         min_value=0,
         decimal_places=2,
-        widget=forms.NumberInput(attrs={
-            'placeholder': 'ឧ. 4',
-            'class': 'form-input',
-            'step': '0.01'
-        })
+        widget=forms.NumberInput(
+            attrs={
+                'placeholder': 'ឧ. 2',
+                'class': 'form-input',
+                'step': '0.01'
+            }
+        )
     )
 
     height_m = forms.DecimalField(
-        label="កម្ពស់ (ម៉ែត្រ)",
+        label="បណ្ដោយ (ម៉ែត្រ)",
         min_value=0,
         decimal_places=2,
-        widget=forms.NumberInput(attrs={
-            'placeholder': 'ឧ. 2',
-            'class': 'form-input',
-            'step': '0.01'
-        })
+        widget=forms.NumberInput(
+            attrs={
+                'placeholder': 'ឧ. 4',
+                'class': 'form-input',
+                'step': '0.01'
+            }
+        )
     )
 
     quantity = forms.IntegerField(
         label="ចំនួនផ្ទាំង",
         min_value=1,
         initial=1,
-        widget=forms.NumberInput(attrs={
-            'placeholder': '1',
-            'class': 'form-input'
-        })
+        widget=forms.NumberInput(
+            attrs={
+                'class': 'form-input'
+            }
+        )
     )
 
     display_type = forms.ChoiceField(
-        label="ភ្លើងបំភ្លឺ / ទីតាំងដាក់",
-        choices=[
-            ('no_light_parallel', 'គ្មានភ្លើង ដាក់ស្របនឹងផ្លូវ'),
-            ('no_light_perpendicular', 'គ្មានភ្លើង ដាក់កែងនឹងផ្លូវ'),
-            ('light_parallel', 'មានភ្លើង ដាក់ស្របនឹងផ្លូវ'),
-            ('light_perpendicular', 'មានភ្លើង ដាក់កែងនឹងផ្លូវ'),
-            ('vehicle', 'ភ្ជាប់ ឬគូរលើយានយន្តដឹកជញ្ជូន'),
-        ],
-        initial='light_perpendicular',
-        widget=forms.Select(attrs={'class': 'form-select'})
+        label="ប្រភេទបង្ហាញ",
+        choices=DISPLAY_TYPE_CHOICES,
+        required=False,
+        widget=forms.Select(
+            attrs={
+                'class': 'form-select'
+            }
+        )
     )
 
     foreign_letter_dm = forms.DecimalField(
-        label="កម្ពស់អក្សរបរទេសសរុប (ដេស៊ីម៉ែត្រ)",
+        label="កម្ពស់អក្សរបរទេសសរុប (ដម)",
         min_value=0,
         initial=0,
         decimal_places=2,
         required=False,
-        widget=forms.NumberInput(attrs={
-            'placeholder': 'ឧ. 26',
-            'class': 'form-input',
-            'step': '0.01'
-        })
+        widget=forms.NumberInput(
+            attrs={
+                'placeholder': 'ឧ. 2',
+                'class': 'form-input',
+                'step': '0.01'
+            }
+        )
     )
 
     declaration_period = forms.ChoiceField(
-        label="រយៈពេលប្រកាសបង់ពន្ធ",
-        choices=[
-            ('first_half', '៦ខែដំបូងនៃឆ្នាំ - បង់ពន្ធ 100%'),
-            ('second_half', '៦ខែចុងក្រោយនៃឆ្នាំ - បង់ពន្ធ 50%'),
-        ],
-        initial='first_half',
-        widget=forms.Select(attrs={'class': 'form-select'})
+        label="រយៈពេលប្រកាស",
+        choices=PERIOD_CHOICES,
+        initial='yearly',
+        widget=forms.Select(
+            attrs={
+                'class': 'form-select'
+            }
+        )
     )
