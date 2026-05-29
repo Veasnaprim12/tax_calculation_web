@@ -11,7 +11,7 @@ from tax_calculators import (
     calculate_actual_vat,
     convert_to_khr,
     convert_from_khr,
-    get_currency_symbol
+    get_currency_symbol,
 )
 from tax_calculators.income_tax import calculate_income_tax_with_breakdown
 from tax_calculators.patent_tax import calculate_total_patent_tax
@@ -19,7 +19,8 @@ from tax_calculators.special_tax import calculate_special_tax_with_breakdown
 from tax_calculators.registration_tax import calculate_registration_tax_with_renewal
 from tax_calculators.unused_land_tax import calculate_unused_land_tax_progressive
 from tax_calculators.advertising_board_tax import calculate_advertising_board_tax
-
+from tax_calculators.accomodation import calculate_accomodation_tax
+from tax_calculators.transport_tax import calculate_vehicle_tax
 
 def get_tax_bracket(taxable_income):
     """Helper function to determine tax bracket for salary tax"""
@@ -977,7 +978,6 @@ def transportation_tax(request):
             # ៣. ប្រសិនបើអ្នកប្រើប្រាស់ចង់បង្ហាញជាលុយដុល្លារ (USD) ទើបបំប្លែងទឹកប្រាក់ចុងក្រោយ
             # (ចំណាំ៖ បើប្រព័ន្ធរបស់អ្នកប្រើការបំប្លែងជាមួយមុខងារ convert_from_khr)
             if currency == 'USD':
-                from .utils import convert_from_khr # ឧទាហរណ៍បើមាន utility នេះ
                 tax_amount = convert_from_khr(tax_amount_khr, 'USD')
                 penalty_amount = convert_from_khr(penalty_amount_khr, 'USD')
                 total_to_pay = convert_from_khr(total_to_pay_khr, 'USD')

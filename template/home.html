@@ -6,14 +6,51 @@
 {% block content %}
 <!-- Welcome Section -->
 <section
-    style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(240, 147, 251, 0.1) 100%); padding: 80px 20px; text-align: center; margin-bottom: 60px;">
-    <h2 style="color: #1a1a1a; margin: 0 0 10px 0; font-size: 2.8rem; font-weight: bold;">
-        សូមស្វាគមន៍មកកាន់ប្រព័ន្ធគណនាពន្ធ</h2>
-    <p style="color: #4a4a4a; font-size: 1.1rem; max-width: 800px; margin: 0 auto; line-height: 1.6;">
+    style="background: linear-gradient(135deg, rgba(12, 60, 134, 0.06) 0%, rgba(240, 147, 251, 0.05) 100%); padding: 80px 20px; text-align: center; margin-bottom: 60px; font-family: 'Kantumruy Pro', 'Khmer OS Siemreap', sans-serif;">
+    <h2 style="color: #0c3c86; margin: 0 0 12px 0; font-size: 2.8rem; font-weight: bold;">
+        សូមស្វាគមន៍មកកាន់ប្រព័ន្ធគណនាពន្ធ
+    </h2>
+    <p style="color: #4a5568; font-size: 1.15rem; max-width: 800px; margin: 0 auto 35px auto; line-height: 1.7;">
         យើងផ្តល់សេវាកម្មគណនាពន្ធសម្រាប់ប្រភេទពន្ធផ្សេងៗនៅក្នុងប្រទេសកម្ពុជា។
     </p>
-</section>
 
+    <!-- Interactive Search Bar -->
+    <div style="max-width: 550px; margin: 0 auto;">
+
+        <div style="
+        display: flex;
+        align-items: center;
+        background: white;
+        border-radius: 50px;
+        padding: 0 20px;
+        border: 1.5px solid #cbd5e1;
+        box-shadow: 0 4px 20px rgba(12, 60, 134, 0.08);
+    ">
+
+            <!-- Search Icon -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0c3c86" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+
+            </svg>
+
+            <!-- Search Input -->
+            <input type="text" id="taxSearchInput" onkeyup="filterTaxCards()" placeholder="ស្វែងរកប្រភេទពន្ធ..." style="
+                flex: 1;
+                border: none;
+                outline: none;
+                padding: 16px;
+                font-size: 1rem;
+                background: transparent;
+                font-family: 'Kantumruy Pro', sans-serif;
+            ">
+
+        </div>
+
+    </div>
+</section>
 <!-- Tax Calculation Cards Section -->
 <section style="padding: 0 20px 80px; max-width: 1200px; margin: 0 auto;">
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; width: 100%;">
@@ -42,7 +79,8 @@
                 <span style="display: none; font-size: 2rem;">💵</span>
             </div>
             <div style="flex-grow: 1; text-align: center;">
-                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">ពន្ធប្រាក់បៀវត្ស
+                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">
+                    ពន្ធប្រាក់បៀវត្ស
                 </h3>
                 <p style="margin-bottom: 0; line-height: 1.5; color: #4a4a4a;">
                     គណនាពន្ធប្រាក់បៀវត្សប្រចាំខែរបស់អ្នកដោយផ្អែកលើចំណូល</p>
@@ -62,7 +100,8 @@
                 <span style="display: none; font-size: 2rem;">🏠</span>
             </div>
             <div style="flex-grow: 1; text-align: center;">
-                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">ពន្ធលើអចលនទ្រព្យ
+                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">
+                    ពន្ធលើអចលនទ្រព្យ
                 </h3>
                 <p style="margin-bottom: 0; line-height: 1.5; color: #4a4a4a;">គណនាពន្ធអាករសម្រាប់ផ្ទះ ដី
                     និងអចលនទ្រព្យផ្សេងទៀត</p>
@@ -82,7 +121,8 @@
                 <span style="display: none; font-size: 2rem;">🛍️</span>
             </div>
             <div style="flex-grow: 1; text-align: center;">
-                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">អាករលើតម្លៃបន្ថែម
+                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">
+                    អាករលើតម្លៃបន្ថែម
                     (VAT)</h3>
                 <p style="margin-bottom: 0; line-height: 1.5; color: #4a4a4a;">គណនាអាករលើតម្លៃបន្ថែមសម្រាប់ការលក់
                     និងសេវាកម្ម</p>
@@ -111,7 +151,8 @@
             style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
             <div style="font-size: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">📈</div>
             <div style="flex-grow: 1; text-align: center;">
-                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">ពន្ធប្រាក់ចំណូល
+                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">
+                    ពន្ធប្រាក់ចំណូល
                 </h3>
                 <p style="margin-bottom: 0; line-height: 1.5; color: #4a4a4a;">
                     គណនាពន្ធប្រាក់ចំណូលពីប្រតិបត្តិការអាជីវកម្ម</p>
@@ -125,7 +166,8 @@
             style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
             <div style="font-size: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">📜</div>
             <div style="flex-grow: 1; text-align: center;">
-                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">ពន្ធប៉ាតង់</h3>
+                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">ពន្ធប៉ាតង់
+                </h3>
                 <p style="margin-bottom: 0; line-height: 1.5; color: #4a4a4a;">
                     គណនាពន្ធប៉ាតង់ប្រចាំឆ្នាំលើសកម្មភាពអាជីវកម្ម</p>
             </div>
@@ -152,7 +194,8 @@
             style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
             <div style="font-size: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">💎</div>
             <div style="flex-grow: 1; text-align: center;">
-                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">ពន្ធអាករពិសេស</h3>
+                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">ពន្ធអាករពិសេស
+                </h3>
                 <p style="margin-bottom: 0; line-height: 1.5; color: #4a4a4a;">គណនាពន្ធអាករពិសេសលើទំនិញ
                     ឬសេវាកម្មមួយចំនួន</p>
             </div>
@@ -165,7 +208,8 @@
             style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
             <div style="font-size: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">📝</div>
             <div style="flex-grow: 1; text-align: center;">
-                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">ពន្ធប្រថាប់ត្រា
+                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">
+                    ពន្ធប្រថាប់ត្រា
                 </h3>
                 <p style="margin-bottom: 0; line-height: 1.5; color: #4a4a4a;">
                     គណនាពន្ធលើការផ្ទេរកម្មសិទ្ធិទ្រព្យសម្បត្តិ ឬយានយន្ត</p>
@@ -178,7 +222,8 @@
             style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
             <div style="font-size: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">📝</div>
             <div style="flex-grow: 1; text-align: center;">
-                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">ពន្ធលើការស្នាក់នៅ
+                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">
+                    ពន្ធលើការស្នាក់នៅ
                 </h3>
                 <p style="margin-bottom: 0; line-height: 1.5; color: #4a4a4a;">
                     គណនាពន្ធលើការស្នាក់នៅ</p>
@@ -190,7 +235,8 @@
             style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
             <div style="font-size: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">📝</div>
             <div style="flex-grow: 1; text-align: center;">
-                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">អាករបំភ្លឺសាធារណៈ
+                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">
+                    អាករបំភ្លឺសាធារណៈ
                 </h3>
                 <p style="margin-bottom: 0; line-height: 1.5; color: #4a4a4a;">
                     ចូលទៅកាន់ការគណនាអាករបំភ្លឺសាធារណៈ (5%)</p>
@@ -229,4 +275,33 @@
 
     </div>
 </section>
+<script>
+
+    function filterTaxCards() {
+
+        let input = document.getElementById("taxSearchInput");
+
+        let filter = input.value.toLowerCase();
+
+        let cards = document.querySelectorAll(".service-card");
+
+        cards.forEach(function (card) {
+
+            let text = card.innerText.toLowerCase();
+
+            if (text.includes(filter)) {
+                card.style.display = "flex";
+            } else {
+                card.style.display = "none";
+            }
+
+        });
+    }
+
+</script>
+<style>
+    #taxSearchInput::placeholder {
+        color: #94a3b8;
+    }
+</style>
 {% endblock %}

@@ -6,100 +6,111 @@
 {% block nav_calculator %}accomodation{% endblock %}
 
 {% block content %}
-    <div style="background-color: #6a7eb1; min-height: 100vh; padding: 20px 0;">
-        <div id="calculator-section">
-            <section class="hero" id="calculator">
-                <div class="hero-text" style="text-align: center; margin-bottom: 40px;">
-                    <h2>គណនាពន្ធលើការស្នាក់នៅ</h2>
-                    <p>
-                        បញ្ចូលតម្លៃបន្ទប់ និងថ្លៃសេវាកម្ម ដើម្បីគណនាពន្ធលើការស្នាក់នៅ
-                        ដោយផ្អែកលើច្បាប់ពន្ធលើការស្នាក់នៅបច្ចុប្បន្នរបស់កម្ពុជា (អាម្រា ២%)។
-                    </p>
-                    <div style="margin-top: 20px;">
-                        <a href="{% url 'about_accomodation_tax' %}" class="btn btn-secondary" style="display: inline-block; padding: 10px 20px; background-color: rgba(62, 17, 196, 0.2); color: white; text-decoration: none; border-radius: 8px; border: 1px solid rgba(255,255,255,0.4); margin-top: 15px; font-size: 0.9rem;">ℹ️ ព័ត៌មានលម្អិត</a>
-                    </div>
+<div style="background-color: #6a7eb1; min-height: 100vh; padding: 20px 0;">
+    <div id="calculator-section">
+        <section class="hero" id="calculator">
+            <div class="hero-text" style="text-align: center; margin-bottom: 40px;">
+                <h2>គណនាពន្ធលើការស្នាក់នៅ</h2>
+                <p>
+                    បញ្ចូលតម្លៃបន្ទប់ និងថ្លៃសេវាកម្ម ដើម្បីគណនាពន្ធលើការស្នាក់នៅ
+                    ដោយផ្អែកលើច្បាប់ពន្ធលើការស្នាក់នៅបច្ចុប្បន្នរបស់កម្ពុជា (អាម្រា ២%)។
+                </p>
+                <div style="margin-top: 20px;">
+                    <a href="{% url 'about_accomodation_tax' %}" class="btn btn-secondary"
+                        style="display: inline-block; padding: 10px 20px; background-color: rgba(62, 17, 196, 0.2); color: white; text-decoration: none; border-radius: 8px; border: 1px solid rgba(255,255,255,0.4); margin-top: 15px; font-size: 0.9rem;">ℹ️
+                        ព័ត៌មានលម្អិត</a>
                 </div>
+            </div>
 
-                <div class="panel">
-                    <form id="tax-form" method="post">
-                        {% csrf_token %}
-                        <h3 class="form-title">ព័ត៌មានលម្អិតលម្អិត</h3>
-                        
-                        <div class="grid">
-                            <div>
-                                {{ form.currency.label_tag }}
-                                {{ form.currency }}
-                            </div>
-                            <div>
-                                {{ form.room_price.label_tag }}
-                                <span style="color: var(--muted); font-size: 14px;">({{ currency_symbol }})</span>
-                                {{ form.room_price }}
-                            </div>
-                            <div>
-                                {{ form.services_charge.label_tag }}
-                                <span style="color: var(--muted); font-size: 14px;">({{ currency_symbol }})</span>
-                                {{ form.services_charge }}
-                            </div>
-                        </div>
+            <div class="panel">
+                <form id="tax-form" method="post">
+                    {% csrf_token %}
+                    <h3 class="form-title">ព័ត៌មានលម្អិតលម្អិត</h3>
 
-                        <div class="result">
-                            <span>ពន្ធលើការស្នាក់នៅ</span>
-                            <strong>
-                                {{ currency_symbol }} {% if tax_amount is not None %}{{ tax_amount|floatformat:2 }}{% else %}0.00{% endif %}
-                            </strong>
-                        </div>
-
-                        {% if tax_base is not None %}
-                        <div style="background: #f0f4f8; padding: 15px; border-radius: 8px; margin-bottom: 20px; font-size: 0.9rem;">
-                            <p style="color: #475569; margin: 0 0 8px 0;">
-                                <strong>ម៉ូដ្ឋានគិត:</strong> {{ currency_symbol }} {{ tax_base|floatformat:2 }}
-                            </p>
-                            <p style="color: #64748b; margin: 0; font-size: 0.85rem;">
-                                💡 រូបមន្ត: ម៉ូដ្ឋាន = តម្លៃបន្ទប់ + ថ្លៃសេវាកម្ម | ពន្ធលើការស្នាក់នៅ = ម៉ូដ្ឋាន × 2%
-                            </p>
-                        </div>
-                        {% endif %}
-
-                        <div style="text-align: center; margin-top: 20px;">
-                            <button type="submit" class="btn btn-primary">ចាប់ផ្តើមគណនា</button>
-                        </div>
-                    </form>
-                </div>
-            </section>
-
-            <section class="hero" id="guide">
-                <div class="panel">
-                    <h3 class="form-title">វិធីប្រើប្រាស់</h3>
                     <div class="grid">
                         <div>
-                            <label>1️⃣ ជ្រើសរើសរូបិយប័ណ្ណ</label>
-                            <input type="text" value="ជ្រើសរើស រៀលកម្ពុជា (KHR) ឬ ដុល្លារអាមេរិក (USD)" disabled />
+                            {{ form.currency.label_tag }}
+                            {{ form.currency }}
                         </div>
+
                         <div>
-                            <label>2️⃣ បញ្ចូលតម្លៃបន្ទប់</label>
-                            <input type="text" value="តម្លៃដែលចូលលក់របស់បន្ទប់ ឬលំនៅឋាន" disabled />
+                            {{ form.room_rate.label_tag }}
+                            <span style="color: var(--muted); font-size: 14px;">
+                                ({{ currency_symbol }})
+                            </span>
+                            {{ form.room_rate }}
                         </div>
+
                         <div>
-                            <label>3️⃣ បញ្ចូលថ្លៃសេវាកម្ម</label>
-                            <input type="text" value="ថ្លៃសេវាកម្ម ដូចជាសម្អាត ដឹកជញ្ជូន ឬដែនដីលើកលែង" disabled />
-                        </div>
-                        <div>
-                            <label>4️⃣ ទាញយករបាយការណ៍</label>
-                            <input type="text" value="ប្រព័ន្ធគណនាពន្ធដោយស្វ័យប្រវត្តិ និងចេញលក្ខណៈលម្អិត" disabled />
+                            {{ form.nights.label_tag }}
+                            {{ form.nights }}
                         </div>
                     </div>
-                </div>
 
-                <div class="hero-text">
-                    <h2>ទទួលបានភាពទុកចិត្តក្នុងការគ្រប់គ្រងពន្ធ</h2>
-                    <p>
-                        ប្រព័ន្ធរបស់យើងប្រើប្រាស់ច្បាប់ពន្ធលើការស្នាក់នៅបច្ចុប្បន្នរបស់កម្ពុជា
-                        ដែលកំណត់អាម្រាពន្ធលើការស្នាក់នៅថេរ ២% លើម៉ូដ្ឋានគិត
-                        ដើម្បីធានាបាននូវភាពត្រឹមត្រូវនៃការគណនា។
-                    </p>
+                    <div class="result">
+                        <span>ពន្ធលើការស្នាក់នៅ</span>
+
+                        <strong>
+                            {{ currency_symbol }}
+
+                            {% if tax_amount is not None %}
+                            {{ tax_amount|floatformat:2 }}
+                            {% else %}
+                            0.00
+                            {% endif %}
+                        </strong>
+                    </div>
+                    {% if tax_base is not None %}
+                    <div
+                        style="background: #f0f4f8; padding: 15px; border-radius: 8px; margin-bottom: 20px; font-size: 0.9rem;">
+                        <p style="color: #475569; margin: 0 0 8px 0;">
+                            <strong>ម៉ូដ្ឋានគិត:</strong> {{ currency_symbol }} {{ tax_base|floatformat:2 }}
+                        </p>
+                        <p style="color: #64748b; margin: 0; font-size: 0.85rem;">
+                            💡 រូបមន្ត: ម៉ូដ្ឋាន = តម្លៃបន្ទប់ + ថ្លៃសេវាកម្ម | ពន្ធលើការស្នាក់នៅ = ម៉ូដ្ឋាន × 2%
+                        </p>
+                    </div>
+                    {% endif %}
+
+                    <div style="text-align: center; margin-top: 20px;">
+                        <button type="submit" class="btn btn-primary">ចាប់ផ្តើមគណនា</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section class="hero" id="guide">
+            <div class="panel">
+                <h3 class="form-title">វិធីប្រើប្រាស់</h3>
+                <div class="grid">
+                    <div>
+                        <label>1️⃣ ជ្រើសរើសរូបិយប័ណ្ណ</label>
+                        <input type="text" value="ជ្រើសរើស រៀលកម្ពុជា (KHR) ឬ ដុល្លារអាមេរិក (USD)" disabled />
+                    </div>
+                    <div>
+                        <label>2️⃣ បញ្ចូលតម្លៃបន្ទប់</label>
+                        <input type="text" value="តម្លៃដែលចូលលក់របស់បន្ទប់ ឬលំនៅឋាន" disabled />
+                    </div>
+                    <div>
+                        <label>3️⃣ បញ្ចូលថ្លៃសេវាកម្ម</label>
+                        <input type="text" value="ថ្លៃសេវាកម្ម ដូចជាសម្អាត ដឹកជញ្ជូន ឬដែនដីលើកលែង" disabled />
+                    </div>
+                    <div>
+                        <label>4️⃣ ទាញយករបាយការណ៍</label>
+                        <input type="text" value="ប្រព័ន្ធគណនាពន្ធដោយស្វ័យប្រវត្តិ និងចេញលក្ខណៈលម្អិត" disabled />
+                    </div>
                 </div>
-            </section>
-        </div>
+            </div>
+
+            <div class="hero-text">
+                <h2>ទទួលបានភាពទុកចិត្តក្នុងការគ្រប់គ្រងពន្ធ</h2>
+                <p>
+                    ប្រព័ន្ធរបស់យើងប្រើប្រាស់ច្បាប់ពន្ធលើការស្នាក់នៅបច្ចុប្បន្នរបស់កម្ពុជា
+                    ដែលកំណត់អាម្រាពន្ធលើការស្នាក់នៅថេរ ២% លើម៉ូដ្ឋានគិត
+                    ដើម្បីធានាបាននូវភាពត្រឹមត្រូវនៃការគណនា។
+                </p>
+            </div>
+        </section>
     </div>
+</div>
 {% endblock %}
-
