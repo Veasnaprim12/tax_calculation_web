@@ -4,301 +4,216 @@
 {% block title %}គណនាពន្ធ - Tax Calculation{% endblock %}
 
 {% block content %}
-<!-- Welcome Section -->
-<section
-    style="background: linear-gradient(135deg, rgba(12, 60, 134, 0.06) 0%, rgba(240, 147, 251, 0.05) 100%); padding: 80px 20px; text-align: center; margin-bottom: 60px; font-family: 'Kantumruy Pro', 'Khmer OS Siemreap', sans-serif;">
-    <h2 style="color: #0c3c86; margin: 0 0 12px 0; font-size: 2.8rem; font-weight: bold;">
-        សូមស្វាគមន៍មកកាន់ប្រព័ន្ធគណនាពន្ធ
-    </h2>
-    <p style="color: #4a5568; font-size: 1.15rem; max-width: 800px; margin: 0 auto 35px auto; line-height: 1.7;">
-        យើងផ្តល់សេវាកម្មគណនាពន្ធសម្រាប់ប្រភេទពន្ធផ្សេងៗនៅក្នុងប្រទេសកម្ពុជា។
-    </p>
+<div style="font-family: 'Kantumruy Pro', 'Khmer OS Siemreap', 'Segoe UI', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased;">
 
-    <!-- Interactive Search Bar -->
-    <div style="max-width: 550px; margin: 0 auto;">
+    <section style="background: linear-gradient(135deg, rgba(12, 60, 134, 0.06) 0%, rgba(240, 147, 251, 0.05) 100%); padding: 80px 20px; text-align: center; margin-bottom: 60px;">
+        <h2 style="color: #0c3c86; margin: 0 0 16px 0; font-size: 2.6rem; font-weight: 700; line-height: 1.4;">
+            សូមស្វាគមន៍មកកាន់ប្រព័ន្ធគណនាពន្ធ
+        </h2>
+        <p style="color: #4a5568; font-size: 1.15rem; max-width: 800px; margin: 0 auto 35px auto; line-height: 1.8; font-family: 'Khmer OS Siemreap', sans-serif;">
+            យើងផ្តល់សេវាកម្មគណនាពន្ធសម្រាប់ប្រភេទពន្ធផ្សេងៗនៅក្នុងប្រទេសកម្ពុជា។
+        </p>
 
-        <div style="
-        display: flex;
-        align-items: center;
-        background: white;
-        border-radius: 50px;
-        padding: 0 20px;
-        border: 1.5px solid #cbd5e1;
-        box-shadow: 0 4px 20px rgba(12, 60, 134, 0.08);
-    ">
+        <div style="max-width: 550px; margin: 0 auto;">
+            <div style="display: flex; align-items: center; background: white; border-radius: 50px; padding: 0 24px; border: 1.5px solid #cbd5e1; box-shadow: 0 4px 20px rgba(12, 60, 134, 0.08);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0c3c86" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="taxSearchInput" onkeyup="filterTaxCards()" placeholder="ស្វែងរកប្រភេទពន្ធ..." style="flex: 1; border: none; outline: none; padding: 16px; font-size: 1rem; background: transparent; font-family: 'Kantumruy Pro', sans-serif; color: #1e293b;">
+            </div>
+        </div>
+    </section>
 
-            <!-- Search Icon -->
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0c3c86" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
+    <section style="padding: 0 20px 80px; max-width: 1200px; margin: 0 auto;">
+        <div style="display: grid; grid-template-columns: repeat(4, minmax(290px, 1fr)); gap: 30px; width: 100%;">
 
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <div class="service-card" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 30px 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
+                <div style="font-size: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); line-height: 1;">ℹ️</div>
+                <div style="flex-grow: 1; text-align: center;">
+                    <h3 style="color: #16a34a; margin: 0 0 10px 0; font-size: 1.35rem; font-weight: 700; line-height: 1.4;">អំពីពន្ធ</h3>
+                    <p style="margin-bottom: 0; line-height: 1.7; color: #4a5568; font-size: 0.95rem; font-family: 'Khmer OS Siemreap', sans-serif;">ស្វែងយល់អំពីពន្ធ អត្រា និងច្បាប់ស្ដីពីពន្ធនៅក្នុងប្រទេសកម្ពុជា</p>
+                </div>
+                <a href="{% url 'about_tax' %}" class="btn btn-primary" style="background: linear-gradient(45deg, #2470eb); color: white; padding: 11px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 15px rgba(34,197,94,0.4); white-space: nowrap; align-self: center; font-family: 'Kantumruy Pro', sans-serif;">ស្វែងយល់បន្ថែម</a>
+            </div>
 
-            </svg>
+            <div class="service-card" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 30px 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
+                <div style="width: 3.8rem; height: 3.8rem; flex-shrink: 0; border-radius: 50%; overflow: hidden; border: 2px solid rgba(34, 197, 94, 0.4); background: rgba(34, 197, 94, 0.1); display: flex; align-items: center; justify-content: center;">
+                    <img src="{% static 'images/salary_logo.png' %}" alt="Salary Tax" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span style="display: none; font-size: 2rem;">💵</span>
+                </div>
+                <div style="flex-grow: 1; text-align: center;">
+                    <h3 style="color: #16a34a; margin: 0 0 10px 0; font-size: 1.35rem; font-weight: 700; line-height: 1.4;">ពន្ធប្រាក់បៀវត្ស</h3>
+                    <p style="margin-bottom: 0; line-height: 1.7; color: #4a5568; font-size: 0.95rem; font-family: 'Khmer OS Siemreap', sans-serif;">គណនាពន្ធប្រាក់បៀវត្សប្រចាំខែរបស់អ្នកដោយផ្អែកលើចំណូល</p>
+                </div>
+                <a href="{% url 'salary_tax' %}" class="btn btn-primary" style="background: linear-gradient(45deg, #2470eb); color: white; padding: 11px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 15px rgba(34,197,94,0.4); white-space: nowrap; align-self: center; font-family: 'Kantumruy Pro', sans-serif;">ចូលទៅកាន់ការគណនា</a>
+            </div>
 
-            <!-- Search Input -->
-            <input type="text" id="taxSearchInput" onkeyup="filterTaxCards()" placeholder="ស្វែងរកប្រភេទពន្ធ..." style="
-                flex: 1;
-                border: none;
-                outline: none;
-                padding: 16px;
-                font-size: 1rem;
-                background: transparent;
-                font-family: 'Kantumruy Pro', sans-serif;
-            ">
+            <div class="service-card" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 30px 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
+                <div style="width: 3.8rem; height: 3.8rem; flex-shrink: 0; border-radius: 50%; overflow: hidden; border: 2px solid rgba(34, 197, 94, 0.4); background: rgba(34, 197, 94, 0.1); display: flex; align-items: center; justify-content: center;">
+                    <img src="{% static 'images/property_logo.png' %}" alt="Property Tax" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span style="display: none; font-size: 2rem;">🏠</span>
+                </div>
+                <div style="flex-grow: 1; text-align: center;">
+                    <h3 style="color: #16a34a; margin: 0 0 10px 0; font-size: 1.35rem; font-weight: 700; line-height: 1.4;">ពន្ធលើអចលនទ្រព្យ</h3>
+                    <p style="margin-bottom: 0; line-height: 1.7; color: #4a5568; font-size: 0.95rem; font-family: 'Khmer OS Siemreap', sans-serif;">គណនាពន្ធអាករសម្រាប់ផ្ទះ ដី និងអចលនទ្រព្យផ្សេងទៀត</p>
+                </div>
+                <a href="{% url 'property_tax' %}" class="btn btn-primary" style="background: linear-gradient(45deg, #2470eb); color: white; padding: 11px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 15px rgba(34,197,94,0.4); white-space: nowrap; align-self: center; font-family: 'Kantumruy Pro', sans-serif;">ចូលទៅកាន់ការគណនា</a>
+            </div>
+
+            <div class="service-card" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 30px 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
+                <div style="width: 3.8rem; height: 3.8rem; flex-shrink: 0; border-radius: 50%; overflow: hidden; border: 2px solid rgba(34, 197, 94, 0.4); background: rgba(34, 197, 94, 0.1); display: flex; align-items: center; justify-content: center;">
+                    <img src="{% static 'images/vat_logo.png' %}" alt="VAT Tax" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span style="display: none; font-size: 2rem;">🛍️</span>
+                </div>
+                <div style="flex-grow: 1; text-align: center;">
+                    <h3 style="color: #16a34a; margin: 0 0 10px 0; font-size: 1.35rem; font-weight: 700; line-height: 1.4;">អាករលើតម្លៃបន្ថែម (VAT)</h3>
+                    <p style="margin-bottom: 0; line-height: 1.7; color: #4a5568; font-size: 0.95rem; font-family: 'Khmer OS Siemreap', sans-serif;">គណនាអាករលើតម្លៃបន្ថែមសម្រាប់ការលក់ និងសេវាកម្ម</p>
+                </div>
+                <a href="{% url 'vat_tax' %}" class="btn btn-primary" style="background: linear-gradient(45deg, #2470eb); color: white; padding: 11px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 15px rgba(34,197,94,0.4); white-space: nowrap; align-self: center; font-family: 'Kantumruy Pro', sans-serif;">ចូលទៅកាន់ការគណនា</a>
+            </div>
+
+            <div class="service-card" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 30px 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
+                <div style="width: 3.8rem; height: 3.8rem; flex-shrink: 0; border-radius: 50%; overflow: hidden; border: 2px solid rgba(34, 197, 94, 0.4); background: rgba(34, 197, 94, 0.1); display: flex; align-items: center; justify-content: center;">
+                    <img src="{% static 'images/withholding_logo.png' %}" alt="Withholding Tax" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span style="display: none; font-size: 2rem;">🏢</span>
+                </div>
+                <div style="flex-grow: 1; text-align: center;">
+                    <h3 style="color: #16a34a; margin: 0 0 10px 0; font-size: 1.35rem; font-weight: 700; line-height: 1.4;">ពន្ធលើថ្លៃឈ្នួលអចលនទ្រព្យ</h3>
+                    <p style="margin-bottom: 0; line-height: 1.7; color: #4a5568; font-size: 0.95rem; font-family: 'Khmer OS Siemreap', sans-serif;">គណនាពន្ធលើថ្លៃឈ្នួលអចលនទ្រព្យលើប្រាក់ឈ្នួល ក្រុមហ៊ុន និងចំណូលផ្សេងទៀត</p>
+                </div>
+                <a href="{% url 'withholding_tax' %}" class="btn btn-primary" style="background: linear-gradient(45deg, #3b82f6); color: white; padding: 11px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 15px rgba(34,197,94,0.4); white-space: nowrap; align-self: center; font-family: 'Kantumruy Pro', sans-serif;">ចូលទៅកាន់ការគណនា</a>
+            </div>
+
+            <div class="service-card" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 30px 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
+                <div style="width: 3.8rem; height: 3.8rem; flex-shrink: 0; border-radius: 50%; overflow: hidden; border: 2px solid rgba(34, 197, 94, 0.4); background: rgba(34, 197, 94, 0.1); display: flex; align-items: center; justify-content: center;">
+                    <img src="{% static 'images/income_logo.png' %}" alt="Income Tax" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span style="display: none; font-size: 2rem;">📈</span>
+                </div>
+                <div style="flex-grow: 1; text-align: center;">
+                    <h3 style="color: #16a34a; margin: 0 0 10px 0; font-size: 1.35rem; font-weight: 700; line-height: 1.4;">ពន្ធប្រាក់ចំណូល</h3>
+                    <p style="margin-bottom: 0; line-height: 1.7; color: #4a5568; font-size: 0.95rem; font-family: 'Khmer OS Siemreap', sans-serif;">គណនាពន្ធប្រាក់ចំណូលពីប្រតិបត្តិការអាជីវកម្ម</p>
+                </div>
+                <a href="{% url 'income_tax' %}" class="btn btn-primary" style="background: linear-gradient(45deg, #2470eb); color: white; padding: 11px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 15px rgba(34,197,94,0.4); white-space: nowrap; align-self: center; font-family: 'Kantumruy Pro', sans-serif;">ចូលទៅកាន់ការគណនា</a>
+            </div>
+
+            <div class="service-card" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 30px 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
+                <div style="width: 3.8rem; height: 3.8rem; flex-shrink: 0; border-radius: 50%; overflow: hidden; border: 2px solid rgba(34, 197, 94, 0.4); background: rgba(34, 197, 94, 0.1); display: flex; align-items: center; justify-content: center;">
+                    <img src="{% static 'images/patent_logo.png' %}" alt="Patent Tax" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span style="display: none; font-size: 2rem;">📜</span>
+                </div>
+                <div style="flex-grow: 1; text-align: center;">
+                    <h3 style="color: #16a34a; margin: 0 0 10px 0; font-size: 1.35rem; font-weight: 700; line-height: 1.4;">ពន្ធប៉ាតង់</h3>
+                    <p style="margin-bottom: 0; line-height: 1.7; color: #4a5568; font-size: 0.95rem; font-family: 'Khmer OS Siemreap', sans-serif;">គណនាពន្ធប៉ាតង់ប្រចាំឆ្នាំលើសកម្មភាពអាជីវកម្ម</p>
+                </div>
+                <a href="{% url 'patent_tax' %}" class="btn btn-primary" style="background: linear-gradient(45deg, #2470eb); color: white; padding: 11px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 15px rgba(34,197,94,0.4); white-space: nowrap; align-self: center; font-family: 'Kantumruy Pro', sans-serif;">ចូលទៅកាន់ការគណនា</a>
+            </div>
+
+            <div class="service-card" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 30px 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
+                <div style="width: 3.8rem; height: 3.8rem; flex-shrink: 0; border-radius: 50%; overflow: hidden; border: 2px solid rgba(34, 197, 94, 0.4); background: rgba(34, 197, 94, 0.1); display: flex; align-items: center; justify-content: center;">
+                    <img src="{% static 'images/unused_land_logo.png' %}" alt="Unused Land Tax" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span style="display: none; font-size: 2rem;">🏞️</span>
+                </div>
+                <div style="flex-grow: 1; text-align: center;">
+                    <h3 style="color: #16a34a; margin: 0 0 10px 0; font-size: 1.35rem; font-weight: 700; line-height: 1.4;">ពន្ធលើដីធ្លីមិនបានប្រើប្រាស់</h3>
+                    <p style="margin-bottom: 0; line-height: 1.7; color: #4a5568; font-size: 0.95rem; font-family: 'Khmer OS Siemreap', sans-serif;">គណនាពន្ធប្រចាំឆ្នាំលើដីធ្លីដែលមិនទាន់យកទៅប្រើប្រាស់</p>
+                </div>
+                <a href="{% url 'unused_land_tax' %}" class="btn btn-primary" style="background: linear-gradient(45deg, #2470eb); color: white; padding: 11px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 15px rgba(34,197,94,0.4); white-space: nowrap; align-self: center; font-family: 'Kantumruy Pro', sans-serif;">ចូលទៅកាន់ការគណនា</a>
+            </div>
+
+            <div class="service-card" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 30px 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
+                <div style="width: 3.8rem; height: 3.8rem; flex-shrink: 0; border-radius: 50%; overflow: hidden; border: 2px solid rgba(34, 197, 94, 0.4); background: rgba(34, 197, 94, 0.1); display: flex; align-items: center; justify-content: center;">
+                    <img src="{% static 'images/special_logo.png' %}" alt="Special Tax" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span style="display: none; font-size: 2rem;">💎</span>
+                </div>
+                <div style="flex-grow: 1; text-align: center;">
+                    <h3 style="color: #16a34a; margin: 0 0 10px 0; font-size: 1.35rem; font-weight: 700; line-height: 1.4;">ពន្ធអាករពិសេស</h3>
+                    <p style="margin-bottom: 0; line-height: 1.7; color: #4a5568; font-size: 0.95rem; font-family: 'Khmer OS Siemreap', sans-serif;">គណនាពន្ធអាករពិសេសលើទំនិញ ឬសេវាកម្មមួយចំនួន</p>
+                </div>
+                <a href="{% url 'special_tax' %}" class="btn btn-primary" style="background: linear-gradient(45deg, #2470eb); color: white; padding: 11px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 15px rgba(34,197,94,0.4); white-space: nowrap; align-self: center; font-family: 'Kantumruy Pro', sans-serif;">ចូលទៅកាន់ការគណនា</a>
+            </div>
+
+            <div class="service-card" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 30px 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
+                <div style="width: 3.8rem; height: 3.8rem; flex-shrink: 0; border-radius: 50%; overflow: hidden; border: 2px solid rgba(34, 197, 94, 0.4); background: rgba(34, 197, 94, 0.1); display: flex; align-items: center; justify-content: center;">
+                    <img src="{% static 'images/registration_logo.png' %}" alt="Registration Tax" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span style="display: none; font-size: 2rem;">📝</span>
+                </div>
+                <div style="flex-grow: 1; text-align: center;">
+                    <h3 style="color: #16a34a; margin: 0 0 10px 0; font-size: 1.35rem; font-weight: 700; line-height: 1.4;">ពន្ធប្រថាប់ត្រា</h3>
+                    <p style="margin-bottom: 0; line-height: 1.7; color: #4a5568; font-size: 0.95rem; font-family: 'Khmer OS Siemreap', sans-serif;">គណនាពន្ធលើការផ្ទេរកម្មសិទ្ធិទ្រព្យសម្បត្តិ ឬយានយន្ត</p>
+                </div>
+                <a href="{% url 'registration_tax' %}" class="btn btn-primary" style="background: linear-gradient(45deg, #2470eb); color: white; padding: 11px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 15px rgba(34,197,94,0.4); white-space: nowrap; align-self: center; font-family: 'Kantumruy Pro', sans-serif;">ចូលទៅកាន់ការគណនា</a>
+            </div>
+
+            <div class="service-card" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 30px 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
+                <div style="width: 3.8rem; height: 3.8rem; flex-shrink: 0; border-radius: 50%; overflow: hidden; border: 2px solid rgba(34, 197, 94, 0.4); background: rgba(34, 197, 94, 0.1); display: flex; align-items: center; justify-content: center;">
+                    <img src="{% static 'images/accomodation_logo.png' %}" alt="Accommodation Tax" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span style="display: none; font-size: 2rem;">🛏️</span>
+                </div>
+                <div style="flex-grow: 1; text-align: center;">
+                    <h3 style="color: #16a34a; margin: 0 0 10px 0; font-size: 1.35rem; font-weight: 700; line-height: 1.4;">ពន្ធលើការស្នាក់នៅ</h3>
+                    <p style="margin-bottom: 0; line-height: 1.7; color: #4a5568; font-size: 0.95rem; font-family: 'Khmer OS Siemreap', sans-serif;">គណនាពន្ធលើការស្នាក់នៅ</p>
+                </div>
+                <a href="{% url 'accomodation_tax' %}" class="btn btn-primary" style="background: linear-gradient(45deg, #2470eb); color: white; padding: 11px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 15px rgba(34,197,94,0.4); white-space: nowrap; align-self: center; font-family: 'Kantumruy Pro', sans-serif;">ចូលទៅកាន់ការគណនា</a>
+            </div>
+
+            <div class="service-card" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 30px 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
+                <div style="width: 3.8rem; height: 3.8rem; flex-shrink: 0; border-radius: 50%; overflow: hidden; border: 2px solid rgba(34, 197, 94, 0.4); background: rgba(34, 197, 94, 0.1); display: flex; align-items: center; justify-content: center;">
+                    <img src="{% static 'images/plt_logo.png' %}" alt="Public Lighting Tax" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span style="display: none; font-size: 2rem;">💡</span>
+                </div>
+                <div style="flex-grow: 1; text-align: center;">
+                    <h3 style="color: #16a34a; margin: 0 0 10px 0; font-size: 1.35rem; font-weight: 700; line-height: 1.4;">អាករបំភ្លឺសាធារណៈ</h3>
+                    <p style="margin-bottom: 0; line-height: 1.7; color: #4a5568; font-size: 0.95rem; font-family: 'Khmer OS Siemreap', sans-serif;">ចូលទៅកាន់ការគណនាអាករបំភ្លឺសាធារណៈ (5%)</p>
+                </div>
+                <a href="{% url 'plt_tax' %}" class="btn btn-primary" style="background: linear-gradient(45deg, #2470eb); color: white; padding: 11px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 15px rgba(34,197,94,0.4); white-space: nowrap; align-self: center; font-family: 'Kantumruy Pro', sans-serif;">ចូលទៅកាន់ការគណនា</a>
+            </div>
+
+            <div class="service-card" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 30px 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
+                <div style="width: 3.8rem; height: 3.8rem; flex-shrink: 0; border-radius: 50%; overflow: hidden; border: 2px solid rgba(34, 197, 94, 0.4); background: rgba(34, 197, 94, 0.1); display: flex; align-items: center; justify-content: center;">
+                    <img src="{% static 'images/transportation_logo.png' %}" alt="Transportation Tax" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span style="display: none; font-size: 2rem;">🚗</span>
+                </div>
+                <div style="flex-grow: 1; text-align: center;">
+                    <h3 style="color: #16a34a; margin: 0 0 10px 0; font-size: 1.35rem; font-weight: 700; line-height: 1.4;">ពន្ធលើមធ្យោបាយដឹកជញ្ជូន</h3>
+                    <p style="margin-bottom: 0; line-height: 1.7; color: #4a5568; font-size: 0.95rem; font-family: 'Khmer OS Siemreap', sans-serif;">ចូលទៅកាន់ការគណនាពន្ធលើមធ្យោបាយដឹកជញ្ជូន</p>
+                </div>
+                <a href="{% url 'transportation_tax' %}" class="btn btn-primary" style="background: linear-gradient(45deg, #2470eb); color: white; padding: 11px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 15px rgba(34,197,94,0.4); white-space: nowrap; align-self: center; font-family: 'Kantumruy Pro', sans-serif;">ចូលទៅកាន់ការគណនា</a>
+            </div>
+
+            <div class="service-card" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 30px 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
+                <div style="width: 3.8rem; height: 3.8rem; flex-shrink: 0; border-radius: 50%; overflow: hidden; border: 2px solid rgba(34, 197, 94, 0.4); background: rgba(34, 197, 94, 0.1); display: flex; align-items: center; justify-content: center;">
+                    <img src="{% static 'images/advertising_board_logo.png' %}" alt="Advertising Board Tax" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span style="display: none; font-size: 2rem;">📢</span>
+                </div>
+                <div style="flex-grow: 1; text-align: center;">
+                    <h3 style="color: #16a34a; margin: 0 0 10px 0; font-size: 1.35rem; font-weight: 700; line-height: 1.4;">ពន្ធលើផ្ទាំងផ្សព្វផ្សាយ</h3>
+                    <p style="margin-bottom: 0; line-height: 1.7; color: #4a5568; font-size: 0.95rem; font-family: 'Khmer OS Siemreap', sans-serif;">គណនាពន្ធសម្រាប់ប័ណ្ណផ្សព្វផ្សាយ ស្លាកអាជីវកម្ម និងផ្ទាំងរូបភាពពាណិជ្ជកម្ម。</p>
+                </div>
+                <a href="{% url 'advertising_board_tax' %}" class="btn btn-primary" style="background: linear-gradient(45deg, #2470eb); color: white; padding: 11px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 15px rgba(34,197,94,0.4); white-space: nowrap; align-self: center; font-family: 'Kantumruy Pro', sans-serif;">ចូលទៅកាន់ការគណនា</a>
+            </div>
 
         </div>
+    </section>
+</div>
 
-    </div>
-</section>
-<!-- Tax Calculation Cards Section -->
-<section style="padding: 0 20px 80px; max-width: 1200px; margin: 0 auto;">
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; width: 100%;">
-
-        <!-- 1. About Tax -->
-        <div class="service-card"
-            style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
-            <div style="font-size: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">ℹ️</div>
-            <div style="flex-grow: 1; text-align: center;">
-                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">អំពីពន្ធ</h3>
-                <p style="margin-bottom: 0; line-height: 1.5; color: #4a4a4a;">ស្វែងយល់អំពីពន្ធ អត្រា
-                    និងច្បាប់ស្ដីពីពន្ធនៅក្នុងប្រទេសកម្ពុជា</p>
-            </div>
-            <a href="{% url 'about_tax' %}" class="btn btn-primary"
-                style="background: linear-gradient(45deg, #22c55e, #3b82f6); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(34,197,94,0.4); white-space: nowrap; align-self: center;">ស្វែងយល់បន្ថែម</a>
-        </div>
-
-        <!-- 2. Salary Tax -->
-        <div class="service-card"
-            style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
-            <div
-                style="width: 3.5rem; height: 3.5rem; flex-shrink: 0; border-radius: 50%; overflow: hidden; border: 2px solid rgba(34, 197, 94, 0.4); background: rgba(34, 197, 94, 0.1); display: flex; align-items: center; justify-content: center;">
-                <img src="{% static 'images/salary_logo.png' %}" alt="Salary Tax"
-                    style="width: 100%; height: 100%; object-fit: cover;"
-                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <span style="display: none; font-size: 2rem;">💵</span>
-            </div>
-            <div style="flex-grow: 1; text-align: center;">
-                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">
-                    ពន្ធប្រាក់បៀវត្ស
-                </h3>
-                <p style="margin-bottom: 0; line-height: 1.5; color: #4a4a4a;">
-                    គណនាពន្ធប្រាក់បៀវត្សប្រចាំខែរបស់អ្នកដោយផ្អែកលើចំណូល</p>
-            </div>
-            <a href="{% url 'salary_tax' %}" class="btn btn-primary"
-                style="background: linear-gradient(45deg, #22c55e, #3b82f6); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(34,197,94,0.4); white-space: nowrap; align-self: center;">ចូលទៅកាន់ការគណនា</a>
-        </div>
-
-        <!-- 3. Property Tax -->
-        <div class="service-card"
-            style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
-            <div
-                style="width: 3.5rem; height: 3.5rem; flex-shrink: 0; border-radius: 50%; overflow: hidden; border: 2px solid rgba(34, 197, 94, 0.4); background: rgba(34, 197, 94, 0.1); display: flex; align-items: center; justify-content: center;">
-                <img src="{% static 'images/property_logo.png' %}" alt="Property Tax"
-                    style="width: 100%; height: 100%; object-fit: cover;"
-                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <span style="display: none; font-size: 2rem;">🏠</span>
-            </div>
-            <div style="flex-grow: 1; text-align: center;">
-                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">
-                    ពន្ធលើអចលនទ្រព្យ
-                </h3>
-                <p style="margin-bottom: 0; line-height: 1.5; color: #4a4a4a;">គណនាពន្ធអាករសម្រាប់ផ្ទះ ដី
-                    និងអចលនទ្រព្យផ្សេងទៀត</p>
-            </div>
-            <a href="{% url 'property_tax' %}" class="btn btn-primary"
-                style="background: linear-gradient(45deg, #22c55e, #3b82f6); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(34,197,94,0.4); white-space: nowrap; align-self: center;">ចូលទៅកាន់ការគណនា</a>
-        </div>
-
-        <!-- 4. VAT Tax -->
-        <div class="service-card"
-            style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
-            <div
-                style="width: 3.5rem; height: 3.5rem; flex-shrink: 0; border-radius: 50%; overflow: hidden; border: 2px solid rgba(34, 197, 94, 0.4); background: rgba(34, 197, 94, 0.1); display: flex; align-items: center; justify-content: center;">
-                <img src="{% static 'images/vat_logo.png' %}" alt="VAT Tax"
-                    style="width: 100%; height: 100%; object-fit: cover;"
-                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <span style="display: none; font-size: 2rem;">🛍️</span>
-            </div>
-            <div style="flex-grow: 1; text-align: center;">
-                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">
-                    អាករលើតម្លៃបន្ថែម
-                    (VAT)</h3>
-                <p style="margin-bottom: 0; line-height: 1.5; color: #4a4a4a;">គណនាអាករលើតម្លៃបន្ថែមសម្រាប់ការលក់
-                    និងសេវាកម្ម</p>
-            </div>
-            <a href="{% url 'vat_tax' %}" class="btn btn-primary"
-                style="background: linear-gradient(45deg, #22c55e, #3b82f6); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(34,197,94,0.4); white-space: nowrap; align-self: center;">ចូលទៅកាន់ការគណនា</a>
-        </div>
-
-        <!-- 5. Withholding Tax -->
-        <div class="service-card"
-            style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
-            <div style="font-size: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">💼</div>
-            <div style="flex-grow: 1; text-align: center;">
-                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">
-                    ពន្ធលើថ្លៃឈ្នួលអចលនទ្រព្យ</h3>
-                <p style="margin-bottom: 0; line-height: 1.5; color: #4a4a4a;">
-                    គណនាពន្ធលើថ្លៃឈ្នួលអចលនទ្រព្យលើប្រាក់ឈ្នួល ក្រុមហ៊ុន
-                    និងចំណូលផ្សេងទៀត</p>
-            </div>
-            <a href="{% url 'withholding_tax' %}" class="btn btn-primary"
-                style="background: linear-gradient(45deg, #22c55e, #3b82f6); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(34,197,94,0.4); white-space: nowrap; align-self: center;">ចូលទៅកាន់ការគណនា</a>
-        </div>
-
-        <!-- 6. Income Tax -->
-        <div class="service-card"
-            style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
-            <div style="font-size: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">📈</div>
-            <div style="flex-grow: 1; text-align: center;">
-                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">
-                    ពន្ធប្រាក់ចំណូល
-                </h3>
-                <p style="margin-bottom: 0; line-height: 1.5; color: #4a4a4a;">
-                    គណនាពន្ធប្រាក់ចំណូលពីប្រតិបត្តិការអាជីវកម្ម</p>
-            </div>
-            <a href="{% url 'income_tax' %}" class="btn btn-primary"
-                style="background: linear-gradient(45deg, #22c55e, #3b82f6); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(34,197,94,0.4); white-space: nowrap; align-self: center;">ចូលទៅកាន់ការគណនា</a>
-        </div>
-
-        <!-- 7. Patent Tax -->
-        <div class="service-card"
-            style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
-            <div style="font-size: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">📜</div>
-            <div style="flex-grow: 1; text-align: center;">
-                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">ពន្ធប៉ាតង់
-                </h3>
-                <p style="margin-bottom: 0; line-height: 1.5; color: #4a4a4a;">
-                    គណនាពន្ធប៉ាតង់ប្រចាំឆ្នាំលើសកម្មភាពអាជីវកម្ម</p>
-            </div>
-            <a href="{% url 'patent_tax' %}" class="btn btn-primary"
-                style="background: linear-gradient(45deg, #22c55e, #3b82f6); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(34,197,94,0.4); white-space: nowrap; align-self: center;">ចូលទៅកាន់ការគណនា</a>
-        </div>
-
-        <!-- 8. Unused Land Tax -->
-        <div class="service-card"
-            style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
-            <div style="font-size: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">🏞️</div>
-            <div style="flex-grow: 1; text-align: center;">
-                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">
-                    ពន្ធលើដីធ្លីមិនបានប្រើប្រាស់</h3>
-                <p style="margin-bottom: 0; line-height: 1.5; color: #4a4a4a;">
-                    គណនាពន្ធប្រចាំឆ្នាំលើដីធ្លីដែលមិនទាន់យកទៅប្រើប្រាស់</p>
-            </div>
-            <a href="{% url 'unused_land_tax' %}" class="btn btn-primary"
-                style="background: linear-gradient(45deg, #22c55e, #3b82f6); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(34,197,94,0.4); white-space: nowrap; align-self: center;">ចូលទៅកាន់ការគណនា</a>
-        </div>
-
-        <!-- 9. Special Tax -->
-        <div class="service-card"
-            style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
-            <div style="font-size: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">💎</div>
-            <div style="flex-grow: 1; text-align: center;">
-                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">ពន្ធអាករពិសេស
-                </h3>
-                <p style="margin-bottom: 0; line-height: 1.5; color: #4a4a4a;">គណនាពន្ធអាករពិសេសលើទំនិញ
-                    ឬសេវាកម្មមួយចំនួន</p>
-            </div>
-            <a href="{% url 'special_tax' %}" class="btn btn-primary"
-                style="background: linear-gradient(45deg, #22c55e, #3b82f6); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(34,197,94,0.4); white-space: nowrap; align-self: center;">ចូលទៅកាន់ការគណនា</a>
-        </div>
-
-        <!-- 10. Registration Tax -->
-        <div class="service-card"
-            style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
-            <div style="font-size: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">📝</div>
-            <div style="flex-grow: 1; text-align: center;">
-                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">
-                    ពន្ធប្រថាប់ត្រា
-                </h3>
-                <p style="margin-bottom: 0; line-height: 1.5; color: #4a4a4a;">
-                    គណនាពន្ធលើការផ្ទេរកម្មសិទ្ធិទ្រព្យសម្បត្តិ ឬយានយន្ត</p>
-            </div>
-            <a href="{% url 'registration_tax' %}" class="btn btn-primary"
-                style="background: linear-gradient(45deg, #22c55e, #3b82f6); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(34,197,94,0.4); white-space: nowrap; align-self: center;">ចូលទៅកាន់ការគណនា</a>
-        </div>
-        <!-- 11. Accommodation Tax -->
-        <div class="service-card"
-            style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
-            <div style="font-size: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">📝</div>
-            <div style="flex-grow: 1; text-align: center;">
-                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">
-                    ពន្ធលើការស្នាក់នៅ
-                </h3>
-                <p style="margin-bottom: 0; line-height: 1.5; color: #4a4a4a;">
-                    គណនាពន្ធលើការស្នាក់នៅ</p>
-            </div>
-            <a href="{% url 'accomodation_tax' %}" class="btn btn-primary"
-                style="background: linear-gradient(45deg, #22c55e, #3b82f6); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(34,197,94,0.4); white-space: nowrap; align-self: center;">ចូលទៅកាន់ការគណនា</a>
-        </div>
-        <div class="service-card"
-            style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
-            <div style="font-size: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">📝</div>
-            <div style="flex-grow: 1; text-align: center;">
-                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">
-                    អាករបំភ្លឺសាធារណៈ
-                </h3>
-                <p style="margin-bottom: 0; line-height: 1.5; color: #4a4a4a;">
-                    ចូលទៅកាន់ការគណនាអាករបំភ្លឺសាធារណៈ (5%)</p>
-            </div>
-            <a href="{% url 'plt_tax' %}" class="btn btn-primary"
-                style="background: linear-gradient(45deg, #22c55e, #3b82f6); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(34,197,94,0.4); white-space: nowrap; align-self: center;">ចូលទៅកាន់ការគណនា</a>
-        </div>
-        <div class="service-card"
-            style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
-            <div style="font-size: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">📝</div>
-            <div style="flex-grow: 1; text-align: center;">
-                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">
-                    ពន្ធលើមធ្យោបាយដឹកជញ្ជូន
-                </h3>
-                <p style="margin-bottom: 0; line-height: 1.5; color: #4a4a4a;">
-                    ចូលទៅកាន់ការគណនាពន្ធលើមធ្យោបាយដឹកជញ្ជូន</p>
-            </div>
-            <a href="{% url 'transportation_tax' %}" class="btn btn-primary"
-                style="background: linear-gradient(45deg, #22c55e, #3b82f6); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(34,197,94,0.4); white-space: nowrap; align-self: center;">ចូលទៅកាន់ការគណនា</a>
-        </div>
-
-
-        <!-- 12. Advertising Board Tax -->
-        <div class="service-card"
-            style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%); backdrop-filter: blur(10px); padding: 25px; border-radius: 20px; border: 2px solid rgba(34, 197, 94, 0.4); display: flex; flex-direction: column; align-items: center; gap: 20px; transition: all 0.3s ease; text-align: center;">
-            <div style="font-size: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">📢</div>
-            <div style="flex-grow: 1; text-align: center;">
-                <h3 style="color: #16a34a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">
-                    ពន្ធលើផ្ទាំងផ្សព្វផ្សាយ</h3>
-                <p style="margin-bottom: 0; line-height: 1.5; color: #4a4a4a;">
-                    គណនាពន្ធសម្រាប់ប័ណ្ណផ្សព្វផ្សាយ ស្លាកអាជីវកម្ម និងផ្ទាំងរូបភាពពាណិជ្ជកម្ម។</p>
-            </div>
-            <a href="{% url 'advertising_board_tax' %}" class="btn btn-primary"
-                style="background: linear-gradient(45deg, #22c55e, #3b82f6); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(34,197,94,0.4); white-space: nowrap; align-self: center;">ចូលទៅកាន់ការគណនា</a>
-        </div>
-
-    </div>
-</section>
 <script>
-
     function filterTaxCards() {
-
         let input = document.getElementById("taxSearchInput");
-
         let filter = input.value.toLowerCase();
-
         let cards = document.querySelectorAll(".service-card");
 
         cards.forEach(function (card) {
-
             let text = card.innerText.toLowerCase();
-
             if (text.includes(filter)) {
                 card.style.display = "flex";
             } else {
                 card.style.display = "none";
             }
-
         });
     }
-
 </script>
+
 <style>
     #taxSearchInput::placeholder {
         color: #94a3b8;

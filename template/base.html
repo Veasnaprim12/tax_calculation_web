@@ -6,54 +6,115 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}គណនាពន្ធ - Tax Calculation{% endblock %}</title>
+    
+    <!-- Updated Google Fonts: Kantumruy Pro (Modern Body/Nav) & Moul (Traditional Headers) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Battambang:wght@300;400;700&family=Khmer+Moul:wght@400&display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&family=Moul&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="{% static 'style.css' %}" />
 </head>
 
-<body class="{% block body_class %}{% endblock %}"
-    style="background-image: none; background-color: #e5ead4; margin: 0; padding: 0;">
-    <header style="background: linear-gradient(135deg, #8794ae 0%, #08b545 100%); padding: 32px 8vw 12px;">
-        <div class="brand">
-            <div class="logo">ពន្ធ</div>
-            <div>
-                <h1>ប្រព័ន្ធគណនាពន្ធនៃប្រទេសកម្ពុជា</h1>
-                <p>ជួយគណនាពន្ធប្រាក់ចំណូលបានរហ័ស និងច្បាស់លាស់</p>
+<!-- Added global font family to body so everything defaults to Kantumruy Pro -->
+<body class="{% block body_class %}{% endblock %}" style="background-image: none; background-color: #e5ead4; margin: 0; padding: 0; font-family: 'Kantumruy Pro', sans-serif;">
+    
+    <div style="background-color: #004b87; padding: 15px 8vw; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1);">
+        
+        <div class="brand" style="display: flex; align-items: center; gap: 15px;">
+            <div class="logo" style="width: 65px; height: 65px; background-color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Moul', sans-serif; font-size: 16px; color: #004b87; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                ពន្ធ
+            </div>
+            <div style="color: white; line-height: 1.4;">
+                <h1 style="margin: 0; font-family: 'Moul', sans-serif; font-size: 18px; font-weight: normal; letter-spacing: 0.5px;">ប្រព័ន្ធគណនាពន្ធនៃប្រទេសកម្ពុជា</h1>
+                <p style="margin: 3px 0 0 0; font-size: 13px; opacity: 0.9;">ជួយគណនាពន្ធប្រាក់ចំណូលបានរហ័ស និងច្បាស់លាស់</p>
             </div>
         </div>
-        <nav>
-            <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %} active {% endif %}">
-                ទំព័រដើម
-            </a>
 
-            <a href="{% url 'about_tax' %}"
-                class="{% if 'about' in request.resolver_match.url_name %} active {% endif %}">
-                ស្វែងយល់អំពីពន្ធ
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <a href="{% url 'study_plan' %}" 
+                style="text-decoration: none; background: rgba(255, 255, 255, 0.15); color: white; padding: 6px 16px; border-radius: 20px; font-size: 12px; border: 1px solid rgba(255,255,255,0.3); display: flex; align-items: center; gap: 6px; transition: background 0.2s;"
+                class="{% if request.resolver_match.url_name == 'study_plan' %} active {% endif %}"
+                onmouseover="this.style.background='rgba(255, 255, 255, 0.3)'" 
+                onmouseout="this.style.background='rgba(255, 255, 255, 0.15)'">
+                    <span>🌐</span> គម្រោងសិក្សា​និស្សិត​ឆ្នាំទី៤ (អំពីគម្រោងសិក្សា)
             </a>
+        </div>
+    </div>
 
-            <a href="{% url 'study_plan' %}"
-                class="{% if request.resolver_match.url_name == 'study_plan' %} active {% endif %}">
-                អំពីគម្រោងសិក្សា
-            </a>
+    <!-- Navigation items automatically inherit Kantumruy Pro with improved readability -->
+    <nav style="background-color: #003a6a; padding: 0 4vw; display: flex; flex-wrap: wrap; gap: 1px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+        <a href="{% url 'home' %}" style="color: white; text-decoration: none; padding: 12px 10px; font-size: 13px; transition: background 0.2s;" class="{% if request.resolver_match.url_name == 'home' %} active {% endif %}">
+            ទំព័រដើម
+        </a>
 
-        </nav>
-    </header>
+        <a href="{% url 'about_tax' %}" style="color: white; text-decoration: none; padding: 12px 10px; font-size: 13px; transition: background 0.2s;" class="{% if request.resolver_match.url_name == 'about_tax' %} active {% endif %}">
+            អំពីពន្ធ
+        </a>
+
+        <a href="{% url 'about_salary_tax' %}" style="color: white; text-decoration: none; padding: 12px 10px; font-size: 13px; transition: background 0.2s;" class="{% if request.resolver_match.url_name == 'about_salary_tax' %} active {% endif %}">
+            ប្រាក់បៀវត្សរ៍
+        </a>
+
+        <a href="{% url 'about_accomodation_tax' %}" style="color: white; text-decoration: none; padding: 12px 10px; font-size: 13px; transition: background 0.2s;" class="{% if request.resolver_match.url_name == 'about_accomodation_tax' %} active {% endif %}">
+            ពន្ធស្នាក់នៅ
+        </a>
+
+        <a href="{% url 'about_property_tax' %}" style="color: white; text-decoration: none; padding: 12px 10px; font-size: 13px; transition: background 0.2s;" class="{% if request.resolver_match.url_name == 'about_property_tax' %} active {% endif %}">
+            អចលនទ្រព្យ
+        </a>
+
+        <a href="{% url 'about_income_tax' %}" style="color: white; text-decoration: none; padding: 12px 10px; font-size: 13px; transition: background 0.2s;" class="{% if request.resolver_match.url_name == 'about_income_tax' %} active {% endif %}">
+            ប្រាក់ចំណូល
+        </a>
+
+        <a href="{% url 'about_vat_tax' %}" style="color: white; text-decoration: none; padding: 12px 10px; font-size: 13px; transition: background 0.2s;" class="{% if request.resolver_match.url_name == 'about_vat_tax' %} active {% endif %}">
+            ពន្ធអាកលើតម្លៃបន្ថែម
+        </a>
+
+        <a href="{% url 'about_plt_tax' %}" style="color: white; text-decoration: none; padding: 12px 10px; font-size: 13px; transition: background 0.2s;" class="{% if request.resolver_match.url_name == 'about_plt_tax' %} active {% endif %}">
+            ពន្ធបំភ្លឺសាធារណៈ
+        </a>
+
+        <a href="{% url 'about_registration_tax' %}" style="color: white; text-decoration: none; padding: 12px 10px; font-size: 13px; transition: background 0.2s;" class="{% if request.resolver_match.url_name == 'about_registration_tax' %} active {% endif %}">
+            ប្រថាប់ត្រា
+        </a>
+
+        <a href="{% url 'about_patent_tax' %}" style="color: white; text-decoration: none; padding: 12px 10px; font-size: 13px; transition: background 0.2s;" class="{% if request.resolver_match.url_name == 'about_patent_tax' %} active {% endif %}">
+            ពន្ធប៉េតង់
+        </a>
+
+        <a href="{% url 'about_special_tax' %}" style="color: white; text-decoration: none; padding: 12px 10px; font-size: 13px; transition: background 0.2s;" class="{% if request.resolver_match.url_name == 'about_special_tax' %} active {% endif %}">
+            អាករពិសេស
+        </a>
+
+        <a href="{% url 'about_transportation_tax' %}" style="color: white; text-decoration: none; padding: 12px 10px; font-size: 13px; transition: background 0.2s;" class="{% if request.resolver_match.url_name == 'about_transportation_tax' %} active {% endif %}">
+            មធ្យោបាយដឹងជញ្ចូន
+        </a>
+
+        <a href="{% url 'about_unused_land_tax' %}" style="color: white; text-decoration: none; padding: 12px 10px; font-size: 13px; transition: background 0.2s;" class="{% if request.resolver_match.url_name == 'about_unused_land_tax' %} active {% endif %}">
+            ដីមិនប្រើប្រាស់
+        </a>
+
+        <a href="{% url 'about_withholding_tax' %}" style="color: white; text-decoration: none; padding: 12px 10px; font-size: 13px; transition: background 0.2s;" class="{% if request.resolver_match.url_name == 'about_withholding_tax' %} active {% endif %}">
+            ថ្លៃឈ្នួលអចលនទ្រព្យ
+        </a>
+
+        <a href="{% url 'about_advertising_board_tax' %}" style="color: white; text-decoration: none; padding: 12px 10px; font-size: 13px; transition: background 0.2s;" class="{% if request.resolver_match.url_name == 'about_advertising_board_tax' %} active {% endif %}">
+            ផ្សព្វផ្សាយ
+        </a>
+    </nav>
 
     <main>
         {% block content %}{% endblock %}
     </main>
 
-    <footer
-        style="text-align: center; display: flex; justify-content: center; width: 100%; background: linear-gradient(135deg, #467f73 100%); padding: 30px 0; color: white; margin-top: 60px;">
-        <div class="footer-content"
-            style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-            <p style="color: white; margin: 0;">© 2026 Tax Calculation · បង្កើតសម្រាប់គម្រោងសិក្សារបស់និស្សិត​(Dept.
-                AMS) សាលា(ITC) </p>
-            <div class="footer-links" style="display: flex; justify-content: center; gap: 15px; margin-top: 5px;">
-                <a href="{% url 'about_tax' %}" style="color: white; text-decoration: none;">ស្វែងយល់អំពីពន្ធ</a>
+    <footer style="text-align: center; display: flex; justify-content: center; width: 100%; background: #003a6a; padding: 30px 0; color: white; margin-top: 60px; border-top: 3px solid #004b87;">
+        <div class="footer-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+            <p style="color: white; margin: 0; font-size: 13px; opacity: 0.9;">
+                © 2026 Tax Calculation · បង្កើតសម្រាប់គម្រោងសិក្សារបស់និស្សិត​ (Dept. AMS) សាលា (ITC)
+            </p>
+            <div class="footer-links" style="display: flex; justify-content: center; gap: 15px; margin-top: 8px;">
+                <a href="{% url 'about_tax' %}" style="color: #63b3ed; text-decoration: none; font-size: 13px;">ស្វែងយល់អំពីពន្ធ</a>
             </div>
         </div>
     </footer>
