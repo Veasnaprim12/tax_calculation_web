@@ -4,75 +4,170 @@
 {% block nav_calculator %}plt{% endblock %}
 
 {% block content %}
-<div style="background-color: #6a7eb1; min-height: 100vh; padding: 20px 0;">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-        
-        <section class="hero" id="calculator" style="margin-bottom: 40px;">
-            <div class="hero-text" style="text-align: center; margin-bottom: 40px; color: white;">
-                <h2> គណនាពន្ធអាករបំភ្លឺសាធារណៈ (PLT)</h2>
-                <p style="color: rgba(255, 255, 255, 0.9); max-width: 700px; margin: 0 auto;">
-                    បញ្ចូលតម្លៃលក់របស់អ្នក ដើម្បីទទួលបានការគណនាអាករបំភ្លឺសាធារណៈ (PLT)
-                    ដោយផ្អែកលើច្បាប់ពន្ធបច្ចុប្បន្ន។
-                </p>
-                <div style="margin-top: 20px;">
-                    <a href="{% url 'about_plt_tax' %}" class="btn btn-secondary" style="display: inline-block; padding: 10px 20px; background-color: rgba(62, 17, 196, 0.2); color: white; text-decoration: none; border-radius: 8px; border: 1px solid rgba(15, 14, 14, 0.4); margin-top: 15px; font-size: 0.9rem;">ℹ️ ព័ត៌មានលម្អិត</a>
+    <div style="background-color: #9bb7d0 ; min-height: 100vh; padding: 20px 0;">
+        <div id="calculator-section">
+            <section class="hero" id="calculator">
+                <div class="hero-text" style="text-align: center; margin-bottom: 40px;">
+                    <h2>គណនាពន្ធអាករបំភ្លឺសាធារណៈ (PLT)</h2>
+                    <p>
+                        បញ្ចូលព័ត៌មានលម្អិតរបស់អ្នក ដើម្បីទទួលបានការគណនាប្រាក់អាករបំភ្លឺសាធារណៈយ៉ាងត្រឹមត្រូវ។
+                    </p>
+                    <div style="margin-top: 20px;">
+                        <a href="{% url 'about_plt_tax' %}" class="btn btn-secondary" style="display: inline-block; padding: 10px 20px; background-color: rgba(97, 57, 209, 0.2); color: white; text-decoration: none; border-radius: 8px; border: 1px solid rgba(255,255,255,0.4); margin-top: 15px; font-size: 0.9rem;">ℹ️ ព័ត៌មានលម្អិត</a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="panel" style="background: white; padding: 35px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.15);">
-                <form id="tax-form" method="post">
-                    {% csrf_token %}
-                    <h3 class="form-title" style="color: #1e3c72; margin-bottom: 25px;">ព័ត៌មានលម្អិត</h3>
+                <div class="panel">
+                    <form id="tax-form" method="post">
+                        {% csrf_token %}
+                        <h3 class="form-title">ព័ត៌មានលម្អិត</h3>
+                        
+                        <div class="grid">
+                            <div>
+                                {{ form.currency.label_tag }}
+                                {{ form.currency }}
+                            </div>
+                            <div>
+                                {{ form.amount.label_tag }}
+                                <span style="color: var(--muted); font-size: 14px;">({{ currency_symbol }})</span>
+                                {{ form.amount }}
+                            </div>
+                            <div>
+                                {{ form.vat_inclusion.label_tag }}
+                                {{ form.vat_inclusion }}
+                            </div>
+                            <div id="vat-percentage-field">
+                                {{ form.vat_percentage.label_tag }}
+                                {{ form.vat_percentage }}
+                            </div>
+                        </div>
+
+                        <div class="result">
+                            <span>អាករបំភ្លឺសាធារណៈប៉ាន់ស្មាន</span>
+                            <strong>
+                                {{ currency_symbol }} {% if tax_amount is not None %}{{ tax_amount|floatformat:2 }}{% else %}0.00{% endif %}
+                            </strong>
+                        </div>
+
+                        <div style="text-align: center; margin-top: 20px;">
+                            <button type="submit" class="btn btn-primary">ចាប់ផ្តើមគណនា</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <section class="hero" id="guide">
+                <div class="panel">
+                    <h3 class="form-title">វិធីប្រើប្រាស់</h3>
                     <div class="grid">
                         <div>
-                            {{ form.currency.label_tag }}
-                            {{ form.currency }}
+                            <label>1️ បញ្ចូលតម្លៃទំនិញ និងលក្ខខណ្ឌ</label>
+                            <input type="text" value="បញ្ចូលទិន្នន័យចាំបាច់" disabled />
                         </div>
                         <div>
-                            {{ form.amount.label_tag }}
-                            <span style="color: var(--muted); font-size: 14px;">({{ currency_symbol }})</span>
-                            {{ form.amount }}
+                            <label>2️ ចុច "ចាប់ផ្តើមគណនា"</label>
+                            <input type="text" value="ប្រព័ន្ធគណនាពន្ធដោយស្វ័យប្រវត្តិ" disabled />
+                        </div>
+                        <div>
+                            <label>3️ ពិនិត្យលទ្ធផលចុងក្រោយ</label>
+                            <input type="text" value="បង្ហាញភាគរយ និងទឹកប្រាក់ត្រូវបង់" disabled />
                         </div>
                     </div>
-                    <div class="result" style="background: #f8fafc; padding: 20px; border-radius: 12px; margin-top: 25px; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-weight: bold; color: #475569;">អាករបំភ្លឺសាធារណៈ (5%)</span>
-                        <strong style="color: #1e3c72; font-size: 1.5rem;">{% if tax_amount is not None %}{{ currency_symbol }} {{ tax_amount|floatformat:2 }}{% else %}{{ currency_symbol }} 0.00{% endif %}</strong>
-                    </div>
-                    <div style="text-align: center; margin-top: 20px;">
-                        <button type="submit" class="btn btn-primary" style="padding: 12px 35px; font-size: 1rem;">ចាប់ផ្តើមគណនា</button>
-                    </div>
-                </form>
-            </div>
-        </section>
+                </div>
 
-        <section class="hero" id="guide">
-            <div class="panel" style="background: white; padding: 35px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); margin-bottom: 40px;">
-                <h3 class="form-title" style="color: #1e3c72; margin-bottom: 25px;">វិធីប្រើប្រាស់</h3>
-                <div class="grid">
-                    <div>
-                        <label style="color: #475569; font-weight: bold;">1️⃣ ជ្រើសរើសរូបិយប័ណ្ណ</label>
-                        <input type="text" value="ជ្រើសរើស រៀលកម្ពុជា ឬ ដុល្លារ" disabled style="background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 8px; padding: 10px; width: 100%; margin-top: 8px;" />
-                    </div>
-                    <div>
-                        <label style="color: #475569; font-weight: bold;">2️⃣ បញ្ចូលតម្លៃលក់របស់អ្នក</label>
-                        <input type="text" value="បញ្ចូលតម្លៃលក់គ្រឿងស្រវឹង ឬបារី" disabled style="background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 8px; padding: 10px; width: 100%; margin-top: 8px;" />
-                    </div>
-                    <div>
-                        <label style="color: #475569; font-weight: bold;">3️⃣ ទាញយករបាយការណ៍</label>
-                        <input type="text" value="ប្រព័ន្ធគណនា PLT ចំនួន 5    % ដោយស្វ័យប្រវត្តិ" disabled style="background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 8px; padding: 10px; width: 100%; margin-top: 8px;" />
+                <div class="hero-text">
+                    <h2>ទទួលបានភាពទុកចិត្តក្នុងការគ្រប់គ្រងពន្ធ</h2>
+                    <p>
+                        ប្រព័ន្ធរបស់យើងប្រើប្រាស់ច្បាប់ពន្ធបច្ចុប្បន្នរបស់កម្ពុជា ដើម្បីធានាបាននូវភាពត្រឹមត្រូវនៃការគណនា។
+                    </p>
+                </div>
+            </section>
+        </div>
+
+        <div id="results-section" style="display: none;">
+            <section class="hero" id="results">
+                <div class="hero-text">
+                    <h2>ព័ត៌មានលម្អិតនៃការគណនាពន្ធ</h2>
+                    <p>លទ្ធផលការគណនាពន្ធអាករបំភ្លឺសាធារណៈ (PLT) របស់អ្នក</p>
+                    <div class="hero-actions">
+                        <button onclick="showCalculator()" class="btn btn-secondary">⬅ ត្រឡប់ទៅការគណនា</button>
+                        <a href="{% url 'home' %}" class="btn btn-primary">ទំព័រដើម</a>
                     </div>
                 </div>
-            </div>
 
-            <div class="hero-text" style="text-align: center; color: white;">
-                <h2 style="color: white;">ទទួលបានភាពទុកចិត្តក្នុងការគ្រប់គ្រងពន្ធ</h2>
-                <p style="color: rgba(255, 255, 255, 0.9); max-width: 700px; margin: 0 auto;">
-                    ប្រព័ន្ធរបស់យើងប្រើប្រាស់ច្បាប់ស្តីពីអាករបំភ្លឺសាធារណៈ (PLT)
-                    បច្ចុប្បន្ននៃកម្ពុជា ដើម្បីធានាបាននូវភាពត្រឹមត្រូវនៃការគណនា។
-                </p>
-            </div>
-        </section>
-
+                <div class="panel">
+                    <div class="tax-breakdown">
+                        <div class="breakdown-item">
+                            <span>តម្លៃសរុប (Amount Entered):</span>
+                            <strong>{{ currency_symbol }} {% if form.amount.value is not None %}{{ form.amount.value|floatformat:2 }}{% else %}0.00{% endif %}</strong>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>លក្ខខណ្ឌអាករលើតម្លៃបន្ថែម:</span>
+                            <strong>
+                                {% if vat_inclusion == 'inclusive' %}
+                                    រួមបញ្ចូល VAT (Inclusive)
+                                {% else %}
+                                    មិនរួមបញ្ចូល VAT (Exclusive)
+                                {% endif %}
+                            </strong>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>ភាគរយ VAT:</span>
+                            <strong>{% if vat_percentage is not None %}{{ vat_percentage|floatformat:0 }}%{% else %}0%{% endif %}</strong>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>អត្រាថេរអាករបំភ្លឺសាធារណៈ:</span>
+                            <strong>5.0%</strong>
+                        </div>
+                        <div class="breakdown-item total">
+                            <span>ប្រាក់អាករត្រូវបង់សរុប (PLT Owed):</span>
+                            <strong>{{ currency_symbol }} {% if tax_amount is not None %}{{ tax_amount|floatformat:2 }}{% else %}0.00{% endif %}</strong>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
     </div>
-</div>
+
+    <script>
+        document.getElementById('tax-form').addEventListener('submit', function(e) {
+            setTimeout(function() {
+                document.getElementById('calculator-section').style.display = 'none';
+                document.getElementById('results-section').style.display = 'block';
+            }, 100);
+        });
+
+        function showCalculator() {
+            document.getElementById('results-section').style.display = 'none';
+            document.getElementById('calculator-section').style.display = 'block';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const vatInclusionField = document.querySelector('[name="vat_inclusion"]');
+            const vatPercentageField = document.getElementById('vat-percentage-field');
+
+            function toggleVatField() {
+                if (vatInclusionField) {
+                    const selectedValue = vatInclusionField.value.toLowerCase();
+                    if (selectedValue === 'exclusive' || selectedValue === 'not_inclusive') {
+                        vatPercentageField.style.display = 'none';
+                        const vatInput = vatPercentageField.querySelector('input, select');
+                        if (vatInput) vatInput.value = '0';
+                    } else {
+                        vatPercentageField.style.display = 'block';
+                    }
+                }
+            }
+
+            if (vatInclusionField) {
+                vatInclusionField.addEventListener('change', toggleVatField);
+                toggleVatField();
+            }
+
+            {% if tax_amount is not None %}
+                document.getElementById('calculator-section').style.display = 'none';
+                document.getElementById('results-section').style.display = 'block';
+            {% endif %}
+        });
+    </script>
 {% endblock %}

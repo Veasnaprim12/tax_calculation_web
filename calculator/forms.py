@@ -464,9 +464,7 @@ class AccomodationTaxForm(forms.Form):
 
 from django import forms
 
-
 class PLTTaxForm(forms.Form):
-
     currency = forms.ChoiceField(
         label="រូបិយប័ណ្ណ",
         choices=[
@@ -474,26 +472,85 @@ class PLTTaxForm(forms.Form):
             ('USD', '$ ដុល្លារ'),
         ],
         initial='KHR',
-        widget=forms.Select(
-            attrs={
-                'class': 'form-select'
-            }
-        )
+        widget=forms.Select(attrs={'class': 'form-select'})
     )
 
     amount = forms.DecimalField(
-        label="តម្លៃលក់",
+        label="តម្លៃលក់សរុប",
         min_value=0,
         decimal_places=2,
-        widget=forms.NumberInput(
-            attrs={
-                'placeholder': 'ឧ. 10,000,000',
-                'class': 'form-input',
-                'step': '0.01'
-            }
-        )
+        widget=forms.NumberInput(attrs={
+            'placeholder': 'ឧ. 11,000',
+            'class': 'form-input',
+            'step': '0.01'
+        })
     )
 
+    vat_inclusion = forms.ChoiceField(
+        label="ស្ថានភាពអាករលើតម្លៃបន្ថែម (VAT)",
+        choices=[
+            ('inclusive', 'តម្លៃរួមបញ្ចូល VAT រួចហើយ (VAT Inclusive)'),
+            ('exclusive', 'តម្លៃមិនទាន់រួមបញ្ចូល VAT ទេ (VAT Exclusive)'),
+        ],
+        initial='inclusive',
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+
+    vat_percentage = forms.DecimalField(
+        label="អត្រាភាគរយ VAT (%)",
+        min_value=0,
+        max_value=100,
+        initial=10.00,
+        decimal_places=2,
+        widget=forms.NumberInput(attrs={
+            'class': 'form-input',
+            'step': '0.01'
+        })
+    )
+    currency = forms.ChoiceField(
+        label="រូបិយប័ណ្ណ",
+        choices=[
+            ('KHR', '៛ រៀល'),
+            ('USD', '$ ដុល្លារ'),
+        ],
+        initial='KHR',
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+
+    amount = forms.DecimalField(
+        label="តម្លៃលក់សរុប",
+        min_value=0,
+        decimal_places=2,
+        widget=forms.NumberInput(attrs={
+            'placeholder': 'ឧ. 11,000',
+            'class': 'form-input',
+            'step': '0.01'
+        })
+    )
+
+    # NEW: Dropdown selector to choose whether VAT is built into the pricing
+    vat_inclusion = forms.ChoiceField(
+        label="ស្ថានភាពអាករលើតម្លៃបន្ថែម (VAT)",
+        choices=[
+            ('inclusive', 'តម្លៃរួមបញ្ចូល VAT រួចហើយ (VAT Inclusive)'),
+            ('exclusive', 'តម្លៃមិនទាន់រួមបញ្ចូល VAT ទេ (VAT Exclusive)'),
+        ],
+        initial='inclusive',
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+
+    # NEW: Dynamic field to accept custom VAT percentages (e.g., 10%, 4%, or 0%)
+    vat_percentage = forms.DecimalField(
+        label="អត្រាភាគរយ VAT (%)",
+        min_value=0,
+        max_value=100,
+        initial=10.00,
+        decimal_places=2,
+        widget=forms.NumberInput(attrs={
+            'class': 'form-input',
+            'step': '0.01'
+        })
+    )
 
 class TransportationTaxForm(forms.Form):
 

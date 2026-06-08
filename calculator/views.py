@@ -5,6 +5,7 @@ from .forms import (SalaryTaxForm, PropertyTaxForm, VATTaxForm, IncomeTaxForm, W
                     PLTTaxForm, TransportationTaxForm, AdvertisingBoardTaxForm)
 from .models import TaxRecord, TaxCalculationDetail
 from decimal import Decimal
+from decimal import Decimal, ROUND_HALF_UP
 from tax_calculators import (
     calculate_salary_tax_with_breakdown,
     calculate_property_tax,
@@ -876,64 +877,84 @@ def about_plt_tax(request):
     """
     return render(request, "about_plt_tax.html")
 
+# views.py
+from tax_calculators.plt_tax import calculate_plt_tax
+
 def plt_tax(request):
     """
     Render and handle the PLT tax calculation page.
-    PLT (Public Lighting Tax) applies to alcohol and tobacco sales in Cambodia at a 5% rate.
+    Passes processed data downstream into context matrices for user viewing.
     """
     form = PLTTaxForm()
     tax_amount = None
     selected_currency = 'KHR'
     amount = None
+    taxable_base = None
+    vat_inclusion = 'inclusive'
+    vat_percentage = Decimal('10.00')
     
     if request.method == 'POST':
         form = PLTTaxForm(request.POST)
         if form.is_valid():
             currency = form.cleaned_data['currency']
-            sales_amount = form.cleaned_data['amount'] # Matches your template and Form input property
+            sales_amount = form.cleaned_data['amount']
+            vat_inclusion = form.cleaned_data['vat_inclusion']
+            vat_percentage = form.cleaned_data['vat_percentage']
+            
             selected_currency = currency
-            
-            # Convert base values to KHR for standard engine processing
-            sales_amount_khr = convert_to_khr(sales_amount, currency)
-            
-            # Official Cambodian PLT rate is 5%
-            tax_rate = Decimal('0.05')
-            tax_amount_khr = sales_amount_khr * tax_rate
-            
-            # Convert back to the chosen scope currency for template presentation
-            tax_amount = convert_from_khr(tax_amount_khr, currency)
             amount = sales_amount
             
-            # Save historical entry to TaxRecord table
+            # 1. Execute tax calculations through engine utility
+            tax_amount = calculate_plt_tax(sales_amount, vat_inclusion, vat_percentage)
+            
+            # 2. Derive taxable base separately for front-end template transparency
+            plt_divisor = Decimal('1.05')
+            if vat_inclusion == 'inclusive':
+                vat_divisor = Decimal('1') + (vat_percentage / Decimal('100'))
+                taxable_base = (sales_amount / vat_divisor) / plt_divisor
+            else:
+                taxable_base = sales_amount / plt_divisor
+            
+            taxable_base = taxable_base.quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
+
+            # 3. Handle unified base transformations for relational database storage
+            sales_amount_khr = convert_to_khr(sales_amount, currency)
+            taxable_base_khr = convert_to_khr(taxable_base, currency)
+            tax_amount_khr = convert_to_khr(tax_amount, currency)
+            
+            # Save standard historical tax record entry
             tax_record = TaxRecord.objects.create(
                 tax_type='plt',
                 currency=currency,
-                income=sales_amount, # treating sales amount as the top-line revenue entry
+                income=sales_amount,
                 tax_amount=tax_amount
             )
             
-            # Construct the breakdown logging profile safely
+            # Construct nested logging details cleanly
             TaxCalculationDetail.objects.create(
                 tax_record=tax_record,
-                tax_rate=tax_rate,
-                taxable_amount=sales_amount_khr,
+                tax_rate=Decimal('0.05'),
+                taxable_amount=taxable_base_khr,
                 tax_components={
-                    'calculation_type': 'plt_tax',
-                    'sales_amount_khr': float(sales_amount_khr),
+                    'calculation_type': f'plt_vat_{vat_inclusion}',
+                    'gross_sales_amount_khr': float(sales_amount_khr),
+                    'taxable_base_khr': float(taxable_base_khr),
                     'tax_amount_khr': float(tax_amount_khr),
-                    'tax_rate': 0.05,
-                    'effective_rate': 0.05 
+                    'user_configured_vat_rate': float(vat_percentage),
+                    'vat_inclusion_applied': vat_inclusion
                 }
             )
     
-    # Map the rendering symbol to cleanly match your front-end template indicators
     currency_symbol = '$' if selected_currency == 'USD' else '៛'
     
     return render(request, "plt_tax.html", {
         'form': form,
         'tax_amount': tax_amount,  
+        'taxable_base': taxable_base,
         'amount': amount,
         'currency_symbol': currency_symbol,
+        'vat_inclusion': vat_inclusion,
+        'vat_percentage': vat_percentage,
     })
 def about_transportation_tax(request):
     """
